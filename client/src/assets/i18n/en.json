@@ -1,0 +1,16 @@
+{
+    "BUTTON": {
+        "LOGIN": "Login",
+        "REGISTER": "Sign up!",
+
+        "LANG": {
+            "RU": "Russian",
+            "EN": "English"
+        }
+    },
+    "FORM": {
+        "USERNAME": "Username",
+        "PASSWORD": "Password",
+        "FORGOT_PASSWORD": "Forgot password?"
+    }
+}

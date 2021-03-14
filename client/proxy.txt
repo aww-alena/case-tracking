@@ -1,0 +1,9 @@
+Backend
+
+http://localhost:8000/api/auth/login
+
+
+Frontend
+
+/api/auth/login
+/api/auth/register

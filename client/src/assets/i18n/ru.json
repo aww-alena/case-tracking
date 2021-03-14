@@ -1,0 +1,16 @@
+{
+    "BUTTON": {
+        "LOGIN": "Войти",
+        "REGISTER": "Зарегистрироваться",
+
+        "LANG": {
+            "RU": "Russian",
+            "EN": "English"
+        }
+    },
+    "FORM": {
+        "USERNAME": "Имя пользователя",
+        "PASSWORD": "Пароль",
+        "FORGOT_PASSWORD": "Забыли пароль?"
+    }
+}

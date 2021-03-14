@@ -1,0 +1,21 @@
+<div class="wrapper login">
+    <form [formGroup]="form" (ngSubmit)="authUser()">
+        <p>{{ 'BUTTON.LOGIN' | translate }}</p>
+        <mat-form-field appearance="fill">
+            <mat-label>{{ 'FORM.USERNAME' | translate }}</mat-label>
+            <input matInput placeholder="{{ 'FORM.USERNAME' | translate }}" formControlName="email" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>{{ 'FORM.PASSWORD' | translate }}</mat-label>
+            <input type="password" matInput formControlName="password" required placeholder="{{ 'FORM.PASSWORD' | translate }}">
+        </mat-form-field>
+        <button class="submit" mat-raised-button color="primary">{{ 'BUTTON.LOGIN' | translate }}</button>
+
+        <button class="forgot" mat-button color="accent" value="{{ 'FORM.FORGOT_PASSWORD' | translate }}">{{ 'FORM.FORGOT_PASSWORD' | translate }}</button>
+    </form>
+    <div class="error-text">
+        {{errors}}
+    </div>
+
+
+</div>
