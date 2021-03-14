@@ -30,10 +30,6 @@ const affairSchema = new Schema({
         type: Boolean,
         default: ''
     },
-    category: {
-        ref: 'categories',
-        type: Schema.Types.ObjectId
-    },
     user: {
         ref: 'users',
         type: Schema.Types.ObjectId
