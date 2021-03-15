@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>
+
+    <button type="button" (click)="onCloseClick()"><mat-icon aria-hidden="false">clear</mat-icon></button>
+</h1>
+<div mat-dialog-content>
+    <mat-tab-group #tabGroup animationDuration="0ms" mat-align-tabs="center">
+        <mat-tab label="{{ 'BUTTON.LOGIN' | translate }}">
+            <app-login (goToApp)="onCloseClick()"></app-login>
+        </mat-tab>
+        <mat-tab label="{{ 'BUTTON.REGISTER' | translate }}">
+            <app-register (loginTab)="goToLoginTab()"></app-register>
+        </mat-tab>
+    </mat-tab-group>
+
+</div>

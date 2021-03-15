@@ -4,13 +4,20 @@
         "REGISTER": "Зарегистрироваться",
 
         "LANG": {
-            "RU": "Russian",
-            "EN": "English"
+            "RU": "Русский",
+            "EN": "Английский"
         }
     },
     "FORM": {
         "USERNAME": "Имя пользователя",
+        "EMAIL": "Email",
         "PASSWORD": "Пароль",
-        "FORGOT_PASSWORD": "Забыли пароль?"
+        "FORGOT_PASSWORD": "Забыли пароль?",
+        "ENTER_VALID": "Неверный формат",
+        "EMAIL_IS": "Поле email",
+        "PASSWORD_IS": "Поле пароль"
+    },
+    "ERRORS": {
+        "REQUIRED": "обязательно"
     }
 }

@@ -1,35 +1,84 @@
-import { AfterContentInit } from '@angular/core';
-import { AfterViewInit } from '@angular/core';
-import { Component, OnInit, OnDestroy, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { User } from '../../../../interfaces/user';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
-  form = new FormGroup({});
-  errors: any;
+  form: FormGroup;
+  user: User;
+  subscription: Subscription;
 
+  @Output() goToApp: EventEmitter<string> = new EventEmitter();
+  
   constructor(public translate: TranslateService,
-              private fb: FormBuilder) { 
-  }
+              private auth: AuthService,
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.createForm();
+
+    this.route.queryParams.subscribe((params: Params) => {
+      if (params['registered']) {
+        // Register
+      } else if (params['accessDenied']) {
+        // you must register
+      }
+
+    });
   }
 
-  authUser(): void {}
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
 
-  private createForm(): void {
-    this.form = this.fb.group({
-      email: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required])
+  private createForm() {
+    this.form = new FormGroup({
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      password: new FormControl(null, [Validators.required])
     });
+  }
+
+  
+
+  private createUser() {
+    this.form.disable();
+    return this.user = this.form.value;
+  }
+
+  onSubmit() {
+    this.createUser();
+    this.subscription = this.auth.login(this.user).subscribe(
+      () => {
+        this.router.navigate(['/app']);
+        this.goToApp.emit('close');
+
+      },
+      error => {
+        this.form.enable();
+        console.warn(error);
+        
+      }
+    )
+  }
+
+  get email(): FormGroup{
+    return this.form.get('email') as FormGroup;
+  }
+
+  get password(): FormGroup{
+    return this.form.get('password') as FormGroup;
   }
 
 }

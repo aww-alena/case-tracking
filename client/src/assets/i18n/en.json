@@ -1,7 +1,7 @@
 {
     "BUTTON": {
         "LOGIN": "Login",
-        "REGISTER": "Sign up!",
+        "REGISTER": "Sign up",
 
         "LANG": {
             "RU": "Russian",
@@ -10,7 +10,15 @@
     },
     "FORM": {
         "USERNAME": "Username",
+        "EMAIL": "Email",
         "PASSWORD": "Password",
-        "FORGOT_PASSWORD": "Forgot password?"
+        "FORGOT_PASSWORD": "Forgot password?",
+        "ENTER_VALID": "Please enter a valid",
+        "EMAIL_IS": "Email is",
+        "PASSWORD_IS": "Password is"
+    },
+    "ERRORS": {
+        "REQUIRED": "required"
     }
+
 }

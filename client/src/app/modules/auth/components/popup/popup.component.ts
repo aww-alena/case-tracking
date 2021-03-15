@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
+import { MatTabGroup } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-popup',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PopupComponent implements OnInit {
 
-  constructor() {}
+  @ViewChild('tabGroup') tabGroup: MatTabGroup;
+
+  constructor(public dialogRef: MatDialogRef<PopupComponent>) {}
 
   ngOnInit(): void {}
 
+  onCloseClick(): void {
+    this.dialogRef.close();
+  }
 
+  goToLoginTab(): void {
+    this.tabGroup.selectedIndex = 0;
+  }
 }

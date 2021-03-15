@@ -1,0 +1,19 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav role="navigation" mode="side" opened>
+        <nav>
+            <ul>
+                <li>
+                    <a [routerLink]="['affairs']" routerLinkActive="active">Affairs</a> <a class="add" [routerLink]="['affair/create']" routerLinkActive="active"><i class="material-icons person">add_circle</i></a>
+                </li>
+            </ul>
+        </nav>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <main>
+            <router-outlet></router-outlet>
+        </main>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>

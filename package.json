@@ -13,6 +13,7 @@
     "author": "Shikhanova Alena",
     "license": "ISC",
     "dependencies": {
+        "@angular/cli": "^11.2.4",
         "@ngx-translate/core": "^13.0.0",
         "@ngx-translate/http-loader": "^6.0.0",
         "bcryptjs": "^2.4.3",

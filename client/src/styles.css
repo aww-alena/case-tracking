@@ -27,19 +27,12 @@ body {
 }
 
 .wrapper.login form {
-    background: rgba(0, 0, 0, 0.5);
-    color: var(--light_text_color);
-    width: 300px;
-    margin: 50px auto 0;
     display: grid;
     text-align: center;
-    box-shadow: 0 0 60px rgba(0, 0, 0, 0.5);
-    padding: 30px;
-    border-radius: 30px;
 }
 
 form .submit {
-    width: 150px;
+    width: 180px;
     margin: 20px auto 0;
 }
 
@@ -48,9 +41,30 @@ form .forgot {
     font-size: 12px;
 }
 
+.mat-dialog-title {
+    position: relative;
+    height: 5px;
+}
+
+.mat-dialog-title button {
+    position: absolute;
+    right: 0px;
+    background: transparent;
+    border: none;
+    color: unset;
+    display: grid;
+    top: -6px;
+    outline: none;
+    cursor: pointer;
+}
+
 .wrapper.login form p {
     font-size: 25px;
     margin-bottom: 30px;
+}
+
+.wrapper.login {
+    margin: 30px 50px;
 }
 
 .round.green {
@@ -77,4 +91,77 @@ form .forgot {
 
 .mat-form-field-appearance-fill .mat-form-field-flex {
     background-color: transparent;
+}
+
+.example-container {
+    width: 400px;
+    height: 200px;
+    margin: 12px;
+    border: 1px solid #555;
+}
+
+mat-drawer-content {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+mat-sidenav-container,
+mat-sidenav-content,
+mat-sidenav {
+    height: 100vh;
+}
+
+mat-sidenav-content,
+mat-sidenav {
+    padding: 20px
+}
+
+mat-sidenav {
+    width: 300px;
+    background: red
+}
+
+button.menu-btn {
+    background: transparent;
+    color: unset;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    position: absolute;
+}
+
+mat-button-toggle-group {
+    margin-left: 25px;
+}
+
+main {
+    position: relative;
+}
+
+ul {
+    list-style: none;
+}
+
+nav a {
+    text-decoration: none;
+    color: inherit;
+    font-size: 19px;
+}
+
+nav ul li {
+    display: flex;
+    align-items: center;
+}
+
+.add.active {
+    margin-left: 14px;
+    color: var(--pink);
+}
+
+.add .material-icons {
+    font-size: 17px;
+    position: relative;
+    top: 2px;
 }

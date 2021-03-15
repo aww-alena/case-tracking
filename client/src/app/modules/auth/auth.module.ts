@@ -5,7 +5,9 @@ import { SharedModule } from '../shared/shared.module';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { PopupComponent } from './components/popup/popup.component';
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent, PopupComponent],
@@ -13,8 +15,10 @@ import { PopupComponent } from './components/popup/popup.component';
     AuthRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
-  ],
-  exports: [LoginComponent]
+    SharedModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    HttpClientModule
+  ]
 })
 export class AuthModule { }

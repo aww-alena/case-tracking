@@ -1,21 +1,33 @@
 <div class="wrapper login">
-    <form [formGroup]="form" (ngSubmit)="authUser()">
-        <p>{{ 'BUTTON.LOGIN' | translate }}</p>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <mat-form-field appearance="fill">
-            <mat-label>{{ 'FORM.USERNAME' | translate }}</mat-label>
-            <input matInput placeholder="{{ 'FORM.USERNAME' | translate }}" formControlName="email" required>
+            <mat-label>{{ 'FORM.EMAIL' | translate }}</mat-label>
+            <input type="email" matInput placeholder="{{ 'FORM.EMAIL' | translate }}" formControlName="email">
+
+            <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+                {{ 'FORM.ENTER_VALID' | translate }} {{ 'FORM.EMAIL' | translate }}
+            </mat-error>
+            <mat-error *ngIf="email.hasError('required')">
+                {{ 'FORM.EMAIL_IS' | translate }} <strong>{{ 'ERRORS.REQUIRED' | translate }}</strong>
+            </mat-error>
         </mat-form-field>
+
+
         <mat-form-field appearance="fill">
             <mat-label>{{ 'FORM.PASSWORD' | translate }}</mat-label>
-            <input type="password" matInput formControlName="password" required placeholder="{{ 'FORM.PASSWORD' | translate }}">
+            <input type="password" matInput placeholder="{{ 'FORM.PASSWORD' | translate }}" formControlName="password">
+
+            <mat-error *ngIf="password.hasError('minLength') && !password.hasError('required')">
+                {{ 'FORM.ENTER_VALID' | translate }} {{ 'FORM.PASSWORD' | translate }}
+            </mat-error>
+            <mat-error *ngIf="password.hasError('required')">
+                {{ 'FORM.PASSWORD_IS' | translate }} <strong>{{ 'ERRORS.REQUIRED' | translate }}</strong>
+            </mat-error>
+
         </mat-form-field>
-        <button class="submit" mat-raised-button color="primary">{{ 'BUTTON.LOGIN' | translate }}</button>
+
+        <button class="submit" mat-raised-button color="primary" [disabled]="form.invalid || form.disabled">{{ 'BUTTON.LOGIN' | translate }}</button>
 
         <button class="forgot" mat-button color="accent" value="{{ 'FORM.FORGOT_PASSWORD' | translate }}">{{ 'FORM.FORGOT_PASSWORD' | translate }}</button>
     </form>
-    <div class="error-text">
-        {{errors}}
-    </div>
-
-
 </div>
