@@ -165,3 +165,26 @@ nav ul li {
     position: relative;
     top: 2px;
 }
+
+.create-affair {
+    display: grid;
+    width: 400px;
+    grid-gap: 15px;
+}
+
+.create-affair button {
+    background: rgba(0, 0, 0, 0.4);
+    border: none;
+    height: 37px;
+    color: #fff;
+    border-radius: 8px;
+}
+
+.create-affair .day-of-week button {
+    width: 13%;
+}
+
+.day-of-week {
+    display: flex;
+    justify-content: space-between;
+}
