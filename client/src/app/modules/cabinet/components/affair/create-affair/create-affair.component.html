@@ -1,29 +1,33 @@
-<form class="create-affair">
-    <mat-form-field appearance="fill">
-        <mat-label>Name of affair</mat-label>
-        <input type="text" matInput>
-    </mat-form-field>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="create-affair">
+    <p>Create Affair</p>
 
-    <mat-form-field appearance="fill">
-        <mat-label>Choose one</mat-label>
-        <mat-select>
-            <mat-option value="Work" selected>Work</mat-option>
-            <mat-option value="Sport">Sport</mat-option>
-            <mat-option value="Hobby">Hobby</mat-option>
-            <mat-option value="Languages">Languages</mat-option>
-        </mat-select>
-    </mat-form-field>
+    <div class="wrapper">
+        <mat-form-field appearance="fill">
+            <mat-label>Name of affair</mat-label>
+            <input formControlName="name" type="text" matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Choose one</mat-label>
+            <mat-select formControlName="categoryId">
+                <mat-option value="1" selected>Work</mat-option>
+                <mat-option value="2">Sport</mat-option>
+                <mat-option value="3">Hobby</mat-option>
+                <mat-option value="4">Languages</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-checkbox formControlName="has_timer" class="example-margin">I want to keep track of time!</mat-checkbox>
+
+        <mat-checkbox formControlName="has_rating" class="example-margin">I will evaluete the completion!</mat-checkbox>
 
 
+        <div class="day-of-week">
+            <button (click)=onSetScheduleEveryday() [class.active]="isEmpty()" type="button">Every day</button>
+            <button (click)=onAddDayToSchedule(day.id) [class.active]="isExist(day.id)" type="button" *ngFor="let day of dayEn">{{day.name}}</button>
+        </div>
 
-    <mat-checkbox class="example-margin">I want to keep track of time!</mat-checkbox>
-
-    <mat-checkbox class="example-margin">I will evaluete the completion!</mat-checkbox>
-
-    <button type="button">Every day</button>
-
-    <div class="day-of-week">
-        <button type="button" *ngFor="let day of dayEn">{{day}}</button>
+        <button type="submit">Create</button>
     </div>
 
 </form>

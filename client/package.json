@@ -24,6 +24,9 @@
     "@ngx-translate/core": "^13.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
+    "typeface-pacifico": "^1.1.13",
+    "typeface-poppins": "^1.1.13",
+    "typeface-righteous": "^1.1.13",
     "zone.js": "~0.11.3"
   },
   "devDependencies": {

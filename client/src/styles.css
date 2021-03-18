@@ -20,6 +20,20 @@ body {
     color: var(--light_text_color);
 }
 
+a {
+    text-decoration: none;
+    outline: none;
+}
+
+button {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+    font-family: inherit;
+    outline: none;
+}
+
 .lang-btns {
     display: flex;
     align-items: center;
@@ -140,14 +154,30 @@ main {
     position: relative;
 }
 
+a.logout {
+    display: flex;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.5);
+    width: 80px;
+    justify-content: space-between;
+    padding-left: 10px;
+    position: absolute;
+    bottom: 30px;
+}
+
 ul {
     list-style: none;
 }
 
-nav a {
+mat-sidenav nav a {
     text-decoration: none;
     color: inherit;
-    font-size: 19px;
+    font-size: 17px;
+    width: 100%;
+    height: 100%;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
 }
 
 nav ul li {
@@ -155,21 +185,84 @@ nav ul li {
     align-items: center;
 }
 
-.add.active {
+nav ul li .add {
     margin-left: 14px;
-    color: var(--pink);
+    color: rgba(255, 237, 9, 0.75);
+}
+
+mat-sidenav .logo {
+    width: 100%;
+    text-align: center;
+}
+
+mat-sidenav .logo img {
+    max-height: 110px;
+    margin: 0 auto;
+    display: block;
+}
+
+.logo {
+    text-decoration: none;
+}
+
+mat-sidenav .logo p {
+    color: #fff106;
+    text-shadow: 3px 3px 2px #390759;
+    position: relative;
+    top: -9px;
+    font-family: 'Righteous';
+    font-size: 20px;
+}
+
+.mat-drawer-side {
+    border-right: none;
+    box-shadow: 8px 0px 22px #000;
+}
+
+.mat-drawer {
+    border-radius: 0px 20px 20px 0;
+}
+
+.mat-drawer {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5) 30%);
+}
+
+mat-sidenav nav {
+    margin-top: 55px;
+}
+
+mat-sidenav ul {
+    padding: 0 5px;
+}
+
+nav ul li {
+    width: 100%;
+    border-radius: 14px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+    height: 47px;
+    background: rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
 }
 
 .add .material-icons {
-    font-size: 17px;
+    font-size: 21px;
     position: relative;
     top: 2px;
+    text-shadow: 2px 2px 5px #5a106c;
 }
 
 .create-affair {
+    width: 440px;
+    margin: 40px auto 0;
+    background: #181818;
+    border-radius: 20px;
+    box-shadow: 8px 0px 22px #000;
+}
+
+.create-affair .wrapper {
     display: grid;
-    width: 400px;
     grid-gap: 15px;
+    padding: 0 40px 50px;
 }
 
 .create-affair button {
@@ -181,10 +274,130 @@ nav ul li {
 }
 
 .create-affair .day-of-week button {
-    width: 13%;
+    width: 10%;
+}
+
+.create-affair .day-of-week button:first-child {
+    width: 80px;
 }
 
 .day-of-week {
     display: flex;
     justify-content: space-between;
+    margin-top: 15px;
+}
+
+.plus-menu .main-btn mat-icon {
+    font-size: 55px;
+    color: #fff803;
+    text-shadow: 3px 3px 7px #961382;
+}
+
+.mat-plus-menu.mat-menu-panel {
+    background: transparent;
+    box-shadow: none;
+    position: relative;
+    right: -34px;
+    overflow: inherit;
+}
+
+.plus-menu .mat-menu-item {
+    text-align: right;
+}
+
+.plus-menu {
+    position: absolute;
+    right: 60px;
+    bottom: 90px;
+}
+
+.mat-plus-menu.mat-menu-panel .mat-menu-content {
+    display: grid;
+    justify-content: end;
+    text-align: center;
+}
+
+.mat-plus-menu.mat-menu-panel .add {
+    color: #fff;
+    background: #050505;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+}
+
+.create-affair button[type="submit"] {
+    background: #e12e6d;
+    width: 159px;
+    margin: 35px auto 0;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 50px;
+    height: 43px;
+    text-transform: uppercase;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 1);
+    text-shadow: 1px 1px 4px black;
+}
+
+.create-affair p {
+    box-shadow: 1px 1px 15px #000;
+    font-size: 21px;
+    color: #fff;
+    padding: 24px 40px;
+    background: rgb(131, 58, 180);
+    background: linear-gradient(90deg, rgb(253 55 101) 20%, rgb(134 13 97) 100%);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border-radius: 20px 20px 0 0;
+    text-shadow: 2px 2px 10px black;
+    margin-bottom: 15px;
+}
+
+.day-of-week button.active {
+    color: #fff;
+    text-shadow: 1px 1px 5px black;
+    letter-spacing: 0.2px;
+    border: 2px solid #e12e6d;
+}
+
+app-item-affair {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 40px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+    padding: 25px;
+    margin-bottom: 20px;
+    justify-content: space-between;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    -ms-border-radius: 40px;
+    -o-border-radius: 40px;
+}
+
+.affair-list .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 30px;
+}
+
+.affair .icon {
+    color: #e12e6d;
+    font-size: 59px;
+    text-align: center;
+}
+
+.affair .icon mat-icon {
+    font-size: 59px;
+    height: auto;
+    width: auto;
+}
+
+main {
+    margin-left: 30px;
+}
+
+.affair .name {
+    text-align: center;
+    font-size: 21px;
+    margin-bottom: 31px;
 }

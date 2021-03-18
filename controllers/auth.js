@@ -63,6 +63,7 @@ const getPassword = password => {
 
     return bcrypt.hashSync(password, salt)
 }
+
 const getToken = candidate => {
     return token = 'Bearer ' + jwt.sign({
         email: candidate.email,

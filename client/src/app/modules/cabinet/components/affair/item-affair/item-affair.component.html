@@ -1,1 +1,8 @@
-<p>item-affair works!</p>
+<div class="affair">
+    <p class="name">{{affair.name}}</p>
+    <p class="icon">
+        <mat-icon>card_travel</mat-icon>
+    </p>
+    <p class="schedule">{{affair.schedule}}</p>
+    <a [routerLink]="['/app/affairs', affair._id]">Link</a>
+</div>

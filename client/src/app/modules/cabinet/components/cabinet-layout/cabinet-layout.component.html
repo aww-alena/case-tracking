@@ -1,12 +1,28 @@
 <mat-sidenav-container>
     <mat-sidenav #sidenav role="navigation" mode="side" opened>
+        <a class="logo" [routerLink]="['/app']">
+            <img src="../../../../../assets/images/logo.png">
+            <p>NOW</p>
+        </a>
         <nav>
             <ul>
                 <li>
-                    <a [routerLink]="['affairs']" routerLinkActive="active">Affairs</a> <a class="add" [routerLink]="['affair/create']" routerLinkActive="active"><i class="material-icons person">add_circle</i></a>
+                    <a [routerLink]="['affairs']" routerLinkActive="active">Affairs</a>
+                </li>
+                <li>
+                    <a [routerLink]="['affairs']" routerLinkActive="active">Goals</a>
+                </li>
+                <li>
+                    <a [routerLink]="['affairs']" routerLinkActive="active">Categories</a>
+                </li>
+                <li>
+                    <a [routerLink]="['affairs']" routerLinkActive="active">Statistics</a>
                 </li>
             </ul>
         </nav>
+        <a href="#" (click)=logout($event) class="logout">
+            <i class="material-icons person">logout</i> Logout
+        </a>
 
     </mat-sidenav>
 
@@ -14,6 +30,22 @@
         <main>
             <router-outlet></router-outlet>
         </main>
+
+
+        <div class="plus-menu">
+            <button class="main-btn" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Create">
+                <mat-icon>add_circle</mat-icon>
+            </button>
+            <mat-menu class="mat-plus-menu" #menu="matMenu" yPosition="above">
+
+                <a class="add" [routerLink]="['affair/create']">Affair</a>
+
+                <a class="add" [routerLink]="['goal/create']">Goal</a>
+
+                <a class="add" [routerLink]="['category/create']">Category</a>
+
+            </mat-menu>
+        </div>
 
     </mat-sidenav-content>
 </mat-sidenav-container>

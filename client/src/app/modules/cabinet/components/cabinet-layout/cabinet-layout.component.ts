@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-cabinet-layout',
@@ -12,9 +14,16 @@ export class CabinetLayoutComponent implements OnInit {
     {url: '/affairs/create', name: 'Create affair'}
   ]
 
-  constructor() { }
+  constructor(private auth: AuthService,
+              private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  logout(event: Event): void {
+    event.preventDefault();
+    this.auth.logout();
+    this.router.navigate(['auth']);
   }
 
 }
