@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { User } from '../../../../interfaces/user';
+import { MessageService } from 'src/app/services/message-service/message.service';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +22,8 @@ export class RegisterComponent implements OnInit, OnDestroy  {
 
   constructor(private auth: AuthService,
               private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -61,11 +63,13 @@ export class RegisterComponent implements OnInit, OnDestroy  {
       () => {
 
         this.loginTab.emit('go');
+        this.messageService.showMessage('Now you can sign in!' , 'Awesome!');
         
       },
       error => {
         this.form.enable();
-        console.warn(error);
+        this.messageService.showError(error.error.message , 'Uuups! Error.');
+
         
       }
     )

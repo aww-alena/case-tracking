@@ -1,8 +1,45 @@
 <div class="affair">
-    <p class="name">{{affair.name}}</p>
-    <p class="icon">
-        <mat-icon>card_travel</mat-icon>
-    </p>
-    <p class="schedule">{{affair.schedule}}</p>
-    <a [routerLink]="['/app/affairs', affair._id]">Link</a>
+    <div class="flex">
+        <div class="flex">
+            <p class="name">
+                <mat-icon>card_travel</mat-icon> {{affair.name}}
+            </p>
+
+            <app-rating (byClick)="updateRating($event)" *ngIf="affair.has_rating;else checkbox"></app-rating>
+
+            <ng-template #checkbox>
+                <mat-checkbox (click)="onDone()"></mat-checkbox>
+            </ng-template>
+        </div>
+        <a class="edit" [routerLink]="['/app/affairs', affair._id]">
+            <mat-icon>mode_edit</mat-icon>
+        </a>
+    </div>
+
+    <div class="flex-timer" [ngClass]="{'one': !affair.has_timer}">
+        <app-timer *ngIf="affair.has_timer"></app-timer>
+
+        <mat-expansion-panel hideToggle class="">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon>comment</mat-icon>
+                    Add note
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+
+            <mat-form-field appearance="fill">
+                <mat-label>Your note</mat-label>
+                <input type="text" matInput>
+            </mat-form-field>
+
+            <button class="save-comment" (click)=saveComment() type="button">Save</button>
+
+        </mat-expansion-panel>
+    </div>
+
+
+
+
+
 </div>

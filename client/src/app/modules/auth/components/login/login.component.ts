@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { User } from '../../../../interfaces/user';
+import { MessageService } from 'src/app/services/message-service/message.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(public translate: TranslateService,
               private auth: AuthService,
               private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -63,12 +65,12 @@ export class LoginComponent implements OnInit, OnDestroy {
       () => {
         this.router.navigate(['/app']);
         this.goToApp.emit('close');
+        this.messageService.showMessage('Access is allowed ' , 'Yupikai!');
 
       },
       error => {
         this.form.enable();
-        console.warn(error);
-        
+        this.messageService.showError(error.error.message , 'Uuups! Error.');
       }
     )
   }

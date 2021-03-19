@@ -1,0 +1,3 @@
+<p class="stars">
+    <i (mouseenter)="hover(star)" (mouseleave)="leave(star)" (click)="click(star)" *ngFor="let star of stars" class="fa fa-star" [ngClass]="{'filled': star <= selectedStar }"></i>
+</p>

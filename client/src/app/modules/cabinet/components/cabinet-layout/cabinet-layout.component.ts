@@ -23,7 +23,7 @@ export class CabinetLayoutComponent implements OnInit {
   logout(event: Event): void {
     event.preventDefault();
     this.auth.logout();
-    this.router.navigate(['auth']);
+    this.router.navigate(['']);
   }
 
 }

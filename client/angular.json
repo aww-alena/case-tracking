@@ -32,7 +32,8 @@
                             "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
                             "src/styles.css",
                             "./node_modules/typeface-poppins/index.css",
-                            "./node_modules/typeface-righteous/index.css"
+                            "./node_modules/typeface-righteous/index.css",
+                            "./node_modules/font-awesome/css/font-awesome.min.css"
                         ],
                         "scripts": []
                     },

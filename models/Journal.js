@@ -10,8 +10,16 @@ const journalSchema = new Schema({
     comment: {
         type: String
     },
-    minutes: {
-        type: Number
+    timer: {
+        minutes: {
+            type: Number
+        },
+        status: {
+            type: String
+        },
+        timestamp: {
+            type: Date
+        }
     },
     value: {
         type: Number
@@ -30,6 +38,9 @@ const journalSchema = new Schema({
     category: {
         ref: 'categories',
         type: Schema.Types.ObjectId
+    },
+    id_recording: {
+        type: String
     }
 })
 

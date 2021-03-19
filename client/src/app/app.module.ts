@@ -13,7 +13,6 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { JournalComponent } from './components/page/journal/journal.component';
 import { TokenInterceptor } from './classes/token.interceptor';
 import { MainLayoutComponent } from './components/main-layout/main-layout.component';
-
 import { RouterModule } from '@angular/router';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -43,7 +42,8 @@ export function createTranslateLoader(http: HttpClient) {
       defaultLanguage: 'en'
     })
   ],
-  providers: [{
+  providers: [
+    {
     provide: HTTP_INTERCEPTORS,
     multi: true,
     useClass: TokenInterceptor
