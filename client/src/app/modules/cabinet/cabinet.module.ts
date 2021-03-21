@@ -11,10 +11,11 @@ import { ItemAffairComponent } from './components/affair/item-affair/item-affair
 import { ListAffairComponent } from './components/affair/list-affair/list-affair.component';
 import { RatingComponent } from './components/rating/rating.component';
 import { TimerComponent } from './components/timer/timer.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
 
 
 @NgModule({
-  declarations: [CabinetLayoutComponent, DashboardComponent, CreateAffairComponent, EditAffairComponent, ItemAffairComponent, ListAffairComponent, RatingComponent, TimerComponent],
+  declarations: [CabinetLayoutComponent, DashboardComponent, CreateAffairComponent, EditAffairComponent, ItemAffairComponent, ListAffairComponent, RatingComponent, TimerComponent, CalendarComponent],
   imports: [
     CommonModule,
     CabinetRoutingModule,

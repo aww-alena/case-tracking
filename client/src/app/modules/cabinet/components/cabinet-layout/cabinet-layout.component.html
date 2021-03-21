@@ -7,28 +7,69 @@
         <nav>
             <ul>
                 <li>
-                    <a [routerLink]="['affairs']" routerLinkActive="active">Affairs</a>
+                    <a [routerLink]="['']" routerLinkActive="active">
+                        <mat-icon>space_dashboard</mat-icon> Dashboard</a>
                 </li>
                 <li>
-                    <a [routerLink]="['affairs']" routerLinkActive="active">Goals</a>
+                    <a [routerLink]="['affairs']" routerLinkActive="active">
+                        <mat-icon>business_center</mat-icon> Affairs</a>
                 </li>
                 <li>
-                    <a [routerLink]="['affairs']" routerLinkActive="active">Categories</a>
+                    <a [routerLink]="['goals']" routerLinkActive="active">
+                        <mat-icon>adjust</mat-icon> Goals</a>
                 </li>
                 <li>
-                    <a [routerLink]="['affairs']" routerLinkActive="active">Statistics</a>
+                    <a [routerLink]="['categories']" routerLinkActive="active">
+                        <mat-icon>category</mat-icon>Categories</a>
+                </li>
+                <li>
+                    <a [routerLink]="['statictics']" routerLinkActive="active">
+                        <mat-icon>auto_graph</mat-icon> Statistics</a>
                 </li>
             </ul>
         </nav>
-        <a href="#" (click)=logout($event) class="logout">
-            <i class="material-icons person">logout</i> Logout
-        </a>
 
     </mat-sidenav>
 
     <mat-sidenav-content>
         <main>
-            <router-outlet></router-outlet>
+
+            <div class="header">
+                <h1>Dashboard</h1>
+
+                <ul>
+                    <li>
+                        <a href="">
+                            <mat-icon>search</mat-icon>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <mat-icon>notifications</mat-icon>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <mat-icon>event</mat-icon>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <mat-icon>settings</mat-icon>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" (click)=logout($event)>
+                            <mat-icon>logout</mat-icon>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div class="wrapper">
+                <router-outlet></router-outlet>
+            </div>
         </main>
 
 
