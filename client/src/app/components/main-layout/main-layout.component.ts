@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 import {MatDialog} from '@angular/material/dialog';
 import { PopupComponent } from '../../modules/auth/components/popup/popup.component';
 
@@ -10,8 +9,7 @@ import { PopupComponent } from '../../modules/auth/components/popup/popup.compon
 })
 export class MainLayoutComponent implements OnInit {
 
-  constructor(public translate: TranslateService,
-              public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }

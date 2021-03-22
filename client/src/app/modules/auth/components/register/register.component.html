@@ -2,45 +2,45 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
         <mat-form-field appearance="fill">
-            <mat-label>{{ 'FORM.USERNAME' | translate }}</mat-label>
+            <mat-label>USERNAME</mat-label>
             <input matInput formControlName="name">
 
             <mat-error *ngIf="name.hasError('email') && !name.hasError('required')">
-                {{ 'FORM.ENTER_VALID' | translate }} {{ 'FORM.EMAIL' | translate }}
+                Enter valid email
             </mat-error>
             <mat-error *ngIf="name.hasError('required')">
-                {{ 'FORM.EMAIL_IS' | translate }} <strong>{{ 'ERRORS.REQUIRED' | translate }}</strong>
+                Email is <strong>required</strong>
             </mat-error>
         </mat-form-field>
 
 
         <mat-form-field appearance="fill">
-            <mat-label>{{ 'FORM.EMAIL' | translate }}</mat-label>
-            <input type="email" matInput placeholder="{{ 'FORM.EMAIL' | translate }}" formControlName="email">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput placeholder="Email" formControlName="email">
 
             <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
-                {{ 'FORM.ENTER_VALID' | translate }} {{ 'FORM.EMAIL' | translate }}
+                Enter valid email
             </mat-error>
             <mat-error *ngIf="email.hasError('required')">
-                {{ 'FORM.EMAIL_IS' | translate }} <strong>{{ 'ERRORS.REQUIRED' | translate }}</strong>
+                Email is <strong>required</strong>
             </mat-error>
         </mat-form-field>
 
 
         <mat-form-field appearance="fill">
-            <mat-label>{{ 'FORM.PASSWORD' | translate }}</mat-label>
-            <input type="password" matInput placeholder="{{ 'FORM.PASSWORD' | translate }}" formControlName="password">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput placeholder="Password" formControlName="password">
 
             <mat-error *ngIf="password.hasError('minLength') && !password.hasError('required')">
-                {{ 'FORM.ENTER_VALID' | translate }} {{ 'FORM.PASSWORD' | translate }}
+                Enter valid password
             </mat-error>
             <mat-error *ngIf="password.hasError('required')">
-                {{ 'FORM.PASSWORD_IS' | translate }} <strong>{{ 'ERRORS.REQUIRED' | translate }}</strong>
+                Password is <strong>required</strong>
             </mat-error>
 
         </mat-form-field>
 
-        <button class="submit" mat-raised-button color="primary" [disabled]="form.invalid || form.disabled">{{ 'BUTTON.REGISTER' | translate }}</button>
+        <button class="submit" mat-raised-button color="primary" [disabled]="form.invalid || form.disabled">Register</button>
 
     </form>
 </div>

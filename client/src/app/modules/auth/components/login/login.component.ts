@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { User } from '../../../../interfaces/user';
@@ -20,8 +19,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   @Output() goToApp: EventEmitter<string> = new EventEmitter();
   
-  constructor(public translate: TranslateService,
-              private auth: AuthService,
+  constructor(private auth: AuthService,
               private router: Router,
               private route: ActivatedRoute,
               private messageService: MessageService) { }

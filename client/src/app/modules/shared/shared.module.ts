@@ -6,7 +6,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonToggleModule} from '@angular/material/button-toggle';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
-import { TranslateModule } from '@ngx-translate/core';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatTabsModule} from '@angular/material/tabs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -33,7 +32,6 @@ import {MatSortModule} from '@angular/material/sort';
     MatButtonModule,
     MatFormFieldModule,
     MatButtonToggleModule,
-    TranslateModule,
     MatDialogModule,
     MatTabsModule,
     FormsModule,
@@ -50,7 +48,6 @@ import {MatSortModule} from '@angular/material/sort';
     MatSnackBarModule,
     MatTooltipModule,
     MatSortModule
-    
   ],
   exports: [
     CommonModule,
@@ -60,7 +57,6 @@ import {MatSortModule} from '@angular/material/sort';
     MatButtonModule,
     MatFormFieldModule,
     MatButtonToggleModule,
-    TranslateModule,
     MatDialogModule,
     MatTabsModule,
     FormsModule,

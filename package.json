@@ -14,8 +14,6 @@
     "license": "ISC",
     "dependencies": {
         "@angular/cli": "^11.2.4",
-        "@ngx-translate/core": "^13.0.0",
-        "@ngx-translate/http-loader": "^6.0.0",
         "bcryptjs": "^2.4.3",
         "body-parser": "^1.19.0",
         "cors": "^2.8.5",
