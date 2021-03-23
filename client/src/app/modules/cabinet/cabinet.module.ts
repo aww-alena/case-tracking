@@ -5,17 +5,27 @@ import { SharedModule } from '../shared/shared.module';
 import { CabinetLayoutComponent } from './components/cabinet-layout/cabinet-layout.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { CreateAffairComponent } from './components/affair/create-affair/create-affair.component';
-import { EditAffairComponent } from './components/affair/edit-affair/edit-affair.component';
-import { ItemAffairComponent } from './components/affair/item-affair/item-affair.component';
-import { ListAffairComponent } from './components/affair/list-affair/list-affair.component';
+import { CreateHabitComponent } from './components/habit/create-habit/create-habit.component';
+import { EditHabitComponent } from './components/habit/edit-habit/edit-habit.component';
+import { ItemHabitComponent } from './components/habit/item-habit/item-habit.component';
+import { ListHabitComponent } from './components/habit/list-habit/list-habit.component';
 import { RatingComponent } from './components/rating/rating.component';
 import { TimerComponent } from './components/timer/timer.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 
 
 @NgModule({
-  declarations: [CabinetLayoutComponent, DashboardComponent, CreateAffairComponent, EditAffairComponent, ItemAffairComponent, ListAffairComponent, RatingComponent, TimerComponent, CalendarComponent],
+  declarations: [
+    CabinetLayoutComponent,
+    DashboardComponent,
+    CreateHabitComponent,
+    EditHabitComponent,
+    ItemHabitComponent,
+    ListHabitComponent,
+    RatingComponent,
+    TimerComponent,
+    CalendarComponent
+  ],
   imports: [
     CommonModule,
     CabinetRoutingModule,

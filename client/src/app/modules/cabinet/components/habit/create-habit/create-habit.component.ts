@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Affair } from 'src/app/interfaces/affair';
-import { AffairService } from 'src/app/services/affair/affair.service';
+import { Habit } from 'src/app/interfaces/habit';
+import { HabitService } from 'src/app/services/habit/habit.service';
 
 @Component({
-  selector: 'app-create-affair',
-  templateUrl: './create-affair.component.html',
-  styleUrls: ['./create-affair.component.css']
+  selector: 'app-create-habit',
+  templateUrl: './create-habit.component.html',
+  styleUrls: ['./create-habit.component.css']
 })
-export class CreateAffairComponent implements OnInit {
+export class CreateHabitComponent implements OnInit {
 
   schedule: Array<string> = [];
   form: FormGroup;
-  affair: Affair;
+  habit: Habit;
 
-  constructor(private affairService: AffairService) { }
+  constructor(private habitService: HabitService) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -29,8 +29,8 @@ export class CreateAffairComponent implements OnInit {
     })
   }
 
-  createAffair(): void {
-    this.affair = {
+  createHabit(): void {
+    this.habit = {
       name: this.form.value.name,
       has_timer: this.form.value.has_timer,
       has_rating: this.form.value.has_rating,
@@ -40,11 +40,11 @@ export class CreateAffairComponent implements OnInit {
   }
 
   onSubmit() {
-    this.createAffair();
-    this.affairService.create(this.affair).subscribe(
-      newAffair => {
+    this.createHabit();
+    this.habitService.create(this.habit).subscribe(
+      newHabit => {
         this.form.reset();
-        console.log(newAffair);
+        console.log(newHabit);
       }
     );
     

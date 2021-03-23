@@ -255,7 +255,7 @@ nav ul li {
     text-shadow: 2px 2px 5px #5a106c;
 }
 
-.create-affair {
+.create-habit {
     width: 440px;
     margin: 40px auto 0;
     background: #181818;
@@ -263,13 +263,13 @@ nav ul li {
     box-shadow: 8px 0px 22px #000;
 }
 
-.create-affair .wrapper {
+.create-habit .wrapper {
     display: grid;
     grid-gap: 15px;
     padding: 0 40px 50px;
 }
 
-.create-affair button {
+.create-habit button {
     background: rgba(0, 0, 0, 0.4);
     border: none;
     height: 37px;
@@ -277,11 +277,11 @@ nav ul li {
     border-radius: 8px;
 }
 
-.create-affair .day-of-week button {
+.create-habit .day-of-week button {
     width: 10%;
 }
 
-.create-affair .day-of-week button:first-child {
+.create-habit .day-of-week button:first-child {
     width: 80px;
 }
 
@@ -328,7 +328,7 @@ nav ul li {
     border-radius: 10px;
 }
 
-.create-affair button[type="submit"] {
+.create-habit button[type="submit"] {
     background: #e12e6d;
     width: 159px;
     margin: 35px auto 0;
@@ -342,7 +342,7 @@ nav ul li {
     text-shadow: 1px 1px 4px black;
 }
 
-.create-affair p {
+.create-habit p {
     box-shadow: 1px 1px 15px #000;
     font-size: 21px;
     color: #fff;
@@ -363,17 +363,17 @@ nav ul li {
     border: 2px solid #e12e6d;
 }
 
-.affair-list .grid {
+.habit-list .grid {
     display: grid;
 }
 
-.affair .icon {
+.habit .icon {
     color: #e12e6d;
     font-size: 59px;
     text-align: center;
 }
 
-.affair .icon mat-icon {
+.habit .icon mat-icon {
     font-size: 59px;
     height: auto;
     width: auto;
@@ -383,7 +383,7 @@ main {
     margin: 0 30px 0 0px;
 }
 
-.affair .name {
+.habit .name {
     text-align: center;
     font-size: 21px;
     display: flex;
@@ -423,7 +423,7 @@ main {
     color: #f39df3;
 }
 
-.affair .flex {
+.habit .flex {
     align-items: center;
 }
 
@@ -431,7 +431,7 @@ p.stars {
     margin-bottom: 0px;
 }
 
-.affair .name mat-icon {
+.habit .name mat-icon {
     background: rgba(0, 0, 0, 0.5);
     padding: 10px;
     border-radius: 50%;
@@ -440,11 +440,11 @@ p.stars {
     background: linear-gradient(90deg, rgb(253 55 101) 20%, rgb(134 13 97) 100%);
 }
 
-.affair>.flex {
+.habit>.flex {
     justify-content: space-between;
 }
 
-.affair .mat-expansion-panel {
+.habit .mat-expansion-panel {
     background: transparent;
     color: #fff;
     box-shadow: none;
@@ -454,39 +454,39 @@ mat-expansion-panel mat-icon {
     margin-right: 15px;
 }
 
-.affair .mat-expansion-panel-header-title {
+.habit .mat-expansion-panel-header-title {
     margin-right: 0;
     justify-content: flex-end;
 }
 
-.affair .mat-expansion-panel-header {
+.habit .mat-expansion-panel-header {
     padding: 0 10px;
 }
 
-.affair .mat-expansion-panel:hover,
-.affair mat-expansion-panel-header:hover {
+.habit .mat-expansion-panel:hover,
+.habit mat-expansion-panel-header:hover {
     background: transparent !important;
 }
 
-.affair .contrlos {
+.habit .contrlos {
     margin-left: 45px;
 }
 
-.affair .contrlos mat-icon {
+.habit .contrlos mat-icon {
     color: #fff;
 }
 
-.affair .contrlos button {
+.habit .contrlos button {
     width: 36px;
     height: 36px;
     border-radius: 50%;
 }
 
-.affair .contrlos button:hover {
+.habit .contrlos button:hover {
     background: rgba(0, 0, 0, 0.1);
 }
 
-.affair .edit {
+.habit .edit {
     color: #fff;
 }
 
@@ -494,7 +494,7 @@ mat-expansion-panel mat-icon {
     justify-content: space-between;
 }
 
-.affair .name {
+.habit .name {
     text-align: center;
     font-size: 21px;
     display: flex;
@@ -504,7 +504,7 @@ mat-expansion-panel mat-icon {
     color: #fff;
 }
 
-.affair .name mat-icon {
+.habit .name mat-icon {
     background: rgba(255, 255, 255, 0.1);
     padding: 10px;
     border-radius: 50%;
@@ -516,12 +516,12 @@ mat-expansion-panel mat-icon {
     padding: 11px 0px 18px;
     display: flex;
     justify-content: space-between;
-    align-items: start;
+    align-items: flex-start;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     margin-top: 15px;
 }
 
-.affair .mat-expansion-panel-header {
+.habit .mat-expansion-panel-header {
     height: unset;
 }
 
@@ -535,7 +535,7 @@ mat-expansion-panel mat-icon {
     font-size: 14px;
 }
 
-.affair .mat-expansion-panel-body {
+.habit .mat-expansion-panel-body {
     padding: 10px 0;
     margin: 15px 0 0;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -552,7 +552,7 @@ mat-expansion-panel mat-icon {
 
 /*******/
 
-app-item-affair.ng-star-inserted {
+app-item-habit.ng-star-inserted {
     border-top: 1px solid #765bff;
     border-radius: 24px;
     margin-bottom: 30px;
@@ -630,7 +630,7 @@ nav .active {
     overflow-y: hidden !important;
 }
 
-.affair .checkbox {
+.habit .checkbox {
     background: rgba(255, 255, 255, 0.1);
     padding: 8px 8px 8px;
     border-radius: 50%;
@@ -641,11 +641,11 @@ nav .active {
     height: 20px;
 }
 
-app-item-affair>.affair {
+app-item-habit>.habit {
     display: flex;
 }
 
-.affair .left {
+.habit .left {
     width: 80px;
     display: flex;
     align-items: center;
@@ -653,7 +653,7 @@ app-item-affair>.affair {
     border-right: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.affair .right {
+.habit .right {
     width: calc(100% - 80px);
     padding: 18px 25px 0;
 }

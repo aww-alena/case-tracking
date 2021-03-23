@@ -1,4 +1,4 @@
-export interface Affair {
+export interface Habit {
     name: string;
     schedule: string;
     has_timer: boolean;

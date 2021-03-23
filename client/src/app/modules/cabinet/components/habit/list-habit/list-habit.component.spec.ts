@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateAffairComponent } from './create-affair.component';
+import { ListHabitComponent } from './list-habit.component';
 
-describe('CreateAffairComponent', () => {
-  let component: CreateAffairComponent;
-  let fixture: ComponentFixture<CreateAffairComponent>;
+describe('ListHabitComponent', () => {
+  let component: ListHabitComponent;
+  let fixture: ComponentFixture<ListHabitComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CreateAffairComponent ]
+      declarations: [ ListHabitComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreateAffairComponent);
+    fixture = TestBed.createComponent(ListHabitComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

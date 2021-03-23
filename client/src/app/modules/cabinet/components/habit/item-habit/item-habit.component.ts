@@ -1,14 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Affair } from 'src/app/interfaces/affair';
+import { Habit } from 'src/app/interfaces/habit';
 import * as moment from 'moment';
 @Component({
-  selector: 'app-item-affair',
-  templateUrl: './item-affair.component.html',
-  styleUrls: ['./item-affair.component.css']
+  selector: 'app-item-habit',
+  templateUrl: './item-habit.component.html',
+  styleUrls: ['./item-habit.component.css']
 })
-export class ItemAffairComponent implements OnInit {
+export class ItemHabitComponent implements OnInit {
 
-  @Input() affair: Affair;
+  @Input() habit: Habit;
   today: string = moment().format('YYYYMMDD');
 
   constructor() { }

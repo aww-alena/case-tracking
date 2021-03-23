@@ -1,21 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CabinetLayoutComponent } from '../cabinet/components/cabinet-layout/cabinet-layout.component';
-import { CreateAffairComponent } from './components/affair/create-affair/create-affair.component';
-import { EditAffairComponent } from './components/affair/edit-affair/edit-affair.component';
-import { ListAffairComponent } from './components/affair/list-affair/list-affair.component';
+import { CreateHabitComponent } from './components/habit/create-habit/create-habit.component';
+import { EditHabitComponent } from './components/habit/edit-habit/edit-habit.component';
+import { ListHabitComponent } from './components/habit/list-habit/list-habit.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '', component: CabinetLayoutComponent, children: [
     { path: '', component: DashboardComponent },
-    { path: 'affair/create', component: CreateAffairComponent },
-    { path: 'affairs/:id', component: EditAffairComponent },
-    { path: 'affairs', component: ListAffairComponent }
+    { path: 'habit/create', component: CreateHabitComponent },
+    { path: 'habits/:id', component: EditHabitComponent },
+    { path: 'habits', component: ListHabitComponent }
   ]}
 ];
-
-
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

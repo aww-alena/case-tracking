@@ -73,7 +73,6 @@ import {MatSortModule} from '@angular/material/sort';
     MatSnackBarModule,
     MatTooltipModule,
     MatSortModule
-    
   ]
 })
 export class SharedModule { }

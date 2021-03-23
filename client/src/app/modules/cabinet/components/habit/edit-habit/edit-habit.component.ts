@@ -3,31 +3,31 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { of, Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { Affair } from 'src/app/interfaces/affair';
-import { AffairService } from 'src/app/services/affair/affair.service';
+import { Habit } from 'src/app/interfaces/habit';
+import { HabitService } from 'src/app/services/habit/habit.service';
 
 @Component({
-  selector: 'app-edit-affair',
-  templateUrl: './edit-affair.component.html',
-  styleUrls: ['./edit-affair.component.css']
+  selector: 'app-edit-habit',
+  templateUrl: './edit-habit.component.html',
+  styleUrls: ['./edit-habit.component.css']
 })
-export class EditAffairComponent implements OnInit {
+export class EditHabitComponent implements OnInit {
 
   schedule: Array<string> = [];
   form: FormGroup;
-  affair: Affair;
-  affairSubscribe: Subscription;
+  habit: Habit;
+  habitSubscribe: Subscription;
   isNew = true;
 
-  constructor(private affairService: AffairService,
+  constructor(private habitService: HabitService,
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.createForm();
-    this.getAffair();
+    this.getHabit();
   }
 
-  getAffair(): void {
+  getHabit(): void {
 
     this.route.params
       .pipe(
@@ -36,7 +36,7 @@ export class EditAffairComponent implements OnInit {
             if (params['id']) {
               this.isNew = false
               console.log(params);
-              return this.affairService.getById(params['id'])
+              return this.habitService.getById(params['id'])
             }
 
             return of(null)
@@ -44,11 +44,11 @@ export class EditAffairComponent implements OnInit {
         )
       )
       .subscribe(
-        (affair) => {
-          if (affair) {
-            this.affair = affair
+        (habit) => {
+          if (habit) {
+            this.habit = habit
             this.form.patchValue({
-              name: affair.name
+              name: habit.name
             })
 
           }
@@ -68,8 +68,8 @@ export class EditAffairComponent implements OnInit {
     })
   }
 
-  createAffair(): void {
-    this.affair = {
+  createHabit(): void {
+    this.habit = {
       name: this.form.value.name,
       has_timer: this.form.value.has_timer,
       has_rating: this.form.value.has_rating,
@@ -79,11 +79,11 @@ export class EditAffairComponent implements OnInit {
   }
 
   onSubmit() {
-    this.createAffair();
-    this.affairService.create(this.affair).subscribe(
-      newAffair => {
+    this.createHabit();
+    this.habitService.create(this.habit).subscribe(
+      newHabit => {
         this.form.reset();
-        console.log(newAffair);
+        console.log(newHabit);
       }
     );
     

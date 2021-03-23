@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditAffairComponent } from './edit-affair.component';
+import { CreateHabitComponent } from './create-habit.component';
 
-describe('EditAffairComponent', () => {
-  let component: EditAffairComponent;
-  let fixture: ComponentFixture<EditAffairComponent>;
+describe('CreateHabitComponent', () => {
+  let component: CreateHabitComponent;
+  let fixture: ComponentFixture<CreateHabitComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditAffairComponent ]
+      declarations: [ CreateHabitComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditAffairComponent);
+    fixture = TestBed.createComponent(CreateHabitComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

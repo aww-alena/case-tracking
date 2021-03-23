@@ -10,8 +10,8 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 export class CabinetLayoutComponent implements OnInit {
 
   links = [
-    {url: '/affairs', name: 'Affairs'},
-    {url: '/affairs/create', name: 'Create affair'}
+    {url: '/habits', name: 'Habits'},
+    {url: '/habits/create', name: 'Create habit'}
   ]
 
   constructor(private auth: AuthService,

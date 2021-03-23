@@ -1,4 +1,4 @@
-<div class="affair">
+<div class="habit">
     <div class="left">
         <div class="checkbox">
             <mat-checkbox (click)="onDone()"></mat-checkbox>
@@ -8,19 +8,19 @@
         <div class="flex">
             <div class="flex">
                 <p class="name">
-                    {{affair.name}}
+                    {{habit.name}}
                 </p>
 
-                <app-rating (byClick)="updateRating($event)" *ngIf="affair.has_rating;"></app-rating>
+                <app-rating (byClick)="updateRating($event)" *ngIf="habit.has_rating;"></app-rating>
 
             </div>
-            <a class="edit" [routerLink]="['/app/affairs', affair._id]">
+            <a class="edit" [routerLink]="['/app/habits', habit._id]">
                 <mat-icon>mode_edit</mat-icon>
             </a>
         </div>
 
-        <div class="flex-timer" [ngClass]="{'one': !affair.has_timer}">
-            <app-timer *ngIf="affair.has_timer"></app-timer>
+        <div class="flex-timer" [ngClass]="{'one': !habit.has_timer}">
+            <app-timer *ngIf="habit.has_timer"></app-timer>
 
             <mat-expansion-panel hideToggle class="">
                 <mat-expansion-panel-header>

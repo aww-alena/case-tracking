@@ -11,8 +11,8 @@
                         <mat-icon>space_dashboard</mat-icon> Dashboard</a>
                 </li>
                 <li>
-                    <a [routerLink]="['affairs']" routerLinkActive="active">
-                        <mat-icon>business_center</mat-icon> Affairs</a>
+                    <a [routerLink]="['habits']" routerLinkActive="active">
+                        <mat-icon>business_center</mat-icon> Habits</a>
                 </li>
                 <li>
                     <a [routerLink]="['goals']" routerLinkActive="active">
@@ -79,7 +79,7 @@
             </button>
             <mat-menu class="mat-plus-menu" #menu="matMenu" yPosition="above">
 
-                <a class="add" [routerLink]="['affair/create']">Affair</a>
+                <a class="add" [routerLink]="['habit/create']">Habit</a>
 
                 <a class="add" [routerLink]="['goal/create']">Goal</a>
 
