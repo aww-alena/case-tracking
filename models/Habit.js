@@ -6,29 +6,32 @@ const habitSchema = new Schema({
         type: String,
         required: true
     },
-    imageSrc: {
-        type: String,
-        default: ''
+    icon: {
+        type: String
     },
     schedule: {
-        type: String,
-        default: ''
+        type: String
     },
     color: {
-        type: String,
-        default: ''
+        type: String
     },
-    has_timer: {
-        type: Boolean,
-        default: ''
+    hasTimer: {
+        type: Boolean
     },
-    has_rating: {
-        type: Boolean,
-        default: ''
+    hasRating: {
+        type: Boolean
     },
-    has_value: {
-        type: Boolean,
-        default: ''
+    difficulty: {
+        type: String
+    },
+    categories: {
+        type: String
+    },
+    comment: {
+        type: String
+    },
+    timeframe: {
+        type: String
     },
     user: {
         ref: 'users',

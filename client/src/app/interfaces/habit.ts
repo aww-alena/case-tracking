@@ -3,7 +3,12 @@ export interface Habit {
   schedule: string;
   hasTimer: boolean;
   hasRating: boolean;
+  color: string;
+  icon: string;
+  difficulty?: string;
+  comment?: string;
+  timeframe?: string;
   user?: string;
-  categoryId?: string;
+  categories?: string;
   _id?: string;
 }

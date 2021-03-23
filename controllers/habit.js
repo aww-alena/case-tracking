@@ -83,12 +83,11 @@ module.exports.update = async function(req, res) {
 const createHabit = req => {
     return habit = new Habit({
         name: req.body.name,
-        imageSrc: req.body.imageSrc,
+        icon: req.body.icon,
         schedule: req.body.schedule,
         color: req.body.color,
-        has_timer: req.body.has_timer,
-        has_rating: req.body.has_rating,
-        has_value: req.body.has_value,
+        hasTimer: req.body.hasTimer,
+        hasRating: req.body.hasRating,
         user: req.user.id
     })
 }

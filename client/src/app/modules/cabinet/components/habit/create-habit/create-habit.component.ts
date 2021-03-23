@@ -46,7 +46,9 @@ export class CreateHabitComponent implements OnInit {
       name: new FormControl(null, Validators.required),
       hasTimer: new FormControl(null),
       hasRating: new FormControl(null),
-      categoryId: new FormControl(null),
+      color: new FormControl(null),
+      icon: new FormControl(null),
+      categories: new FormControl(null)
     });
   }
 
@@ -55,8 +57,10 @@ export class CreateHabitComponent implements OnInit {
       name: this.form.value.name,
       hasTimer: this.form.value.hasTimer,
       hasRating: this.form.value.hasRating,
-      categoryId: this.form.value.categoryId,
+      categories: this.form.value.categories,
       schedule: this.schedule.join(),
+      color: this.form.value.color,
+      icon: this.form.value.icon
     };
   }
 
