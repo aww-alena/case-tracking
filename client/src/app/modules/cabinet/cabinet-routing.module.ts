@@ -7,16 +7,16 @@ import { ListHabitComponent } from './components/habit/list-habit/list-habit.com
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
-  { path: '', component: CabinetLayoutComponent, children: [
-    { path: '', component: DashboardComponent },
-    { path: 'habit/create', component: CreateHabitComponent },
-    { path: 'habits/:id', component: EditHabitComponent },
-    { path: 'habits', component: ListHabitComponent }
-  ]}
+    { path: '', component: CabinetLayoutComponent, children: [
+        { path: '', component: DashboardComponent },
+        { path: 'habit/create', component: CreateHabitComponent },
+        { path: 'habits/:id', component: EditHabitComponent },
+        { path: 'habits', component: ListHabitComponent }
+    ]}
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
 export class CabinetRoutingModule { }

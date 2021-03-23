@@ -8,82 +8,82 @@ import { User } from '../../../../interfaces/user';
 import { MessageService } from 'src/app/services/message-service/message.service';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+    selector: 'app-register',
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit, OnDestroy  {
 
-  form: FormGroup;
-  user: User;
-  subscription: Subscription;
+    @Output() loginTab: EventEmitter<string> = new EventEmitter();
 
-  @Output() loginTab: EventEmitter<string> = new EventEmitter();
+    form: FormGroup;
+    user: User;
+    subscription: Subscription;
 
-  constructor(private auth: AuthService,
-              private router: Router,
-              private route: ActivatedRoute,
-              private messageService: MessageService) { }
+    constructor(private auth: AuthService,
+                private router: Router,
+                private route: ActivatedRoute,
+                private messageService: MessageService) { }
 
-  ngOnInit(): void {
-    this.createForm();
+    ngOnInit(): void {
+        this.createForm();
 
-    this.route.queryParams.subscribe((params: Params) => {
-      if (params['registered']) {
-        // Register
-      } else if (params['accessDenied']) {
-        // you must register
-      }
+        this.route.queryParams.subscribe((params: Params) => {
+            if (params.registered) {
+                // Register
+            } else if (params.accessDenied) {
+                // you must register
+            }
 
-    });
-  }
-
-  ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
+        });
     }
-  }
 
-  private createForm() {
-    this.form = new FormGroup({
-      name: new FormControl(null, [Validators.required, Validators.minLength(2)]),
-      email: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl(null, [Validators.required])
-    });
-  }
+    ngOnDestroy(): void {
+        if (this.subscription) {
+            this.subscription.unsubscribe();
+        }
+    }
 
-  private createUser() {
-    this.form.disable();
-    this.user = this.form.value;
-  }
+    onSubmit(): void {
+        this.createUser();
+        this.subscription = this.auth.register(this.user).subscribe(
+            () => {
 
-  onSubmit() {
-    this.createUser();
-    this.subscription = this.auth.register(this.user).subscribe(
-      () => {
+                this.loginTab.emit('go');
+                this.messageService.showMessage('Now you can sign in!' , 'Awesome!');
 
-        this.loginTab.emit('go');
-        this.messageService.showMessage('Now you can sign in!' , 'Awesome!');
-        
-      },
-      error => {
-        this.form.enable();
-        this.messageService.showError(error.error.message , 'Uuups! Error.');
+            },
+            error => {
+                this.form.enable();
+                this.messageService.showError(error.error.message , 'Uuups! Error.');
 
-        
-      }
-    )
-  }
 
-  get name(): FormGroup{
-    return this.form.get('name') as FormGroup;
-  }
+            }
+        );
+    }
 
-  get email(): FormGroup{
-    return this.form.get('email') as FormGroup;
-  }
+    private createForm() {
+        this.form = new FormGroup({
+            name: new FormControl(null, [Validators.required, Validators.minLength(2)]),
+            email: new FormControl(null, [Validators.required, Validators.email]),
+            password: new FormControl(null, [Validators.required])
+        });
+    }
 
-  get password(): FormGroup{
-    return this.form.get('password') as FormGroup;
-  }
+    private createUser() {
+        this.form.disable();
+        this.user = this.form.value;
+    }
+
+    get name(): FormGroup{
+        return this.form.get('name') as FormGroup;
+    }
+
+    get email(): FormGroup{
+        return this.form.get('email') as FormGroup;
+    }
+
+    get password(): FormGroup{
+        return this.form.get('password') as FormGroup;
+    }
 }

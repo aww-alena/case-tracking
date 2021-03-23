@@ -1,21 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth/auth.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html'
+    selector: 'app-root',
+    templateUrl: './app.component.html'
 })
 
-export class AppComponent {
-  title = 'client';
+export class AppComponent implements OnInit {
+    title = 'client';
 
-  constructor(private auth: AuthService) {}
+    constructor(private auth: AuthService) {}
 
-  ngOnInit() {
-    const potentialToken = localStorage.getItem('auth-token');
-    if (potentialToken !== null) {
-      this.auth.setToken(potentialToken);
+    ngOnInit(): void {
+        const potentialToken = localStorage.getItem('auth-token');
+        if (potentialToken !== null) {
+            this.auth.setToken(potentialToken);
+        }
     }
-  }
-
 }

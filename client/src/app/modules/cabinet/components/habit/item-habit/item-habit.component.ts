@@ -2,25 +2,25 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Habit } from 'src/app/interfaces/habit';
 import * as moment from 'moment';
 @Component({
-  selector: 'app-item-habit',
-  templateUrl: './item-habit.component.html',
-  styleUrls: ['./item-habit.component.css']
+    selector: 'app-item-habit',
+    templateUrl: './item-habit.component.html',
+    styleUrls: ['./item-habit.component.css']
 })
 export class ItemHabitComponent implements OnInit {
 
-  @Input() habit: Habit;
-  today: string = moment().format('YYYYMMDD');
+    @Input() habit: Habit;
+    today: string = moment().format('YYYYMMDD');
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
-  onDone() {}
+    onDone() {}
 
-  saveComment() {}
+    saveComment() {}
 
-  updateRating(ratingValue: number): void {
-  }
+    updateRating(ratingValue: number): void {
+    }
 
 }

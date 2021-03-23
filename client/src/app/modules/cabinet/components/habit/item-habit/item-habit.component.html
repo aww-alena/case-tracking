@@ -11,7 +11,7 @@
                     {{habit.name}}
                 </p>
 
-                <app-rating (byClick)="updateRating($event)" *ngIf="habit.has_rating;"></app-rating>
+                <app-rating (byClick)="updateRating($event)" *ngIf="habit.hasRating;"></app-rating>
 
             </div>
             <a class="edit" [routerLink]="['/app/habits', habit._id]">
@@ -19,8 +19,8 @@
             </a>
         </div>
 
-        <div class="flex-timer" [ngClass]="{'one': !habit.has_timer}">
-            <app-timer *ngIf="habit.has_timer"></app-timer>
+        <div class="flex-timer" [ngClass]="{'one': !habit.hasTimer}">
+            <app-timer *ngIf="habit.hasTimer"></app-timer>
 
             <mat-expansion-panel hideToggle class="">
                 <mat-expansion-panel-header>

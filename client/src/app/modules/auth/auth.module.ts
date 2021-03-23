@@ -10,15 +10,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, PopupComponent],
-  imports: [
-    AuthRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SharedModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    HttpClientModule
-  ]
+    declarations: [LoginComponent, RegisterComponent, PopupComponent],
+    imports: [
+        AuthRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        SharedModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        HttpClientModule
+    ]
 })
 export class AuthModule { }

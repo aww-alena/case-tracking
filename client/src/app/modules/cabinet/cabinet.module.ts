@@ -15,22 +15,22 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 
 
 @NgModule({
-  declarations: [
-    CabinetLayoutComponent,
-    DashboardComponent,
-    CreateHabitComponent,
-    EditHabitComponent,
-    ItemHabitComponent,
-    ListHabitComponent,
-    RatingComponent,
-    TimerComponent,
-    CalendarComponent
-  ],
-  imports: [
-    CommonModule,
-    CabinetRoutingModule,
-    SharedModule,
-    MatSidenavModule
-  ]
+    declarations: [
+        CabinetLayoutComponent,
+        DashboardComponent,
+        CreateHabitComponent,
+        EditHabitComponent,
+        ItemHabitComponent,
+        ListHabitComponent,
+        RatingComponent,
+        TimerComponent,
+        CalendarComponent
+    ],
+    imports: [
+        CommonModule,
+        CabinetRoutingModule,
+        SharedModule,
+        MatSidenavModule
+    ]
 })
 export class CabinetModule { }

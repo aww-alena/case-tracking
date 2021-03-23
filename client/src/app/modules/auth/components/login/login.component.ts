@@ -7,78 +7,76 @@ import { User } from '../../../../interfaces/user';
 import { MessageService } from 'src/app/services/message-service/message.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit, OnDestroy {
 
-  form: FormGroup;
-  user: User;
-  subscription: Subscription;
+    @Output() goToApp: EventEmitter<string> = new EventEmitter();
 
-  @Output() goToApp: EventEmitter<string> = new EventEmitter();
-  
-  constructor(private auth: AuthService,
-              private router: Router,
-              private route: ActivatedRoute,
-              private messageService: MessageService) { }
+    form: FormGroup;
+    user: User;
+    subscription: Subscription;
 
-  ngOnInit(): void {
-    this.createForm();
+    constructor(private auth: AuthService,
+                private router: Router,
+                private route: ActivatedRoute,
+                private messageService: MessageService) { }
 
-    this.route.queryParams.subscribe((params: Params) => {
-      if (params['registered']) {
-        // Register
-      } else if (params['accessDenied']) {
-        // you must register
-      }
+    ngOnInit(): void {
+        this.createForm();
 
-    });
-  }
+        this.route.queryParams.subscribe((params: Params) => {
+            if (params.registered) {
+                // Register
+            } else if (params.accessDenied) {
+                // you must register
+            }
 
-  ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
+        });
     }
-  }
 
-  private createForm() {
-    this.form = new FormGroup({
-      email: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl(null, [Validators.required])
-    });
-  }
+    ngOnDestroy(): void {
+        if (this.subscription) {
+            this.subscription.unsubscribe();
+        }
+    }
 
-  
+    onSubmit(): void {
+        this.createUser();
+        this.subscription = this.auth.login(this.user).subscribe(
+            () => {
+                this.router.navigate(['/app']);
+                this.goToApp.emit('close');
+                this.messageService.showMessage('Access is allowed ' , 'Yupikai!');
 
-  private createUser() {
-    this.form.disable();
-    return this.user = this.form.value;
-  }
+            },
+            error => {
+                this.form.enable();
+                this.messageService.showError(error.error.message , 'Uuups! Error.');
+            }
+        );
+    }
 
-  onSubmit() {
-    this.createUser();
-    this.subscription = this.auth.login(this.user).subscribe(
-      () => {
-        this.router.navigate(['/app']);
-        this.goToApp.emit('close');
-        this.messageService.showMessage('Access is allowed ' , 'Yupikai!');
+    private createForm() {
+        this.form = new FormGroup({
+            email: new FormControl(null, [Validators.required, Validators.email]),
+            password: new FormControl(null, [Validators.required])
+        });
+    }
 
-      },
-      error => {
-        this.form.enable();
-        this.messageService.showError(error.error.message , 'Uuups! Error.');
-      }
-    )
-  }
+    private createUser() {
+        this.form.disable();
+        return this.user = this.form.value;
+    }
 
-  get email(): FormGroup{
-    return this.form.get('email') as FormGroup;
-  }
+    get email(): FormGroup{
+        return this.form.get('email') as FormGroup;
+    }
 
-  get password(): FormGroup{
-    return this.form.get('password') as FormGroup;
-  }
+    get password(): FormGroup{
+        return this.form.get('password') as FormGroup;
+    }
 
 }
