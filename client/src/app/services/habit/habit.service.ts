@@ -4,22 +4,20 @@ import { Observable } from 'rxjs';
 import { Habit } from 'src/app/interfaces/habit';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class HabitService {
+  constructor(private http: HttpClient) {}
 
-    constructor(private http: HttpClient) { }
+  fetch(): Observable<Habit[]> {
+    return this.http.get<Habit[]>('/api/habit');
+  }
 
-    fetch(): Observable<Habit[]> {
-        return this.http.get<Habit[]>('/api/habit');
-    }
+  create(habit: Habit): Observable<Habit> {
+    return this.http.post<Habit>('/api/habit', habit);
+  }
 
-    create(habit: Habit): Observable<Habit> {
-        return this.http.post<Habit>('/api/habit', habit);
-    }
-
-    getById(id: string): Observable<Habit> {
-        return this.http.get<Habit>(`/api/habit/${id}`);
-    }
-
+  getById(id: string): Observable<Habit> {
+    return this.http.get<Habit>(`/api/habit/${id}`);
+  }
 }

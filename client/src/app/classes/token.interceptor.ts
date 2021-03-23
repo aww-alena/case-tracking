@@ -4,23 +4,18 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth/auth.service';
 
 @Injectable()
-
 export class TokenInterceptor implements HttpInterceptor {
-    constructor(private auth: AuthService) {
+  constructor(private auth: AuthService) {}
 
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if (this.auth.isAuthenticated()) {
+      req = req.clone({
+        setHeaders: {
+          authorization: this.auth.getToken(),
+        },
+      });
     }
 
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-        if(this.auth.isAuthenticated()) {
-            req = req.clone({
-                setHeaders: {
-                    authorization: this.auth.getToken()
-                }
-            });
-        }
-
-        return next.handle(req);
-    }
-
+    return next.handle(req);
+  }
 }

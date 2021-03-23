@@ -12,6 +12,7 @@ module.exports = {
                     "tsconfig.json",
                     "e2e/tsconfig.json"
                 ],
+                "tsconfigRootDir": __dirname,
                 "createDefaultProgram": true
             },
             "extends": [
@@ -19,24 +20,18 @@ module.exports = {
                 "plugin:@angular-eslint/ng-cli-compat--formatting-add-on",
                 "plugin:@angular-eslint/template/process-inline-templates"
             ],
-            "rules": {
-                "@angular-eslint/component-selector": [
-                    "error",
+            rules: {
+                'import/no-unresolved': 'off',
+                'import/prefer-default-export': 'off',
+                'class-methods-use-this': 'off',
+                'lines-between-class-members': 'off',
+                '@typescript-eslint/unbound-method': [
+                    'error',
                     {
-                        "type": "element",
-                        "prefix": "app",
-                        "style": "kebab-case"
-                    }
+                        ignoreStatic: true,
+                    },
                 ],
-                "@angular-eslint/directive-selector": [
-                    "error",
-                    {
-                        "type": "attribute",
-                        "prefix": "app",
-                        "style": "camelCase"
-                    }
-                ]
-            }
+            },
         },
         {
             "files": [
@@ -46,6 +41,16 @@ module.exports = {
                 "plugin:@angular-eslint/template/recommended"
             ],
             "rules": {}
+        },
+        {
+            files: ['*.component.ts'],
+            parser: '@typescript-eslint/parser',
+            parserOptions: {
+                ecmaVersion: 2020,
+                sourceType: 'module',
+            },
+            plugins: ['@angular-eslint/template'],
+            processor: '@angular-eslint/template/extract-inline-html',
         }
     ]
 }

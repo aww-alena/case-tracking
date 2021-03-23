@@ -1,34 +1,35 @@
 import { Injectable } from '@angular/core';
-import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from '@angular/material/snack-bar';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class MessageService {
+  barHorizontalPosition: MatSnackBarHorizontalPosition = 'right';
 
-    barHorizontalPosition: MatSnackBarHorizontalPosition = 'right';
-    barVerticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  barVerticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
-    constructor(private snackBar: MatSnackBar) {}
+  constructor(private snackBar: MatSnackBar) {}
 
-    showMessage(message: string, title: string): void {
-        this.snackBar.open(message, title, {
-            duration: 3000,
-            horizontalPosition: this.barHorizontalPosition,
-            verticalPosition: 'top',
-            panelClass: 'success'
-        });
-    }
+  showMessage(message: string, title: string): void {
+    this.snackBar.open(message, title, {
+      duration: 3000,
+      horizontalPosition: this.barHorizontalPosition,
+      verticalPosition: 'top',
+      panelClass: 'success',
+    });
+  }
 
-    showError(message: string, title: string): void {
-        this.snackBar.open(message, title, {
-            duration: 100000,
-            horizontalPosition: this.barHorizontalPosition,
-            verticalPosition: this.barVerticalPosition,
-            panelClass: 'error'
-        });
-    }
+  showError(message: string, title: string): void {
+    this.snackBar.open(message, title, {
+      duration: 100000,
+      horizontalPosition: this.barHorizontalPosition,
+      verticalPosition: this.barVerticalPosition,
+      panelClass: 'error',
+    });
+  }
 }
-
-

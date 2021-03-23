@@ -6,18 +6,25 @@ import { MainLayoutComponent } from './components/main-layout/main-layout.compon
 import { HomeComponent } from './components/page/home/home.component';
 
 const routes: Routes = [
-    {
-        path: '', component: MainLayoutComponent, children: [
-            { path: '', component: HomeComponent }
-        ]
-    },
-    { path: 'auth', loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule) },
-    { path: 'app', loadChildren: () => import('./modules/cabinet/cabinet.module').then(m => m.CabinetModule), canActivate: [AuthGuard]},
-    { path: '', component: AppComponent, pathMatch: 'full' }
+  {
+    path: '',
+    component: MainLayoutComponent,
+    children: [{ path: '', component: HomeComponent }],
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./modules/auth/auth.module').then((m) => m.AuthModule),
+  },
+  {
+    path: 'app',
+    loadChildren: () => import('./modules/cabinet/cabinet.module').then((m) => m.CabinetModule),
+    canActivate: [AuthGuard],
+  },
+  { path: '', component: AppComponent, pathMatch: 'full' },
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -621,9 +621,9 @@ nav .active {
     height: 100%;
     border-radius: 30px 0 0 30px;
     padding: 5px 20px;
-    border-left: 1px solid #eb72ff;
+    border-left: 1px solid #755aff;
     background-color: transparent;
-    background-image: linear-gradient(62deg, #ff84ff45 0%, rgba(0, 0, 0, 0) 17%);
+    background-image: linear-gradient(62deg, #755aff91 0%, rgba(0, 0, 0, 0) 17%);
 }
 
 .mat-drawer-inner-container {
@@ -721,9 +721,9 @@ app-item-habit>.habit {
 .mat-drawer {
     background-color: #404564;
     color: #fff;
-    border-right: 1px solid #ffffff2e;
+    border-right: 1px solid #765bff;
     box-shadow: 0 -7px 15px rgba(255, 255, 255, 0.1);
-    border-radius: 0 35px 0 0;
+    box-shadow: 0 -7px 15px rgba(255, 255, 255, 0.1), inset 0 0px 50px rgb(0, 0, 0, 0.2);
 }
 
 nav ul li mat-icon {
@@ -735,8 +735,8 @@ mat-sidenav-container.mat-drawer-container.mat-sidenav-container {
 }
 
 .days span {
-    width: 32px;
-    height: 32px;
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
