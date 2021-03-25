@@ -72,29 +72,5 @@ export class CreateHabitComponent implements OnInit {
     });
   }
 
-  onAddDayToSchedule(idDay: string): void {
-    const isExist = this.schedule.includes(idDay);
 
-    if (!isExist) {
-      this.schedule.push(idDay);
-    } else {
-      const pos = this.schedule.indexOf(idDay);
-      this.schedule.splice(pos, 1);
-    }
-  }
-
-  onSetScheduleEveryday(): void {
-    this.schedule = [];
-  }
-
-  isExist(idDay: string): boolean {
-    return this.schedule.includes(idDay);
-  }
-
-  isEmpty(): boolean {
-    if (this.schedule.length === 0) {
-      return true;
-    }
-    return false;
-  }
 }

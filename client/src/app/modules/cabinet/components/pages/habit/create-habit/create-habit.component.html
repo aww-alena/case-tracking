@@ -23,10 +23,7 @@
         <mat-checkbox formControlName="has_rating" class="example-margin">I will evaluete the completion!</mat-checkbox>
 
 
-        <div class="day-of-week">
-            <button (click)=onSetScheduleEveryday() [class.active]="isEmpty()" type="button">Every day</button>
-            <button (click)=onAddDayToSchedule(day.id) [class.active]="isExist(day.id)" type="button" *ngFor="let day of dayEn">{{day.name}}</button>
-        </div>
+        <app-schedule-picker></app-schedule-picker>
 
         <button type="submit">Create</button>
     </div>

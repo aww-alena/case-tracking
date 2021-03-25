@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CabinetLayoutComponent } from './components/cabinet-layout/cabinet-layout.component';
-import { CreateHabitComponent } from './components/habit/create-habit/create-habit.component';
-import { EditHabitComponent } from './components/habit/edit-habit/edit-habit.component';
-import { ListHabitComponent } from './components/habit/list-habit/list-habit.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { CabinetLayoutComponent } from './components/pages/cabinet-layout/cabinet-layout.component';
+import { CreateHabitComponent } from './components/pages/habit/create-habit/create-habit.component';
+import { EditHabitComponent } from './components/pages/habit/edit-habit/edit-habit.component';
+import { ListHabitComponent } from './components/pages/habit/list-habit/list-habit.component';
+import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
