@@ -1,1 +1,10 @@
-<p>icon-picker works!</p>
+<div class="icon-block">
+    <div class="icon-btn">
+        <button (click)="toggle = !toggle" type="button"><mat-icon>directions_run</mat-icon></button>
+        <p>icon</p>
+    </div>
+
+    <div class="icon-window" [ngClass]="{active: toggle}">
+        <mat-icon *ngFor="let icon of icons" (click)="onSelect(icon)">{{icon}}</mat-icon>
+    </div>
+</div>

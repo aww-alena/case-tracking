@@ -256,11 +256,11 @@ nav ul li {
 }
 
 .create-habit {
-    width: 440px;
+    width: 500px;
     margin: 40px auto 0;
-    background: #181818;
-    border-radius: 20px;
-    box-shadow: 8px 0px 22px #000;
+    border-top: 1px solid #765bff;
+    border-radius: 24px;
+    box-shadow: 0 -7px 15px rgba(255, 255, 255, 0.1);
 }
 
 .create-habit .wrapper {
@@ -270,7 +270,7 @@ nav ul li {
 }
 
 .create-habit button {
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.1);
     border: none;
     height: 37px;
     color: #fff;
@@ -329,38 +329,32 @@ nav ul li {
 }
 
 .create-habit button[type="submit"] {
-    background: #e12e6d;
+    background: #765bff;
     width: 159px;
     margin: 35px auto 0;
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: 600;
+    color: #fff;
     border-radius: 50px;
     height: 43px;
     text-transform: uppercase;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 1);
-    text-shadow: 1px 1px 4px black;
+    box-shadow: 0 -7px 15px rgba(255, 255, 255, 0.1);
 }
 
-.create-habit p {
-    box-shadow: 1px 1px 15px #000;
+.create-habit>p {
     font-size: 21px;
     color: #fff;
     padding: 24px 40px;
-    background: rgb(131, 58, 180);
-    background: linear-gradient(90deg, rgb(253 55 101) 20%, rgb(134 13 97) 100%);
     font-weight: 600;
     letter-spacing: 0.5px;
     border-radius: 20px 20px 0 0;
-    text-shadow: 2px 2px 10px black;
-    margin-bottom: 15px;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .day-of-week button.active {
     color: #fff;
-    text-shadow: 1px 1px 5px black;
     letter-spacing: 0.2px;
-    border: 2px solid #e12e6d;
+    border: 1px solid #765bff;
 }
 
 .habit-list .grid {
@@ -412,6 +406,27 @@ main {
     grid-template-columns: 73% 27%;
 }
 
+.fa,
+.fas {
+    font-family: "FontAwesome";
+    font-weight: 900;
+}
+
+.fa,
+.fab,
+.fad,
+.fal,
+.far,
+.fas {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+
 .fa.fa-star {
     font-size: 19px;
     padding-right: 6px;
@@ -444,15 +459,23 @@ p.stars {
     justify-content: space-between;
 }
 
+.create-habit .mat-expansion-panel,
 .habit .mat-expansion-panel {
     background: transparent;
     color: #fff;
     box-shadow: none;
 }
 
+.create-habit .mat-expansion-panel {
+    background: rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+}
+
 mat-expansion-panel mat-icon {
     margin-right: 15px;
 }
+
+.create-habit .mat-expansion-panel-header-title {}
 
 .habit .mat-expansion-panel-header-title {
     margin-right: 0;
@@ -466,6 +489,30 @@ mat-expansion-panel mat-icon {
 .habit .mat-expansion-panel:hover,
 .habit mat-expansion-panel-header:hover {
     background: transparent !important;
+}
+
+.create-habit .mat-expansion-panel:hover {
+    background: transparent !important;
+}
+
+.create-habit mat-expansion-panel.mat-expansion-panel.ng-tns-c154-3.mat-expanded {
+    background: transparent !important;
+}
+
+.create-habit mat-expansion-panel-header:hover {
+    background: rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 -7px 15px #765bff !important;
+}
+
+.create-habit mat-expansion-panel-header.mat-expanded {
+    height: 48px;
+    margin-bottom: 20px;
+    background: rgba(0, 0, 0, 0.1)!important;
+    box-shadow: 0 -7px 15px #765bff !important;
+}
+
+.create-habit .mat-expansion-panel-body {
+    padding: 0 0px 16px;
 }
 
 .habit .contrlos {
@@ -614,7 +661,6 @@ main .wrapper {
     */
     padding: 30px 0px 100px 30px;
     margin-top: 0px;
-    min-height: calc(100vh - 235px);
 }
 
 nav .active {
@@ -746,4 +792,249 @@ mat-sidenav-container.mat-drawer-container.mat-sidenav-container {
 
 .days span.active {
     background: #755aff;
+}
+
+.icon-window,
+.color-window {
+    display: none;
+}
+
+.icon-window.active,
+.color-window.active {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 15px;
+}
+
+.icon-btn p,
+.color-btn p {
+    background: transparent;
+    box-shadow: none;
+    font-size: 12px;
+    padding: 0px;
+    font-weight: normal;
+    margin: 0px;
+}
+
+.color-btn button,
+.icon-btn button {
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.color-btn button {
+    background: #765bff;
+}
+
+.color-block,
+.icon-block {
+    width: 45px;
+    text-align: center;
+    position: relative;
+}
+
+.color-window span {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.icon-window mat-icon {
+    background: rgba(0, 0, 0, 0.1);
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.difficulty button {
+    background: transparent;
+    height: unset;
+    border-radius: 0px;
+}
+
+.difficulty button span {
+    background: #FF467E;
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 9px;
+}
+
+.difficulty button span.medium {
+    background: #fff8a6;
+}
+
+.difficulty button span.easy {
+    background: #62D2A2;
+}
+
+.difficulty {
+    display: grid;
+}
+
+.difficulty button {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.create-habit .icon-block,
+.create-habit .color-block,
+.create-habit .difficulty {
+    margin-left: 20px;
+}
+
+.clock {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.vertical {
+    position: absolute;
+    height: 100%;
+    display: grid;
+    justify-content: space-between;
+    align-items: flex-end;
+    right: calc(50% - 12px);
+    align-content: space-between;
+    z-index: 1;
+}
+
+.horizontal {
+    position: absolute;
+    width: 96%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    bottom: calc(50% - 16px);
+    align-content: space-between;
+    left: 2%;
+    z-index: 1;
+}
+
+.wide {
+    position: absolute;
+    width: 83%;
+    display: grid;
+    justify-content: space-between;
+    align-items: flex-end;
+    bottom: 24%;
+    align-content: space-between;
+    grid-template-columns: 1fr 1fr;
+    height: 56%;
+    left: 8%;
+}
+
+.wide button:nth-child(odd) {
+    justify-self: left;
+}
+
+.wide button:nth-child(even) {
+    justify-self: right;
+}
+
+.narrow {
+    position: absolute;
+    width: 50%;
+    display: grid;
+    justify-content: space-between;
+    align-items: flex-end;
+    bottom: 6%;
+    align-content: space-between;
+    grid-template-columns: 1fr 1fr;
+    height: 89%;
+    left: 24%;
+}
+
+.narrow button:nth-child(odd) {
+    justify-self: left;
+}
+
+.narrow button:nth-child(even) {
+    justify-self: right;
+}
+
+.clock button {
+    background: transparent;
+    font-size: 16px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    border-radius: 50%;
+    justify-content: center;
+}
+
+.clock button:hover {
+    background: #755afd;
+}
+
+.picker-dialog {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    border: none !important;
+}
+
+.picker-cell__body:after {
+    background-image: linear-gradient(180deg, hsla(0, 0%, 100%, 0), #08080c)!important;
+}
+
+.picker-cell__body:before {
+    background-image: linear-gradient(0deg, hsla(0, 0%, 100%, 0), #08080c)!important;
+}
+
+.picker-cell+.picker-cell {
+    border-left: none!important;
+}
+
+.picker-header,
+.picker-footer {
+    border: none !important;
+}
+
+.picker-dialog {
+    max-width: 500px;
+    margin-left: calc(50% - 111px);
+}
+
+.picker-cancel {
+    color: #fff;
+}
+
+.picker-title {
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    margin: 0;
+    color: #fff;
+}
+
+.picker-cancel:hover,
+.picker-confirm:hover {
+    background: rgba(0, 0, 0, 0.1)!important;
+    color: #fff !important;
+}
+
+app-time-picker .flex {
+    align-items: center;
+    justify-content: space-between;
+}
+
+svg.chart {
+    min-width: auto !important;
+    margin: 0 auto;
+    display: block;
 }

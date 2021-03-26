@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, ElementRef, EventEmitter, Inject, OnInit, Output, ViewChild } from '@angular/core';
+import Picker from 'pickerjs';
 
 @Component({
   selector: 'app-time-picker',
@@ -7,9 +9,57 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TimePickerComponent implements OnInit {
 
+  @ViewChild('fromPicker') fromPicker: ElementRef;
+  @ViewChild('untilPicker') untilPicker: ElementRef;
+
+  @Output() changeFromTime: EventEmitter<string> = new EventEmitter();
+  @Output() changeUntilTime: EventEmitter<string> = new EventEmitter();
+
+  timeFrom: any;
+  timeUntil: any;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  initFromPicker(): void {
+    if (this.timeFrom === undefined) {
+      this.timeFrom = this.fromPicker.nativeElement;
+
+      new Picker(this.timeFrom, {
+        inline: true,
+        headers: true,
+        controls: true,
+        format: 'HH:mm',
+        text: {
+          title: 'Pick a time',
+        }
+      });
+    }
+  }
+
+  initUntilPicker(): void {
+    if (this.timeUntil === undefined) {
+      this.timeUntil = this.untilPicker.nativeElement;
+
+      new Picker(this.timeUntil, {
+        inline: true,
+        headers: true,
+        controls: true,
+        format: 'HH:mm',
+        text: {
+          title: 'Pick a time',
+        }
+      });
+    }
+  }
+
+  onChangeFrom(event: any): void {
+    this.changeFromTime.emit(event.target.value);
+  }
+
+  onChangeUntil(event: any): void {
+    this.changeUntilTime.emit(event.target.value);
   }
 
 }

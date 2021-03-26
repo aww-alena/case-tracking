@@ -18,7 +18,7 @@ import { DifficultyPickerComponent } from './components/pickers/difficulty-picke
 import { SchedulePickerComponent } from './components/pickers/schedule-picker/schedule-picker.component';
 import { TimePickerComponent } from './components/pickers/time-picker/time-picker.component';
 import { CategoryPickerComponent } from './components/pickers/category-picker/category-picker.component';
-
+import { ChartsModule } from 'ng2-charts';
 @NgModule({
   declarations: [
     CabinetLayoutComponent,
@@ -37,6 +37,12 @@ import { CategoryPickerComponent } from './components/pickers/category-picker/ca
     TimePickerComponent,
     CategoryPickerComponent,
   ],
-  imports: [CommonModule, CabinetRoutingModule, SharedModule, MatSidenavModule],
+  imports: [
+    CommonModule,
+    CabinetRoutingModule,
+    SharedModule,
+    MatSidenavModule,
+    ChartsModule
+  ],
 })
 export class CabinetModule {}

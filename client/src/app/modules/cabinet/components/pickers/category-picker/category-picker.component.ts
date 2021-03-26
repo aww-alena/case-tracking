@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ChartType, ChartOptions } from 'chart.js';
+import { SingleDataSet, Label } from 'ng2-charts';
+import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 @Component({
   selector: 'app-category-picker',
   templateUrl: './category-picker.component.html',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoryPickerComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
+  chartClicked(e: any): void {
+    console.log(e);
+  }
+
+  log(color: string): void {
+    console.log(color);
+  }
 }

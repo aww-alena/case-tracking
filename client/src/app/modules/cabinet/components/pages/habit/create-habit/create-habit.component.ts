@@ -29,7 +29,7 @@ export class CreateHabitComponent implements OnInit {
     { id: '6', name: 'Sa' },
   ];
 
-  schedule: Array<string> = [];
+  schedule: string;
 
   form: FormGroup;
 
@@ -58,7 +58,7 @@ export class CreateHabitComponent implements OnInit {
       hasTimer: this.form.value.hasTimer,
       hasRating: this.form.value.hasRating,
       categories: this.form.value.categories,
-      schedule: this.schedule.join(),
+      schedule: this.schedule,
       color: this.form.value.color,
       icon: this.form.value.icon
     };
@@ -72,5 +72,28 @@ export class CreateHabitComponent implements OnInit {
     });
   }
 
+  onChangeSchedule(schedule: string): void {
+    console.log(schedule);
+  }
+
+  onSelectIcon(icon: string): void {
+    console.log(icon);
+  }
+
+  onSelectColor(color: string): void {
+    console.log(color);
+  }
+
+  onSelectDifficulty(difficulty: string): void {
+    console.log(difficulty);
+  }
+
+  onChangeFromTime(event: any): void {
+    console.log(event);
+  }
+
+  onChangeUntilTime(event: any): void {
+    console.log(event);
+  }
 
 }
