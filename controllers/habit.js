@@ -86,6 +86,10 @@ const createHabit = req => {
         icon: req.body.icon,
         schedule: req.body.schedule,
         color: req.body.color,
+        categories: req.body.categories,
+        difficulty: req.body.difficulty,
+        comment: req.body.comment,
+        timeframe: req.body.timeframe,
         hasTimer: req.body.hasTimer,
         hasRating: req.body.hasRating,
         user: req.user.id

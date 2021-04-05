@@ -1,4 +1,4 @@
-<div class="habit">
+<div class="habit" *ngIf="onSchedule()">
     <div class="left">
         <div class="checkbox">
             <mat-checkbox (click)="onDone()"></mat-checkbox>
@@ -39,6 +39,8 @@
                 <button class="save-comment" (click)=saveComment() type="button">Save</button>
 
             </mat-expansion-panel>
+
+            <p class="comment" *ngIf="isCommentExist(habit.comment)">{{showComment(habit.comment)}}</p>
         </div>
     </div>
 

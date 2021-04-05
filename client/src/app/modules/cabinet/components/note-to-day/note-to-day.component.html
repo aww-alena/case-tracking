@@ -1,0 +1,20 @@
+<mat-checkbox [(ngModel)]="notesForDays">I need the notes to the days of the week</mat-checkbox>
+
+<form #form="ngForm">
+    <div class="textareas" *ngIf="schedule.value !== null && notesForDays; else oneNote">
+        <div class="textarea-block" *ngFor="let day of schedule.value.split(',')">
+            <p class="day">{{dayEn[day]}}</p>
+            <mat-form-field appearance="fill">
+                <mat-label>Textarea</mat-label>
+                <textarea matInput ngModel [name]="day" (blur)="transferData(form)"></textarea>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <ng-template #oneNote>
+        <mat-form-field appearance="fill">
+            <mat-label>Textarea</mat-label>
+            <textarea matInput ngModel name="note" (blur)="transferData(form)"></textarea>
+        </mat-form-field>
+    </ng-template>
+</form>

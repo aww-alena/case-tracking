@@ -9,7 +9,7 @@ import * as moment from 'moment';
 export class ItemHabitComponent implements OnInit {
   @Input() habit: Habit;
 
-  today: string = moment().format('YYYYMMDD');
+  today = moment();
 
   constructor() {}
 
@@ -20,4 +20,32 @@ export class ItemHabitComponent implements OnInit {
   saveComment() {}
 
   updateRating(ratingValue: number): void {}
+
+  onSchedule(): boolean {
+    let include = false;
+    if(this.habit.schedule === '') {
+      include = true;
+    } else {
+      const todayString = String(this.today.isoWeekday());
+      include = this.habit.schedule.includes(todayString);
+    }
+
+    return include;
+  }
+
+  showComment(comments: any): string {
+    const day = this.today.isoWeekday();
+    let notes = '';
+
+    if (comments !== undefined) {
+      notes = JSON.parse(comments);
+      console.log(notes);
+    }
+
+    return notes[day];
+  }
+
+  isCommentExist(comment: any): boolean {
+    return (comment !== undefined && comment !== '') ? true : false;
+  }
 }

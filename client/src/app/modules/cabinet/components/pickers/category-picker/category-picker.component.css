@@ -98,21 +98,25 @@ body {
     stroke-width: 10;
     cursor: pointer;
     animation-name: render;
-    animation-duration: 1.5s;
+    animation-duration: 0.4s;
     transition-property: all;
-    transition-duration: 1.5s;
-    stroke-dasharray: 12.5 87.5
+    transition-duration: 0.4s;
+    stroke-dasharray: 12.5 87.5;
+    opacity: 0.7;
 }
 
 .unit:hover,
 .hovered {
-    opacity: 0.8;
-    stroke-width: 12;
+    stroke-width: 11;
+}
+
+.unit.active {
+    stroke-width: 14px;
+    opacity: 1;
 }
 
 .unit:nth-child(1) {
-    stroke: red;
-    /*stroke-dashoffset: 100;*/
+    stroke: #FF467E;
 }
 
 .unit:nth-child(2) {
@@ -131,21 +135,21 @@ body {
 }
 
 .unit:nth-child(5) {
-    stroke: #adffd8;
+    stroke: #62D2A2;
     stroke-dashoffset: 50;
 }
 
 .unit:nth-child(6) {
-    stroke: #f2c48f;
+    stroke: #f9b993;
     stroke-dashoffset: 62.5;
 }
 
 .unit:nth-child(7) {
-    stroke: #e3bfe2;
+    stroke: #FD94B4;
     stroke-dashoffset: 75;
 }
 
 .unit:nth-child(8) {
-    stroke: green;
+    stroke: #1FAB89;
     stroke-dashoffset: 87.5;
 }

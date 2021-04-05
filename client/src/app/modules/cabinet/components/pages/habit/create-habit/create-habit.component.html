@@ -5,7 +5,6 @@
 
         <div class="flex">
 
-
             <mat-form-field appearance="fill">
                 <mat-label>Name of habit</mat-label>
                 <input formControlName="name" type="text" matInput>
@@ -16,7 +15,6 @@
             <app-color-picker (selectColor)=onSelectColor($event)></app-color-picker>
 
             <app-difficulty-picker (selectDifficulty)=onSelectDifficulty($event)></app-difficulty-picker>
-
 
         </div>
 
@@ -34,9 +32,11 @@
                 </mat-panel-title>
             </mat-expansion-panel-header>
 
-
             <app-time-picker (changeFromTime)="onChangeFromTime($event)" (changeUntilTime)="onChangeUntilTime($event)"></app-time-picker>
-            <app-category-picker></app-category-picker>
+
+            <app-category-picker (changeCategories)="onChangeCategories($event)"></app-category-picker>
+
+            <app-note-to-day [schedule]="schedule" (addNotes)="onAddNotes($event)"></app-note-to-day>
 
         </mat-expansion-panel>
 

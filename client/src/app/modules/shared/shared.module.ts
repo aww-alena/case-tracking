@@ -21,6 +21,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSortModule } from '@angular/material/sort';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [],
@@ -48,6 +49,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatSnackBarModule,
     MatTooltipModule,
     MatSortModule,
+    MatChipsModule
   ],
   exports: [
     CommonModule,
@@ -73,6 +75,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatSnackBarModule,
     MatTooltipModule,
     MatSortModule,
+    MatChipsModule
   ],
 })
 export class SharedModule {}

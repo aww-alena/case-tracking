@@ -29,8 +29,6 @@ export class CreateHabitComponent implements OnInit {
     { id: '6', name: 'Sa' },
   ];
 
-  schedule: string;
-
   form: FormGroup;
 
   habit: Habit;
@@ -48,7 +46,12 @@ export class CreateHabitComponent implements OnInit {
       hasRating: new FormControl(null),
       color: new FormControl(null),
       icon: new FormControl(null),
-      categories: new FormControl(null)
+      categories: new FormControl(null),
+      schedule: new FormControl(null),
+      difficulty: new FormControl(null),
+      comment: new FormControl(null),
+      fromTime: new FormControl(null),
+      untilTime: new FormControl(null)
     });
   }
 
@@ -58,9 +61,12 @@ export class CreateHabitComponent implements OnInit {
       hasTimer: this.form.value.hasTimer,
       hasRating: this.form.value.hasRating,
       categories: this.form.value.categories,
-      schedule: this.schedule,
+      schedule: this.form.value.schedule,
       color: this.form.value.color,
-      icon: this.form.value.icon
+      icon: this.form.value.icon,
+      difficulty: this.form.value.difficulty,
+      comment: this.form.value.comment,
+      timeframe: this.formatTimeFrame()
     };
   }
 
@@ -72,28 +78,51 @@ export class CreateHabitComponent implements OnInit {
     });
   }
 
-  onChangeSchedule(schedule: string): void {
-    console.log(schedule);
+  onChangeSchedule(selectedSchedule: string): void {
+    this.form.patchValue({schedule: selectedSchedule});
   }
 
-  onSelectIcon(icon: string): void {
-    console.log(icon);
+  onSelectIcon(selectedIcon: string): void {
+    this.form.patchValue({icon: selectedIcon});
   }
 
-  onSelectColor(color: string): void {
-    console.log(color);
+  onSelectColor(selectedColor: string): void {
+    this.form.patchValue({color: selectedColor});
   }
 
-  onSelectDifficulty(difficulty: string): void {
-    console.log(difficulty);
+  onSelectDifficulty(selectedDifficulty: string): void {
+    this.form.patchValue({difficulty: selectedDifficulty});
   }
 
-  onChangeFromTime(event: any): void {
-    console.log(event);
+  onChangeFromTime(selectedFromTime: any): void {
+    this.form.patchValue({fromTime: selectedFromTime});
   }
 
-  onChangeUntilTime(event: any): void {
-    console.log(event);
+  onChangeUntilTime(selectedUntilTime: any): void {
+    this.form.patchValue({untilTime: selectedUntilTime});
   }
 
+  onChangeCategories(selectedCategories: any): void {
+    this.form.patchValue({categories: selectedCategories});
+  }
+
+  onAddNotes(notes: string): void {
+    this.form.patchValue({comment: notes});
+  }
+
+  get schedule(): FormControl {
+    return this.form.get('schedule') as FormControl;
+  }
+
+  private formatTimeFrame(): string {
+    let timeFrame = '';
+    if (this.form.value.fromTime !== null) {
+      timeFrame += this.form.value.fromTime;
+    }
+    if (this.form.value.untilTime !== null) {
+      timeFrame += `-${this.form.value.untilTime}`;
+    }
+
+    return timeFrame;
+  }
 }

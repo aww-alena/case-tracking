@@ -19,6 +19,7 @@ import { SchedulePickerComponent } from './components/pickers/schedule-picker/sc
 import { TimePickerComponent } from './components/pickers/time-picker/time-picker.component';
 import { CategoryPickerComponent } from './components/pickers/category-picker/category-picker.component';
 import { ChartsModule } from 'ng2-charts';
+import { NoteToDayComponent } from './components/note-to-day/note-to-day.component';
 @NgModule({
   declarations: [
     CabinetLayoutComponent,
@@ -36,6 +37,7 @@ import { ChartsModule } from 'ng2-charts';
     SchedulePickerComponent,
     TimePickerComponent,
     CategoryPickerComponent,
+    NoteToDayComponent,
   ],
   imports: [
     CommonModule,
