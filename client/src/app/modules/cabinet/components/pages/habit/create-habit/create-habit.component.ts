@@ -66,7 +66,8 @@ export class CreateHabitComponent implements OnInit {
       icon: this.form.value.icon,
       difficulty: this.form.value.difficulty,
       comment: this.form.value.comment,
-      timeframe: this.formatTimeFrame()
+      timeframe: this.formatTimeFrame(),
+      _id: ''
     };
   }
 

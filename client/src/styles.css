@@ -557,6 +557,7 @@ mat-expansion-panel mat-icon {
     border-radius: 50%;
     margin-right: 25px;
     color: #fff;
+    color: inherit;
 }
 
 .flex-timer {

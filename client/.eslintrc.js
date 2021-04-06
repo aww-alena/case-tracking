@@ -21,6 +21,7 @@ module.exports = {
                 "plugin:@angular-eslint/template/process-inline-templates"
             ],
             rules: {
+                'no-underscore-dangle': 'off',
                 'import/no-unresolved': 'off',
                 'import/prefer-default-export': 'off',
                 'class-methods-use-this': 'off',

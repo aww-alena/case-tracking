@@ -1,14 +1,24 @@
-<div class="habit" *ngIf="onSchedule()">
+<div class="habit" *ngIf="onSchedule()" [id]="idRecording">
+
+
     <div class="left">
         <div class="checkbox">
-            <mat-checkbox (click)="onDone()"></mat-checkbox>
+            <mat-checkbox (click)="onDone(idRecording)" [(ngModel)]="isDone"></mat-checkbox>
         </div>
+
     </div>
     <div class="right">
         <div class="flex">
             <div class="flex">
-                <p class="name">
-                    {{habit.name}}
+                <p class="name" [style.color]="habit.color">
+                    <mat-icon>{{habit.icon}}</mat-icon>
+                    {{habit.name}} -
+                    <span class="date" *ngIf="isDone">
+                        {{getDate(habit)}}
+                    </span>
+
+
+
                 </p>
 
                 <app-rating (byClick)="updateRating($event)" *ngIf="habit.hasRating;"></app-rating>

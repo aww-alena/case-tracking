@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const journalSchema = new Schema({
+const journalEntrySchema = new Schema({
     date: {
         type: Date,
         required: true,
@@ -27,8 +27,8 @@ const journalSchema = new Schema({
     rate: {
         type: Number
     },
-    affair: {
-        ref: 'affairs',
+    habit: {
+        ref: 'habits',
         type: Schema.Types.ObjectId
     },
     user: {
@@ -39,9 +39,9 @@ const journalSchema = new Schema({
         ref: 'categories',
         type: Schema.Types.ObjectId
     },
-    id_recording: {
+    idRecording: {
         type: String
     }
 })
 
-module.exports = mongoose.model('journals', journalSchema)
+module.exports = mongoose.model('journal', journalEntrySchema)

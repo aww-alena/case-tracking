@@ -1,3 +1,5 @@
+import { JournalEntry } from './journalEntry';
+
 export interface Habit {
   name: string;
   schedule: string;
@@ -10,5 +12,6 @@ export interface Habit {
   timeframe?: string;
   user?: string;
   categories?: string;
-  _id?: string;
+  _id: string;
+  entry?: JournalEntry;
 }
