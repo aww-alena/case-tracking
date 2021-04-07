@@ -1,10 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Habit } from 'src/app/interfaces/habit';
 import { JournalEntry } from 'src/app/interfaces/journalEntry';
+import { HabitRecording } from 'src/app/interfaces/habit-recording';
 import * as moment from 'moment';
 import { JournalService } from 'src/app/services/journal/journal.service';
 import { FormControl } from '@angular/forms';
 import { NgForm } from '@angular/forms';
+import { moveSyntheticComments } from 'typescript';
 
 @Component({
   selector: 'app-item-habit',
@@ -12,80 +14,151 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./item-habit.component.css'],
 })
 export class ItemHabitComponent implements OnInit {
-  @Input() habit: Habit;
-
+  @Input() habitRecording: HabitRecording;
   today = moment();
-  idRecording: string;
-  isDone = false;
 
   constructor(private journalService: JournalService) {}
 
-  ngOnInit(): void {
-    this.idRecording = this.today.format('YYYYMMDD') +  this.habit._id;
-    this.getEntry();
+  ngOnInit(): void {}
+
+  markDone(id: string) {
+
+    if (this.habitRecording.entry.done) {
+      this.resetEntry();
+      this.deleteEntry(this.habitRecording.entry);
+    } else {
+      this.habitRecording.entry.done = true;
+      this.saveEntry(this.habitRecording.entry);
+    }
   }
 
-  getEntry(): void {
-    this.journalService.getById(this.habit._id, this.idRecording).subscribe((findEntry: any) => {
-      this.habit.entry = findEntry[0];
-      this.isDone = (this.habit.entry !== undefined) ? true : false;
-      console.log(this.habit);
+  resetEntry(): void {
+    this.habitRecording.entry.rate = 0;
+    this.habitRecording.entry.done = false;
+  }
+
+  saveComment(form: NgForm) {
+    this.habitRecording.entry.comment = form.value.note;
+    this.updateOrSave();
+  }
+
+  saveRating(ratingValue: number): void {
+
+    this.habitRecording.entry.rate = ratingValue;
+    this.habitRecording.entry.done = true;
+
+    this.updateOrSave();
+  }
+
+  updateEntry(entry: JournalEntry): void {
+    this.journalService.update(entry).subscribe((newEntry) => {
+      console.log(newEntry);
+      this.habitRecording.entry = newEntry;
     });
   }
 
-  getDate(habit: Habit): string {
-    return (habit.entry !== undefined) ? moment(habit.entry.date).format('HH:mm').toString() : '';
-  }
-
-  onDone(id: string) {
-    const entry = this.createJournalEntry(id);
+  saveEntry(entry: JournalEntry): void {
     this.journalService.create(entry).subscribe((newEntry) => {
       console.log(newEntry);
+      this.habitRecording.entry = newEntry;
     });
   }
 
-  saveComment() {}
+  deleteEntry(entry: JournalEntry): void {
+    this.journalService.delete(entry).subscribe((message) => {
+      console.log(message);
+      this.resetEntry();
+    });
+  }
 
-  updateRating(ratingValue: number): void {}
+  updateOrSave(): void {
 
-  onSchedule(): boolean {
+    if(this.habitRecording.entry._id !== undefined) {
+      this.updateEntry(this.habitRecording.entry);
+    } else {
+      this.saveEntry(this.habitRecording.entry);
+    }
+  }
+
+  isOnSchedule(): boolean {
     let include = false;
-    if(this.habit.schedule === '') {
+    if (this.habitRecording.habit.schedule === '' || this.habitRecording.habit.schedule === null) {
       include = true;
     } else {
       const todayString = String(this.today.isoWeekday());
-      include = this.habit.schedule.includes(todayString);
+      include = this.habitRecording.habit.schedule.includes(todayString);
     }
 
     return include;
-  }
-
-  showComment(comments: any): string {
-    const day = this.today.isoWeekday();
-    let notes = '';
-
-    if (comments !== undefined) {
-      notes = JSON.parse(comments);
-    }
-
-    return notes[day];
   }
 
   isCommentExist(comment: any): boolean {
     return (comment !== undefined && comment !== '') ? true : false;
   }
 
-  createJournalEntry(id: string): JournalEntry {
-    let habitID = '';
-    habitID = (this.habit._id !== undefined) ? this.habit._id : '';
+  getRating(): number {
+    let rating = 0;
+    if(this.habitRecording.entry !== undefined && this.habitRecording.entry.rate !== undefined) {
+      rating = this.habitRecording.entry.rate;
+    }
+    return rating;
+  }
 
-    const entry: JournalEntry = {
-      idRecording: id,
-      habit: habitID,
-      date: moment().toDate()
+  getComment(comments: any): string {
+    const day = this.today.isoWeekday();
+    let note = '';
+
+    if (comments !== null) {
+      const notes = JSON.parse(comments);
+      note = notes[day];
+    }
+
+    return note;
+  }
+
+  getStringDate(habitRecording: HabitRecording): string {
+    return (habitRecording.entry !== undefined) ? moment(habitRecording.entry.date).format('HH:mm').toString() : '';
+  }
+
+  getNote(): string {
+
+    let note = '';
+
+    if (this.habitRecording.entry !== undefined && this.habitRecording.entry.comment !== undefined) {
+      note = this.habitRecording.entry.comment;
+    }
+
+    return note;
+  }
+
+  updateFormField(form: NgForm): void {
+    if(this.habitRecording.entry !== undefined && this.habitRecording.entry.comment !== undefined) {
+      form.setValue({
+        note: this.habitRecording.entry.comment
+      });
+    }
+  }
+
+  onPlayTime(time: Event): void {
+    console.log('start', time);
+
+    this.habitRecording.entry.timer = {
+      timestamp: moment().toDate()
     };
 
-    return entry;
+    if(this.habitRecording.entry.done) {
+      this.updateEntry(this.habitRecording.entry);
+    } else {
+      this.saveEntry(this.habitRecording.entry);
+    }
+  }
+
+  onPauseTime(): void {
+    console.log('pause');
+  }
+
+  onStartOverTime(): void {
+    console.log('startOver');
   }
 
 }

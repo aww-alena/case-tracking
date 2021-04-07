@@ -1,61 +1,68 @@
-<div class="habit" *ngIf="onSchedule()" [id]="idRecording">
+<div class="habit" *ngIf="isOnSchedule()">
 
 
     <div class="left">
         <div class="checkbox">
-            <mat-checkbox (click)="onDone(idRecording)" [(ngModel)]="isDone"></mat-checkbox>
+            <mat-checkbox (change)="markDone(habitRecording.id)" [checked]="this.habitRecording.entry.done"></mat-checkbox>
         </div>
 
     </div>
     <div class="right">
         <div class="flex">
             <div class="flex">
-                <p class="name" [style.color]="habit.color">
-                    <mat-icon>{{habit.icon}}</mat-icon>
-                    {{habit.name}} -
-                    <span class="date" *ngIf="isDone">
-                        {{getDate(habit)}}
+                <p class="name" [style.color]="habitRecording.habit.color">
+
+                    <ng-template [ngIf]="habitRecording.habit.icon !== undefined" [ngIfElse]="loading">
+                        <mat-icon>{{habitRecording.habit.icon}}</mat-icon>
+                    </ng-template>
+
+                    <ng-template #loading>
+                        <mat-icon>work</mat-icon>
+                    </ng-template>
+
+                    {{habitRecording.habit.name}}
+
+                    <span class="date" *ngIf="habitRecording.entry.done">
+                        - {{getStringDate(habitRecording)}}
                     </span>
-
-
-
                 </p>
 
-                <app-rating (byClick)="updateRating($event)" *ngIf="habit.hasRating;"></app-rating>
-
+                <div *ngIf="habitRecording.habit.hasRating;">
+                    <app-rating (byClick)="saveRating($event)" [oldRating]="getRating()"></app-rating>
+                </div>
             </div>
-            <a class="edit" [routerLink]="['/app/habits', habit._id]">
+
+            <a class="edit" [routerLink]="['/app/habits', habitRecording.habit._id]">
                 <mat-icon>mode_edit</mat-icon>
             </a>
         </div>
 
-        <div class="flex-timer" [ngClass]="{'one': !habit.hasTimer}">
-            <app-timer *ngIf="habit.hasTimer"></app-timer>
+        <div class="flex-timer" [ngClass]="{'one': !habitRecording.habit.hasTimer}">
 
-            <mat-expansion-panel hideToggle class="">
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        <mat-icon>comment</mat-icon>
-                        Add note
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
+            <app-timer *ngIf="habitRecording.habit.hasTimer" (timePlay)=onPlayTime($event) (timePause)=onPauseTime() (timeStartOver)=onStartOverTime()></app-timer>
+
+            <form #form="ngForm" (mouseenter)="updateFormField(form)">
+                <mat-expansion-panel hideToggle class="">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <mat-icon>comment</mat-icon>
+                            Add note
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
 
 
-                <mat-form-field appearance="fill">
-                    <mat-label>Your note</mat-label>
-                    <input type="text" matInput>
-                </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Your note</mat-label>
+                        <input ngModel name="note" type="text" matInput required>
+                    </mat-form-field>
 
-                <button class="save-comment" (click)=saveComment() type="button">Save</button>
+                    <button [disabled]="form.invalid" class="save-comment" (click)=saveComment(form) type="button">Save</button>
+                </mat-expansion-panel>
+            </form>
 
-            </mat-expansion-panel>
 
-            <p class="comment" *ngIf="isCommentExist(habit.comment)">{{showComment(habit.comment)}}</p>
         </div>
+
+        <p class="comment" *ngIf="isCommentExist(habitRecording.habit.comment)">{{getComment(habitRecording.habit.comment)}}</p>
     </div>
-
-
-
-
-
 </div>

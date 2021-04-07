@@ -5,7 +5,6 @@ module.exports.getAll = function(req, res) {}
 
 module.exports.getById = async function(req, res) {
 
-    console.log('req.params', req.params);
     try {
         const entry = await JournalEntry.find({
             idRecording: req.params.idRecording
@@ -18,8 +17,16 @@ module.exports.getById = async function(req, res) {
     }
 }
 
-module.exports.remove = function(req, res) {
+module.exports.remove = async function(req, res) {
 
+    try {
+        await JournalEntry.remove({ _id: req.params.id })
+        res.status(200).json({
+            message: 'Habit removed successfully'
+        })
+    } catch (error) {
+        errorHandler(res, error)
+    }
 }
 
 module.exports.create = async function(req, res) {
@@ -34,13 +41,19 @@ module.exports.create = async function(req, res) {
     }
 }
 
-module.exports.update = function(req, res) {
+module.exports.update = async function(req, res) {
 
+    try {
+        const journalEntry = await JournalEntry.findOneAndUpdate({ _id: req.params.id }, { $set: req.body }, { new: true })
+        res.status(200).json(journalEntry)
+    } catch (e) {
+        errorHandler(res, e)
+    }
 }
 
 const createjournalEntry = req => {
     return journalEntry = new JournalEntry({
-        name: req.body.name,
+        done: req.body.done,
         date: req.body.date,
         comment: req.body.comment,
         timer: req.body.timer,

@@ -13,5 +13,4 @@ export interface Habit {
   user?: string;
   categories?: string;
   _id: string;
-  entry?: JournalEntry;
 }

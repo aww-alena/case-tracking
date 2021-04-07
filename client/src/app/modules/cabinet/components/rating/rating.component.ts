@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-rating',
@@ -7,10 +7,9 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class RatingComponent implements OnInit {
   @Output() byClick: EventEmitter<number> = new EventEmitter();
+  @Input() oldRating: number;
 
   stars = [1, 2, 3, 4, 5];
-
-  selectedStar = 0;
 
   rating = 0;
 
@@ -19,15 +18,16 @@ export class RatingComponent implements OnInit {
   ngOnInit(): void {}
 
   leave(): void {
-    this.selectedStar = this.rating;
+    this.oldRating = this.rating;
   }
 
   hover(starId: number): void {
-    this.selectedStar = starId;
+    this.rating = this.oldRating;
+    this.oldRating = starId;
   }
 
   click(starId: number): void {
-    this.selectedStar = starId;
+    this.oldRating = starId;
     this.rating = starId;
     this.byClick.emit(starId);
   }
