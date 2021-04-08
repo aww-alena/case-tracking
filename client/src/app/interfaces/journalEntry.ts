@@ -1,4 +1,4 @@
-export interface JournalEntry {
+export interface IJournalEntry {
     done: boolean;
     date: Date;
     comment?: string;
@@ -10,10 +10,23 @@ export interface JournalEntry {
     category?: string;
     idRecording: string;
     _id?: string;
+    initTimeStamp(): Timestamp;
+    initTimer(): void;
+    startTimer(): void;
+    changeStatus(status: string): void;
+    startOver(): void;
+    parseEntry(savedEntry: IJournalEntry): void;
+    countTimePassed(): number;
+    getLastStart(): Date;
+    getComment(): string;
 }
 
 export interface Timer {
-    minutes?: number;
     status?: string;
-    timestamp?: Date;
+    timestamp?: Timestamp[];
+}
+
+export interface Timestamp {
+    start: Date;
+    stop?: Date;
 }

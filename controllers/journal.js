@@ -54,7 +54,6 @@ module.exports.update = async function(req, res) {
 const createjournalEntry = req => {
     return journalEntry = new JournalEntry({
         done: req.body.done,
-        date: req.body.date,
         comment: req.body.comment,
         timer: req.body.timer,
         value: req.body.value,

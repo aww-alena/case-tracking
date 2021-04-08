@@ -1,5 +1,3 @@
-import { JournalEntry } from './journalEntry';
-
 export interface Habit {
   name: string;
   schedule: string;

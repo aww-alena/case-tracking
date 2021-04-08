@@ -1,12 +1,26 @@
 <div class="flex">
-    <div class="time">
-        <span>{{time.hours}}</span> : <span>{{time.minutes}}</span> : <span>{{time.seconds}}</span>
-    </div>
+
+
+    <ul *ngIf="entry.timer !== undefined">
+        {{entry.timer.status}}
+        <li *ngFor="let time of entry.timer.timestamp">{{time.start | date : 'HH:mm'}} - {{time.stop | date : 'HH:mm'}} - {{getDiff(time.start, time.stop)}}</li>
+    </ul>
 
     <div class="contrlos">
-        <button type="button" (click)="play()"><mat-icon>play_arrow</mat-icon></button>
-        <button type="button" (click)="pause()"><mat-icon>pause</mat-icon></button>
-        <button type="button" (click)="pause()"><mat-icon>stop</mat-icon></button>
+        <button type="button" (click)="play()" [ngClass]="{'active': (entry.timer !== undefined && entry.timer.status === 'start')}"><mat-icon>play_arrow</mat-icon></button>
+        <button type="button" (click)="pause()" [ngClass]="{'active': (entry.timer !== undefined && entry.timer.status === 'pause')}"><mat-icon>pause</mat-icon></button>
+        <button type="button" (click)="stop()" [ngClass]="{'active': (entry.timer !== undefined && entry.timer.status === 'stop')}"><mat-icon>stop</mat-icon></button>
         <button class="replay" type="button" (click)="startOver()"><mat-icon>replay</mat-icon></button>
+    </div>
+
+    <div class="time" *ngIf="entry.timer !== undefined">
+        <div class="passed-time" *ngIf="entry.timer.status === 'pause'">
+            {{getPassedTime()}}
+        </div>
+
+        <div class="timer" *ngIf="entry.timer.status === 'start'">
+            {{getCounter()}}
+        </div>
+
     </div>
 </div>

@@ -1047,3 +1047,11 @@ svg.chart {
 .mat-chip-list-wrapper {
     margin-bottom: 20px !important;
 }
+
+.habit .contrlos button.active {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.flex-timer ul {
+    padding-left: 0px;
+}

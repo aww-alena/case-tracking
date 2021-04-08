@@ -23,7 +23,7 @@
                     {{habitRecording.habit.name}}
 
                     <span class="date" *ngIf="habitRecording.entry.done">
-                        - {{getStringDate(habitRecording)}}
+                         - {{getStringDate(habitRecording)}}
                     </span>
                 </p>
 
@@ -39,7 +39,7 @@
 
         <div class="flex-timer" [ngClass]="{'one': !habitRecording.habit.hasTimer}">
 
-            <app-timer *ngIf="habitRecording.habit.hasTimer" (timePlay)=onPlayTime($event) (timePause)=onPauseTime() (timeStartOver)=onStartOverTime()></app-timer>
+            <app-timer [entry]="habitRecording.entry" *ngIf="habitRecording.habit.hasTimer" (timePlay)=onPlayTime($event) (timePause)=onPauseTime($event) (timeStartOver)=onStartOverTime()></app-timer>
 
             <form #form="ngForm" (mouseenter)="updateFormField(form)">
                 <mat-expansion-panel hideToggle class="">

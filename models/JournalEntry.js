@@ -15,15 +15,17 @@ const journalEntrySchema = new Schema({
         type: String
     },
     timer: {
-        minutes: {
-            type: Number
-        },
         status: {
             type: String
         },
-        timestamp: {
-            type: Date
-        }
+        timestamp: [{
+            start: {
+                type: Date
+            },
+            stop: {
+                type: Date
+            }
+        }]
     },
     value: {
         type: Number

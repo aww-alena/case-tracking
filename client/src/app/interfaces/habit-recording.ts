@@ -1,9 +1,9 @@
 
-import { JournalEntry } from './journalEntry';
+import { IJournalEntry } from './journalEntry';
 import { Habit } from './habit';
 
-export interface HabitRecording {
+export interface IHabitRecording {
     habit: Habit;
-    entry: JournalEntry;
+    entry: IJournalEntry;
     id: string;
 }

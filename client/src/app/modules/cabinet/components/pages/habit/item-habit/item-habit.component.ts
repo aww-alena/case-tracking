@@ -1,12 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Habit } from 'src/app/interfaces/habit';
-import { JournalEntry } from 'src/app/interfaces/journalEntry';
-import { HabitRecording } from 'src/app/interfaces/habit-recording';
+import { IJournalEntry } from 'src/app/interfaces/journalEntry';
+import { IHabitRecording } from 'src/app/interfaces/habit-recording';
 import * as moment from 'moment';
 import { JournalService } from 'src/app/services/journal/journal.service';
-import { FormControl } from '@angular/forms';
 import { NgForm } from '@angular/forms';
-import { moveSyntheticComments } from 'typescript';
+import { JournalEntry } from 'src/app/classes/journal-entry';
 
 @Component({
   selector: 'app-item-habit',
@@ -14,7 +12,7 @@ import { moveSyntheticComments } from 'typescript';
   styleUrls: ['./item-habit.component.css'],
 })
 export class ItemHabitComponent implements OnInit {
-  @Input() habitRecording: HabitRecording;
+  @Input() habitRecording: IHabitRecording;
   today = moment();
 
   constructor(private journalService: JournalService) {}
@@ -24,8 +22,8 @@ export class ItemHabitComponent implements OnInit {
   markDone(id: string) {
 
     if (this.habitRecording.entry.done) {
-      this.resetEntry();
       this.deleteEntry(this.habitRecording.entry);
+      this.resetEntry();
     } else {
       this.habitRecording.entry.done = true;
       this.saveEntry(this.habitRecording.entry);
@@ -33,8 +31,7 @@ export class ItemHabitComponent implements OnInit {
   }
 
   resetEntry(): void {
-    this.habitRecording.entry.rate = 0;
-    this.habitRecording.entry.done = false;
+    this.habitRecording.entry = new JournalEntry(this.habitRecording.habit._id, this.habitRecording.id);
   }
 
   saveComment(form: NgForm) {
@@ -50,21 +47,21 @@ export class ItemHabitComponent implements OnInit {
     this.updateOrSave();
   }
 
-  updateEntry(entry: JournalEntry): void {
+  updateEntry(entry: IJournalEntry): void {
     this.journalService.update(entry).subscribe((newEntry) => {
       console.log(newEntry);
-      this.habitRecording.entry = newEntry;
+      this.habitRecording.entry.parseEntry(newEntry);
     });
   }
 
-  saveEntry(entry: JournalEntry): void {
+  saveEntry(entry: IJournalEntry): void {
     this.journalService.create(entry).subscribe((newEntry) => {
       console.log(newEntry);
-      this.habitRecording.entry = newEntry;
+      this.habitRecording.entry.parseEntry(newEntry);
     });
   }
 
-  deleteEntry(entry: JournalEntry): void {
+  deleteEntry(entry: IJournalEntry): void {
     this.journalService.delete(entry).subscribe((message) => {
       console.log(message);
       this.resetEntry();
@@ -116,49 +113,46 @@ export class ItemHabitComponent implements OnInit {
     return note;
   }
 
-  getStringDate(habitRecording: HabitRecording): string {
+  getStringDate(habitRecording: IHabitRecording): string {
     return (habitRecording.entry !== undefined) ? moment(habitRecording.entry.date).format('HH:mm').toString() : '';
   }
 
-  getNote(): string {
-
-    let note = '';
-
-    if (this.habitRecording.entry !== undefined && this.habitRecording.entry.comment !== undefined) {
-      note = this.habitRecording.entry.comment;
-    }
-
-    return note;
-  }
-
   updateFormField(form: NgForm): void {
-    if(this.habitRecording.entry !== undefined && this.habitRecording.entry.comment !== undefined) {
+
+    if(this.habitRecording.entry.getComment() !== '') {
       form.setValue({
-        note: this.habitRecording.entry.comment
+        note: this.habitRecording.entry.getComment()
       });
     }
   }
 
   onPlayTime(time: Event): void {
-    console.log('start', time);
 
-    this.habitRecording.entry.timer = {
-      timestamp: moment().toDate()
-    };
-
-    if(this.habitRecording.entry.done) {
-      this.updateEntry(this.habitRecording.entry);
+    if(this.habitRecording.entry.timer !== undefined) {
+      this.habitRecording.entry.startTimer();
     } else {
-      this.saveEntry(this.habitRecording.entry);
+      this.habitRecording.entry.initTimer();
     }
+
+    this.updateOrSave();
   }
 
-  onPauseTime(): void {
-    console.log('pause');
+  onPauseTime(status: string): void {
+
+    if(status === 'stop') {
+      this.habitRecording.entry.done = true;
+      this.habitRecording.entry.changeStatus(status);
+    } else {
+      this.habitRecording.entry.changeStatus('pause');
+    }
+
+    this.updateOrSave();
   }
 
   onStartOverTime(): void {
-    console.log('startOver');
+    this.habitRecording.entry.startOver();
+
+    this.updateOrSave();
   }
 
 }
