@@ -1,24 +1,17 @@
 <div class="habit" *ngIf="isOnSchedule()">
 
+    <ng-template [ngIf]="habitRecording.habit.icon !== undefined" [ngIfElse]="loading">
+        <mat-icon class="main-icon">{{habitRecording.habit.icon}}</mat-icon>
+    </ng-template>
 
-    <div class="left">
-        <div class="checkbox">
-            <mat-checkbox (change)="markDone(habitRecording.id)" [checked]="this.habitRecording.entry.done"></mat-checkbox>
-        </div>
+    <ng-template #loading>
+        <mat-icon class="main-icon">work</mat-icon>
+    </ng-template>
 
-    </div>
     <div class="right">
         <div class="flex">
             <div class="flex">
-                <p class="name" [style.color]="habitRecording.habit.color">
-
-                    <ng-template [ngIf]="habitRecording.habit.icon !== undefined" [ngIfElse]="loading">
-                        <mat-icon>{{habitRecording.habit.icon}}</mat-icon>
-                    </ng-template>
-
-                    <ng-template #loading>
-                        <mat-icon>work</mat-icon>
-                    </ng-template>
+                <p class="name">
 
                     {{habitRecording.habit.name}}
 
@@ -32,37 +25,64 @@
                 </div>
             </div>
 
-            <a class="edit" [routerLink]="['/app/habits', habitRecording.habit._id]">
-                <mat-icon>mode_edit</mat-icon>
-            </a>
+            <div class="checkbox">
+                <mat-checkbox (change)="markDone(habitRecording.id)" [checked]="this.habitRecording.entry.done"></mat-checkbox>
+            </div>
+
         </div>
 
         <div class="flex-timer" [ngClass]="{'one': !habitRecording.habit.hasTimer}">
 
-            <app-timer [entry]="habitRecording.entry" *ngIf="habitRecording.habit.hasTimer" (timePlay)=onPlayTime($event) (timePause)=onPauseTime($event) (timeStartOver)=onStartOverTime()></app-timer>
+            <mat-tab-group headerPosition="below">
 
-            <form #form="ngForm" (mouseenter)="updateFormField(form)">
-                <mat-expansion-panel hideToggle class="">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            <mat-icon>comment</mat-icon>
-                            Add note
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
+                <mat-tab label="Closed">
+                    <ng-template mat-tab-label>
+                        <mat-icon>hide_source</mat-icon>
+                        Closed
+                    </ng-template>
+                </mat-tab>
+
+                <mat-tab *ngIf="habitRecording.habit.hasTimer">
+                    <ng-template mat-tab-label>
+                        <mat-icon>timer</mat-icon>
+                        Timer
+                    </ng-template>
+                    <app-timer [entry]="habitRecording.entry" *ngIf="habitRecording.habit.hasTimer" (timePlay)=onPlayTime($event) (timePause)=onPauseTime($event) (timeStartOver)=onStartOverTime() (changeTime)=onChangeTime($event) (deleteTimeStamp)="onDeleteTimeStamp($event)"></app-timer>
+                </mat-tab>
+
+                <mat-tab label="Add note">
+                    <ng-template mat-tab-label>
+                        <mat-icon>add_circle</mat-icon>
+                        Add comment
+                    </ng-template>
+
+                    <form #form="ngForm" (mouseenter)="updateFormField(form)" class="comment-form">
+
+                        <mat-form-field appearance="fill">
+                            <mat-label>Your note</mat-label>
+                            <input ngModel name="note" type="text" matInput required>
+                        </mat-form-field>
+
+                        <button [disabled]="form.invalid" class="save-comment" (click)=saveComment(form) type="button">Save</button>
+                    </form>
+                </mat-tab>
+                <mat-tab label="Comment" *ngIf="habitRecording.habit.comment !== undefined">
+                    <ng-template mat-tab-label>
+                        <mat-icon>description</mat-icon>
+                        Note
+                    </ng-template>
+                    <p class="comment" *ngIf="isCommentExist(habitRecording.habit.comment)">{{getComment(habitRecording.habit.comment)}}</p>
+                </mat-tab>
+            </mat-tab-group>
 
 
-                    <mat-form-field appearance="fill">
-                        <mat-label>Your note</mat-label>
-                        <input ngModel name="note" type="text" matInput required>
-                    </mat-form-field>
 
-                    <button [disabled]="form.invalid" class="save-comment" (click)=saveComment(form) type="button">Save</button>
-                </mat-expansion-panel>
-            </form>
+
+
 
 
         </div>
 
-        <p class="comment" *ngIf="isCommentExist(habitRecording.habit.comment)">{{getComment(habitRecording.habit.comment)}}</p>
+
     </div>
 </div>

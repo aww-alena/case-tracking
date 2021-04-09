@@ -19,14 +19,18 @@ export interface IJournalEntry {
     countTimePassed(): number;
     getLastStart(): Date;
     getComment(): string;
+    changeTimeInTimeStamp(index: number, date: Date, nameOfTimeStamp: string): void;
+    isTimerUndefined(): boolean;
+    deleteTimeStamp(index: number): void;
 }
 
 export interface Timer {
     status?: string;
-    timestamp?: Timestamp[];
+    timestamp: Timestamp[];
 }
 
 export interface Timestamp {
     start: Date;
     stop?: Date;
+    _id?: string;
 }

@@ -1,26 +1,70 @@
-<div class="flex">
+<div>
 
-
-    <ul *ngIf="entry.timer !== undefined">
-        {{entry.timer.status}}
-        <li *ngFor="let time of entry.timer.timestamp">{{time.start | date : 'HH:mm'}} - {{time.stop | date : 'HH:mm'}} - {{getDiff(time.start, time.stop)}}</li>
-    </ul>
+    <input type="hidden" #picker value="13:00">
 
     <div class="contrlos">
-        <button type="button" (click)="play()" [ngClass]="{'active': (entry.timer !== undefined && entry.timer.status === 'start')}"><mat-icon>play_arrow</mat-icon></button>
-        <button type="button" (click)="pause()" [ngClass]="{'active': (entry.timer !== undefined && entry.timer.status === 'pause')}"><mat-icon>pause</mat-icon></button>
-        <button type="button" (click)="stop()" [ngClass]="{'active': (entry.timer !== undefined && entry.timer.status === 'stop')}"><mat-icon>stop</mat-icon></button>
-        <button class="replay" type="button" (click)="startOver()"><mat-icon>replay</mat-icon></button>
-    </div>
-
-    <div class="time" *ngIf="entry.timer !== undefined">
-        <div class="passed-time" *ngIf="entry.timer.status === 'pause'">
-            {{getPassedTime()}}
+        <div>
+            <button type="button" (click)="play()" [ngClass]="{'active': (entry.timer !== undefined && entry.timer.status === 'start')}"><mat-icon>play_arrow</mat-icon></button>
+            <button type="button" (click)="pause()" [ngClass]="{'active': (entry.timer !== undefined && entry.timer.status === 'pause')}"><mat-icon>pause</mat-icon></button>
+            <button type="button" (click)="stop()" [ngClass]="{'active': (entry.timer !== undefined && entry.timer.status === 'stop')}"><mat-icon>stop</mat-icon></button>
+            <button class="replay" type="button" (click)="startOver()"><mat-icon>replay</mat-icon></button>
         </div>
 
-        <div class="timer" *ngIf="entry.timer.status === 'start'">
-            {{getCounter()}}
+
+        <div class="time" *ngIf="entry.timer !== undefined">
+            <div class="passed-time" *ngIf="entry.timer.status !== 'start'">
+                {{getPassedTime()}}
+            </div>
+
+            <div class="timer" *ngIf="entry.timer.status === 'start'">
+                {{getCounter()}}
+            </div>
         </div>
 
+        <button class="more" type="button" (click)="show = !show" matTooltipClass="tooltip" matTooltip="Show more" matTooltipPosition="right">
+            <mat-icon>expand_more</mat-icon>
+        </button>
     </div>
+
+
+    <ul class="history" *ngIf="entry.timer !== undefined && show">
+
+        <li *ngFor="let time of entry.timer.timestamp; let i = index">
+
+            <mat-icon class="main-icon">timer</mat-icon>
+
+            <span class="diff">
+                {{getDiff(time.start, time.stop, entry.timer.status)}}
+            </span>
+
+            <span class="start-stop">
+                    
+                    <button 
+                    type="button" 
+                    (click)="changeTimestamp(time.start, i, 'start')"
+                    matTooltipClass="tooltip" 
+                    matTooltip="Click to edit"
+                    matTooltipPosition="right">
+                        {{time.start | date : 'HH:mm'}} 
+                    </button>
+
+                    <span class="between">-</span>
+
+            <ng-template [ngIf]="time.stop !== undefined">
+
+                <button type="button" (click)="changeTimestamp(time.stop, i, 'end')" matTooltipClass="tooltip" matTooltip="Click to edit" matTooltipPosition="right">
+                    {{time.stop | date : 'HH:mm'}}
+                </button>
+
+            </ng-template>
+
+            </span>
+
+            <button type="button" class="delete" (click)="deleteTimestamp(i)" matTooltip="Delete time period" matTooltipPosition="right" matTooltipClass="tooltip">
+                <mat-icon>clear</mat-icon>
+            </button>
+
+        </li>
+    </ul>
+
 </div>

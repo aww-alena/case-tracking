@@ -26,6 +26,7 @@ export class ItemHabitComponent implements OnInit {
       this.resetEntry();
     } else {
       this.habitRecording.entry.done = true;
+      this.habitRecording.entry.date = moment().toDate();
       this.saveEntry(this.habitRecording.entry);
     }
   }
@@ -141,6 +142,7 @@ export class ItemHabitComponent implements OnInit {
 
     if(status === 'stop') {
       this.habitRecording.entry.done = true;
+      this.habitRecording.entry.date = moment().toDate();
       this.habitRecording.entry.changeStatus(status);
     } else {
       this.habitRecording.entry.changeStatus('pause');
@@ -155,4 +157,13 @@ export class ItemHabitComponent implements OnInit {
     this.updateOrSave();
   }
 
+  onChangeTime(emitData: {entry: IJournalEntry; index: number; time: Date; name: string}): void {
+    emitData.entry.changeTimeInTimeStamp(emitData.index, emitData.time, emitData.name);
+    this.updateEntry(emitData.entry);
+  }
+
+  onDeleteTimeStamp(emitData: {entry: IJournalEntry; index: number}): void {
+    emitData.entry.deleteTimeStamp(emitData.index);
+    this.updateEntry(emitData.entry);
+  }
 }

@@ -1,5 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
+* {
+    box-sizing: border-box;
+}
+
 :root {
     --background: #384259;
     --light_text_color: #fff;
@@ -357,10 +361,6 @@ nav ul li {
     border: 1px solid #765bff;
 }
 
-.habit-list .grid {
-    display: grid;
-}
-
 .habit .icon {
     color: #e12e6d;
     font-size: 59px;
@@ -428,14 +428,14 @@ main {
 }
 
 .fa.fa-star {
-    font-size: 19px;
-    padding-right: 6px;
+    font-size: 16px;
+    padding-right: 5px;
     color: rgba(255, 255, 255, 0.6);
     cursor: pointer;
 }
 
 .fa-star.filled {
-    color: #f39df3;
+    color: #d2b90d;
 }
 
 .habit .flex {
@@ -515,10 +515,6 @@ mat-expansion-panel mat-icon {
     padding: 0 0px 16px;
 }
 
-.habit .contrlos {
-    margin-left: 45px;
-}
-
 .habit .contrlos mat-icon {
     color: #fff;
 }
@@ -539,14 +535,18 @@ mat-expansion-panel mat-icon {
 
 .right>.flex {
     justify-content: space-between;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 0px;
+    padding: 28px 18px 0px;
 }
 
 .habit .name {
     text-align: center;
-    font-size: 21px;
+    font-size: 17px;
     display: flex;
     align-items: center;
-    margin-right: 50px;
+    margin-right: 25px;
     margin-bottom: 0px;
     color: #fff;
 }
@@ -561,12 +561,9 @@ mat-expansion-panel mat-icon {
 }
 
 .flex-timer {
-    padding: 11px 0px 18px;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    margin-top: 15px;
 }
 
 .habit .mat-expansion-panel-header {
@@ -690,6 +687,12 @@ nav .active {
 
 app-item-habit>.habit {
     display: flex;
+    position: relative;
+    background: rgb(75 81 115);
+    margin-bottom: 38px;
+    border-radius: 20px;
+    box-shadow: 0 -7px 15px rgba(255, 255, 255, 0.1);
+    border-top: 1px solid #765bff;
 }
 
 .habit .left {
@@ -701,8 +704,7 @@ app-item-habit>.habit {
 }
 
 .habit .right {
-    width: calc(100% - 80px);
-    padding: 18px 25px 0;
+    width: 100%;
 }
 
 .calendar {
@@ -717,8 +719,9 @@ app-item-habit>.habit {
 
 .flex.dashboard {
     display: grid;
-    grid-template-columns: 78% 20%;
+    grid-template-columns: 70% 30%;
     grid-gap: 30px;
+    width: calc(100% - 30px);
 }
 
 .calendar .name-of-days {
@@ -1054,4 +1057,172 @@ svg.chart {
 
 .flex-timer ul {
     padding-left: 0px;
+}
+
+.flex-timer ul li mat-icon {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 16px;
+}
+
+.flex-timer ul li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+span.start-stop {
+    color: rgba(255, 255, 255, 0.7);
+    min-width: max-content;
+}
+
+.flex-timer .diff {
+    font-size: 16px;
+    margin-right: 16px;
+}
+
+.flex-timer ul li mat-icon.main-icon {
+    font-size: 22px;
+    margin-right: 12px;
+}
+
+.tooltip {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+span.start-stop button {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 16px;
+    margin-left: 18px;
+}
+
+button.delete mat-icon {
+    width: unset;
+    height: unset;
+}
+
+button.delete {
+    margin-left: 12px;
+}
+
+.habit .timer mat-panel-title {
+    justify-content: flex-start;
+}
+
+.habit .timer mat-expansion-panel-header {
+    padding: 0px;
+}
+
+.flex-timer .contrlos {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.contrlos>div {
+    font-size: 17px;
+}
+
+span.between {
+    margin-left: 18px;
+}
+
+.flex-timer .contrlos button.more {
+    margin-left: 20px;
+}
+
+ul.history {
+    padding: 15px 9px 0px;
+}
+
+.habit>mat-icon.main-icon {
+    border-top: 1px solid #765bff;
+    border-radius: 50%;
+    margin-bottom: 30px;
+    width: 60px !important;
+    height: 60px !important;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: -27px;
+    padding-top: 13px;
+    left: calc(50% - 30px);
+    background: #4b5173;
+}
+
+mat-expansion-panel-header {
+    padding: 0px !important;
+}
+
+.flex-timer .mat-tab-label {
+    width: auto;
+    min-width: auto;
+    height: 70px;
+    opacity: 0.5;
+    align-items: flex-end;
+    padding-bottom: 12px;
+}
+
+.flex-timer .mat-tab-label.mat-tab-label-active {
+    opacity: 1;
+}
+
+.flex-timer .mat-tab-labels {
+    justify-content: space-around;
+    background: rgba(0, 0, 0, 0.1);
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+mat-ink-bar.mat-ink-bar {
+    display: none;
+}
+
+.flex-timer .mat-tab-nav-bar,
+.flex-timer .mat-tab-header {
+    border-bottom: none;
+    margin: 20px 0 0px;
+    border: none;
+}
+
+.flex-timer mat-tab-group {
+    width: 100%;
+    max-width: 100%;
+}
+
+.mat-tab-body-wrapper {
+    padding: 0px 18px;
+}
+
+.mat-tab-label-content mat-icon {
+    position: absolute;
+    top: 10px;
+}
+
+.habit-list .mat-tab-body-content {
+    height: auto;
+    overflow: hidden;
+}
+
+.habit-list .mat-tab-body-content app-timer {
+    margin: 26px 0 0;
+    display: block;
+}
+
+.habit .date {
+    padding-left: 5px;
+}
+
+.habit .comment-form {
+    margin-top: 20px;
+}
+
+.habit .comment {
+    margin-top: 25px;
+}
+
+.flex.dashboard>.left {
+    background: #434967;
+    border-top: 1px solid #765bff;
+    border-radius: 24px;
+    box-shadow: 0 -7px 15px rgba(255, 255, 255, 0.1);
 }

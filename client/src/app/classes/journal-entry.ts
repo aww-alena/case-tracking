@@ -108,6 +108,32 @@ export class JournalEntry implements IJournalEntry {
         }
     }
 
+    changeTimeInTimeStamp(index: number, date: Date, nameOfTimeStamp: string): void {
+        if(this.isTimerUndefined()) {
+            if(nameOfTimeStamp === 'start') {
+                this.timer.timestamp[index].start = date;
+            } else {
+                this.timer.timestamp[index].stop = date;
+            }
+        }
+    }
+
+    deleteTimeStamp(index: number): void {
+        if(this.isTimerUndefined()) {
+
+            if (this.timer.timestamp.length - 1 === index) {
+                this.timer.status = '';
+            }
+
+            this.timer.timestamp.splice(index, 1);
+        }
+
+    }
+
+    isTimerUndefined(): boolean {
+        return (this.timer !== undefined) ? true : false;
+    }
+
     parseEntry(savedEntry: IJournalEntry): void {
         this.done = savedEntry.done;
         this.date = savedEntry.date;
