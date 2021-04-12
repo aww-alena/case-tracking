@@ -30,7 +30,7 @@ const journalEntrySchema = new Schema({
     value: {
         type: Number
     },
-    rate: {
+    rating: {
         type: Number
     },
     habit: {

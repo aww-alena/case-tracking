@@ -3,9 +3,9 @@ import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { HabitRecording } from 'src/app/classes/habit-recording';
 import { JournalEntry } from 'src/app/classes/journal-entry';
-import { Habit } from 'src/app/interfaces/habit';
+import { IHabit } from 'src/app/interfaces/habit';
 import { IHabitRecording } from 'src/app/interfaces/habit-recording';
-import { IJournalEntry } from 'src/app/interfaces/journalEntry';
+import { IJournalEntry } from 'src/app/interfaces/journal-entry';
 import { HabitService } from 'src/app/services/habit/habit.service';
 import { JournalService } from 'src/app/services/journal/journal.service';
 
@@ -15,7 +15,7 @@ import { JournalService } from 'src/app/services/journal/journal.service';
   styleUrls: ['./list-habit.component.css'],
 })
 export class ListHabitComponent implements OnInit, OnDestroy {
-  habits: Habit[];
+  habits: IHabit[];
   habitRecords: IHabitRecording[] = [];
 
   habitsSubscribe: Subscription;

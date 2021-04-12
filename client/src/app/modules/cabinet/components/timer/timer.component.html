@@ -7,7 +7,7 @@
             <button type="button" (click)="play()" [ngClass]="{'active': (entry.timer !== undefined && entry.timer.status === 'start')}"><mat-icon>play_arrow</mat-icon></button>
             <button type="button" (click)="pause()" [ngClass]="{'active': (entry.timer !== undefined && entry.timer.status === 'pause')}"><mat-icon>pause</mat-icon></button>
             <button type="button" (click)="stop()" [ngClass]="{'active': (entry.timer !== undefined && entry.timer.status === 'stop')}"><mat-icon>stop</mat-icon></button>
-            <button class="replay" type="button" (click)="startOver()"><mat-icon>replay</mat-icon></button>
+            <button class="replay" type="button" (click)="reset()"><mat-icon>replay</mat-icon></button>
         </div>
 
 

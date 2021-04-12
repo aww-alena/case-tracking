@@ -1,23 +1,29 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { IJournalEntry } from 'src/app/interfaces/journalEntry';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { IJournalEntry } from 'src/app/interfaces/journal-entry';
 import { IHabitRecording } from 'src/app/interfaces/habit-recording';
 import * as moment from 'moment';
 import { JournalService } from 'src/app/services/journal/journal.service';
 import { NgForm } from '@angular/forms';
 import { JournalEntry } from 'src/app/classes/journal-entry';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-item-habit',
   templateUrl: './item-habit.component.html',
   styleUrls: ['./item-habit.component.css'],
 })
-export class ItemHabitComponent implements OnInit {
+export class ItemHabitComponent implements OnInit, OnDestroy {
   @Input() habitRecording: IHabitRecording;
   today = moment();
+  subscriptions: Subscription = new Subscription();
 
   constructor(private journalService: JournalService) {}
 
   ngOnInit(): void {}
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+  }
 
   markDone(id: string) {
 
@@ -25,8 +31,8 @@ export class ItemHabitComponent implements OnInit {
       this.deleteEntry(this.habitRecording.entry);
       this.resetEntry();
     } else {
-      this.habitRecording.entry.done = true;
-      this.habitRecording.entry.date = moment().toDate();
+      this.habitRecording.entry.setDone(true);
+      this.habitRecording.entry.setDate(moment().toDate());
       this.saveEntry(this.habitRecording.entry);
     }
   }
@@ -36,86 +42,42 @@ export class ItemHabitComponent implements OnInit {
   }
 
   saveComment(form: NgForm) {
-    this.habitRecording.entry.comment = form.value.note;
+    this.habitRecording.entry.setComment(form.value.note);
     this.updateOrSave();
   }
 
   saveRating(ratingValue: number): void {
 
-    this.habitRecording.entry.rate = ratingValue;
-    this.habitRecording.entry.done = true;
+    this.habitRecording.entry.setRating(ratingValue);
+    this.habitRecording.entry.setDone(true);
 
     this.updateOrSave();
   }
 
   updateEntry(entry: IJournalEntry): void {
-    this.journalService.update(entry).subscribe((newEntry) => {
-      console.log(newEntry);
+    this.subscriptions.add(this.journalService.update(entry).subscribe((newEntry) => {
       this.habitRecording.entry.parseEntry(newEntry);
-    });
+    }));
   }
 
   saveEntry(entry: IJournalEntry): void {
-    this.journalService.create(entry).subscribe((newEntry) => {
-      console.log(newEntry);
+    this.subscriptions.add(this.journalService.create(entry).subscribe((newEntry) => {
       this.habitRecording.entry.parseEntry(newEntry);
-    });
-  }
-
-  deleteEntry(entry: IJournalEntry): void {
-    this.journalService.delete(entry).subscribe((message) => {
-      console.log(message);
-      this.resetEntry();
-    });
+    }));
   }
 
   updateOrSave(): void {
-
-    if(this.habitRecording.entry._id !== undefined) {
+    if(!this.habitRecording.entry.isIdUndefined()) {
       this.updateEntry(this.habitRecording.entry);
     } else {
       this.saveEntry(this.habitRecording.entry);
     }
   }
 
-  isOnSchedule(): boolean {
-    let include = false;
-    if (this.habitRecording.habit.schedule === '' || this.habitRecording.habit.schedule === null) {
-      include = true;
-    } else {
-      const todayString = String(this.today.isoWeekday());
-      include = this.habitRecording.habit.schedule.includes(todayString);
-    }
-
-    return include;
-  }
-
-  isCommentExist(comment: any): boolean {
-    return (comment !== undefined && comment !== '') ? true : false;
-  }
-
-  getRating(): number {
-    let rating = 0;
-    if(this.habitRecording.entry !== undefined && this.habitRecording.entry.rate !== undefined) {
-      rating = this.habitRecording.entry.rate;
-    }
-    return rating;
-  }
-
-  getComment(comments: any): string {
-    const day = this.today.isoWeekday();
-    let note = '';
-
-    if (comments !== null) {
-      const notes = JSON.parse(comments);
-      note = notes[day];
-    }
-
-    return note;
-  }
-
-  getStringDate(habitRecording: IHabitRecording): string {
-    return (habitRecording.entry !== undefined) ? moment(habitRecording.entry.date).format('HH:mm').toString() : '';
+  deleteEntry(entry: IJournalEntry): void {
+    this.subscriptions.add(this.journalService.delete(entry).subscribe((message) => {
+      this.resetEntry();
+    }));
   }
 
   updateFormField(form: NgForm): void {
@@ -129,7 +91,7 @@ export class ItemHabitComponent implements OnInit {
 
   onPlayTime(time: Event): void {
 
-    if(this.habitRecording.entry.timer !== undefined) {
+    if(!this.habitRecording.entry.isTimerUndefined()) {
       this.habitRecording.entry.startTimer();
     } else {
       this.habitRecording.entry.initTimer();
@@ -141,29 +103,28 @@ export class ItemHabitComponent implements OnInit {
   onPauseTime(status: string): void {
 
     if(status === 'stop') {
-      this.habitRecording.entry.done = true;
-      this.habitRecording.entry.date = moment().toDate();
-      this.habitRecording.entry.changeStatus(status);
+      this.habitRecording.entry.setDone(true);
+      this.habitRecording.entry.setDate(moment().toDate());
+      this.habitRecording.entry.stopTimer('stop');
     } else {
-      this.habitRecording.entry.changeStatus('pause');
+      this.habitRecording.entry.stopTimer('pause');
     }
 
     this.updateOrSave();
   }
 
-  onStartOverTime(): void {
-    this.habitRecording.entry.startOver();
-
+  onResetTime(): void {
+    this.habitRecording.entry.resetTimer();
     this.updateOrSave();
   }
 
   onChangeTime(emitData: {entry: IJournalEntry; index: number; time: Date; name: string}): void {
-    emitData.entry.changeTimeInTimeStamp(emitData.index, emitData.time, emitData.name);
+    emitData.entry.setTimeInTimestamp(emitData.index, emitData.time, emitData.name);
     this.updateEntry(emitData.entry);
   }
 
   onDeleteTimeStamp(emitData: {entry: IJournalEntry; index: number}): void {
-    emitData.entry.deleteTimeStamp(emitData.index);
+    emitData.entry.deleteTimestamp(emitData.index);
     this.updateEntry(emitData.entry);
   }
 }

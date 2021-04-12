@@ -1156,10 +1156,10 @@ mat-expansion-panel-header {
 .flex-timer .mat-tab-label {
     width: auto;
     min-width: auto;
-    height: 70px;
+    height: 48px;
     opacity: 0.5;
     align-items: flex-end;
-    padding-bottom: 12px;
+    padding: 0 5px 5px;
 }
 
 .flex-timer .mat-tab-label.mat-tab-label-active {
@@ -1195,7 +1195,11 @@ mat-ink-bar.mat-ink-bar {
 
 .mat-tab-label-content mat-icon {
     position: absolute;
-    top: 10px;
+    top: 5px;
+    font-size: 19px;
+    width: auto;
+    height: auto;
+    transform: rotate(0.03deg);
 }
 
 .habit-list .mat-tab-body-content {
@@ -1225,4 +1229,10 @@ mat-ink-bar.mat-ink-bar {
     border-top: 1px solid #765bff;
     border-radius: 24px;
     box-shadow: 0 -7px 15px rgba(255, 255, 255, 0.1);
+}
+
+.habit .mat-tab-label .mat-tab-label-content {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.7px;
 }

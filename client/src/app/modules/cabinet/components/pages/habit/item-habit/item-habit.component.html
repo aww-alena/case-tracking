@@ -1,7 +1,7 @@
-<div class="habit" *ngIf="isOnSchedule()">
+<div class="habit">
 
-    <ng-template [ngIf]="habitRecording.habit.icon !== undefined" [ngIfElse]="loading">
-        <mat-icon class="main-icon">{{habitRecording.habit.icon}}</mat-icon>
+    <ng-template [ngIf]="!habitRecording.habit.isIconUndefined()" [ngIfElse]="loading">
+        <mat-icon class="main-icon">{{habitRecording.habit.getIcon()}}</mat-icon>
     </ng-template>
 
     <ng-template #loading>
@@ -16,12 +16,12 @@
                     {{habitRecording.habit.name}}
 
                     <span class="date" *ngIf="habitRecording.entry.done">
-                         - {{getStringDate(habitRecording)}}
+                         - {{habitRecording.entry.getStringDate()}}
                     </span>
                 </p>
 
                 <div *ngIf="habitRecording.habit.hasRating;">
-                    <app-rating (byClick)="saveRating($event)" [oldRating]="getRating()"></app-rating>
+                    <app-rating (byClick)="saveRating($event)" [oldRating]="habitRecording.entry.getRating()"></app-rating>
                 </div>
             </div>
 
@@ -36,9 +36,9 @@
             <mat-tab-group headerPosition="below">
 
                 <mat-tab label="Closed">
-                    <ng-template mat-tab-label>
+                    <ng-template mat-tab-label (click)="sho()">
                         <mat-icon>hide_source</mat-icon>
-                        Closed
+                        Close
                     </ng-template>
                 </mat-tab>
 
@@ -47,13 +47,13 @@
                         <mat-icon>timer</mat-icon>
                         Timer
                     </ng-template>
-                    <app-timer [entry]="habitRecording.entry" *ngIf="habitRecording.habit.hasTimer" (timePlay)=onPlayTime($event) (timePause)=onPauseTime($event) (timeStartOver)=onStartOverTime() (changeTime)=onChangeTime($event) (deleteTimeStamp)="onDeleteTimeStamp($event)"></app-timer>
+                    <app-timer [entry]="habitRecording.entry" *ngIf="habitRecording.habit.hasTimer" (timePlay)=onPlayTime($event) (timePause)=onPauseTime($event) (timeReset)=onResetTime() (changeTime)=onChangeTime($event) (deleteTimeStamp)="onDeleteTimeStamp($event)"></app-timer>
                 </mat-tab>
 
                 <mat-tab label="Add note">
                     <ng-template mat-tab-label>
                         <mat-icon>add_circle</mat-icon>
-                        Add comment
+                        Add note
                     </ng-template>
 
                     <form #form="ngForm" (mouseenter)="updateFormField(form)" class="comment-form">
@@ -66,23 +66,14 @@
                         <button [disabled]="form.invalid" class="save-comment" (click)=saveComment(form) type="button">Save</button>
                     </form>
                 </mat-tab>
-                <mat-tab label="Comment" *ngIf="habitRecording.habit.comment !== undefined">
+                <mat-tab label="Comment" *ngIf="!habitRecording.habit.isCommentUndefined()">
                     <ng-template mat-tab-label>
                         <mat-icon>description</mat-icon>
-                        Note
+                        Comment
                     </ng-template>
-                    <p class="comment" *ngIf="isCommentExist(habitRecording.habit.comment)">{{getComment(habitRecording.habit.comment)}}</p>
+                    <p class="comment" *ngIf="!habitRecording.habit.isCommentUndefined()">{{habitRecording.habit.getComment()}}</p>
                 </mat-tab>
             </mat-tab-group>
-
-
-
-
-
-
-
         </div>
-
-
     </div>
 </div>

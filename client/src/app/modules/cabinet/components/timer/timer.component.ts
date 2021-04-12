@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, OnDestroy, ViewChild, ElementRef} from '@angular/core';
 import * as moment from 'moment';
 import { Timestamp } from 'rxjs/internal/operators/timestamp';
-import { IJournalEntry } from 'src/app/interfaces/journalEntry';
+import { IJournalEntry } from 'src/app/interfaces/journal-entry';
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.component.html',
@@ -13,7 +13,7 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   @Output() timePlay = new EventEmitter<any>();
   @Output() timePause = new EventEmitter<string>();
-  @Output() timeStartOver = new EventEmitter<any>();
+  @Output() timeReset = new EventEmitter<any>();
   @Output() changeTime = new EventEmitter<{entry: IJournalEntry; index: number; time: Date; name: string}>();
   @Output() deleteTimeStamp = new EventEmitter<{entry: IJournalEntry; index: number}>();
 
@@ -53,18 +53,18 @@ export class TimerComponent implements OnInit, OnDestroy {
   }
 
   pause(): void {
-    this.timePause.emit();
+    this.timePause.emit('pause');
     clearInterval(this.interval);
   }
 
-  startOver(): void {
-    this.timeStartOver.emit();
+  reset(): void {
+    this.timeReset.emit();
     clearInterval(this.interval);
   }
 
   getCounter(): string {
 
-    const startTime = moment(this.entry.getLastStart());
+    const startTime = moment(this.entry.getLastStartTimestamp());
     const stopTime = moment(this.now);
     const seconds = stopTime.diff(startTime, 'seconds') + this.entry.countTimePassed();
 

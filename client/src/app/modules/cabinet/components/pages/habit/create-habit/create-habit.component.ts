@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Habit } from 'src/app/interfaces/habit';
+import { IHabit } from 'src/app/interfaces/habit';
 import { HabitService } from 'src/app/services/habit/habit.service';
+import { Habit } from 'src/app/classes/habit';
 
 @Component({
   selector: 'app-create-habit',
@@ -31,7 +32,7 @@ export class CreateHabitComponent implements OnInit {
 
   form: FormGroup;
 
-  habit: Habit;
+  habit: IHabit;
 
   constructor(private habitService: HabitService) {}
 
@@ -56,7 +57,7 @@ export class CreateHabitComponent implements OnInit {
   }
 
   createHabit(): void {
-    this.habit = {
+    this.habit = new Habit ({
       name: this.form.value.name,
       hasTimer: this.form.value.hasTimer,
       hasRating: this.form.value.hasRating,
@@ -68,7 +69,7 @@ export class CreateHabitComponent implements OnInit {
       comment: this.form.value.comment,
       timeframe: this.formatTimeFrame(),
       _id: ''
-    };
+    });
   }
 
   onSubmit(): void {

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IJournalEntry } from 'src/app/interfaces/journalEntry';
+import { IJournalEntry } from 'src/app/interfaces/journal-entry';
 
 @Injectable({
   providedIn: 'root'

@@ -1,9 +1,10 @@
 import * as moment from 'moment';
 import { from } from 'rxjs';
 import { Timestamp } from 'rxjs/internal/operators/timestamp';
-import { Habit } from '../interfaces/habit';
+import { IHabit } from '../interfaces/habit';
 import { IHabitRecording } from '../interfaces/habit-recording';
-import { IJournalEntry, Timer } from '../interfaces/journalEntry';
+import { IJournalEntry, Timer } from '../interfaces/journal-entry';
+import { Habit } from './habit';
 import { JournalEntry } from './journal-entry';
 
 export class HabitRecording implements IHabitRecording {
@@ -11,11 +12,15 @@ export class HabitRecording implements IHabitRecording {
     public entry: JournalEntry;
     public id: string;
 
-    constructor(habit: Habit) {
+    constructor(habit: IHabit) {
         const idRecording = this.getIdRecording(habit._id);
-        this.habit = habit;
+        this.habit = new Habit(habit);
         this.id = idRecording;
         this.entry = new JournalEntry(habit._id, idRecording);
+    }
+
+    isIconUndefined(): boolean {
+        return (this.habit.icon === undefined) ? true : false;
     }
 
     private getIdRecording(id: string): string {

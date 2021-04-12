@@ -1,4 +1,4 @@
-export interface Habit {
+export interface IHabit {
   name: string;
   schedule: string;
   hasTimer: boolean;
@@ -11,4 +11,12 @@ export interface Habit {
   user?: string;
   categories?: string;
   _id: string;
+
+  isIconUndefined(): boolean;
+  isCommentUndefined(): boolean;
+  isOnSchedule(): boolean;
+  getIcon(): string;
+  getColor(): string;
+  getName(): string;
+  getComment(): string;
 }

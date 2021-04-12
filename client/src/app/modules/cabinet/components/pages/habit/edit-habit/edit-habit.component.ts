@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { of, Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { Habit } from 'src/app/interfaces/habit';
+import { IHabit } from 'src/app/interfaces/habit';
 import { HabitService } from 'src/app/services/habit/habit.service';
 
 @Component({
@@ -36,7 +36,7 @@ export class EditHabitComponent implements OnInit {
 
   form: FormGroup;
 
-  habit: Habit;
+  habit: IHabit;
 
   habitSubscribe: Subscription;
 

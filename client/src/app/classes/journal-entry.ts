@@ -1,5 +1,5 @@
 import * as moment from 'moment';
-import { IJournalEntry, Timer, Timestamp } from '../interfaces/journalEntry';
+import { IJournalEntry, Timer, Timestamp } from '../interfaces/journal-entry';
 
 export class JournalEntry implements IJournalEntry {
 
@@ -8,7 +8,7 @@ export class JournalEntry implements IJournalEntry {
     public comment: string;
     public timer: Timer;
     public value: number;
-    public rate: number;
+    public rating: number;
     public habit: string;
     public user: string;
     public category: string;
@@ -20,59 +20,93 @@ export class JournalEntry implements IJournalEntry {
         this.idRecording = id;
         this.habit = habitID;
         this.date = moment().toDate();
-        this.rate = 0;
+        this.rating = 0;
     }
 
-    getComment(): string {
-        return (this.comment !== undefined) ? this.comment : '';
+    isTimerUndefined(): boolean {
+        return (this.timer === undefined) ? true : false;
+    }
+
+    isTimestampUndefined(): boolean {
+        return (this.timer.timestamp === undefined) ? true : false;
+    }
+
+    isCommentUndefined(): boolean {
+        return (this.comment === undefined) ? true : false;
+    }
+
+    isValueUndefined(): boolean {
+        return (this.value === undefined) ? true : false;
+    }
+
+    isUserUndefined(): boolean {
+        return (this.user === undefined) ? true : false;
+    }
+
+    isCategoryUndefined(): boolean {
+        return (this.category === undefined) ? true : false;
+    }
+
+    isIdUndefined(): boolean {
+        return (this._id === undefined) ? true : false;
+    }
+
+    isRatingUndefined(): boolean {
+        return (this.rating === undefined) ? true : false;
     }
 
     initTimer(): void {
         this.timer = {
             status: 'start',
-            timestamp: [this.initTimeStamp()]
-          };
+            timestamp: [this.getStartTimestamp()]
+        };
+    }
+
+    getStringDate(): string {
+        return moment(this.date).format('HH:mm').toString();
+    }
+
+    getRating(): number {
+        return (!this.isRatingUndefined()) ? this.rating : 0;
+    }
+
+    getStartTimestamp(): Timestamp {
+        const timestamp: Timestamp = {
+            start: moment().toDate()
+        };
+
+        return timestamp;
     }
 
     startTimer(): void {
-        if(this.timer !== undefined && this.timer.timestamp !== undefined) {
-            if(this.timer.status !== 'start') {
+        if(!this.isTimerUndefined() && !this.isTimestampUndefined()) {
 
-                const timeStamp: Array<Timestamp> = this.timer.timestamp;
-                timeStamp.push(this.initTimeStamp());
+            if (this.timer.status !== 'start') {
 
-                this.timer = {
-                    status: 'start',
-                    timestamp: timeStamp
-                  };
+                this.timer.status = 'start';
+                this.timer.timestamp.push(this.getStartTimestamp());
             }
+        } else {
+            this.initTimer();
         }
     }
 
-    initTimeStamp(): Timestamp {
-        const timeStamp: Timestamp = {
-            start: moment().toDate()
-          };
-
-          return timeStamp;
-    }
-
-    changeStatus(status: string): void {
+    stopTimer(status: string): void {
 
         if (this.timer.status === 'start') {
             this.timer.status = status;
 
-            if (this.timer.timestamp !== undefined) {
+            if (!this.isTimestampUndefined()) {
                 const timestamps = this.timer.timestamp;
                 this.timer.timestamp[timestamps.length - 1].stop = moment().toDate();
             }
         }
     }
 
-    startOver(): void {
+    resetTimer(): void {
         this.timer.status = 'startOver';
 
-        if (this.timer.timestamp !== undefined) {
+        if (!this.isTimestampUndefined()) {
             this.timer.timestamp = [];
         }
     }
@@ -80,11 +114,11 @@ export class JournalEntry implements IJournalEntry {
     countTimePassed(): number {
         let seconds = 0;
 
-        if(this.timer !== undefined && this.timer.timestamp !== undefined) {
+        if(!this.isTimerUndefined() && !this.isTimestampUndefined()) {
 
-            const timeStamp: Array<Timestamp> = this.timer.timestamp;
+            const timestamps: Array<Timestamp> = this.timer.timestamp;
 
-            timeStamp.forEach(time => {
+            timestamps.forEach(time => {
                 const start = moment(time.start);
                 const stop = moment(time.stop);
 
@@ -96,21 +130,25 @@ export class JournalEntry implements IJournalEntry {
         return seconds;
     }
 
-    getLastStart(): Date {
+    getComment(): string {
+        return (!this.isCommentUndefined()) ? this.comment : '';
+    }
 
-        if(this.timer !== undefined && this.timer.timestamp !== undefined) {
+    getLastStartTimestamp(): Date {
 
-            const timeStamp: Array<Timestamp> = this.timer.timestamp;
-            return timeStamp[timeStamp.length - 1].start;
+        if(!this.isTimerUndefined() && !this.isTimestampUndefined()) {
+
+            const timestamps: Array<Timestamp> = this.timer.timestamp;
+            return timestamps[timestamps.length - 1].start;
 
         } else {
             return new Date();
         }
     }
 
-    changeTimeInTimeStamp(index: number, date: Date, nameOfTimeStamp: string): void {
-        if(this.isTimerUndefined()) {
-            if(nameOfTimeStamp === 'start') {
+    setTimeInTimestamp(index: number, date: Date, statusOfTimer: string): void {
+        if(!this.isTimerUndefined()) {
+            if(statusOfTimer === 'start') {
                 this.timer.timestamp[index].start = date;
             } else {
                 this.timer.timestamp[index].stop = date;
@@ -118,8 +156,24 @@ export class JournalEntry implements IJournalEntry {
         }
     }
 
-    deleteTimeStamp(index: number): void {
-        if(this.isTimerUndefined()) {
+    setComment(comment: string): void {
+        this.comment = comment;
+    }
+
+    setDone(done: boolean): void {
+        this.done = done;
+    }
+
+    setDate(date: Date): void {
+        this.date = date;
+    }
+
+    setRating(rating: number): void {
+        this.rating = rating;
+    }
+
+    deleteTimestamp(index: number): void {
+        if(!this.isTimerUndefined()) {
 
             if (this.timer.timestamp.length - 1 === index) {
                 this.timer.status = '';
@@ -127,17 +181,12 @@ export class JournalEntry implements IJournalEntry {
 
             this.timer.timestamp.splice(index, 1);
         }
-
-    }
-
-    isTimerUndefined(): boolean {
-        return (this.timer !== undefined) ? true : false;
     }
 
     parseEntry(savedEntry: IJournalEntry): void {
         this.done = savedEntry.done;
         this.date = savedEntry.date;
-        this.rate = savedEntry.rate;
+        this.rating = savedEntry.rating;
         this.habit = savedEntry.habit;
         this.idRecording = savedEntry.idRecording;
 

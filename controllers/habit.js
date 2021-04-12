@@ -1,5 +1,6 @@
 const Habit = require('../models/Habit')
 const errorHandler = require('../utils/errorHandler')
+const moment = require('moment')
 
 module.exports.getByCategoryId = async function(req, res) {
 
@@ -19,9 +20,14 @@ module.exports.getByCategoryId = async function(req, res) {
 }
 
 module.exports.getAll = async function(req, res) {
+
+    const todayString = String(moment().isoWeekday());
+    console.log(todayString);
+
     try {
         const habits = await Habit.find({
-            user: req.user.id
+            user: req.user.id,
+            $or: [{ schedule: { $regex: todayString } }, { schedule: { $eq: '' } }]
         })
 
         res.status(200).json(habits)
