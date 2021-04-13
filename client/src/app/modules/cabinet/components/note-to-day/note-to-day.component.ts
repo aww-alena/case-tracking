@@ -19,6 +19,7 @@ export class NoteToDayComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.schedule);
   }
 
   transferData(form: NgForm): void {

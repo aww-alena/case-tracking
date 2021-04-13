@@ -32,7 +32,19 @@ export class Habit implements IHabit {
     }
 
     isIconUndefined(): boolean {
-        return (this.icon === undefined) ? true : false;
+        return (this.icon === undefined || this.icon === '') ? true : false;
+    }
+
+    returnIcon(): any {
+        return this.icon;
+    }
+
+    isConmmentEmpty(): boolean {
+        return (this.comment === '') ? true : false;
+    }
+
+    isTimeframeUndefined(): boolean {
+        return (this.timeframe === undefined) ? true : false;
     }
 
     isCommentUndefined(): boolean {
@@ -56,7 +68,7 @@ export class Habit implements IHabit {
     }
 
     getColor(): string {
-        return '';
+        return (this.color !== undefined && this.color !== '') ? this.color : '';
     }
 
     getName(): string {
@@ -73,5 +85,13 @@ export class Habit implements IHabit {
         }
 
         return note;
+    }
+
+    getTimeframe(): string {
+        return (!this.isTimeframeUndefined()) ? this.timeframe : '';
+    }
+
+    getDifficulty(): string {
+        return (this.difficulty !== undefined && this.difficulty !== '') ? this.difficulty : '';
     }
 }

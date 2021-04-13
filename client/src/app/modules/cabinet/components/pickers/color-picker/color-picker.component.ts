@@ -17,6 +17,7 @@ export class ColorPickerComponent implements OnInit {
   ];
 
   toggle = false;
+  color = '#765bff';
 
   constructor() { }
 
@@ -24,6 +25,8 @@ export class ColorPickerComponent implements OnInit {
   }
 
   onSelect(color: string): void {
+    this.toggle = !this.toggle;
+    this.color = color;
     this.selectColor.emit(color);
   }
 

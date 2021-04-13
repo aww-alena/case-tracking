@@ -42,17 +42,17 @@ export class CreateHabitComponent implements OnInit {
 
   createForm(): void {
     this.form = new FormGroup({
-      name: new FormControl(null, Validators.required),
-      hasTimer: new FormControl(null),
-      hasRating: new FormControl(null),
-      color: new FormControl(null),
-      icon: new FormControl(null),
-      categories: new FormControl(null),
-      schedule: new FormControl(null),
-      difficulty: new FormControl(null),
-      comment: new FormControl(null),
-      fromTime: new FormControl(null),
-      untilTime: new FormControl(null)
+      name: new FormControl('', Validators.required),
+      hasTimer: new FormControl(false),
+      hasRating: new FormControl(false),
+      color: new FormControl(''),
+      icon: new FormControl(''),
+      categories: new FormControl(''),
+      schedule: new FormControl(''),
+      difficulty: new FormControl(''),
+      comment: new FormControl(''),
+      fromTime: new FormControl(''),
+      untilTime: new FormControl('')
     });
   }
 
@@ -76,7 +76,6 @@ export class CreateHabitComponent implements OnInit {
     this.createHabit();
     this.habitService.create(this.habit).subscribe((newHabit) => {
       this.form.reset();
-      console.log(newHabit);
     });
   }
 

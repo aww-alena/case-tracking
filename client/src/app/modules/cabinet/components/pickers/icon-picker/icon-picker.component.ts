@@ -17,6 +17,7 @@ export class IconPickerComponent implements OnInit {
   ];
 
   toggle = false;
+  icon = 'directions_run';
 
   constructor() { }
 
@@ -24,6 +25,8 @@ export class IconPickerComponent implements OnInit {
   }
 
   onSelect(icon: string): void {
+    this.toggle = !this.toggle;
+    this.icon = icon;
     this.selectIcon.emit(icon);
   }
 

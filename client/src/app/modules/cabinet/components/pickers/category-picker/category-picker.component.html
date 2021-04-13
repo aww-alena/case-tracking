@@ -1,18 +1,25 @@
-<svg class="chart" width="250" height="250" viewBox="0 0 50 50">
-    <circle (click)="onAddCategory('red')" class="unit" [class.active]="isExist('red')"  [attr.r]="radius" cx="50%" cy="50%"></circle>
-    <circle (click)="onAddCategory('blue')" class="unit" [class.active]="isExist('blue')" [attr.r]="radius" cx="50%" cy="50%"></circle>
-    <circle (click)="onAddCategory('pink')" class="unit" [class.active]="isExist('pink')" [attr.r]="radius" cx="50%" cy="50%"></circle>
-    <circle (click)="onAddCategory('yellow')" class="unit" [class.active]="isExist('yellow')" [attr.r]="radius" cx="50%" cy="50%"></circle>
-    <circle (click)="onAddCategory('mint')" class="unit" [class.active]="isExist('mint')" [attr.r]="radius" cx="50%" cy="50%"></circle>
-    <circle (click)="onAddCategory('orange')" class="unit" [class.active]="isExist('orange')" [attr.r]="radius" cx="50%" cy="50%"></circle>
-    <circle (click)="onAddCategory('dark_pink')" class="unit" [class.active]="isExist('dark_pink')" [attr.r]="radius" cx="50%" cy="50%"></circle>
-    <circle (click)="onAddCategory('green')" class="unit" [class.active]="isExist('green')" [attr.r]="radius" cx="50%" cy="50%"></circle>
-</svg>
+<div class="category-picker">
+    <h2>Life Balance Wheel</h2>
 
-<mat-chip-list aria-label="Fish selection">
-    <mat-chip *ngFor="let category of categories" [selectable]="selectable" [removable]="removable" (removed)="remove(category)">
-        {{category}}
-        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-    </mat-chip>
+    <div class="svg-with-text">
 
-</mat-chip-list>
+
+        <svg class="chart" width="250" height="250" viewBox="0 0 50 50">
+        <circle *ngFor="let sphere of spheresOfLifeEn" (click)="onAddCategory(sphere)" class="unit" [class.active]="isExist(sphere)"  [attr.r]="radius" cx="50%" cy="50%"></circle>
+    </svg>
+
+        <div class="text">
+            <p *ngFor="let sphere of spheresOfLifeEn" [class.active]="isExist(sphere)">{{sphere}}</p>
+        </div>
+    </div>
+
+
+    <mat-chip-list aria-label="Fish selection">
+        <mat-chip *ngFor="let category of categories" [selectable]="selectable" [removable]="removable" (removed)="remove(category)">
+            {{category}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+
+    </mat-chip-list>
+
+</div>

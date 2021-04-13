@@ -19,6 +19,7 @@ export interface IJournalEntry {
     isCategoryUndefined(): boolean;
     isIdUndefined(): boolean;
     isRatingUndefined(): boolean;
+    isTimestampEmpty(): boolean;
 
     initTimer(): void;
 
@@ -33,12 +34,16 @@ export interface IJournalEntry {
     getComment(): string;
     getStringDate(): string;
     getRating(): number;
+    getTimestampArray(): Array<Timestamp>;
+    getStatusTimer(): string;
 
     setTimeInTimestamp(index: number, date: Date, nameOfTimeStamp: string): void;
     setComment(comment: string): void;
     setDone(done: boolean): void;
     setDate(date: Date): void;
     setRating(rate: number): void;
+
+    checkStatusTimer(status: string): boolean;
 
     deleteTimestamp(index: number): void;
 

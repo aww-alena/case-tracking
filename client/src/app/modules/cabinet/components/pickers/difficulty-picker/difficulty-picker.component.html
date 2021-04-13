@@ -1,5 +1,3 @@
 <div class="difficulty">
-    <button (click)="onChange('hard')" type="button"><span class="hard"></span>hard</button>
-    <button (click)="onChange('medium')" type="button"><span class="medium"></span>medium</button>
-    <button (click)="onChange('easy')" type="button"><span class="easy"></span>easy</button>
+    <button *ngFor="let level of levelsOfDifficulty" (click)="onChange(level)" type="button" [class.active]="isActive(level)"><span class="{{level}}"></span>{{level}}</button>
 </div>

@@ -15,8 +15,14 @@ export interface IHabit {
   isIconUndefined(): boolean;
   isCommentUndefined(): boolean;
   isOnSchedule(): boolean;
+  isConmmentEmpty(): boolean;
+  isTimeframeUndefined(): boolean;
   getIcon(): string;
   getColor(): string;
   getName(): string;
   getComment(): string;
+  getTimeframe(): string;
+
+  returnIcon(): any;
+  getDifficulty(): string;
 }

@@ -32,7 +32,7 @@ export class TimePickerComponent implements OnInit {
         controls: true,
         format: 'HH:mm',
         text: {
-          title: 'Pick a time',
+          title: 'Pick a from time',
         }
       });
     }
@@ -48,7 +48,7 @@ export class TimePickerComponent implements OnInit {
         controls: true,
         format: 'HH:mm',
         text: {
-          title: 'Pick a time',
+          title: 'Pick a until time',
         }
       });
     }

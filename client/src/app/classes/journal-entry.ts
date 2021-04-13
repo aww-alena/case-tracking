@@ -55,6 +55,16 @@ export class JournalEntry implements IJournalEntry {
         return (this.rating === undefined) ? true : false;
     }
 
+    isTimestampEmpty(): boolean {
+        let empty = true;
+
+        if (!this.isTimerUndefined() && !this.isTimestampUndefined()) {
+            empty = (this.timer.timestamp.length === 0) ? true : false;
+        }
+
+        return empty;
+    }
+
     initTimer(): void {
         this.timer = {
             status: 'start',
@@ -70,12 +80,20 @@ export class JournalEntry implements IJournalEntry {
         return (!this.isRatingUndefined()) ? this.rating : 0;
     }
 
+    getTimestampArray(): Array<Timestamp> {
+        return (!this.isTimerUndefined() && !this.isTimestampUndefined()) ? this.timer.timestamp : [];
+    }
+
     getStartTimestamp(): Timestamp {
         const timestamp: Timestamp = {
             start: moment().toDate()
         };
 
         return timestamp;
+    }
+
+    getStatusTimer(): string {
+        return (!this.isTimerUndefined() && !this.isTimestampUndefined()) ? this.timer.status : '';
     }
 
     startTimer(): void {
@@ -181,6 +199,10 @@ export class JournalEntry implements IJournalEntry {
 
             this.timer.timestamp.splice(index, 1);
         }
+    }
+
+    checkStatusTimer(status: string): boolean {
+        return (!this.isTimerUndefined() && this.timer.status === status) ? true : false;
     }
 
     parseEntry(savedEntry: IJournalEntry): void {

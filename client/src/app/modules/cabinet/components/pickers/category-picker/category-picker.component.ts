@@ -17,6 +17,26 @@ export class CategoryPickerComponent implements OnInit {
   position = new FormControl(this.positionOptions[0]);
   radius = 15.91549430918954;
 
+  spheresOfLifeRu = [
+    'Семья / Друзья',
+    'Отношения / Любовь',
+    'Карьера / Учеба',
+    'Благосостояние / Финансы',
+    'Здоровье / Спорт',
+    'Духовность / Личное время',
+    'Отдых / Велье',
+    'Хобби'];
+
+  spheresOfLifeEn = [
+    'Family / Friends',
+    'Relationships / Love',
+    'Career / Study',
+    'Wealth / Finance',
+    'Health / Fitness',
+    'Spiritual / Self-time',
+    'Fun / Recreation',
+    'Hobbies'];
+
   selectable = true;
   removable = true;
 
