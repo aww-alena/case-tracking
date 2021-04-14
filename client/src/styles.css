@@ -270,7 +270,7 @@ nav ul li {
 .create-habit .wrapper {
     display: grid;
     grid-gap: 15px;
-    padding: 0 40px 50px;
+    padding: 0 30px 50px;
 }
 
 .create-habit button {
@@ -469,7 +469,6 @@ p.stars {
 }
 
 .create-habit .mat-expansion-panel {
-    background: rgba(0, 0, 0, 0.1);
     margin-top: 10px;
 }
 
@@ -503,6 +502,10 @@ mat-expansion-panel mat-icon {
 
 .create-habit mat-expansion-panel-header {
     padding: 0px 10px !important;
+}
+
+.create-habit mat-expansion-panel-header {
+    background: rgba(0, 0, 0, 0.1) !important;
 }
 
 .create-habit mat-expansion-panel-header:hover {
@@ -832,7 +835,7 @@ mat-sidenav-container.mat-drawer-container.mat-sidenav-container {
     font-size: 12px;
     padding: 0px;
     font-weight: normal;
-    margin: 0px;
+    margin: 5px 0 0 0;
 }
 
 .color-btn button,
@@ -1345,12 +1348,13 @@ mat-ink-bar.mat-ink-bar {
 
 .svg-with-text .text p:nth-child(7) {
     bottom: 0;
-    left: 63px;
+    left: 38px;
+    max-width: 140px;
 }
 
 .svg-with-text .text p:nth-child(8) {
     bottom: 0;
-    right: 116px;
+    right: 64px;
 }
 
 .category-picker,
@@ -1407,4 +1411,56 @@ mat-ink-bar.mat-ink-bar {
 
 .picker-picked {
     font-size: 1.55em !important;
+}
+
+form.create-habit.task .timepicker {
+    background: unset;
+    padding: 0px;
+    margin: 0px;
+}
+
+form.create-habit.task .timepicker h2 {
+    display: none;
+}
+
+form.create-habit.task .timepicker .flex {
+    padding: 0px;
+}
+
+.mat-calendar-body-selected {
+    background-color: #7159f2;
+}
+
+.mat-calendar-body-cell:not(.mat-calendar-body-disabled):hover>.mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical),
+.cdk-keyboard-focused .mat-calendar-body-active>.mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical),
+.cdk-program-focused .mat-calendar-body-active>.mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.mat-datepicker-content {
+    background-color: #3d425e;
+}
+
+.mat-form-field-label {
+    color: #fff;
+}
+
+.mat-form-field.mat-focused .mat-form-field-ripple {
+    background-color: #7159f2;
+}
+
+.mat-form-field.mat-focused .mat-form-field-label {
+    color: #fff;
+}
+
+app-time-picker {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.subtasks button[type="submit"] {
+    display: block;
+    margin: 15px auto 0;
 }

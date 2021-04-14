@@ -5,6 +5,7 @@ import { CreateHabitComponent } from './components/pages/habit/create-habit/crea
 import { EditHabitComponent } from './components/pages/habit/edit-habit/edit-habit.component';
 import { ListHabitComponent } from './components/pages/habit/list-habit/list-habit.component';
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
+import { CreateTaskComponent } from './components/pages/task/create-task/create-task.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,7 @@ const routes: Routes = [
       { path: 'habit/create', component: CreateHabitComponent },
       { path: 'habits/:id', component: EditHabitComponent },
       { path: 'habits', component: ListHabitComponent },
+      { path: 'task/create', component: CreateTaskComponent }
     ],
   },
 ];

@@ -19,10 +19,6 @@ export class HabitRecording implements IHabitRecording {
         this.entry = new JournalEntry(habit._id, idRecording);
     }
 
-    isIconUndefined(): boolean {
-        return (this.habit.icon === undefined) ? true : false;
-    }
-
     private getIdRecording(id: string): string {
         return moment().format('YYYYMMDD') + id;
     }

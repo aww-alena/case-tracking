@@ -24,8 +24,8 @@ export class CategoryPickerComponent implements OnInit {
     'Благосостояние / Финансы',
     'Здоровье / Спорт',
     'Духовность / Личное время',
-    'Отдых / Велье',
-    'Хобби'];
+    'Отдых / Хобби',
+    'Уборка / Готовка'];
 
   spheresOfLifeEn = [
     'Family / Friends',
@@ -34,8 +34,8 @@ export class CategoryPickerComponent implements OnInit {
     'Wealth / Finance',
     'Health / Fitness',
     'Spiritual / Self-time',
-    'Fun / Recreation',
-    'Hobbies'];
+    'Hobbies / Recreation',
+    'Chores, cleaning'];
 
   selectable = true;
   removable = true;

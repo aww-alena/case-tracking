@@ -20,6 +20,11 @@ import { TimePickerComponent } from './components/pickers/time-picker/time-picke
 import { CategoryPickerComponent } from './components/pickers/category-picker/category-picker.component';
 import { ChartsModule } from 'ng2-charts';
 import { NoteToDayComponent } from './components/note-to-day/note-to-day.component';
+import { CreateTaskComponent } from './components/pages/task/create-task/create-task.component';
+import { EditTaskComponent } from './components/pages/task/edit-task/edit-task.component';
+import { ItemTaskComponent } from './components/pages/task/item-task/item-task.component';
+import { ListTaskComponent } from './components/pages/task/list-task/list-task.component';
+import { CreateSubtasksComponent } from './components/create-subtasks/create-subtasks.component';
 @NgModule({
   declarations: [
     CabinetLayoutComponent,
@@ -38,6 +43,11 @@ import { NoteToDayComponent } from './components/note-to-day/note-to-day.compone
     TimePickerComponent,
     CategoryPickerComponent,
     NoteToDayComponent,
+    CreateTaskComponent,
+    EditTaskComponent,
+    ItemTaskComponent,
+    ListTaskComponent,
+    CreateSubtasksComponent,
   ],
   imports: [
     CommonModule,

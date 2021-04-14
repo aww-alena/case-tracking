@@ -11,6 +11,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -39,6 +40,7 @@ import {MatChipsModule} from '@angular/material/chips';
     ReactiveFormsModule,
     MatCheckboxModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     MatExpansionModule,
     MatMenuModule,
     MatProgressBarModule,
@@ -65,6 +67,7 @@ import {MatChipsModule} from '@angular/material/chips';
     ReactiveFormsModule,
     MatCheckboxModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     MatExpansionModule,
     MatMenuModule,
     MatProgressBarModule,

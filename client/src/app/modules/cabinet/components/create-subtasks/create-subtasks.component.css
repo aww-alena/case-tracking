@@ -1,0 +1,25 @@
+/*
+
+
+
+
+*/
+
+
+/*
+mat-form-field.mat-form-field.date-picker {
+    margin-left: 25px;
+}*/
+
+.form .mat-form-field {
+    width: 100%;
+}
+
+.subtasks form .flex>mat-form-field {
+    width: calc(50% - 18px);
+}
+
+mat-form-field.mat-form-field.date-picker {
+    left: 36px;
+    position: relative;
+}
