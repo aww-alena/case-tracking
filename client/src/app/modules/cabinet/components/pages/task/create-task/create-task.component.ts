@@ -85,8 +85,6 @@ export class CreateTaskComponent implements OnInit {
 
   onAddSubtask(subtask: any): void {
     this.subtasks = subtask;
-
-    console.log('create-task form: ', this.subtasks);
   }
 
   onSelectIcon(selectedIcon: string): void {

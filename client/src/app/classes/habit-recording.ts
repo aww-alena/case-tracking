@@ -1,9 +1,6 @@
 import * as moment from 'moment';
-import { from } from 'rxjs';
-import { Timestamp } from 'rxjs/internal/operators/timestamp';
 import { IHabit } from '../interfaces/habit';
 import { IHabitRecording } from '../interfaces/habit-recording';
-import { IJournalEntry, Timer } from '../interfaces/journal-entry';
 import { Habit } from './habit';
 import { JournalEntry } from './journal-entry';
 

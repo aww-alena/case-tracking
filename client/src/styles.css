@@ -22,7 +22,7 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
     color: var(--light_text_color);
     background-color: #484f79;
-    background-image: linear-gradient(62deg, #3c415f 0%, #585f87 100%);
+    /*background-image: linear-gradient(62deg, #3c415f 0%, #585f87 100%);*/
     /*
     background-color: #212129;
     background-image: linear-gradient(62deg, #212129 0%, #272c3a 100%);
@@ -205,10 +205,10 @@ mat-sidenav .logo {
     margin: 0 auto;
     border-radius: 50%;
     margin-bottom: 30px;
-    box-shadow: 0 0px 30px rgb(117 90 255 / 42%);
     padding: 20px;
     margin-top: 15px;
     transform: rotate(51deg);
+    box-shadow: 0 0px 30px rgb(117 90 255 / 42%), 0 0px 30px rgb(117 90 255 / 42%), 0 0px 30px rgb(117 90 255 / 42%), 0 0px 30px rgb(21 27 85 / 82%);
 }
 
 mat-sidenav .logo img {
@@ -297,9 +297,9 @@ nav ul li {
 
 .plus-menu .main-btn mat-icon {
     font-size: 55px;
-    text-shadow: 0 0px 30px rgb(100 83 209);
     width: auto;
     height: auto;
+    text-shadow: 3px 0px 0 rgb(100 83 209);
 }
 
 .mat-plus-menu.mat-menu-panel {
@@ -316,8 +316,8 @@ nav ul li {
 
 .plus-menu {
     position: absolute;
-    right: 295px;
-    top: 32px;
+    right: 303px;
+    top: 39px;
 }
 
 .mat-plus-menu.mat-menu-panel .mat-menu-content {
@@ -638,14 +638,21 @@ app-item-habit.ng-star-inserted {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-left: 30px;
-    padding-top: 20px;
+    margin-left: 46px;
+    margin-top: 20px;
+    background: rgb(67 73 103);
+    border-radius: 20px;
+    padding: 20px 15px;
+    box-shadow: 0 -7px 15px rgba(255, 255, 255, 0.1), 0 0 10px rgba(0, 0, 0, 0.3);
+    border-left: 1px solid #765bff;
+    border-right: 1px solid #765bff;
 }
 
 .header h1 {
     font-weight: 500;
     display: flex;
     align-items: center;
+    margin-bottom: 0px;
 }
 
 h1 mat-icon {
@@ -654,6 +661,7 @@ h1 mat-icon {
 
 .header ul {
     display: flex;
+    margin: 0px;
 }
 
 .header ul li {
@@ -665,7 +673,7 @@ main .wrapper {
     background: rgba(0, 0, 0, 0.2);
     border-radius: 50px 50px 0 0;
     */
-    padding: 30px 0px 100px 30px;
+    padding: 30px 0px 100px 46px;
     margin-top: 0px;
 }
 
@@ -771,20 +779,65 @@ app-item-habit>.habit {
 }
 
 .mat-drawer {
-    background-color: #404564;
+    background-color: #434967;
     color: #fff;
-    border-right: 1px solid #765bff;
+    border-top: 1px solid #765bff;
+    border-bottom: 1px solid #765bff;
+    /*
     box-shadow: 0 -7px 15px rgba(255, 255, 255, 0.1);
     box-shadow: 0 -7px 15px rgba(255, 255, 255, 0.1), inset 0 0px 50px rgb(0, 0, 0, 0.2);
+    */
+    border-radius: 24px;
+    margin: 20px;
+    position: relative;
+    overflow-y: unset !important;
+    height: calc(100% - 40px);
+}
+
+.mat-drawer:before {
+    content: "";
+    width: 80%;
+    height: 10px;
+    background: #6453d1;
+    display: block;
+    top: -10px;
+    position: absolute;
+    left: 10%;
+    border-radius: 20px 20px 0 0;
+    -webkit-border-radius: 20px 20px 0 0;
+    -moz-border-radius: 20px 20px 0 0;
+    -ms-border-radius: 20px 20px 0 0;
+    -o-border-radius: 20px 20px 0 0;
+    z-index: -1;
+}
+
+.mat-drawer:after {
+    content: "";
+    width: 80%;
+    height: 10px;
+    background: #6453d1;
+    display: block;
+    bottom: -10px;
+    position: absolute;
+    left: 10%;
+    border-radius: 0 0 20px 20px;
+    -webkit-border-radius: 0 0 20px 20px;
+    -moz-border-radius: 0 0 20px 20px;
+    -ms-border-radius: 0 0 20px 20px;
+    -o-border-radius: 0 0 20px 20px;
+    z-index: -1;
 }
 
 nav ul li mat-icon {
     margin-right: 20px;
 }
 
+
+/*
 mat-sidenav-container.mat-drawer-container.mat-sidenav-container {
     background-image: linear-gradient(-213deg, #675ebc61 0%, rgba(0, 0, 0, 0) 37%);
 }
+*/
 
 .days span {
     width: 100%;
@@ -1070,8 +1123,14 @@ svg.chart {
     margin-bottom: 20px !important;
 }
 
-.habit .contrlos button.active {
+app-timer .contrlos button.active {
     background: rgba(0, 0, 0, 0.2);
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 50%;
+    justify-content: center;
 }
 
 .flex-timer ul {
@@ -1241,13 +1300,6 @@ mat-ink-bar.mat-ink-bar {
 
 .habit .comment {
     margin-top: 12px;
-}
-
-.flex.dashboard>.left {
-    background: #434967;
-    border-top: 1px solid #765bff;
-    border-radius: 24px;
-    box-shadow: 0 -7px 15px rgba(255, 255, 255, 0.1);
 }
 
 .habit .mat-tab-label .mat-tab-label-content {
@@ -1463,4 +1515,167 @@ app-time-picker {
 .subtasks button[type="submit"] {
     display: block;
     margin: 15px auto 0;
+}
+
+.task-item .wrapper {
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flex.options .contrlos {
+    display: flex;
+    align-items: center;
+}
+
+.task-item mat-checkbox {
+    margin-right: 24px;
+}
+
+.flex.options ul.history li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flex.options ul.history li mat-icon {
+    margin-right: 10px;
+}
+
+.flex.options ul.history li button mat-icon {
+    margin-right: 0px;
+    color: #fff;
+}
+
+.flex.options .contrlos button mat-icon {
+    color: #fff;
+    text-shadow: 0 0 3px black;
+}
+
+app-timer {
+    min-width: 255px;
+}
+
+.task-item p.title {
+    margin-bottom: 0px;
+    min-width: 170px;
+}
+
+.task-item .flex .main-icon {
+    margin-right: 15px;
+    display: flex;
+    width: 35px;
+    height: 35px;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+}
+
+.task-item .wrapper>.flex {
+    align-items: center;
+}
+
+.flex.options .time {
+    margin-left: 25px;
+}
+
+.task-item mat-checkbox {
+    margin-right: 5px;
+    width: 35px;
+    height: 35px;
+    background: #6453d1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.task-item .more mat-icon {
+    color: #fff;
+}
+
+.flex.options {
+    width: 100%;
+    background: #3c425c;
+    border-radius: 0 0 14px 14px;
+}
+
+.flex.options mat-tab-group {
+    width: 100%;
+}
+
+.flex.options .mat-tab-labels {
+    display: flex;
+    justify-content: space-around;
+}
+
+.flex.options .mat-tab-label {
+    align-items: flex-end;
+    padding-bottom: 10px;
+    height: 60px;
+}
+
+.flex.options .mat-tab-label-content mat-icon {
+    top: 11px;
+}
+
+.flex.options .mat-tab-body-wrapper {
+    padding: 20px 18px;
+    background: #434967;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.task-item {
+    margin: 0 5px 20px;
+    border-radius: 20px;
+    box-shadow: 0 -7px 15px rgba(255, 255, 255, 0.1), 0 0 10px rgba(0, 0, 0, 0.3);
+    -webkit-border-radius: 13px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    background: #434967;
+    position: relative;
+    border-right: 1px solid #6453d1;
+    border-left: 1px solid #6453d1;
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+}
+
+.task-item:before {
+    content: "";
+    height: 76%;
+    width: 6px;
+    background: #6453d1;
+    display: block;
+    top: 12%;
+    position: absolute;
+    left: -5px;
+    border-radius: 20px 0 0 20px;
+    -webkit-border-radius: 20px 0 0 20px;
+    -moz-border-radius: 20px 0 0 20px;
+    -ms-border-radius: 20px 0 0 20px;
+    -o-border-radius: 20px 0 0 20px;
+    z-index: -1;
+}
+
+.task-item:after {
+    content: "";
+    height: 76%;
+    width: 6px;
+    background: #6453d1;
+    display: block;
+    top: 12%;
+    position: absolute;
+    right: -5px;
+    border-radius: 0 20px 20px 0;
+    -webkit-border-radius: 0 20px 20px 0;
+    -moz-border-radius: 0 20px 20px 0;
+    -ms-border-radius: 0 20px 20px 0;
+    -o-border-radius: 0 20px 20px 0;
+    z-index: -1;
 }

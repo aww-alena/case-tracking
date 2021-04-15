@@ -1,1 +1,66 @@
-<p>item-task works!</p>
+<div class="task-item">
+    <div class="wrapper flex">
+
+
+        <div class="flex">
+            <mat-icon class="main-icon" [style.color]="task.color">{{task.icon}}</mat-icon>
+            <p class="title" [style.color]="task.color">{{task.name}}</p>
+
+
+
+        </div>
+        <div class="flex">
+            <mat-checkbox (change)="markDone()" [checked]="task.isDone()"></mat-checkbox>
+            <button class="more" type="button" (click)="showMore = !showMore"><mat-icon>more_vert</mat-icon></button>
+        </div>
+    </div>
+
+    <ng-template [ngIf]="showMore">
+        <div class="flex options">
+            <mat-tab-group headerPosition="below" (selectedTabChange)="sho($event)">
+
+
+                <mat-tab label="Comment" *ngIf="task.hasTimer">
+                    <ng-template mat-tab-label>
+                        <mat-icon>description</mat-icon>
+                        Timer
+                    </ng-template>
+                    <app-timer [timer]="task.savedData.timer" *ngIf="task.hasTimer" (timePlay)=onPlayTime($event) (timePause)=onPauseTime($event) (timeReset)=onResetTime() (changeTime)=onChangeTime($event) (deleteTimeStamp)="onDeleteTimeStamp($event)"></app-timer>
+
+                </mat-tab>
+
+                <mat-tab label="Comment" *ngIf="task.comment !== ''">
+                    <ng-template mat-tab-label>
+                        <mat-icon>description</mat-icon>
+                        Comment
+                    </ng-template>
+                    <p class="comment">{{task.comment}}</p>
+                </mat-tab>
+
+                <mat-tab label="Add note">
+                    <ng-template mat-tab-label>
+                        <mat-icon>add_circle</mat-icon>
+                        Add note
+                    </ng-template>
+
+                    <form #form="ngForm" (mouseenter)="updateFormField(form)" class="comment-form">
+
+                        <mat-form-field appearance="fill">
+                            <mat-label>Your note</mat-label>
+                            <input ngModel name="note" type="text" matInput required>
+                        </mat-form-field>
+
+                        <button [disabled]="form.invalid" class="save-comment" (click)=saveComment(form) type="button">Save</button>
+                    </form>
+                </mat-tab>
+
+                <mat-tab label="Close">
+                    <ng-template mat-tab-label>
+                        <mat-icon>hide_source</mat-icon>
+                        Close
+                    </ng-template>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </ng-template>
+</div>

@@ -1,6 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Subtask } from 'src/app/interfaces/task';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Timer } from 'src/app/classes/timer';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-create-subtasks',
@@ -36,6 +38,9 @@ export class CreateSubtasksComponent implements OnInit {
       date: this.form.value.date,
       timeframe: this.formatTimeFrame(),
       note:this.form.value.note,
+      done: false,
+      doneDate: moment().toDate(),
+      timer: new Timer('')
     });
 
     this.addSubtask.emit(this.subtasks);

@@ -90,13 +90,7 @@ export class ItemHabitComponent implements OnInit, OnDestroy {
   }
 
   onPlayTime(time: Event): void {
-
-    if(!this.habitRecording.entry.isTimerUndefined()) {
-      this.habitRecording.entry.startTimer();
-    } else {
-      this.habitRecording.entry.initTimer();
-    }
-
+    this.habitRecording.entry.timer.startTimer();
     this.updateOrSave();
   }
 
@@ -105,26 +99,27 @@ export class ItemHabitComponent implements OnInit, OnDestroy {
     if(status === 'stop') {
       this.habitRecording.entry.setDone(true);
       this.habitRecording.entry.setDate(moment().toDate());
-      this.habitRecording.entry.stopTimer('stop');
+      this.habitRecording.entry.timer.stopTimer('stop');
     } else {
-      this.habitRecording.entry.stopTimer('pause');
+      this.habitRecording.entry.timer.stopTimer('pause');
     }
 
     this.updateOrSave();
   }
 
   onResetTime(): void {
-    this.habitRecording.entry.resetTimer();
+    this.habitRecording.entry.timer.resetTimer();
     this.updateOrSave();
   }
 
-  onChangeTime(emitData: {entry: IJournalEntry; index: number; time: Date; name: string}): void {
-    emitData.entry.setTimeInTimestamp(emitData.index, emitData.time, emitData.name);
-    this.updateEntry(emitData.entry);
+  onChangeTime(emitData: {index: number; time: Date; name: string}): void {
+    this.habitRecording.entry.timer.setTimeInTimestamp(emitData.index, emitData.time, emitData.name);
+    this.updateEntry(this.habitRecording.entry);
   }
 
-  onDeleteTimeStamp(emitData: {entry: IJournalEntry; index: number}): void {
-    emitData.entry.deleteTimestamp(emitData.index);
-    this.updateEntry(emitData.entry);
+  onDeleteTimeStamp(index: number): void {
+
+    this.habitRecording.entry.timer.deleteTimestamp(index);
+    this.updateEntry(this.habitRecording.entry);
   }
 }

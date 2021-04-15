@@ -1,4 +1,4 @@
-import { Timer } from './journal-entry';
+import { ITimer } from './timer';
 
 export interface ITask {
     name: string;
@@ -7,46 +7,41 @@ export interface ITask {
     hasRating: boolean;
     color: string;
     icon: string;
-    difficulty?: string;
-    comment?: string;
-    timeframe?: string;
-    user?: string;
-    categories?: string;
-    _id: string;
+    difficulty: string;
+    comment: string;
+    timeframe: string;
+    user: string;
+    categories: string;
+    _id?: string;
 
-    subtasks?: Subtask[];
-    savedData?: SavedData;
-/*
-    isIconUndefined(): boolean;
-    isCommentUndefined(): boolean;
-    isOnSchedule(): boolean;
-    isConmmentEmpty(): boolean;
-    isTimeframeUndefined(): boolean;
-    getIcon(): string;
-    getColor(): string;
-    getName(): string;
-    getComment(): string;
-    getTimeframe(): string;
+    subtasks: Subtask[];
+    savedData: SavedData;
 
-    returnIcon(): any;
-    getDifficulty(): string;
-    */
+   isDone(): boolean;
+   isDoneUndefined(): boolean;
+   isSavedDataUndefined(): boolean;
+   isIdUndefined(): boolean;
+
+   setDone(done: boolean): void;
+   setDate(date: Date): void;
+
+   parse(savedEntry: ITask): void;
 }
 export interface Subtask {
-    date?: Date;
-    timeframe?: string;
+    date: Date;
+    timeframe: string;
     name: string;
-    note?: string;
-    done?: boolean;
-    doneDate?: boolean;
-    timer?: Timer;
+    note: string;
+    done: boolean;
+    doneDate: Date;
+    timer: ITimer;
 }
 
 export interface SavedData {
-    done?: boolean;
-    date?: Date;
-    comment?: string;
-    timer?: Timer;
-    value?: number;
-    rating?: number;
+    done: boolean;
+    date: Date;
+    comment: string;
+    timer: ITimer;
+    value: number;
+    rating: number;
 }

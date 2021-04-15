@@ -1,12 +1,14 @@
 import * as moment from 'moment';
-import { IJournalEntry, Timer, Timestamp } from '../interfaces/journal-entry';
-
+import { IJournalEntry } from '../interfaces/journal-entry';
+import { Timestamp } from '../interfaces/timestamp';
+import { ITimer } from '../interfaces/timer';
+import { Timer } from './timer';
 export class JournalEntry implements IJournalEntry {
 
     public done: boolean;
     public date: Date;
     public comment: string;
-    public timer: Timer;
+    public timer: ITimer;
     public value: number;
     public rating: number;
     public habit: string;
@@ -21,14 +23,11 @@ export class JournalEntry implements IJournalEntry {
         this.habit = habitID;
         this.date = moment().toDate();
         this.rating = 0;
+        this.timer = new Timer('temp');
     }
 
     isTimerUndefined(): boolean {
         return (this.timer === undefined) ? true : false;
-    }
-
-    isTimestampUndefined(): boolean {
-        return (this.timer.timestamp === undefined) ? true : false;
     }
 
     isCommentUndefined(): boolean {
@@ -55,23 +54,6 @@ export class JournalEntry implements IJournalEntry {
         return (this.rating === undefined) ? true : false;
     }
 
-    isTimestampEmpty(): boolean {
-        let empty = true;
-
-        if (!this.isTimerUndefined() && !this.isTimestampUndefined()) {
-            empty = (this.timer.timestamp.length === 0) ? true : false;
-        }
-
-        return empty;
-    }
-
-    initTimer(): void {
-        this.timer = {
-            status: 'start',
-            timestamp: [this.getStartTimestamp()]
-        };
-    }
-
     getStringDate(): string {
         return moment(this.date).format('HH:mm').toString();
     }
@@ -80,98 +62,8 @@ export class JournalEntry implements IJournalEntry {
         return (!this.isRatingUndefined()) ? this.rating : 0;
     }
 
-    getTimestampArray(): Array<Timestamp> {
-        return (!this.isTimerUndefined() && !this.isTimestampUndefined()) ? this.timer.timestamp : [];
-    }
-
-    getStartTimestamp(): Timestamp {
-        const timestamp: Timestamp = {
-            start: moment().toDate()
-        };
-
-        return timestamp;
-    }
-
-    getStatusTimer(): string {
-        return (!this.isTimerUndefined() && !this.isTimestampUndefined()) ? this.timer.status : '';
-    }
-
-    startTimer(): void {
-        if(!this.isTimerUndefined() && !this.isTimestampUndefined()) {
-
-            if (this.timer.status !== 'start') {
-
-                this.timer.status = 'start';
-                this.timer.timestamp.push(this.getStartTimestamp());
-            }
-        } else {
-            this.initTimer();
-        }
-    }
-
-    stopTimer(status: string): void {
-
-        if (this.timer.status === 'start') {
-            this.timer.status = status;
-
-            if (!this.isTimestampUndefined()) {
-                const timestamps = this.timer.timestamp;
-                this.timer.timestamp[timestamps.length - 1].stop = moment().toDate();
-            }
-        }
-    }
-
-    resetTimer(): void {
-        this.timer.status = 'startOver';
-
-        if (!this.isTimestampUndefined()) {
-            this.timer.timestamp = [];
-        }
-    }
-
-    countTimePassed(): number {
-        let seconds = 0;
-
-        if(!this.isTimerUndefined() && !this.isTimestampUndefined()) {
-
-            const timestamps: Array<Timestamp> = this.timer.timestamp;
-
-            timestamps.forEach(time => {
-                const start = moment(time.start);
-                const stop = moment(time.stop);
-
-
-                seconds += (time.stop !== undefined) ? stop.diff(start, 'seconds') : 0;
-            });
-        }
-
-        return seconds;
-    }
-
     getComment(): string {
         return (!this.isCommentUndefined()) ? this.comment : '';
-    }
-
-    getLastStartTimestamp(): Date {
-
-        if(!this.isTimerUndefined() && !this.isTimestampUndefined()) {
-
-            const timestamps: Array<Timestamp> = this.timer.timestamp;
-            return timestamps[timestamps.length - 1].start;
-
-        } else {
-            return new Date();
-        }
-    }
-
-    setTimeInTimestamp(index: number, date: Date, statusOfTimer: string): void {
-        if(!this.isTimerUndefined()) {
-            if(statusOfTimer === 'start') {
-                this.timer.timestamp[index].start = date;
-            } else {
-                this.timer.timestamp[index].stop = date;
-            }
-        }
     }
 
     setComment(comment: string): void {
@@ -190,21 +82,6 @@ export class JournalEntry implements IJournalEntry {
         this.rating = rating;
     }
 
-    deleteTimestamp(index: number): void {
-        if(!this.isTimerUndefined()) {
-
-            if (this.timer.timestamp.length - 1 === index) {
-                this.timer.status = '';
-            }
-
-            this.timer.timestamp.splice(index, 1);
-        }
-    }
-
-    checkStatusTimer(status: string): boolean {
-        return (!this.isTimerUndefined() && this.timer.status === status) ? true : false;
-    }
-
     parseEntry(savedEntry: IJournalEntry): void {
         this.done = savedEntry.done;
         this.date = savedEntry.date;
@@ -217,7 +94,7 @@ export class JournalEntry implements IJournalEntry {
         }
 
         if(savedEntry.timer !== undefined) {
-            this.timer = savedEntry.timer;
+            this.timer = new Timer(savedEntry.timer.status, savedEntry.timer.timestamp);
         }
 
         if(savedEntry.value !== undefined) {

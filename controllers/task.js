@@ -21,13 +21,9 @@ module.exports.getByCategoryId = async function(req, res) {
 
 module.exports.getAll = async function(req, res) {
 
-    const todayString = String(moment().isoWeekday());
-    console.log(todayString);
-
     try {
         const tasks = await Task.find({
-            user: req.user.id,
-            $or: [{ schedule: { $regex: todayString } }, { schedule: { $eq: '' } }]
+            user: req.user.id
         })
 
         res.status(200).json(tasks)

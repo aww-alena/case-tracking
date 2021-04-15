@@ -5,11 +5,11 @@ export interface IHabit {
   hasRating: boolean;
   color: string;
   icon: string;
-  difficulty?: string;
-  comment?: string;
-  timeframe?: string;
-  user?: string;
-  categories?: string;
+  difficulty: string;
+  comment: string;
+  timeframe: string;
+  user: string;
+  categories: string;
   _id: string;
 
   isIconUndefined(): boolean;

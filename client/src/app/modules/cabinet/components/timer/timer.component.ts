@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output, OnDestroy, ViewChild, ElementRef} from '@angular/core';
 import * as moment from 'moment';
 import { Timestamp } from 'rxjs/internal/operators/timestamp';
+import { Timer } from 'src/app/classes/timer';
 import { IJournalEntry } from 'src/app/interfaces/journal-entry';
+import { ITimer } from 'src/app/interfaces/timer';
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.component.html',
@@ -14,10 +16,10 @@ export class TimerComponent implements OnInit, OnDestroy {
   @Output() timePlay = new EventEmitter<any>();
   @Output() timePause = new EventEmitter<string>();
   @Output() timeReset = new EventEmitter<any>();
-  @Output() changeTime = new EventEmitter<{entry: IJournalEntry; index: number; time: Date; name: string}>();
-  @Output() deleteTimeStamp = new EventEmitter<{entry: IJournalEntry; index: number}>();
+  @Output() changeTime = new EventEmitter<{index: number; time: Date; name: string}>();
+  @Output() deleteTimeStamp = new EventEmitter<number>();
 
-  @Input() entry: IJournalEntry;
+  @Input() timer: Timer;
   interval: any;
   time = new Date();
   counter = 0;
@@ -64,10 +66,10 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   getCounter(): string {
 
-    const startTime = moment(this.entry.getLastStartTimestamp());
+    const startTime = moment(this.timer.getLastStartTimestamp());
     const stopTime = moment(this.now);
 
-    const seconds = stopTime.diff(startTime, 'seconds') + this.entry.countTimePassed();
+    const seconds = stopTime.diff(startTime, 'seconds') + this.timer.countTimePassed();
 
     return this.formatSecond(seconds);
   }
@@ -82,7 +84,7 @@ export class TimerComponent implements OnInit, OnDestroy {
   }
 
   getPassedTime(): string {
-    const seconds = this.entry.countTimePassed();
+    const seconds = this.timer.countTimePassed();
 
     return this.formatSecond(seconds);
   }
@@ -129,7 +131,6 @@ export class TimerComponent implements OnInit, OnDestroy {
           const time = moment(this.pickerObj.getDate()).toDate();
 
           const emitData = {
-            entry: this.entry,
             index,
             time,
             name
@@ -147,12 +148,6 @@ export class TimerComponent implements OnInit, OnDestroy {
   }
 
   deleteTimestamp(index: number): void {
-
-    const emitData = {
-      entry: this.entry,
-      index
-    };
-
-    this.deleteTimeStamp.emit(emitData);
+    this.deleteTimeStamp.emit(index);
   }
 }

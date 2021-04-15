@@ -50,7 +50,7 @@
                         <mat-icon>timer</mat-icon>
                         Timer
                     </ng-template>
-                    <app-timer [entry]="habitRecording.entry" *ngIf="habitRecording.habit.hasTimer" (timePlay)=onPlayTime($event) (timePause)=onPauseTime($event) (timeReset)=onResetTime() (changeTime)=onChangeTime($event) (deleteTimeStamp)="onDeleteTimeStamp($event)"></app-timer>
+                    <app-timer [timer]="habitRecording.entry.timer" *ngIf="habitRecording.habit.hasTimer" (timePlay)=onPlayTime($event) (timePause)=onPauseTime($event) (timeReset)=onResetTime() (changeTime)=onChangeTime($event) (deleteTimeStamp)="onDeleteTimeStamp($event)"></app-timer>
                 </mat-tab>
 
                 <mat-tab label="Comment" *ngIf="!habitRecording.habit.isCommentUndefined() && !habitRecording.habit.isConmmentEmpty()">

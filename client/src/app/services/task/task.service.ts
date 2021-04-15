@@ -21,4 +21,8 @@ export class TaskService {
   getById(id: string): Observable<ITask> {
     return this.http.get<ITask>(`/api/task/${id}`);
   }
+
+  update(task: ITask): Observable<ITask> {
+    return this.http.patch<ITask>(`/api/task/${task._id}`, task);
+  }
 }

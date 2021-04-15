@@ -4,37 +4,37 @@
 
     <div class="contrlos">
         <div>
-            <button type="button" (click)="play()" [ngClass]="{'active': (entry.checkStatusTimer('start'))}"><mat-icon>play_arrow</mat-icon></button>
-            <button type="button" (click)="pause()" [ngClass]="{'active': (entry.checkStatusTimer('pause'))}"><mat-icon>pause</mat-icon></button>
-            <button type="button" (click)="stop()" [ngClass]="{'active': (entry.checkStatusTimer('stop'))}"><mat-icon>stop</mat-icon></button>
+            <button type="button" (click)="play()" [ngClass]="{'active': (timer.checkStatusTimer('start'))}"><mat-icon>play_arrow</mat-icon></button>
+            <button type="button" (click)="pause()" [ngClass]="{'active': (timer.checkStatusTimer('pause'))}"><mat-icon>pause</mat-icon></button>
+            <button type="button" (click)="stop()" [ngClass]="{'active': (timer.checkStatusTimer('stop'))}"><mat-icon>stop</mat-icon></button>
             <button class="replay" type="button" (click)="reset()"><mat-icon>replay</mat-icon></button>
         </div>
 
-        <div class="time" *ngIf="!entry.isTimerUndefined()">
-            <div class="passed-time" *ngIf="!entry.checkStatusTimer('start')">
+        <div class="time">
+            <div class="passed-time" *ngIf="!timer.checkStatusTimer('start')">
                 {{getPassedTime()}}
             </div>
 
-            <div class="timer" *ngIf="entry.checkStatusTimer('start')">
+            <div class="timer" *ngIf="timer.checkStatusTimer('start')">
                 {{getCounter()}}
             </div>
         </div>
 
-        <ng-template [ngIf]="!entry.isTimestampEmpty()">
+        <ng-template [ngIf]="!timer.isTimestampEmpty()">
             <button class="more" type="button" (click)="show = !show" matTooltipClass="tooltip" matTooltip="Show more" matTooltipPosition="right">
                 <mat-icon>expand_more</mat-icon>
             </button>
         </ng-template>
     </div>
 
-    <ul class="history" *ngIf="(!entry.isTimerUndefined() && show && !entry.isTimestampUndefined())">
+    <ul class="history" *ngIf="(timer.status !== 'temp' && show && !timer.isTimestampUndefined())">
 
-        <li *ngFor="let time of entry.getTimestampArray(); let i = index">
+        <li *ngFor="let time of timer.getTimestampArray(); let i = index">
 
             <mat-icon class="main-icon">timer</mat-icon>
 
             <span class="diff">
-                {{getDiff(time.start, time.stop, entry.getStatusTimer())}}
+                {{getDiff(time.start, time.stop, timer.getStatusTimer())}}
             </span>
 
             <span class="start-stop">

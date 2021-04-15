@@ -1,15 +1,101 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import * as moment from 'moment';
+import { Subscription } from 'rxjs';
+import { ITask } from 'src/app/interfaces/task';
+import { TaskService } from 'src/app/services/task/task.service';
 
 @Component({
   selector: 'app-item-task',
   templateUrl: './item-task.component.html',
   styleUrls: ['./item-task.component.css']
 })
-export class ItemTaskComponent implements OnInit {
+export class ItemTaskComponent implements OnInit, OnDestroy {
+  @Input() task: ITask;
+  subscriptions: Subscription = new Subscription();
+  showMore = false;
 
-  constructor() { }
+  constructor(private taskService: TaskService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
+  markDone(): void {}
+
+  update(task: ITask): void {
+    this.subscriptions.add(this.taskService.update(task).subscribe((newTask) => {
+      this.task.parse(newTask);
+    }));
+  }
+
+  save(task: ITask): void {
+    this.subscriptions.add(this.taskService.create(task).subscribe((newTask) => {
+      this.task.parse(newTask);
+    }));
+  }
+
+  updateOrSave(): void {
+    if(!this.task.isIdUndefined()) {
+      this.update(this.task);
+    } else {
+      this.save(this.task);
+    }
+  }
+
+  onPlayTime(time: Event): void {
+
+    this.task.savedData.timer.startTimer();
+    this.updateOrSave();
+  }
+
+  onPauseTime(status: string): void {
+
+    if(status === 'stop') {
+      this.task.setDone(true);
+      this.task.setDate(moment().toDate());
+      this.task.savedData.timer.stopTimer('stop');
+    } else {
+      this.task.savedData.timer.stopTimer('pause');
+    }
+
+    this.updateOrSave();
+  }
+
+  onResetTime(): void {
+    this.task.savedData.timer.resetTimer();
+    this.updateOrSave();
+  }
+
+  onChangeTime(emitData: {index: number; time: Date; name: string}): void {
+    this.task.savedData.timer.setTimeInTimestamp(emitData.index, emitData.time, emitData.name);
+    this.update(this.task);
+  }
+
+  onDeleteTimeStamp(index: number): void {
+    this.task.savedData.timer.deleteTimestamp(index);
+    this.update(this.task);
+  }
+
+  saveComment(form: NgForm) {
+    this.task.comment = form.value.note;
+    this.updateOrSave();
+  }
+
+  updateFormField(form: NgForm): void {
+
+    if(this.task.comment !== '') {
+      form.setValue({
+        note: this.task.comment
+      });
+    }
+  }
+
+  sho(e: any): void{
+    if (e.tab.textLabel === 'Close') {
+      this.showMore = false;
+    }
+  }
 }
