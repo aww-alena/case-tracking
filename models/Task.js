@@ -20,10 +20,6 @@ const taskSchema = new Schema({
         type: Boolean,
         default: false
     },
-    hasRating: {
-        type: Boolean,
-        default: false
-    },
     difficulty: {
         type: String
     },
@@ -76,12 +72,6 @@ const taskSchema = new Schema({
             type: Date
         },
         comment: {
-            type: String
-        },
-        value: {
-            type: String
-        },
-        rating: {
             type: String
         },
         done: {

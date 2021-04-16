@@ -25,6 +25,7 @@ import { EditTaskComponent } from './components/pages/task/edit-task/edit-task.c
 import { ItemTaskComponent } from './components/pages/task/item-task/item-task.component';
 import { ListTaskComponent } from './components/pages/task/list-task/list-task.component';
 import { CreateSubtasksComponent } from './components/create-subtasks/create-subtasks.component';
+import { SubtaskComponent } from './components/subtask/subtask.component';
 @NgModule({
   declarations: [
     CabinetLayoutComponent,
@@ -48,6 +49,7 @@ import { CreateSubtasksComponent } from './components/create-subtasks/create-sub
     ItemTaskComponent,
     ListTaskComponent,
     CreateSubtasksComponent,
+    SubtaskComponent,
   ],
   imports: [
     CommonModule,

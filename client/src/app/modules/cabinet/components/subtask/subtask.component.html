@@ -1,0 +1,23 @@
+<div class="item">
+    <div class="flex main-block">
+        <p class="title"><span class="number">{{index + 1}}</span> {{subtask.name}}</p>
+        <div class="flex">
+            <div class="timefarme" *ngIf="hasTimeframes()">{{subtask.date | date:'dd.MM'}}, {{subtask.timeframe}}
+
+
+            </div>
+            <mat-checkbox (change)="markDoneSubtask()" [checked]="subtask.done"></mat-checkbox>
+            <button class="show-comment" *ngIf="subtask.note !== '' || subtask.done" (click)="toggleComment()"><mat-icon>more_vert</mat-icon></button>
+        </div>
+    </div>
+
+    <ng-template [ngIf]="this.showComment">
+        <ng-template [ngIf]="subtask.done">
+            <span class="done-span">Done on {{subtask.doneDate | date:'dd.MM, HH:mm'}}</span>
+        </ng-template>
+        <div class="note" *ngIf="subtask.note !== ''">
+            {{subtask.note}}
+        </div>
+    </ng-template>
+
+</div>

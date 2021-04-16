@@ -35,13 +35,28 @@ export class Task {
         this.user = (taskParams.user !== undefined) ? taskParams.user : '';
         this.categories = (taskParams.categories !== undefined) ? taskParams.categories : '';
         this._id = (taskParams._id !== undefined) ? taskParams._id : '';
-        this.subtasks = (taskParams.subtasks !== undefined) ? taskParams.subtasks : '';
+        this.subtasks = (taskParams.subtasks !== undefined) ? taskParams.subtasks : [];
 
         this.savedData = this.initSavedData();
 
-        if(taskParams.savedData !== undefined && taskParams.savedData.timer !== undefined) {
-            this.savedData.timer = new Timer(taskParams.savedData.timer.status, taskParams.savedData.timer.timestamp);
+        if (!this.isUndefined(taskParams.savedData)) {
+
+            if (!this.isUndefined(taskParams.savedData.timer)) {
+                this.savedData.timer = new Timer(taskParams.savedData.timer.status, taskParams.savedData.timer.timestamp);
+            } else {
+                this.savedData.timer = new Timer('temp');
+            }
+
+            this.savedData.done = (!this.isUndefined(taskParams.savedData.done)) ? taskParams.savedData.done : false;
+
+            this.savedData.date = (!this.isUndefined(taskParams.savedData.date)) ? taskParams.savedData.date : null;
+
+            this.savedData.comment = (!this.isUndefined(taskParams.savedData.comment)) ? taskParams.savedData.comment : 0;
         }
+    }
+
+    isUndefined(value: any): boolean {
+        return (value === undefined) ? true : false;
     }
 
     initSavedData(): SavedData {
@@ -50,9 +65,7 @@ export class Task {
             done: false,
             date: moment().toDate(),
             comment: '',
-            timer: new Timer('temp'),
-            value: 0,
-            rating: 0
+            timer: new Timer('temp')
         };
 
         return savedData;
@@ -83,8 +96,26 @@ export class Task {
    }
 
    parse(savedEntry: ITask): void {
-    this.savedData.done = savedEntry.savedData.done;
-    this.savedData.date = savedEntry.savedData.date;
-    this.savedData.rating = savedEntry.savedData.rating;
+        this.savedData.done = savedEntry.savedData.done;
+        this.savedData.date = savedEntry.savedData.date;
+        this.subtasks = savedEntry.subtasks;
    }
+
+    countSubtasks(): number {
+        return this.subtasks.length;
+    }
+
+    countDoneSubtasks(): number {
+        let quantity = 0;
+
+        this.subtasks.forEach(subtask => {
+            quantity += (subtask.done) ? 1 : 0;
+        });
+
+        return quantity;
+    }
+
+    hasTimeframes(index: number): boolean {
+        return (this.subtasks !== [] && this.subtasks[index].date !== null || this.subtasks[index].timeframe !== '-') ? true : false;
+    }
 }

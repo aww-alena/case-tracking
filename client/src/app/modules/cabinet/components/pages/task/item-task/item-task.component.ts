@@ -23,7 +23,17 @@ export class ItemTaskComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  markDone(): void {}
+  markDone(): void {
+    this.task.savedData.done = !this.task.savedData.done;
+    this.task.savedData.date = moment().toDate();
+    this.updateOrSave();
+  }
+
+  onMarkDoneSubtask(index: number): void {
+    this.task.subtasks[index].done = !this.task.subtasks[index].done;
+    this.task.subtasks[index].doneDate = moment().toDate();
+    this.updateOrSave();
+  }
 
   update(task: ITask): void {
     this.subscriptions.add(this.taskService.update(task).subscribe((newTask) => {

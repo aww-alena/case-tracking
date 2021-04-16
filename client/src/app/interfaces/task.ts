@@ -26,6 +26,10 @@ export interface ITask {
    setDate(date: Date): void;
 
    parse(savedEntry: ITask): void;
+
+   countSubtasks(): number;
+   countDoneSubtasks(): number;
+   hasTimeframes(index: number): boolean;
 }
 export interface Subtask {
     date: Date;
@@ -42,6 +46,4 @@ export interface SavedData {
     date: Date;
     comment: string;
     timer: ITimer;
-    value: number;
-    rating: number;
 }

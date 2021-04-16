@@ -1,16 +1,15 @@
 <div class="task-item">
     <div class="wrapper flex">
 
-
         <div class="flex">
             <mat-icon class="main-icon" [style.color]="task.color">{{task.icon}}</mat-icon>
-            <p class="title" [style.color]="task.color">{{task.name}}</p>
-
-
-
+            <p class="title" [style.color]="task.color">{{task.name}}
+                <span *ngIf="task.countSubtasks() > 0"> ({{task.countDoneSubtasks()}} / {{task.countSubtasks()}})</span>
+            </p>
         </div>
+
         <div class="flex">
-            <mat-checkbox (change)="markDone()" [checked]="task.isDone()"></mat-checkbox>
+            <mat-checkbox (change)="markDone()" [checked]="task.savedData.done"></mat-checkbox>
             <button class="more" type="button" (click)="showMore = !showMore"><mat-icon>more_vert</mat-icon></button>
         </div>
     </div>
@@ -19,14 +18,26 @@
         <div class="flex options">
             <mat-tab-group headerPosition="below" (selectedTabChange)="sho($event)">
 
+                <mat-tab label="Comment" *ngIf="task.subtasks.length > 0">
+                    <ng-template mat-tab-label>
+                        <mat-icon>task</mat-icon>
+                        Subtasks
+                    </ng-template>
+
+                    <div class="subtasks">
+                        <h2>Subtasks</h2>
+                        <app-subtask *ngFor="let subtask of task.subtasks; let i = index" [subtask]="subtask" [index]="i" (markDone)="onMarkDoneSubtask($event)"></app-subtask>
+                    </div>
+                </mat-tab>
+
 
                 <mat-tab label="Comment" *ngIf="task.hasTimer">
                     <ng-template mat-tab-label>
                         <mat-icon>description</mat-icon>
                         Timer
                     </ng-template>
+                    <h2>Timer</h2>
                     <app-timer [timer]="task.savedData.timer" *ngIf="task.hasTimer" (timePlay)=onPlayTime($event) (timePause)=onPauseTime($event) (timeReset)=onResetTime() (changeTime)=onChangeTime($event) (deleteTimeStamp)="onDeleteTimeStamp($event)"></app-timer>
-
                 </mat-tab>
 
                 <mat-tab label="Comment" *ngIf="task.comment !== ''">
@@ -34,6 +45,7 @@
                         <mat-icon>description</mat-icon>
                         Comment
                     </ng-template>
+                    <h2>Comment</h2>
                     <p class="comment">{{task.comment}}</p>
                 </mat-tab>
 
@@ -44,10 +56,11 @@
                     </ng-template>
 
                     <form #form="ngForm" (mouseenter)="updateFormField(form)" class="comment-form">
+                        <h2>Add note</h2>
 
                         <mat-form-field appearance="fill">
                             <mat-label>Your note</mat-label>
-                            <input ngModel name="note" type="text" matInput required>
+                            <input ngModel name="note" type="text" matInput required autocomplete="off">
                         </mat-form-field>
 
                         <button [disabled]="form.invalid" class="save-comment" (click)=saveComment(form) type="button">Save</button>
