@@ -4,7 +4,7 @@
         <div class="flex">
             <mat-icon class="main-icon" [style.color]="task.color">{{task.icon}}</mat-icon>
             <p class="title" [style.color]="task.color">{{task.name}}
-                <span *ngIf="task.countSubtasks() > 0"> ({{task.countDoneSubtasks()}} / {{task.countSubtasks()}})</span>
+                <span *ngIf="task.countSubtasks() > 0">&nbsp;({{task.countDoneSubtasks()}} / {{task.countSubtasks()}})</span>
             </p>
         </div>
 
@@ -26,7 +26,7 @@
 
                     <div class="subtasks">
                         <h2>Subtasks</h2>
-                        <app-subtask *ngFor="let subtask of task.subtasks; let i = index" [subtask]="subtask" [index]="i" (markDone)="onMarkDoneSubtask($event)"></app-subtask>
+                        <app-subtask *ngFor="let subtask of task.subtasks; let i = index" [subtask]="subtask" [index]="i" [hasTimer]="task.hasTimer" (changeSubtask)="onChangeSubtask($event)"></app-subtask>
                     </div>
                 </mat-tab>
 
@@ -37,6 +37,7 @@
                         Timer
                     </ng-template>
                     <h2>Timer</h2>
+                    В том числе подзадачи: {{formatSecond(task.countTimePassedSubtasks())}}
                     <app-timer [timer]="task.savedData.timer" *ngIf="task.hasTimer" (timePlay)=onPlayTime($event) (timePause)=onPauseTime($event) (timeReset)=onResetTime() (changeTime)=onChangeTime($event) (deleteTimeStamp)="onDeleteTimeStamp($event)"></app-timer>
                 </mat-tab>
 

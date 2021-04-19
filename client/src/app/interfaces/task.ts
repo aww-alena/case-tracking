@@ -29,6 +29,7 @@ export interface ITask {
 
    countSubtasks(): number;
    countDoneSubtasks(): number;
+   countTimePassedSubtasks(): number;
    hasTimeframes(index: number): boolean;
 }
 export interface Subtask {

@@ -37,6 +37,14 @@ export class Task {
         this._id = (taskParams._id !== undefined) ? taskParams._id : '';
         this.subtasks = (taskParams.subtasks !== undefined) ? taskParams.subtasks : [];
 
+        this.subtasks.forEach(subtask => {
+            if(subtask.timer.status === '') {
+                subtask.timer = new Timer('temp');
+            } else {
+                subtask.timer = new Timer(subtask.timer.status, subtask.timer.timestamp);
+            }
+        });
+
         this.savedData = this.initSavedData();
 
         if (!this.isUndefined(taskParams.savedData)) {
@@ -99,6 +107,13 @@ export class Task {
         this.savedData.done = savedEntry.savedData.done;
         this.savedData.date = savedEntry.savedData.date;
         this.subtasks = savedEntry.subtasks;
+        this.subtasks.forEach(subtask => {
+            if(subtask.timer.status === '') {
+                subtask.timer = new Timer('temp');
+            } else {
+                subtask.timer = new Timer(subtask.timer.status, subtask.timer.timestamp);
+            }
+        });
    }
 
     countSubtasks(): number {
@@ -113,6 +128,20 @@ export class Task {
         });
 
         return quantity;
+    }
+
+    countTimePassedSubtasks(): number {
+        let seconds = 0;
+
+        this.subtasks.forEach((subtask, index) => {
+            if(subtask.timer.status === 'start') {
+                seconds += subtask.timer.countTimePassed() + subtask.timer.countFromLastStartToNow();
+            } else {
+                seconds += subtask.timer.countTimePassed();
+            }
+        });
+
+        return seconds;
     }
 
     hasTimeframes(index: number): boolean {

@@ -87,7 +87,6 @@ export class Timer implements ITimer {
                 const start = moment(time.start);
                 const stop = moment(time.stop);
 
-
                 seconds += (time.stop !== undefined) ? stop.diff(start, 'seconds') : 0;
             });
         }
@@ -105,6 +104,16 @@ export class Timer implements ITimer {
         } else {
             return new Date();
         }
+    }
+
+    countFromLastStartToNow(): number {
+
+        const startTime = moment(this.getLastStartTimestamp());
+        const stopTime = moment(moment());
+
+        const seconds = stopTime.diff(startTime, 'seconds') + this.countTimePassed();
+
+        return seconds;
     }
 
     setTimeInTimestamp(index: number, date: Date, statusOfTimer: string): void {

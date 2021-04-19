@@ -2,7 +2,7 @@ import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
-import { ITask } from 'src/app/interfaces/task';
+import { ITask, Subtask } from 'src/app/interfaces/task';
 import { TaskService } from 'src/app/services/task/task.service';
 
 @Component({
@@ -29,9 +29,8 @@ export class ItemTaskComponent implements OnInit, OnDestroy {
     this.updateOrSave();
   }
 
-  onMarkDoneSubtask(index: number): void {
-    this.task.subtasks[index].done = !this.task.subtasks[index].done;
-    this.task.subtasks[index].doneDate = moment().toDate();
+  onChangeSubtask(emitData: {index: number; subtask: Subtask}): void {
+    this.task.subtasks[emitData.index] = emitData.subtask;
     this.updateOrSave();
   }
 
@@ -96,7 +95,9 @@ export class ItemTaskComponent implements OnInit, OnDestroy {
 
   updateFormField(form: NgForm): void {
 
-    if(this.task.comment !== '') {
+    console.log(form);
+
+    if(this.task.comment !== '' && form.form.controls.note.value === '') {
       form.setValue({
         note: this.task.comment
       });
@@ -107,5 +108,9 @@ export class ItemTaskComponent implements OnInit, OnDestroy {
     if (e.tab.textLabel === 'Close') {
       this.showMore = false;
     }
+  }
+
+  formatSecond(seconds: number): string {
+    return moment.utc(seconds*1000).format('HH:mm:ss');
   }
 }

@@ -17,6 +17,7 @@ export interface ITimer {
     getLastStartTimestamp(): Date;
 
     countTimePassed(): number;
+    countFromLastStartToNow(): number;
 
     setTimeInTimestamp(index: number, date: Date, nameOfTimeStamp: string): void;
 

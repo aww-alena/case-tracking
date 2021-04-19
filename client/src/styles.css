@@ -1560,6 +1560,8 @@ app-timer {
 .task-item p.title {
     margin-bottom: 0px;
     min-width: 170px;
+    display: flex;
+    align-items: center;
 }
 
 .task-item .flex .main-icon {
@@ -1751,4 +1753,135 @@ span.done-span {
     border-left: 1px solid #6453d1;
     border-right: 1px solid #6453d1;
     margin-top: 15px;
+}
+
+.statistic-calendar {
+    border-top: 1px solid #765bff;
+    border-radius: 24px;
+    padding: 22px;
+    width: 100%;
+    box-sizing: border-box;
+    background: #434967;
+    box-shadow: 0 -7px 15px rgba(255, 255, 255, 0.1), 0 0 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 50px;
+}
+
+.statistic-calendar .cal-month-view {
+    border: none;
+    background: transparent;
+}
+
+.statistic-calendar h3 {
+    text-align: center;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+.statistic-calendar .cal-month-view .cal-day-cell {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.statistic-calendar .cal-month-view .cal-day-cell:not(:last-child) {
+    border-right: none;
+}
+
+.statistic-calendar .cal-month-view .cal-cell-row:hover {
+    background-color: transparent;
+}
+
+.statistic-calendar .cal-month-view .cal-days .cal-cell-row {
+    border-bottom: none;
+}
+
+.statistic-calendar .cal-month-view .cal-days {
+    border: none;
+}
+
+.statistic-calendar .cal-month-view .cal-day-cell {
+    min-height: unset;
+}
+
+.statistic-calendar .cal-month-view .cal-cell-top {
+    min-height: unset;
+}
+
+.statistic-calendar mwl-calendar-month-cell {
+    position: relative;
+}
+
+.statistic-calendar .cal-month-view .cal-cell-row .cal-cell:hover,
+.statistic-calendar .cal-month-view .cal-cell.cal-has-events.cal-open,
+.statistic-calendar .cal-month-view .cal-day-cell.cal-today {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.statistic-calendar .cal-month-view .cal-day-badge {
+    display: none;
+}
+
+.statistic-calendar .cal-month-view .cal-day-cell.cal-today .cal-day-number {
+    font-size: inherit;
+}
+
+.statistic-calendar .cal-month-view .cal-events,
+.statistic-calendar .cal-month-view .cal-event {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.statistic-calendar span.cal-day-number {
+    position: relative;
+    z-index: 1;
+}
+
+.statistic-calendar .cal-month-view .cal-day-cell.cal-weekend .cal-day-number {
+    color: #6453d1;
+}
+
+.statistic-calendar .cal-month-view .cal-cell-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 5px;
+    margin-bottom: 5px;
+}
+
+.statistic-calendar .cal-month-view .cal-day-number {
+    font-size: 15px;
+    opacity: 1;
+    margin-top: 0;
+    margin-right: 0;
+    float: unset;
+    margin-bottom: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 3px;
+}
+
+.statistic-calendar .cal-month-view .cal-header .cal-cell {
+    padding: 5px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    white-space: nowrap;
+    font-weight: 400;
+}
+
+.statistic-calendar .cal-month-view .cal-events,
+.statistic-calendar .cal-month-view .cal-event {
+    margin: 0px;
 }

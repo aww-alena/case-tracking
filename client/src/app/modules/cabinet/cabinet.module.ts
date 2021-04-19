@@ -26,6 +26,12 @@ import { ItemTaskComponent } from './components/pages/task/item-task/item-task.c
 import { ListTaskComponent } from './components/pages/task/list-task/list-task.component';
 import { CreateSubtasksComponent } from './components/create-subtasks/create-subtasks.component';
 import { SubtaskComponent } from './components/subtask/subtask.component';
+import { StatisticCalendarComponent } from './components/statistic-calendar/statistic-calendar.component';
+
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+
+
 @NgModule({
   declarations: [
     CabinetLayoutComponent,
@@ -50,13 +56,18 @@ import { SubtaskComponent } from './components/subtask/subtask.component';
     ListTaskComponent,
     CreateSubtasksComponent,
     SubtaskComponent,
+    StatisticCalendarComponent,
   ],
   imports: [
     CommonModule,
     CabinetRoutingModule,
     SharedModule,
     MatSidenavModule,
-    ChartsModule
+    ChartsModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    })
   ],
 })
 export class CabinetModule {}

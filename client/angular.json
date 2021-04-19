@@ -37,7 +37,8 @@
                             "./node_modules/typeface-poppins/index.css",
                             "./node_modules/typeface-righteous/index.css",
                             "./node_modules/font-awesome/css/font-awesome.min.css",
-                            "node_modules/pickerjs/dist/picker.min.css"
+                            "node_modules/pickerjs/dist/picker.min.css",
+                            "./node_modules/angular-calendar/css/angular-calendar.css"
                         ],
                         "scripts": [
                             "node_modules/pickerjs/dist/picker.min.js"

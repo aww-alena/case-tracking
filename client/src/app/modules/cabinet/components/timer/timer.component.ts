@@ -65,11 +65,7 @@ export class TimerComponent implements OnInit, OnDestroy {
   }
 
   getCounter(): string {
-
-    const startTime = moment(this.timer.getLastStartTimestamp());
-    const stopTime = moment(this.now);
-
-    const seconds = stopTime.diff(startTime, 'seconds') + this.timer.countTimePassed();
+    const seconds = this.timer.countFromLastStartToNow() + this.timer.countTimePassed();
 
     return this.formatSecond(seconds);
   }
