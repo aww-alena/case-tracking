@@ -30,6 +30,7 @@ import { StatisticCalendarComponent } from './components/statistic-calendar/stat
 
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { StatisticComponent } from './components/pages/statistic/statistic.component';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     CreateSubtasksComponent,
     SubtaskComponent,
     StatisticCalendarComponent,
+    StatisticComponent,
   ],
   imports: [
     CommonModule,

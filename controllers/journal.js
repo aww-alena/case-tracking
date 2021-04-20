@@ -17,6 +17,22 @@ module.exports.getById = async function(req, res) {
     }
 }
 
+module.exports.getAllHabitsById = async function(req, res) {
+
+    try {
+        const entry = await JournalEntry.find({
+            habit: req.params.id
+        })
+
+        res.status(200).json(entry)
+
+    } catch (error) {
+        errorHandler(res, error)
+    }
+}
+
+
+
 module.exports.remove = async function(req, res) {
 
     try {
