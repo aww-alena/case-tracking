@@ -31,6 +31,7 @@ import { StatisticCalendarComponent } from './components/statistic-calendar/stat
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { StatisticComponent } from './components/pages/statistic/statistic.component';
+import { TimeStatisticsComponent } from './components/time-statistics/time-statistics.component';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { StatisticComponent } from './components/pages/statistic/statistic.compo
     SubtaskComponent,
     StatisticCalendarComponent,
     StatisticComponent,
+    TimeStatisticsComponent,
   ],
   imports: [
     CommonModule,

@@ -27,7 +27,7 @@ module.exports.getAll = async function(req, res) {
     try {
         const habits = await Habit.find({
             user: req.user.id,
-            $or: [{ schedule: { $regex: todayString } }, { schedule: { $eq: '' } }]
+            $or: [{ schedule: { $regex: todayString } }, { schedule: { $eq: 'everyday' } }]
         })
 
         res.status(200).json(habits)
@@ -87,17 +87,18 @@ module.exports.update = async function(req, res) {
 }
 
 const createHabit = req => {
-    return habit = new Habit({
-        name: req.body.name,
-        icon: req.body.icon,
-        schedule: req.body.schedule,
-        color: req.body.color,
-        categories: req.body.categories,
-        difficulty: req.body.difficulty,
-        comment: req.body.comment,
-        timeframe: req.body.timeframe,
-        hasTimer: req.body.hasTimer,
-        hasRating: req.body.hasRating,
-        user: req.user.id
-    })
+
+    const habitObj = new Habit({
+        name: req.body.name
+    });
+
+    for (key in req.body) {
+        if (!(req.body[key] === '' || req.body[key] === null) && key !== '_id') {
+            habitObj[key] = req.body[key];
+        }
+    }
+
+    habitObj.user = req.user.id;
+
+    return habitObj;
 }

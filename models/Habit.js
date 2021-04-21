@@ -7,24 +7,19 @@ const habitSchema = new Schema({
         required: true
     },
     icon: {
-        type: String,
-        default: ""
+        type: String
     },
     schedule: {
-        type: String,
-        default: ""
+        type: String
     },
     color: {
-        type: String,
-        default: ""
+        type: String
     },
     hasTimer: {
-        type: Boolean,
-        default: false
+        type: Boolean
     },
     hasRating: {
-        type: Boolean,
-        default: false
+        type: Boolean
     },
     difficulty: {
         type: String
@@ -33,8 +28,7 @@ const habitSchema = new Schema({
         type: String
     },
     comment: {
-        type: String,
-        default: ""
+        type: String
     },
     timeframe: {
         type: String

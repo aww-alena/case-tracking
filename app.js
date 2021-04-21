@@ -14,6 +14,7 @@ const journalRoutes = require('./routes/journal')
 const keys = require('./config/keys')
 const app = express();
 
+mongoose.set('useFindAndModify', false);
 mongoose.connect(keys.mongoURI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,

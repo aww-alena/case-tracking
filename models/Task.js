@@ -17,8 +17,7 @@ const taskSchema = new Schema({
         type: String
     },
     hasTimer: {
-        type: Boolean,
-        default: false
+        type: Boolean
     },
     difficulty: {
         type: String
@@ -40,8 +39,7 @@ const taskSchema = new Schema({
             type: String
         },
         name: {
-            type: String,
-            required: true
+            type: String
         },
         note: {
             type: String

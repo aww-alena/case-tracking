@@ -18,9 +18,7 @@ export class NoteToDayComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-    console.log(this.schedule);
-  }
+  ngOnInit(): void {}
 
   transferData(form: NgForm): void {
     const formData = JSON.stringify(form.form.value);

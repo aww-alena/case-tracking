@@ -7,16 +7,13 @@ const goalSchema = new Schema({
         required: true
     },
     imageSrc: {
-        type: String,
-        default: ''
+        type: String
     },
     schedule: {
-        type: String,
-        default: ''
+        type: String
     },
     start_date: {
-        type: Date,
-        required: true
+        type: Date
     },
     end_date: {
         type: Date,
@@ -32,7 +29,6 @@ const goalSchema = new Schema({
     },
     color: {
         type: String,
-        default: ''
     },
     category: {
         ref: 'categories',

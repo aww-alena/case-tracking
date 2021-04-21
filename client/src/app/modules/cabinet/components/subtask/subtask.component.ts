@@ -15,7 +15,7 @@ export class SubtaskComponent implements OnInit {
 
   @Output() changeSubtask = new EventEmitter<{index: number; subtask: Subtask}>();
 
-  showComment = true;
+  showComment = false;
 
   constructor() { }
 

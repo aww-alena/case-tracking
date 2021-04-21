@@ -1,5 +1,5 @@
 <div class="item">
-    <div class="flex main-block">
+    <div class="flex main-block" (click)="toggleComment()">
         <p class="title">
             <span class="number">{{index + 1}}</span>
             <span class="text">{{subtask.name}}</span>
@@ -12,13 +12,15 @@
     </div>
 
     <ng-template [ngIf]="this.showComment">
-        <app-timer [timer]="subtask.timer" *ngIf="hasTimer" (timePlay)=onPlayTime($event) (timePause)=onPauseTime($event) (timeReset)=onResetTime() (changeTime)=onChangeTime($event) (deleteTimeStamp)="onDeleteTimeStamp($event)"></app-timer>
+        <div class="more-info">
+            <app-timer [timer]="subtask.timer" *ngIf="hasTimer" (timePlay)=onPlayTime($event) (timePause)=onPauseTime($event) (timeReset)=onResetTime() (changeTime)=onChangeTime($event) (deleteTimeStamp)="onDeleteTimeStamp($event)"></app-timer>
 
-        <ng-template [ngIf]="subtask.done">
-            <span class="done-span">Done on {{subtask.doneDate | date:'dd.MM, HH:mm'}}</span>
-        </ng-template>
-        <div class="note" *ngIf="subtask.note !== ''">
-            {{subtask.note}}
+            <ng-template [ngIf]="subtask.done">
+                <span class="done-span">Done on {{subtask.doneDate | date:'dd.MM, HH:mm'}}</span>
+            </ng-template>
+            <div class="note" *ngIf="subtask.note !== ''">
+                {{subtask.note}}
+            </div>
         </div>
     </ng-template>
 

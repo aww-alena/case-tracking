@@ -1,0 +1,11 @@
+<div style="display: block">
+    <canvas height="30" width="80" #chart baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" [options]="pieChartOptions" [colors]="pieChartColors" [legend]="pieChartLegend"></canvas>
+</div>
+
+<ul>
+    <li *ngFor="let habitEntry of habitsEntries; let i = index">
+        <ng-template [ngIf]="habitEntry.habit.hasTimer">
+            {{i}} {{habitEntry.habit.name}} - {{habitEntry.time}}
+        </ng-template>
+    </li>
+</ul>

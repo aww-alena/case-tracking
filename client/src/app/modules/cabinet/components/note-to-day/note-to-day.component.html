@@ -2,7 +2,7 @@
 
     <h2>Notes to the habit</h2>
     <div class="form">
-        <mat-checkbox *ngIf="schedule.value !== ''" [(ngModel)]="notesForDays">I need the notes to the days of the week</mat-checkbox>
+        <mat-checkbox *ngIf="schedule.value !== 'everyday'" [(ngModel)]="notesForDays">I need the notes to the days of the week</mat-checkbox>
 
         <form #form="ngForm">
             <div class="textareas" *ngIf="schedule.value !== '' && notesForDays; else oneNote">

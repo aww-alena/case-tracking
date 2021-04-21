@@ -39,8 +39,6 @@ export class ListTaskComponent implements OnInit, OnDestroy {
 
     taskRecordings.forEach(task => {
       const newTask: ITask = new Task(task);
-      console.log('log:', tempTask, newTask);
-
       tempTask.push(newTask);
     });
 

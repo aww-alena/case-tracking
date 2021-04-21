@@ -121,10 +121,10 @@ export class CreateTaskComponent implements OnInit {
 
   private formatTimeFrame(): string {
     let timeFrame = '';
-    if (this.form.value.fromTime !== null) {
+    if (this.form.value.fromTime !== '') {
       timeFrame += this.form.value.fromTime;
     }
-    if (this.form.value.untilTime !== null) {
+    if (this.form.value.untilTime !== '') {
       timeFrame += `-${this.form.value.untilTime}`;
     }
 

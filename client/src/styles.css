@@ -394,9 +394,15 @@ main {
 }
 
 .success.mat-snack-bar-container {
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
-    background: rgba(0, 0, 0, 0.3);
-    color: #fff803;
+    background: #6453d1;
+    border-radius: 40px;
+    color: #fff;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    -ms-border-radius: 40px;
+    -o-border-radius: 40px;
+    min-width: 273px;
+    margin: 26px 24px;
 }
 
 .flex {
@@ -1522,6 +1528,7 @@ app-time-picker {
     padding: 20px;
     align-items: center;
     justify-content: space-between;
+    cursor: pointer;
 }
 
 .flex.options .contrlos {
@@ -1685,9 +1692,12 @@ app-timer {
 .subtasks .item {
     margin: 2px 2px 10px;
     background: rgba(0, 0, 0, 0.1);
-    padding: 10px;
     border-radius: 5px;
     position: relative;
+}
+
+.subtasks .more-info {
+    padding: 10px;
 }
 
 .subtasks .item .number {
@@ -1731,6 +1741,8 @@ app-timer {
 .flex.main-block {
     width: 100%;
     justify-content: space-between;
+    cursor: pointer;
+    padding: 10px;
 }
 
 button.show-comment {

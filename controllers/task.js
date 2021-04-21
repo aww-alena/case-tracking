@@ -83,19 +83,18 @@ module.exports.update = async function(req, res) {
 }
 
 const createTask = req => {
-    return task = new Task({
-        name: req.body.name,
-        icon: req.body.icon,
-        date: req.body.date,
-        color: req.body.color,
-        categories: req.body.categories,
-        difficulty: req.body.difficulty,
-        comment: req.body.comment,
-        timeframe: req.body.timeframe,
-        hasTimer: req.body.hasTimer,
-        hasRating: req.body.hasRating,
-        subtasks: req.body.subtasks,
-        savedData: req.body.savedData,
-        user: req.user.id
-    })
+
+    const taskObj = new Task({
+        name: req.body.name
+    });
+
+    for (key in req.body) {
+        if (!(req.body[key] === '' || req.body[key] === null || req.body[key] === []) && key !== '_id') {
+            taskObj[key] = req.body[key];
+        }
+    }
+
+    taskObj.user = req.user.id;
+
+    return taskObj;
 }

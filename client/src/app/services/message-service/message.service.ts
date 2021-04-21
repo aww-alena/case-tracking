@@ -9,7 +9,7 @@ import {
   providedIn: 'root',
 })
 export class MessageService {
-  barHorizontalPosition: MatSnackBarHorizontalPosition = 'right';
+  barHorizontalPosition: MatSnackBarHorizontalPosition = 'left';
 
   barVerticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
@@ -19,7 +19,7 @@ export class MessageService {
     this.snackBar.open(message, title, {
       duration: 3000,
       horizontalPosition: this.barHorizontalPosition,
-      verticalPosition: 'top',
+      verticalPosition: this.barVerticalPosition,
       panelClass: 'success',
     });
   }

@@ -68,15 +68,18 @@ module.exports.update = async function(req, res) {
 }
 
 const createjournalEntry = req => {
-    return journalEntry = new JournalEntry({
-        done: req.body.done,
-        comment: req.body.comment,
-        timer: req.body.timer,
-        value: req.body.value,
-        rate: req.body.rate,
-        habit: req.body.habit,
-        category: req.body.category,
-        idRecording: req.body.idRecording,
-        user: req.user.id
-    })
+
+    const journalObj = new JournalEntry({
+        name: req.body.name
+    });
+
+    for (key in req.body) {
+        if (!(req.body[key] === '' || req.body[key] === null) && key !== '_id') {
+            journalObj[key] = req.body[key];
+        }
+    }
+
+    journalObj.user = req.user.id;
+
+    return journalObj;
 }

@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { IHabit } from 'src/app/interfaces/habit';
 import { HabitService } from 'src/app/services/habit/habit.service';
 import { Habit } from 'src/app/classes/habit';
+import { MessageService } from 'src/app/services/message-service/message.service';
 
 @Component({
   selector: 'app-create-habit',
@@ -34,7 +35,8 @@ export class CreateHabitComponent implements OnInit {
 
   habit: IHabit;
 
-  constructor(private habitService: HabitService) {}
+  constructor(private habitService: HabitService,
+              private messageService: MessageService) {}
 
   ngOnInit(): void {
     this.createForm();
@@ -48,7 +50,7 @@ export class CreateHabitComponent implements OnInit {
       color: new FormControl(''),
       icon: new FormControl(''),
       categories: new FormControl(''),
-      schedule: new FormControl(''),
+      schedule: new FormControl('everyday'),
       difficulty: new FormControl(''),
       comment: new FormControl(''),
       fromTime: new FormControl(''),
@@ -73,13 +75,22 @@ export class CreateHabitComponent implements OnInit {
   }
 
   onSubmit(): void {
+    console.log(this.form);
     this.createHabit();
-    this.habitService.create(this.habit).subscribe((newHabit) => {
-      this.form.reset();
-    });
+    this.habitService.create(this.habit).subscribe(
+      () => {
+        this.messageService.showMessage('The habit was created successfully', 'Success');
+        this.createForm();
+      },
+      (error) => {
+        this.form.enable();
+        this.messageService.showError(error.error.message, 'Uuups! Error.');
+      }
+    );
   }
 
   onChangeSchedule(selectedSchedule: string): void {
+    selectedSchedule = (selectedSchedule === '') ? 'everyday' : selectedSchedule;
     this.form.patchValue({schedule: selectedSchedule});
   }
 
@@ -116,11 +127,13 @@ export class CreateHabitComponent implements OnInit {
   }
 
   private formatTimeFrame(): string {
+    console.log(this.form.value.fromTime, this.form.value.untilTime);
+
     let timeFrame = '';
-    if (this.form.value.fromTime !== null) {
+    if (this.form.value.fromTime !== '') {
       timeFrame += this.form.value.fromTime;
     }
-    if (this.form.value.untilTime !== null) {
+    if (this.form.value.untilTime !== '') {
       timeFrame += `-${this.form.value.untilTime}`;
     }
 
