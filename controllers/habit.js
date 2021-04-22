@@ -26,8 +26,8 @@ module.exports.getAll = async function(req, res) {
 
     try {
         const habits = await Habit.find({
-            user: req.user.id,
-            $or: [{ schedule: { $regex: todayString } }, { schedule: { $eq: 'everyday' } }]
+            user: req.user.id
+                /*$or: [{ schedule: { $regex: todayString } }, { schedule: { $eq: 'everyday' } }]*/
         })
 
         res.status(200).json(habits)

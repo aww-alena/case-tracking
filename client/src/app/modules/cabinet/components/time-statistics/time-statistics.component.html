@@ -1,11 +1,27 @@
-<div style="display: block">
-    <canvas height="30" width="80" #chart baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" [options]="pieChartOptions" [colors]="pieChartColors" [legend]="pieChartLegend"></canvas>
+<div class="grid-time-stat">
+    <div *ngFor="let habitEntry of habitsEntries; let i = index">
+        <ng-template [ngIf]="habitEntry.habit.hasTimer">
+            <p class="title-p">
+                <span class="title">
+                    <mat-icon class="main-icon" [style.color]="habitEntry.habit.color">{{habitEntry.habit.icon}}</mat-icon>
+                    {{habitEntry.habit.name}}
+                </span>
+                <span class="main-time">{{habitEntry.time}}</span>
+            </p>
+            <ul>
+                <li *ngFor="let info of habitEntry.entriesInfo; let i = index">
+                    <span>
+                        <span class="number">{{i + 1}}</span>
+                    <span class="time">{{info.time}}</span>
+                    </span>
+
+                    <span class="time">{{info.entry | date: 'EEEE'}}<span class="date">{{info.entry | date: 'dd.MM'}}</span></span>
+                </li>
+            </ul>
+        </ng-template>
+    </div>
 </div>
 
-<ul>
-    <li *ngFor="let habitEntry of habitsEntries; let i = index">
-        <ng-template [ngIf]="habitEntry.habit.hasTimer">
-            {{i}} {{habitEntry.habit.name}} - {{habitEntry.time}}
-        </ng-template>
-    </li>
-</ul>
+<div style="display: block">
+    <canvas height="10" width="30" #chart baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" [options]="pieChartOptions" [colors]="pieChartColors" [legend]="pieChartLegend"></canvas>
+</div>

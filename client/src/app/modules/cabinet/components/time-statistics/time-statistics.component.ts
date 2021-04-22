@@ -24,7 +24,11 @@ export class TimeStatisticsComponent implements OnInit {
     responsive: true,
     legend: {
       position: 'bottom',
-      display: true
+      display: true,
+      labels: {
+        fontColor: '#fff'
+
+      }
     },
     plugins: {
       datalabels: {
@@ -35,7 +39,7 @@ export class TimeStatisticsComponent implements OnInit {
             title = ctx.chart.data.labels[ctx.dataIndex];
           }
           //${this.formatSecond(value)}
-          const label = `${title}`;
+          const label = `${this.formatSecond(value)}`;
           return label;
         },
       },
@@ -48,10 +52,10 @@ export class TimeStatisticsComponent implements OnInit {
   pieChartLegend = true;
   pieChartPlugins = [pluginDataLabels];
   colors: string[] = [];
-  pieChartColors = [{ backgroundColor: this.colors}];
+  pieChartColors = [{ backgroundColor: this.colors, borderColor: '#434967', borderWidth: 0}];
 
   habits: IHabit[];
-  habitsEntries: {habit: IHabit; entries: IJournalEntry[]; time: string}[] = [];
+  habitsEntries: {habit: IHabit; entriesInfo: {entry: Date; time: string}[]; time: string}[] = [];
   subscriptions: Subscription = new Subscription();
 
   constructor(private habitService: HabitService,
@@ -70,8 +74,6 @@ export class TimeStatisticsComponent implements OnInit {
       });
 
       this.chart.chart.update();
-      console.log(this.pieChartLabels, this.pieChartData, this.pieChartColors[0].backgroundColor);
-
     }));
   }
 
@@ -80,17 +82,27 @@ export class TimeStatisticsComponent implements OnInit {
     this.subscriptions.add(this.journalService.getAllHabitsById(habit._id).subscribe((entries: IJournalEntry[]) => {
 
       const entriesArray: IJournalEntry[] = [];
-
-      entries.forEach((entry: IJournalEntry) => {
-        const newEntry = new JournalEntry(habit._id, this.getIdRecording(habit._id));
-        newEntry.parseEntry(entry);
-        entriesArray.push(newEntry);
-      });
+      const entriesInfoArray: {entry: Date; time: string}[] = [];
 
       if (habit.hasTimer) {
+
+        entries.forEach((entry: IJournalEntry) => {
+          if (entry.done) {
+            const newEntry = new JournalEntry(habit._id, this.getIdRecording(habit._id));
+            newEntry.parseEntry(entry);
+            entriesArray.push(newEntry);
+            entriesInfoArray.push({entry: newEntry.date, time: this.formatSecond(newEntry.timer.countTimePassed())});
+          }
+        });
+
         const time: number = (habit.hasTimer) ? this.getPassedTime(entriesArray): 0;
-        const color: string = (habit.color !== undefined  && habit.color !== '' && habit.color !== null) ? habit.color : 'red';
-        this.habitsEntries.push({ habit, entries: entriesArray, time: this.formatSecond(time) });
+        const color: string = (habit.color !== undefined  && habit.color !== '' && habit.color !== null) ? habit.color : '#755afe';
+
+        this.habitsEntries.push({
+          habit,
+          entriesInfo: entriesInfoArray,
+          time: this.formatSecond(time)
+        });
 
         this.pieChartLabels.push(habit.name);
         this.pieChartData.push(Number(time));

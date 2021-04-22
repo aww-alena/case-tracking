@@ -2011,9 +2011,89 @@ span.done-span {
     position: relative;
 }
 
+.grid-time-stat {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    grid-gap: 30px;
+}
 
-/*
-.calendar-ctatistic:before {
+.grid-time-stat>div {
+    background: #434967;
+    border-radius: 24px;
+    box-shadow: 0 -7px 15px rgba(255, 255, 255, 0.1), 0 0 10px rgba(0, 0, 0, 0.3);
+    border-top: 1px solid #765bff;
+    border-bottom: 1px solid #765bff;
+    position: relative;
+}
+
+.grid-time-stat .date {
+    background: #765bff;
+    padding: 1px 4px;
+    border-radius: 4px;
+    font-size: 12px;
+    margin: 0 3px 0 8px;
+}
+
+.title-p {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    border-radius: 0;
+    border-radius: 24px 24px 0 0;
+    -webkit-border-radius: 24px 24px 0 0;
+    -moz-border-radius: 24px 24px 0 0;
+    -ms-border-radius: 24px 24px 0 0;
+    -o-border-radius: 24px 24px 0 0;
+}
+
+.grid-time-stat>div ul li {
+    margin-bottom: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 7px;
+}
+
+.grid-time-stat>div ul li:last-child {
+    border-bottom: none;
+}
+
+.grid-time-stat .title,
+.grid-time-stat .main-time {
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.grid-time-stat .title mat-icon {
+    margin-right: 8px;
+}
+
+.grid-time-stat ul {
+    padding: 0 14px 0px;
+}
+
+.grid-time-stat ul li .number {
+    background: rgba(0, 0, 0, 0.1);
+    width: 20px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: 1px solid #755afe;
+    box-sizing: initial;
+    font-size: 12px;
+    line-height: 0;
+}
+
+.grid-time-stat>div:before {
     content: "";
     width: 80%;
     height: 6px;
@@ -2030,7 +2110,7 @@ span.done-span {
     z-index: -1;
 }
 
-.calendar-ctatistic:after {
+.grid-time-stat>div:after {
     content: "";
     width: 80%;
     height: 6px;
@@ -2046,4 +2126,3 @@ span.done-span {
     -o-border-radius: 0 0 20px 20px;
     z-index: -1;
 }
-*/
