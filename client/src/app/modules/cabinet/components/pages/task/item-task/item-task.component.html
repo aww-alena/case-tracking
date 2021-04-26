@@ -4,7 +4,7 @@
         <div class="flex">
             <mat-icon class="main-icon" [style.color]="task.color">{{task.icon}}</mat-icon>
             <p class="title" [style.color]="task.color">{{task.name}}
-                <span *ngIf="task.countSubtasks() > 0">&nbsp;({{task.countDoneSubtasks()}} / {{task.countSubtasks()}})</span>
+                <span *ngIf="task.countSubtasks() > 0">({{task.countDoneSubtasks()}}/{{task.countSubtasks()}})</span>
             </p>
         </div>
 

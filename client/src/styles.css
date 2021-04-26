@@ -2194,3 +2194,227 @@ select:-webkit-autofill:focus {
 .signinup:hover {
     box-shadow: 10px 10px 0px yellow, 20px 20px 0px #0ee90e, 30px 30px 0px #0095ff, 40px 40px 0px blue, 50px 50px 0px #ff00bc;
 }
+
+.mobile-header {
+    display: none;
+}
+
+.habit>mat-icon.main-icon,
+.flex-timer .mat-tab-label,
+.flex.options .mat-tab-label,
+.calendar .name-of-days span,
+.days span,
+mat-sidenav nav a,
+.habit .name,
+.task-item .wrapper>.flex {
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+}
+
+@media (max-width: 600px) {
+    body,
+    div,
+    p {
+        font-size: 12px;
+    }
+    .mobile-header {
+        display: flex;
+        height: 38px;
+        background: #434967;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        color: #fff;
+        padding: 0 15px;
+        align-items: stretch;
+        justify-content: space-between;
+    }
+    .mobile-header button mat-icon.mat-icon {
+        color: #fff;
+    }
+    .mobile-header .logo {
+        width: 40px;
+    }
+    .mobile-header button {
+        padding: 0px;
+    }
+    .mobile-header a.logo img {
+        max-height: 71%;
+        filter: hue-rotate(268deg);
+        transform: rotate(51deg);
+        margin-top: 8px;
+    }
+    mat-sidenav.mat-drawer.mat-sidenav {
+        display: none;
+    }
+    .flex.dashboard {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+    .flex.dashboard .left {
+        display: block;
+        width: 100%;
+        overflow-x: hidden;
+    }
+    main {
+        margin: 0;
+    }
+    .header {
+        display: none;
+    }
+    .plus-menu {
+        display: none;
+    }
+    main .wrapper {
+        padding: 55px 15px 10px;
+    }
+    .task-item {
+        margin: 0 5px 12px;
+    }
+    .task-item .wrapper {
+        padding: 10px;
+    }
+    .task-item .flex .main-icon {
+        margin-right: 5px;
+        min-width: 25px;
+        min-height: 25px;
+        max-width: 25px;
+        max-height: 25px;
+        font-size: 15px;
+    }
+    .task-item p.title {
+        font-size: 12px;
+        display: block;
+    }
+    .task-item button.more mat-icon.mat-icon,
+    button.show-comment.ng-star-inserted mat-icon.mat-icon {
+        height: unset;
+        width: unset;
+        font-size: 20px;
+    }
+    .task-item button.more,
+    button.show-comment {
+        padding: 0px;
+    }
+    .task-item mat-checkbox {
+        transform: scale(0.8);
+    }
+    .flex.dashboard .calendar {
+        display: none;
+    }
+    .habit .name {
+        font-size: 12px;
+        margin-right: 15px;
+    }
+    .fa.fa-star {
+        font-size: 13px;
+        padding-right: 4px;
+    }
+    .habit>mat-icon.main-icon {
+        width: 50px !important;
+        height: 50px !important;
+        top: -26px;
+        padding-top: 9px;
+        left: calc(50% - 25px);
+        font-size: 17px;
+    }
+    .habit .right>.flex {
+        padding: 7px 12px 7px;
+    }
+    .flex-timer .mat-tab-label,
+    .flex.options .mat-tab-label {
+        height: 34px;
+        padding: 7px 5px 0px;
+    }
+    .habit .mat-tab-label .mat-tab-label-content,
+    .task-item .mat-tab-label .mat-tab-label-content {
+        font-size: 9px;
+    }
+    .habit .mat-tab-label-content mat-icon.mat-icon,
+    .task-item .mat-tab-label-content mat-icon.mat-icon {
+        top: 4px;
+        font-size: 12px;
+    }
+    .habit .contrlos button,
+    .contrlos button {
+        width: 24px;
+        height: 24px;
+        margin-right: 3px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .task-item app-timer .mat-icon,
+    .habit .mat-icon {
+        height: unset;
+        width: unset;
+        font-size: 17px;
+    }
+    app-timer .contrlos>div {
+        font-size: 14px;
+    }
+    app-timer .flex-timer ul li mat-icon.main-icon {
+        font-size: 17px;
+        margin-right: 7px;
+    }
+    app-timer .flex-timer .diff {
+        font-size: 13px;
+        margin-right: 15px;
+    }
+    app-timer span.start-stop button {
+        font-size: 13px;
+        margin-left: 4px;
+    }
+    app-timer span.between {
+        margin-left: 4px;
+    }
+    .save-comment {
+        height: 31px;
+        width: 60px;
+        margin-left: 10px;
+        font-size: 12px;
+    }
+    .comment-form .mat-form-field {
+        width: calc(100% - 70px);
+    }
+    .habit .comment {
+        font-size: 12px;
+    }
+    .mat-h2,
+    .mat-title,
+    .mat-typography h2 {
+        margin: 0 0 7px;
+        font-size: 13px;
+    }
+    .mat-tab-body-wrapper {
+        padding: 0px 5px;
+    }
+    .flex.options .mat-tab-body-wrapper {
+        padding: 10px 12px;
+    }
+    .subtasks .item .number {
+        min-width: 20px;
+        min-height: 20px;
+        max-width: 20px;
+        max-height: 20px;
+        margin-right: 10px;
+        border: 1px solid rgb(100 83 209);
+        font-size: 11px;
+    }
+    .flex.main-block {
+        padding: 6px;
+    }
+    .subtasks .item .timefarme {
+        display: none;
+    }
+    .flex.options .contrlos {
+        justify-content: space-between;
+    }
+    .subtasks .note {
+        padding: 8px;
+        margin-top: 8px;
+    }
+}

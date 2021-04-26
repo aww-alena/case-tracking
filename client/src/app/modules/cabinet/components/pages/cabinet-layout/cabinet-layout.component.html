@@ -44,32 +44,41 @@
 
                 <ul>
                     <li>
-                        <a href="">
+                        <a href="#">
                             <mat-icon>search</mat-icon>
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="#">
                             <mat-icon>notifications</mat-icon>
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="#">
                             <mat-icon>event</mat-icon>
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="#">
                             <mat-icon>settings</mat-icon>
                         </a>
                     </li>
                     <li>
-                        <a href="" (click)=logout($event)>
+                        <a (click)=logout($event)>
                             <mat-icon>logout</mat-icon>
                         </a>
                     </li>
                 </ul>
 
+
+            </div>
+
+            <div class="mobile-header">
+                <a class="logo" [routerLink]="['/app']">
+                    <img src="../../../../../assets/images/logo.png">
+                </a>
+
+                <button type="button"><mat-icon>menu</mat-icon></button>
             </div>
 
             <div class="wrapper">
