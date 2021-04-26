@@ -10,7 +10,9 @@ import { PopupComponent } from '../../modules/auth/components/popup/popup.compon
 export class MainLayoutComponent implements OnInit {
   constructor(public dialog: MatDialog) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.openDialog();
+  }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(PopupComponent, {

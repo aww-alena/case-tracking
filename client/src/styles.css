@@ -379,7 +379,7 @@ main {
     margin: 0 30px 0 0px;
 }
 
-main {
+main.first-page {
     margin: 0;
     background: url(https://s00.yaplakal.com/pics/pics_original/9/2/6/14511629.jpg);
     height: 100vh;
