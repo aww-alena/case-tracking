@@ -55,7 +55,7 @@ export class TimeStatisticsComponent implements OnInit {
   pieChartColors = [{ backgroundColor: this.colors, borderColor: '#434967', borderWidth: 0}];
 
   habits: IHabit[];
-  habitsEntries: {habit: IHabit; entriesInfo: {entry: Date; time: string}[]; time: string}[] = [];
+  habitsEntries: {habit: IHabit; entriesInfo: {entry: Date; time: string; rating: number}[]; time: string}[] = [];
   subscriptions: Subscription = new Subscription();
 
   constructor(private habitService: HabitService,
@@ -71,6 +71,7 @@ export class TimeStatisticsComponent implements OnInit {
       this.habits = habits;
       this.habits.forEach(habit => {
         this.getHabitEntries(habit);
+        console.log(this.habitsEntries);
       });
 
       this.chart.chart.update();
@@ -82,7 +83,7 @@ export class TimeStatisticsComponent implements OnInit {
     this.subscriptions.add(this.journalService.getAllHabitsById(habit._id).subscribe((entries: IJournalEntry[]) => {
 
       const entriesArray: IJournalEntry[] = [];
-      const entriesInfoArray: {entry: Date; time: string}[] = [];
+      const entriesInfoArray: {entry: Date; time: string; rating: number}[] = [];
 
       if (habit.hasTimer) {
 
@@ -90,8 +91,15 @@ export class TimeStatisticsComponent implements OnInit {
           if (entry.done) {
             const newEntry = new JournalEntry(habit._id, this.getIdRecording(habit._id));
             newEntry.parseEntry(entry);
+
+            const rating: number = (newEntry.rating !== undefined) ? newEntry.rating : 0;
             entriesArray.push(newEntry);
-            entriesInfoArray.push({entry: newEntry.date, time: this.formatSecond(newEntry.timer.countTimePassed())});
+
+            entriesInfoArray.push({
+              entry: newEntry.date,
+              time: this.formatSecond(newEntry.timer.countTimePassed()),
+              rating
+            });
           }
         });
 

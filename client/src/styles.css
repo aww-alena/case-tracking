@@ -1987,8 +1987,8 @@ span.done-span {
 
 .statistic-notes li .number {
     background: rgba(0, 0, 0, 0.1);
-    width: 25px;
-    height: 25px;
+    min-width: 25px;
+    min-height: 25px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2125,4 +2125,21 @@ span.done-span {
     -ms-border-radius: 0 0 20px 20px;
     -o-border-radius: 0 0 20px 20px;
     z-index: -1;
+}
+
+.grid-time-stat i.fa.fa-star {
+    font-size: 9px;
+    padding-right: 3px;
+    cursor: default;
+}
+
+.grid-time-stat .left {
+    display: flex;
+    align-items: center;
+}
+
+.grid-time-stat p.stars {
+    display: flex;
+    align-items: center;
+    margin-left: 13px;
 }

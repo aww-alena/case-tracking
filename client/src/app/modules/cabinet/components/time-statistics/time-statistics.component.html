@@ -5,15 +5,20 @@
                 <span class="title">
                     <mat-icon class="main-icon" [style.color]="habitEntry.habit.color">{{habitEntry.habit.icon}}</mat-icon>
                     {{habitEntry.habit.name}}
+                    
                 </span>
                 <span class="main-time">{{habitEntry.time}}</span>
             </p>
             <ul>
                 <li *ngFor="let info of habitEntry.entriesInfo; let i = index">
-                    <span>
+                    <div class="left">
                         <span class="number">{{i + 1}}</span>
-                    <span class="time">{{info.time}}</span>
-                    </span>
+                        <span class="time">{{info.time}}</span>
+
+                        <div *ngIf="habitEntry.habit.hasRating;">
+                            <app-rating [oldRating]="info.rating" [isPicker]="false"></app-rating>
+                        </div>
+                    </div>
 
                     <span class="time">{{info.entry | date: 'EEEE'}}<span class="date">{{info.entry | date: 'dd.MM'}}</span></span>
                 </li>

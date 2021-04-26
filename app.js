@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const path = require('path');
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const morgan = require('morgan')
@@ -38,5 +39,17 @@ app.use('/api/task', taskRoutes)
 app.use('/api/goal', goalRoutes)
 app.use('/api/statistics', statisticsRoutes)
 app.use('/api/journal', journalRoutes)
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/dist/client'));
+
+    app.get('*', (req, res) => {
+        res.sendFile(
+            path.resolve(
+                __dirname, 'client', 'dist', 'client', 'index.html'
+            )
+        )
+    })
+}
 
 module.exports = app

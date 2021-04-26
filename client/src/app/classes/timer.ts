@@ -111,7 +111,7 @@ export class Timer implements ITimer {
         const startTime = moment(this.getLastStartTimestamp());
         const stopTime = moment(moment());
 
-        const seconds = stopTime.diff(startTime, 'seconds') + this.countTimePassed();
+        const seconds = stopTime.diff(startTime, 'seconds');
 
         return seconds;
     }

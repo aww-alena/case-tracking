@@ -1,3 +1,9 @@
-<p class="stars">
+<p class="stars" *ngIf="isPicker; else notPicker">
     <i (mouseenter)="hover(star)" (mouseleave)="leave()" (click)="click(star)" *ngFor="let star of stars" class="fa fa-star" [ngClass]="{'filled': star <= oldRating }"></i>
 </p>
+
+<ng-template #notPicker>
+    <p class="stars">
+        <i *ngFor="let star of stars" class="fa fa-star" [ngClass]="{'filled': star <= oldRating }"></i>
+    </p>
+</ng-template>
