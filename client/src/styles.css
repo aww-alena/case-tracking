@@ -2151,3 +2151,46 @@ span.done-span {
     align-items: center;
     margin-left: 13px;
 }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    border: 1px solid transparent;
+    -webkit-text-fill-color: #fff;
+    -webkit-box-shadow: 0 0 0px 1000px rgba(0, 0, 0, 0) inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.signinup {
+    display: flex;
+    position: absolute;
+    top: calc(50% - 42px);
+    left: calc(50% - 192px);
+    background: black;
+    padding: 30px 145px;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 5px 5px 0px yellow, 10px 10px 0px #0ee90e, 15px 15px 0px #0095ff, 20px 20px 0px blue, 25px 25px 0px #ff00bc;
+    cursor: pointer;
+    font-size: 15px;
+    text-transform: uppercase;
+    transition: all 0.4s ease;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -ms-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+}
+
+.signinup i.material-icons.person {
+    margin-right: 17px;
+}
+
+.signinup:hover {
+    box-shadow: 10px 10px 0px yellow, 20px 20px 0px #0ee90e, 30px 30px 0px #0095ff, 40px 40px 0px blue, 50px 50px 0px #ff00bc;
+}

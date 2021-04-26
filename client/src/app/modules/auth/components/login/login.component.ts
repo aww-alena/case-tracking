@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.createUser();
     this.subscription = this.auth.login(this.user).subscribe(
       () => {
-        this.router.navigate(['/app']);
+        this.router.navigate(['/app/dashboard']);
         this.goToApp.emit('close');
         this.messageService.showMessage('Access is allowed ', 'Yupikai!');
       },
