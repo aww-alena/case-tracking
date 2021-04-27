@@ -33,7 +33,7 @@ export class ItemHabitComponent implements OnInit, OnDestroy {
     } else {
       this.habitRecording.entry.setDone(true);
       this.habitRecording.entry.setDate(moment().toDate());
-      this.saveEntry(this.habitRecording.entry);
+      this.updateOrSave();
     }
   }
 
@@ -57,16 +57,19 @@ export class ItemHabitComponent implements OnInit, OnDestroy {
   updateEntry(entry: IJournalEntry): void {
     this.subscriptions.add(this.journalService.update(entry).subscribe((newEntry) => {
       this.habitRecording.entry.parseEntry(newEntry);
+      console.log('update: ', newEntry);
     }));
   }
 
   saveEntry(entry: IJournalEntry): void {
     this.subscriptions.add(this.journalService.create(entry).subscribe((newEntry) => {
       this.habitRecording.entry.parseEntry(newEntry);
+      console.log('save: ', newEntry);
     }));
   }
 
   updateOrSave(): void {
+    console.log('update or save: ', this.habitRecording.entry);
     if(!this.habitRecording.entry.isIdUndefined()) {
       this.updateEntry(this.habitRecording.entry);
     } else {
@@ -75,6 +78,8 @@ export class ItemHabitComponent implements OnInit, OnDestroy {
   }
 
   deleteEntry(entry: IJournalEntry): void {
+    console.log('delete');
+
     this.subscriptions.add(this.journalService.delete(entry).subscribe((message) => {
       this.resetEntry();
     }));

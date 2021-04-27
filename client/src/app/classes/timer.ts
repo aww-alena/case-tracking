@@ -47,7 +47,6 @@ export class Timer implements ITimer {
     startTimer(): void {
 
         this.timestamp = (this.status === 'temp') ? [] : this.timestamp;
-        console.log('this.status === temp', this.timestamp);
 
         if (this.status !== 'start') {
 

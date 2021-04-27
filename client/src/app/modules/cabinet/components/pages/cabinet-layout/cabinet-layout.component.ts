@@ -12,6 +12,8 @@ export class CabinetLayoutComponent implements OnInit {
     { url: '/habits/create', name: 'Create habit' },
   ];
 
+  mobileOpen = false;
+
   constructor(private auth: AuthService, private router: Router) {}
 
   ngOnInit(): void {}

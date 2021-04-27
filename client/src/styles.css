@@ -2213,6 +2213,14 @@ mat-sidenav nav a,
     -webkit-user-select: none;
 }
 
+button.close-sidenav {
+    color: #fff;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    display: none;
+}
+
 @media (max-width: 600px) {
     body,
     div,
@@ -2249,6 +2257,19 @@ mat-sidenav nav a,
     }
     mat-sidenav.mat-drawer.mat-sidenav {
         display: none;
+    }
+    mat-sidenav.mat-drawer.mat-sidenav.active {
+        display: block;
+        margin: 0px;
+        border-radius: 0px;
+        width: 100%;
+        height: 100%;
+    }
+    button.close-sidenav {
+        display: block;
+    }
+    mat-sidenav nav {
+        margin-top: 55px;
     }
     .flex.dashboard {
         grid-template-columns: 1fr;
