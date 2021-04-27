@@ -16,7 +16,9 @@ export class RatingComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.oldRating);
+  }
 
   leave(): void {
     this.oldRating = this.rating;

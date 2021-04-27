@@ -26,7 +26,7 @@
                 </p>
 
                 <div *ngIf="habitRecording.habit.hasRating;">
-                    <app-rating (byClick)="saveRating($event)" [oldRating]="habitRecording.entry.getRating()"></app-rating>
+                    <app-rating (byClick)="saveRating($event)" [oldRating]="habitRecording.entry.getRating()" [isPicker]="true"></app-rating>
                 </div>
             </div>
 
