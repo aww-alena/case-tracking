@@ -1,7 +1,7 @@
 <mat-sidenav-container>
     <mat-sidenav #sidenav role="navigation" mode="side" opened [ngClass]="{active:mobileOpen}">
         <button class="close-sidenav" type="button" (click)="mobileOpen = ! mobileOpen"><mat-icon>clear</mat-icon></button>
-        <a class="logo" [routerLink]="['/app']">
+        <a class="logo" [routerLink]="['dashboard']">
             <img src="../../../../../assets/images/logo.png">
             <p>NOW</p>
         </a>
@@ -56,7 +56,7 @@
             </div>
 
             <div class="mobile-header">
-                <a class="logo" [routerLink]="['/app']">
+                <a class="logo" [routerLink]="['dashboard']">
                     <img src="../../../../../assets/images/logo.png">
                 </a>
 
