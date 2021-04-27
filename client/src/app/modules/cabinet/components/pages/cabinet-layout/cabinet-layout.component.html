@@ -7,29 +7,10 @@
         </a>
         <nav>
             <ul>
-                <li>
-                    <a [routerLink]="['dashboard']" routerLinkActive="active">
-                        <mat-icon>space_dashboard</mat-icon> Dashboard</a>
-                </li>
-                <li>
-                    <a [routerLink]="['habits']" routerLinkActive="active">
-                        <mat-icon>business_center</mat-icon> Habits</a>
-                </li>
-                <li>
-                    <a [routerLink]="['tasks']" routerLinkActive="active">
-                        <mat-icon>adjust</mat-icon> Tasks</a>
-                </li>
-                <li>
-                    <a [routerLink]="['categories']" routerLinkActive="active">
-                        <mat-icon>category</mat-icon>Categories</a>
-                </li>
-                <li>
-                    <a [routerLink]="['statistic']" routerLinkActive="active">
-                        <mat-icon>auto_graph</mat-icon> Statistics</a>
-                </li>
-                <li>
-                    <a [routerLink]="['statistic/time']" routerLinkActive="active">
-                        <mat-icon>auto_graph</mat-icon> Statistics / Time</a>
+                <li *ngFor="let link of links">
+                    <a [routerLink]="[link.url]" routerLinkActive="active" (click)="mobileOpen = ! mobileOpen">
+                        <mat-icon>{{link.icon}}</mat-icon> {{link.url}}
+                    </a>
                 </li>
             </ul>
         </nav>
@@ -45,22 +26,22 @@
 
                 <ul>
                     <li>
-                        <a href="#">
+                        <a [routerLink]="['dashboard']">
                             <mat-icon>search</mat-icon>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a [routerLink]="['dashboard']">
                             <mat-icon>notifications</mat-icon>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a [routerLink]="['dashboard']">
                             <mat-icon>event</mat-icon>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a [routerLink]="['dashboard']">
                             <mat-icon>settings</mat-icon>
                         </a>
                     </li>

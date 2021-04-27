@@ -8,8 +8,12 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class CabinetLayoutComponent implements OnInit {
   links = [
-    { url: '/habits', name: 'Habits' },
-    { url: '/habits/create', name: 'Create habit' },
+    { url: 'dashboard', icon: 'space_dashboard' },
+    { url: 'habits', icon: 'business_center' },
+    { url: 'tasks', icon: 'adjust' },
+    { url: 'categories', icon: 'category' },
+    { url: 'statistic', icon: 'auto_graph' },
+    { url: 'statistic/time', icon: 'auto_graph' }
   ];
 
   mobileOpen = false;

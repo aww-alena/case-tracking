@@ -185,6 +185,7 @@ mat-sidenav nav a {
     padding: 0 20px;
     display: flex;
     align-items: center;
+    text-transform: capitalize;
 }
 
 nav ul li {
@@ -2229,7 +2230,7 @@ button.close-sidenav {
     }
     .mobile-header {
         display: flex;
-        height: 38px;
+        height: 50px;
         background: #434967;
         position: fixed;
         top: 0;
@@ -2239,6 +2240,7 @@ button.close-sidenav {
         padding: 0 15px;
         align-items: stretch;
         justify-content: space-between;
+        z-index: 9;
     }
     .mobile-header button mat-icon.mat-icon {
         color: #fff;
@@ -2290,7 +2292,7 @@ button.close-sidenav {
         display: none;
     }
     main .wrapper {
-        padding: 55px 15px 10px;
+        padding: 65px 15px 10px;
     }
     .task-item {
         margin: 0 5px 12px;
@@ -2305,6 +2307,33 @@ button.close-sidenav {
         max-width: 25px;
         max-height: 25px;
         font-size: 15px;
+    }
+    .grid-time-stat {
+        grid-template-columns: 1fr;
+        grid-gap: 30px;
+    }
+    .statistic.grid {
+        grid-template-columns: 1fr;
+        grid-gap: 20px;
+    }
+    .calendar-ctatistic {
+        background: transparent;
+        padding: 0;
+        border-radius: 0px;
+        box-shadow: none;
+        border-top: none;
+        border-bottom: none;
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        -ms-border-radius: 0px;
+        -o-border-radius: 0px;
+    }
+    .calendar-ctatistic .mat-tab-label-content span {
+        opacity: 1;
+        padding: 7px 10px;
+        margin: 3px;
+        font-size: 12px;
+        font-weight: 400;
     }
     .task-item p.title {
         font-size: 12px;
