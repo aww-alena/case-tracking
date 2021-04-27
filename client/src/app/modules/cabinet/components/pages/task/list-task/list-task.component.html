@@ -1,5 +1,9 @@
-<div class="habit-list">
+<div class="habit-list" *ngIf="tasks !== undefined; else loading">
     <div class="grid">
         <app-item-task *ngFor="let task of tasks" [task]="task"></app-item-task>
     </div>
 </div>
+
+<ng-template #loading>
+    <mat-spinner></mat-spinner>
+</ng-template>

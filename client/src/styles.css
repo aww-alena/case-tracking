@@ -2222,11 +2222,33 @@ button.close-sidenav {
     display: none;
 }
 
+mat-spinner {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+}
+
 @media (max-width: 600px) {
     body,
     div,
     p {
         font-size: 12px;
+    }
+    .wrapper.login {
+        margin: 10px 0;
+    }
+    .mat-dialog-content {
+        padding: 0 15px;
+    }
+    body {
+        background-color: rgb(72 79 121 / 90%);
+    }
+    .mat-dialog-title button {
+        right: -30px;
+        top: -9px;
+    }
+    .mat-dialog-content .mat-tab-label {
+        height: 28px;
     }
     .mobile-header {
         display: flex;
@@ -2327,7 +2349,7 @@ button.close-sidenav {
         margin-right: 15px;
     }
     .task-item .wrapper {
-        padding: 10px;
+        padding: 12px 10px;
     }
     .task-item .flex .main-icon {
         margin-right: 5px;
