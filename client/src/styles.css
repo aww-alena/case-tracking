@@ -1913,8 +1913,8 @@ span.done-span {
     height: auto;
     padding: 0;
     min-width: unset;
-    margin-right: 10px;
-    margin-bottom: 30px;
+    margin-right: 6px;
+    margin-bottom: 6px;
 }
 
 .calendar-ctatistic .mat-tab-label-content span {
@@ -2180,6 +2180,63 @@ select:-webkit-autofill:focus {
     transition: background-color 5000s ease-in-out 0s;
 }
 
+.habit-list-control-view .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 25px;
+}
+
+.habit>.flex>button:first-child {
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.habit-list-control-view .grid .habit button {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    width: calc(50% - 0.5px);
+    padding: 17px 0;
+    justify-content: center;
+    transition: all 0.4s ease;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -ms-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+}
+
+.habit-list-control-view .grid .habit button:hover {
+    background-color: #765bff;
+}
+
+.habit-list-control-view .grid .habit button mat-icon.mat-icon {
+    font-size: 17px;
+    width: auto;
+    height: auto;
+    margin: 0 12px;
+}
+
+.habit-list-control-view .grid .habit {
+    background: rgb(67 73 103);
+    border-radius: 20px;
+    box-shadow: 0 -7px 15px rgba(255, 255, 255, 0.1), 0 0 10px rgba(0, 0, 0, 0.3);
+    border-top: 1px solid #765bff;
+    border-bottom: 1px solid #765bff;
+    overflow: hidden;
+}
+
+.habit-list-control-view .grid .habit .flex.title {
+    justify-content: flex-start;
+    font-size: 16px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.habit-list-control-view .grid .habit .flex.title mat-icon.mat-icon {
+    width: auto;
+    height: auto;
+    margin-right: 10px;
+}
+
 .signinup {
     display: flex;
     position: absolute;
@@ -2243,6 +2300,11 @@ mat-spinner {
 .pie-chart {
     display: block;
     margin-top: 40px;
+}
+
+.calendar-ctatistic .mat-tab-labels {
+    flex-wrap: wrap;
+    margin-bottom: 15px;
 }
 
 @media (max-width: 600px) {
@@ -2407,9 +2469,10 @@ mat-spinner {
         max-height: 25px;
         font-size: 15px;
     }
-    .grid-time-stat {
+    .grid-time-stat,
+    .habit-list-control-view .grid {
         grid-template-columns: 1fr;
-        grid-gap: 30px;
+        grid-gap: 25px;
     }
     .statistic.grid {
         grid-template-columns: 1fr;

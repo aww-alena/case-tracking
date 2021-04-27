@@ -32,6 +32,10 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { StatisticComponent } from './components/pages/statistic/statistic.component';
 import { TimeStatisticsComponent } from './components/time-statistics/time-statistics.component';
+import { ItemTaskControlViewComponent } from './components/pages/task/item-task-control-view/item-task-control-view.component';
+import { ItemHabitControlViewComponent } from './components/pages/habit/item-habit-control-view/item-habit-control-view.component';
+import { ListTaskControlViewComponent } from './components/pages/task/list-task-control-view/list-task-control-view.component';
+import { ListHabitControlViewComponent } from './components/pages/habit/list-habit-control-view/list-habit-control-view.component';
 
 
 @NgModule({
@@ -61,6 +65,10 @@ import { TimeStatisticsComponent } from './components/time-statistics/time-stati
     StatisticCalendarComponent,
     StatisticComponent,
     TimeStatisticsComponent,
+    ItemTaskControlViewComponent,
+    ItemHabitControlViewComponent,
+    ListTaskControlViewComponent,
+    ListHabitControlViewComponent,
   ],
   imports: [
     CommonModule,

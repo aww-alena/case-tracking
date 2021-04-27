@@ -8,6 +8,7 @@ import { DashboardComponent } from './components/pages/dashboard/dashboard.compo
 import { CreateTaskComponent } from './components/pages/task/create-task/create-task.component';
 import { StatisticComponent } from './components/pages/statistic/statistic.component';
 import { TimeStatisticsComponent } from './components/time-statistics/time-statistics.component';
+import { ListHabitControlViewComponent } from './components/pages/habit/list-habit-control-view/list-habit-control-view.component';
 const routes: Routes = [
   {
     path: '',
@@ -16,7 +17,7 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'habit/create', component: CreateHabitComponent },
       { path: 'habits/:id', component: EditHabitComponent },
-      { path: 'habits', component: ListHabitComponent },
+      { path: 'habits', component: ListHabitControlViewComponent },
       { path: 'task/create', component: CreateTaskComponent },
       { path: 'statistic', component: StatisticComponent },
       { path: 'statistic/time', component: TimeStatisticsComponent }
