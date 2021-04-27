@@ -2241,6 +2241,9 @@ button.close-sidenav {
         align-items: stretch;
         justify-content: space-between;
         z-index: 9;
+        border-radius: 0 0 20px 20px;
+        box-shadow: 0 -7px 15px rgba(255, 255, 255, 0.1), 0 0 10px rgba(0, 0, 0, 0.3);
+        border-bottom: 1px solid #765bff;
     }
     .mobile-header button mat-icon.mat-icon {
         color: #fff;
@@ -2250,6 +2253,14 @@ button.close-sidenav {
     }
     .mobile-header button {
         padding: 0px;
+        background: #6658c0;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 7px;
     }
     .mobile-header a.logo img {
         max-height: 71%;
@@ -2292,10 +2303,28 @@ button.close-sidenav {
         display: none;
     }
     main .wrapper {
-        padding: 65px 15px 10px;
+        padding: 75px 15px 10px;
+    }
+    .grid-time-stat .title,
+    .grid-time-stat .main-time {
+        font-size: 12px;
+    }
+    .grid-time-stat .title .mat-icon {
+        height: auto;
+        width: auto;
+        font-size: 17px;
+    }
+    .grid-time-stat .date {
+        font-size: 10px;
+    }
+    .flex.options .contrlos button mat-icon {
+        text-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
     }
     .task-item {
         margin: 0 5px 12px;
+    }
+    .task-item ul.history span.diff {
+        margin-right: 15px;
     }
     .task-item .wrapper {
         padding: 10px;

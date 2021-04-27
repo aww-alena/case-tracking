@@ -7,7 +7,7 @@
         <div class="flex">
             <div class="timefarme" *ngIf="hasTimeframes()">{{subtask.date | date:'dd.MM'}}, {{subtask.timeframe}}</div>
             <mat-checkbox (change)="markDoneSubtask()" [checked]="subtask.done"></mat-checkbox>
-            <button class="show-comment" *ngIf="subtask.note !== '' || subtask.done || hasTimer" (click)="toggleComment()"><mat-icon>more_vert</mat-icon></button>
+            <button class="show-comment" *ngIf="subtask.note !== '' || subtask.done || hasTimer"><mat-icon>more_vert</mat-icon></button>
         </div>
     </div>
 
