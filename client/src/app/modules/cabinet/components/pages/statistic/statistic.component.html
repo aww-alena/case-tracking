@@ -18,5 +18,13 @@
         </mat-tab>
     </mat-tab-group>
 
-    <app-statistic-calendar [viewDates]="viewDates" [habitEvents]="events"></app-statistic-calendar>
+    <ng-template [ngIf]="events.length > 0" [ngIfElse]="loading">
+        <app-statistic-calendar [viewDates]="viewDates" [habitEvents]="events"></app-statistic-calendar>
+    </ng-template>
+
+    <ng-template #loading>
+        <p class="tip">Select a habit to view statistics </p>
+    </ng-template>
+
+
 </div>

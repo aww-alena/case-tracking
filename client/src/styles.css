@@ -1968,6 +1968,18 @@ span.done-span {
     border-radius: 24px;
     padding: 20px;
     box-shadow: 0 -7px 15px rgba(255, 255, 255, 0.1), 0 0 10px rgba(0, 0, 0, 0.3);
+    grid-column-start: 3;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+
+p.tip {
+    background: rgba(0, 0, 0, 0.15);
+    width: max-content;
+    padding: 16px;
+    margin-left: 10px;
+    border-radius: 16px;
 }
 
 .statistic-notes h3 {
@@ -2228,11 +2240,32 @@ mat-spinner {
     margin: 0 auto;
 }
 
+.pie-chart {
+    display: block;
+    margin-top: 40px;
+}
+
 @media (max-width: 600px) {
     body,
     div,
     p {
         font-size: 12px;
+    }
+    .statistic-notes {
+        grid-column-start: unset;
+        grid-column-end: unset;
+        grid-row-start: unset;
+        grid-row-end: unset;
+    }
+    p.tip {
+        width: 100%;
+        padding: 12px;
+        margin-left: 0px;
+        border-radius: 8px;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        -ms-border-radius: 8px;
+        -o-border-radius: 8px;
     }
     .wrapper.login {
         margin: 10px 0;
@@ -2252,8 +2285,8 @@ mat-spinner {
     }
     .mobile-header {
         display: flex;
-        height: 50px;
-        background: #434967;
+        height: 60px;
+        background: #3c425c;
         position: fixed;
         top: 0;
         left: 0;
@@ -2276,19 +2309,34 @@ mat-spinner {
     .mobile-header button {
         padding: 0px;
         background: #6658c0;
-        width: 30px;
-        height: 30px;
+        width: 35px;
+        height: 35px;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-top: 7px;
+        margin-top: 10px;
     }
     .mobile-header a.logo img {
-        max-height: 71%;
+        max-height: 64%;
         filter: hue-rotate(268deg);
         transform: rotate(51deg);
-        margin-top: 8px;
+        margin-top: 12px;
+        -webkit-transform: rotate(51deg);
+        -moz-transform: rotate(51deg);
+        -ms-transform: rotate(51deg);
+        -o-transform: rotate(51deg);
+    }
+    .calendar-ctatistic .mat-tab-labels {
+        flex-wrap: wrap;
+        margin-bottom: 15px;
+    }
+    .calendar-ctatistic .mat-tab-label {
+        margin-right: 6px;
+        margin-bottom: 6px;
+    }
+    .calendar-ctatistic .mat-tab-label-content span {
+        margin: 0px;
     }
     mat-sidenav.mat-drawer.mat-sidenav {
         display: none;
@@ -2382,7 +2430,6 @@ mat-spinner {
     .calendar-ctatistic .mat-tab-label-content span {
         opacity: 1;
         padding: 7px 10px;
-        margin: 3px;
         font-size: 12px;
         font-weight: 400;
     }
