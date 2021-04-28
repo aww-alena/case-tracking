@@ -2474,6 +2474,9 @@ mat-spinner {
         grid-template-columns: 1fr;
         grid-gap: 25px;
     }
+    .habit-list-control-view .grid {
+        grid-gap: 20px;
+    }
     .statistic.grid {
         grid-template-columns: 1fr;
         grid-gap: 20px;

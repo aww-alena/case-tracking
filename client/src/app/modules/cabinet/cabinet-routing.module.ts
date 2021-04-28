@@ -16,7 +16,7 @@ const routes: Routes = [
     children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'habit/create', component: CreateHabitComponent },
-      { path: 'habits/:id', component: EditHabitComponent },
+      { path: 'habits/:id', component: CreateHabitComponent },
       { path: 'habits', component: ListHabitControlViewComponent },
       { path: 'task/create', component: CreateTaskComponent },
       { path: 'statistic', component: StatisticComponent },

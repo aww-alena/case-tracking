@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IHabit } from 'src/app/interfaces/habit';
+import { HabitService } from 'src/app/services/habit/habit.service';
+import { MessageService } from 'src/app/services/message-service/message.service';
 
 @Component({
   selector: 'app-item-habit-control-view',
@@ -14,12 +16,20 @@ export class ItemHabitControlViewComponent implements OnInit {
   id: any;
 
   constructor(private router: Router,
-              private route: ActivatedRoute) { }
+              private habitService: HabitService,
+              private messageService: MessageService) { }
 
   ngOnInit(): void {
   }
 
-  onDelete(): void {}
+  onDelete(habit: IHabit): void {
+    this.habitService.delete(habit).subscribe(
+          response =>  this.messageService.showMessage('Habit was deleted', 'Yupikai!'),
+          error =>  this.messageService.showError(error.error.message, 'Uuups! Error.')
+    );
+  }
 
-  onEdit(): void {}
+  onEdit(id: string): void {
+    this.router.navigate([`app/habits/${id}`]);
+  }
 }

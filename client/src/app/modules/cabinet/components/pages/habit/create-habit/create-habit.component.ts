@@ -4,6 +4,9 @@ import { IHabit } from 'src/app/interfaces/habit';
 import { HabitService } from 'src/app/services/habit/habit.service';
 import { Habit } from 'src/app/classes/habit';
 import { MessageService } from 'src/app/services/message-service/message.service';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-create-habit',
@@ -34,12 +37,16 @@ export class CreateHabitComponent implements OnInit {
   form: FormGroup;
 
   habit: IHabit;
+  isNew = true;
 
   constructor(private habitService: HabitService,
-              private messageService: MessageService) {}
+              private messageService: MessageService,
+              private route: ActivatedRoute,
+              private router: Router) {}
 
   ngOnInit(): void {
     this.createForm();
+    this.getHabit();
   }
 
   createForm(): void {
@@ -54,7 +61,8 @@ export class CreateHabitComponent implements OnInit {
       difficulty: new FormControl(''),
       comment: new FormControl(''),
       fromTime: new FormControl(''),
-      untilTime: new FormControl('')
+      untilTime: new FormControl(''),
+      id: new FormControl('')
     });
   }
 
@@ -70,23 +78,40 @@ export class CreateHabitComponent implements OnInit {
       difficulty: this.form.value.difficulty,
       comment: this.form.value.comment,
       timeframe: this.formatTimeFrame(),
-      _id: ''
+      _id: this.form.value.id
     });
   }
 
   onSubmit(): void {
-    console.log(this.form);
-    this.createHabit();
-    this.habitService.create(this.habit).subscribe(
-      () => {
-        this.messageService.showMessage('The habit was created successfully', 'Success');
-        this.createForm();
-      },
-      (error) => {
-        this.form.enable();
-        this.messageService.showError(error.error.message, 'Uuups! Error.');
-      }
-    );
+
+    if (this.isNew) {
+      console.log(this.form);
+      this.createHabit();
+      this.habitService.create(this.habit).subscribe(
+        () => {
+          this.messageService.showMessage('The habit was created successfully', 'Success');
+          this.createForm();
+        },
+        (error) => {
+          this.form.enable();
+          this.messageService.showError(error.error.message, 'Uuups! Error.');
+        }
+      );
+    } else {
+      console.log(this.form);
+      this.createHabit();
+      this.habitService.update(this.habit).subscribe(
+        () => {
+          this.messageService.showMessage('The habit was updated successfully', 'Success');
+          this.createForm();
+        },
+        (error) => {
+          this.form.enable();
+          this.messageService.showError(error.error.message, 'Uuups! Error.');
+        }
+      );
+    }
+
   }
 
   onChangeSchedule(selectedSchedule: string): void {
@@ -138,5 +163,43 @@ export class CreateHabitComponent implements OnInit {
     }
 
     return timeFrame;
+  }
+
+  private getHabit(): void {
+    this.route.params
+      .pipe(
+        switchMap(
+          (params: Params) => {
+            if (params.id) {
+              this.isNew = false;
+              return this.habitService.getById(params.id);
+            }
+
+            return of(null);
+          }
+        )
+      )
+      .subscribe(
+        (habit: IHabit | any) => {
+          console.log(habit);
+          if (habit) {
+            this.habit = habit;
+            this.form.patchValue({
+              name: habit.name,
+              hasTimer: habit.hasTimer,
+              hasRating: habit.hasRating,
+              color: habit.color,
+              icon: habit.icon,
+              categories: habit.categories,
+              schedule: habit.schedule,
+              difficulty: habit.difficulty,
+              comment: habit.comment,
+              id: habit._id
+            });
+
+          }
+
+        },
+      );
   }
 }
