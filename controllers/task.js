@@ -36,9 +36,7 @@ module.exports.getAll = async function(req, res) {
 module.exports.getById = async function(req, res) {
     try {
 
-        const task = await Task.find({
-            user: req.params.id
-        })
+        const task = await Task.findById(req.params.id)
 
         res.status(200).json(task)
 

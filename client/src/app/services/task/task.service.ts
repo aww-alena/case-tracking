@@ -25,4 +25,8 @@ export class TaskService {
   update(task: ITask): Observable<ITask> {
     return this.http.patch<ITask>(`/api/task/${task._id}`, task);
   }
+
+  delete(habit: ITask): Observable<string> {
+    return this.http.delete<string>(`/api/task/${habit._id}`);
+  }
 }

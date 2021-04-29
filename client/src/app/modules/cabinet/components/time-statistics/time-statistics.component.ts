@@ -71,7 +71,6 @@ export class TimeStatisticsComponent implements OnInit {
       this.habits = habits;
       this.habits.forEach(habit => {
         this.getHabitEntries(habit);
-        console.log(this.habitsEntries);
       });
 
       this.chart.chart.update();

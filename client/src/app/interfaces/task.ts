@@ -12,7 +12,7 @@ export interface ITask {
     timeframe: string;
     user: string;
     categories: string;
-    _id?: string;
+    _id: string;
 
     subtasks: Subtask[];
     savedData: SavedData;
@@ -21,6 +21,10 @@ export interface ITask {
    isDoneUndefined(): boolean;
    isSavedDataUndefined(): boolean;
    isIdUndefined(): boolean;
+   isIconUndefined(): boolean;
+
+   getColor(): string;
+   getIcon(): string;
 
    setDone(done: boolean): void;
    setDate(date: Date): void;

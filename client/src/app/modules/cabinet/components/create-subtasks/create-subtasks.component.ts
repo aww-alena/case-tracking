@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Subtask } from 'src/app/interfaces/task';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Timer } from 'src/app/classes/timer';
@@ -11,6 +11,7 @@ import * as moment from 'moment';
 })
 export class CreateSubtasksComponent implements OnInit {
 
+  @Input() oldSubtasks: Array<Subtask>;
   @Output() addSubtask: EventEmitter<Array<Subtask>> = new EventEmitter();
 
   subtasks: Array<Subtask> = [];
@@ -19,6 +20,7 @@ export class CreateSubtasksComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.subtasks = (this.oldSubtasks) ? this.oldSubtasks : [];
     this.createForm();
   }
 

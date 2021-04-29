@@ -28,7 +28,7 @@
 
         <app-schedule-picker (changeSchedule)="onChangeSchedule($event)" [oldSchedule]="form.value.schedule"></app-schedule-picker>
 
-        <mat-expansion-panel>
+        <mat-expansion-panel class="grid">
             <mat-expansion-panel-header>
                 <mat-panel-title>
                     Additional options
@@ -37,9 +37,9 @@
 
             <app-time-picker (changeFromTime)="onChangeFromTime($event)" (changeUntilTime)="onChangeUntilTime($event)" [oldFromTime]="form.value.fromTime" [oldUntilTime]="form.value.untilTime"></app-time-picker>
 
-            <app-category-picker (changeCategories)="onChangeCategories($event)" [oldCategories]="form.value.categories"></app-category-picker>
-
             <app-note-to-day [schedule]="schedule" (addNotes)="onAddNotes($event)" [oldNotes]="form.value.comment"></app-note-to-day>
+
+            <app-category-picker (changeCategories)="onChangeCategories($event)" [oldCategories]="form.value.categories"></app-category-picker>
 
         </mat-expansion-panel>
 

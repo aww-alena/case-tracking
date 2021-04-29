@@ -3,6 +3,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ITask, Subtask } from 'src/app/interfaces/task';
 import { TaskService } from 'src/app/services/task/task.service';
 import { Task } from 'src/app/classes/task';
+import { MessageService } from 'src/app/services/message-service/message.service';
+import { ActivatedRoute, Params } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-create-task',
@@ -34,11 +38,14 @@ export class CreateTaskComponent implements OnInit {
 
   task: ITask;
   subtasks: Array<Subtask>;
+  isNew = true;
 
-  constructor(private taskService: TaskService) {}
+  constructor(private taskService: TaskService,
+              private messageService: MessageService,
+              private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.createForm();
+    this.getTask();
   }
 
   createForm(): void {
@@ -119,6 +126,47 @@ export class CreateTaskComponent implements OnInit {
     return this.form.get('schedule') as FormControl;
   }
 
+  private getTask(): void {
+    this.route.params
+      .pipe(
+        switchMap(
+          (params: Params) => {
+            if (params.id) {
+              this.isNew = false;
+              return this.taskService.getById(params.id);
+            }
+
+            return of(null);
+          }
+        )
+      )
+      .subscribe(
+        (task: ITask | any) => {
+          console.log(task);
+
+          this.createForm();
+          if (task) {
+            this.task = new Task(task);
+            this.form.patchValue({
+              name: task.name,
+              hasTimer: task.hasTimer,
+              hasRating: task.hasRating,
+              color: task.color,
+              icon: task.icon,
+              categories: task.categories,
+              schedule: task.schedule,
+              difficulty: task.difficulty,
+              fromTime: this.fromTime(task.timeframe),
+              untilTime: this.untilTime(task.timeframe),
+              comment: task.comment,
+              id: task._id
+            });
+          }
+
+        },
+      );
+  }
+
   private formatTimeFrame(): string {
     let timeFrame = '';
     if (this.form.value.fromTime !== '') {
@@ -129,6 +177,26 @@ export class CreateTaskComponent implements OnInit {
     }
 
     return timeFrame;
+  }
+
+  private initTasks(taskRecordings: ITask[]): ITask[] {
+
+    const tempTask: ITask[] = [];
+
+    taskRecordings.forEach(task => {
+      const newTask: ITask = new Task(task);
+      tempTask.push(newTask);
+    });
+
+    return tempTask;
+  }
+
+  private fromTime(timeframe: string): string {
+    return (timeframe && timeframe.length >= 5) ? timeframe.slice(0, 5) : '';
+  }
+
+  private untilTime(timeframe: string): string {
+    return (timeframe && timeframe.length === 11) ? timeframe.slice(6) : '';
   }
 
 }

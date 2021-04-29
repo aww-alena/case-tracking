@@ -9,17 +9,23 @@ import { StatisticComponent } from './components/pages/statistic/statistic.compo
 import { TimeStatisticsComponent } from './components/time-statistics/time-statistics.component';
 import { ListHabitControlViewComponent } from './components/pages/habit/control-view/list-habit/list-habit-control-view.component';
 import { ListTaskControlViewComponent } from './components/pages/task/control-view/list-task/list-task-control-view.component';
+
 const routes: Routes = [
   {
     path: '',
     component: CabinetLayoutComponent,
     children: [
       { path: 'dashboard', component: DashboardComponent },
+
       { path: 'habit/create', component: CreateHabitComponent },
+      { path: 'task/create', component: CreateTaskComponent },
+
       { path: 'habits/:id', component: CreateHabitComponent },
+      { path: 'tasks/:id', component: CreateTaskComponent },
+
       { path: 'habits', component: ListHabitControlViewComponent },
       { path: 'tasks', component: ListTaskControlViewComponent },
-      { path: 'task/create', component: CreateTaskComponent },
+
       { path: 'statistic', component: StatisticComponent },
       { path: 'statistic/time', component: TimeStatisticsComponent }
     ],

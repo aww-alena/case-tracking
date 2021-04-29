@@ -95,9 +95,21 @@ export class Task {
         return (this._id === undefined) ? true : false;
     }
 
-   setDone(done: boolean): void {
-        this.savedData.done = done;
-   }
+    isIconUndefined(): boolean {
+        return (this.icon === undefined || this.icon === '') ? true : false;
+    }
+
+    getColor(): string {
+        return (this.color !== undefined && this.color !== '') ? this.color : '';
+    }
+
+    getIcon(): string {
+        return (!this.isIconUndefined()) ? this.icon : '';
+    }
+
+    setDone(done: boolean): void {
+            this.savedData.done = done;
+    }
 
    setDate(date: Date): void {
         this.date = date;

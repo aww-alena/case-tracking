@@ -1,1 +1,22 @@
-<p>item-task-control-view works!</p>
+<div class="task">
+
+    <div class="flex title">
+        <ng-template [ngIf]="!task.isIconUndefined()" [ngIfElse]="loading">
+            <mat-icon class="main-icon" [style.color]="task.getColor()">{{task.getIcon()}}</mat-icon>
+        </ng-template>
+
+        <ng-template #loading>
+            <mat-icon [style.color]="task.getColor()" class="main-icon">work</mat-icon>
+        </ng-template>
+
+        {{task.name}}
+
+    </div>
+
+    <div class="flex">
+
+        <button (click)="onEdit(task._id)"><mat-icon>edit</mat-icon>Edit</button>
+        <button (click)="onDelete(task)"><mat-icon>delete</mat-icon>Delete </button>
+    </div>
+
+</div>

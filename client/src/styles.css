@@ -269,11 +269,21 @@ nav ul li {
 }
 
 .create-habit {
-    width: 500px;
-    margin: 40px auto 0;
+    margin: 0px auto;
     border-top: 1px solid var(--main-blue);
     border-radius: 24px;
     box-shadow: 0 -7px 15px rgba(255, 255, 255, 0.1);
+    background-color: var(--dark-back);
+}
+
+.create-habit mat-expansion-panel.mat-expansion-panel.grid .mat-expansion-panel-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 30px;
+}
+
+app-schedule-picker .day-of-week {
+    max-width: 450px;
 }
 
 .create-habit .wrapper {
@@ -1148,6 +1158,8 @@ svg.chart {
     min-width: auto !important;
     margin: 0 auto;
     display: block;
+    z-index: 2;
+    position: relative;
 }
 
 .mat-chip.mat-standard-chip {
@@ -1390,6 +1402,9 @@ mat-ink-bar.mat-ink-bar {
 
 .svg-with-text {
     position: relative;
+    max-width: 475px;
+    display: block;
+    margin: 0 auto;
 }
 
 .svg-with-text .text p {
@@ -1405,7 +1420,7 @@ mat-ink-bar.mat-ink-bar {
     left: 0px;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: 0;
 }
 
 .svg-with-text .text p:first-child {
@@ -1454,11 +1469,18 @@ mat-ink-bar.mat-ink-bar {
 
 .category-picker,
 .timepicker,
-.habit-comment-form {
-    background: rgba(255, 255, 255, 0.1);
+.habit-comment-form,
+.datepicker,
+.subtasks.form {
+    background: rgba(0, 0, 0, .1);
     border-radius: 10px;
     padding-bottom: 1px;
-    margin-bottom: 20px;
+    /*margin-bottom: 20px;*/
+    height: 100%;
+}
+
+.subtasks.form .wrap {
+    padding: 20px;
 }
 
 .timepicker .flex,
@@ -1470,10 +1492,21 @@ mat-ink-bar.mat-ink-bar {
     max-width: calc(50% - 15px);
 }
 
+.datepicker .flex {
+    padding: 20px;
+    max-width: 745px;
+}
+
+.datepicker>.flex mat-form-field.mat-form-field.input-date {
+    margin-right: 25px;
+}
+
 .category-picker h2,
 .timepicker h2,
-.habit-comment-form h2 {
-    background: rgb(70 76 109);
+.habit-comment-form h2,
+.datepicker h2,
+.subtasks.form h2 {
+    background: rgba(0, 0, 0, .1);
     border-radius: 10px 10px 0 0;
     margin-bottom: 25px;
     padding: 5px 10px;
@@ -1523,7 +1556,7 @@ form.create-habit.task .timepicker .flex {
 }
 
 .mat-calendar-body-selected {
-    background-color: #7159f2;
+    background-color: var(--main-blue);
 }
 
 .mat-calendar-body-cell:not(.mat-calendar-body-disabled):hover>.mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical),
@@ -1533,7 +1566,7 @@ form.create-habit.task .timepicker .flex {
 }
 
 .mat-datepicker-content {
-    background-color: #3d425e;
+    background-color: var(--dark-back);
 }
 
 .mat-form-field-label {
@@ -1541,7 +1574,7 @@ form.create-habit.task .timepicker .flex {
 }
 
 .mat-form-field.mat-focused .mat-form-field-ripple {
-    background-color: #7159f2;
+    background-color: var(--main-blue);
 }
 
 .mat-form-field.mat-focused .mat-form-field-label {
@@ -2208,20 +2241,40 @@ select:-webkit-autofill:focus {
     transition: background-color 5000s ease-in-out 0s;
 }
 
-.habit-list-control-view .list {
+.habit-list-control-view .list,
+.task-list-control-view .list {
+    counter-reset: counter 0;
+}
+
+.habit-list-control-view .list .habit:hover,
+.task-list-control-view .list .task:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.habit-list-control-view .list .habit .flex.title:before,
+.task-list-control-view .list .task .flex.title:before {
+    counter-increment: counter;
+    content: counter(counter);
+    padding: 0 30px 0 20px;
+}
+
+.habit-list-control-view .list,
+.task-list-control-view .list {
     border-radius: 20px;
-    padding: 20px 25px;
     box-shadow: 0 -7px 15px rgb(255 255 255 / 4%), 0 0 10px rgb(0 0 0 / 30%);
     border-left: 1px solid var(--main-blue);
     border-right: 1px solid var(--main-blue);
     background-color: var(--dark-back);
+    overflow: hidden;
 }
 
-.habit>.flex>button {
+.habit>.flex>button,
+.task>.flex>button {
     border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.habit-list-control-view .list .habit button {
+.habit-list-control-view .list .habit button,
+.task-list-control-view .list .task button {
     display: flex;
     align-items: center;
     color: #fff;
@@ -2234,18 +2287,21 @@ select:-webkit-autofill:focus {
     -o-transition: all 0.4s ease;
 }
 
-.habit-list-control-view .list .habit button:hover {
-    background-color: var(--main-blue);
+.habit-list-control-view .list .habit button:hover,
+.task-list-control-view .list .task button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
-.habit-list-control-view .list .habit button mat-icon.mat-icon {
+.habit-list-control-view .list .habit button mat-icon.mat-icon,
+.task-list-control-view .list .task button mat-icon.mat-icon {
     font-size: 17px;
     width: auto;
     height: auto;
     margin: 0 12px;
 }
 
-.habit-list-control-view .list .habit {
+.habit-list-control-view .list .habit,
+.task-list-control-view .list .task {
     border-bottom: 1px solid var(--main-blue);
     display: flex;
     align-items: center;
@@ -2253,12 +2309,20 @@ select:-webkit-autofill:focus {
     justify-content: space-between;
 }
 
-.habit-list-control-view .list .habit .flex.title {
-    justify-content: flex-start;
-    font-size: 16px;
+.habit-list-control-view .list app-item-habit-control-view:last-child .habit,
+.task-list-control-view .list app-item-task-control-view:last-child .task {
+    border-bottom: none;
 }
 
-.habit-list-control-view .list .habit .flex.title mat-icon.mat-icon {
+.habit-list-control-view .list .habit .flex.title,
+.task-list-control-view .list .task .flex.title {
+    justify-content: flex-start;
+    font-size: 16px;
+    padding: 22px;
+}
+
+.habit-list-control-view .list .habit .flex.title mat-icon.mat-icon,
+.task-list-control-view .list .task .flex.title mat-icon.mat-icon {
     width: auto;
     height: auto;
     margin-right: 10px;
@@ -2498,13 +2562,9 @@ mat-sidenav-content.mat-drawer-content.mat-sidenav-content .mat-progress-spinner
         max-height: 25px;
         font-size: 15px;
     }
-    .grid-time-stat,
-    .habit-list-control-view .list {
+    .grid-time-stat {
         grid-template-columns: 1fr;
         grid-gap: 25px;
-    }
-    .habit-list-control-view .list {
-        grid-gap: 20px;
     }
     .statistic.grid {
         grid-template-columns: 1fr;
