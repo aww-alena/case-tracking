@@ -2367,9 +2367,6 @@ mat-sidenav-content.mat-drawer-content.mat-sidenav-content .mat-progress-spinner
     .mat-dialog-content {
         padding: 0 15px;
     }
-    body {
-        background-color: rgb(72 79 121 / 90%);
-    }
     .mat-dialog-title button {
         right: -30px;
         top: -9px;
@@ -2380,7 +2377,7 @@ mat-sidenav-content.mat-drawer-content.mat-sidenav-content .mat-progress-spinner
     .mobile-header {
         display: flex;
         height: 60px;
-        background: #3c425c;
+        background: var(--dark-back);
         position: fixed;
         top: 0;
         left: 0;
@@ -2402,7 +2399,7 @@ mat-sidenav-content.mat-drawer-content.mat-sidenav-content .mat-progress-spinner
     }
     .mobile-header button {
         padding: 0px;
-        background: #6658c0;
+        background: var(--main-blue);
         width: 35px;
         height: 35px;
         border-radius: 50%;
