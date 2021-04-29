@@ -10,15 +10,22 @@ import { NgForm } from '@angular/forms';
 export class NoteToDayComponent implements OnInit {
 
   @Input() schedule: FormControl;
+  @Input() oldNotes: string;
   @Output() addNotes: EventEmitter<string> = new EventEmitter();
 
   dayEn = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-  notesForDays: false;
+  notesForDays = false;
+  formData: {id: number; text: string}[];
 
   constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.oldNotes) {
+      this.notesForDays = true;
+      this.formData = JSON.parse(this.oldNotes);
+    }
+  }
 
   transferData(form: NgForm): void {
     const formData = JSON.stringify(form.form.value);

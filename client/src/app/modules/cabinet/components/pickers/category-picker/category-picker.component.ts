@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ChartType, ChartOptions } from 'chart.js';
 import { SingleDataSet, Label } from 'ng2-charts';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
@@ -11,6 +11,7 @@ import {TooltipPosition} from '@angular/material/tooltip';
 })
 export class CategoryPickerComponent implements OnInit {
 
+  @Input() oldCategories: string;
   @Output() changeCategories: EventEmitter<string> = new EventEmitter();
 
   positionOptions: TooltipPosition[] = ['below', 'above', 'left', 'right'];
@@ -42,10 +43,10 @@ export class CategoryPickerComponent implements OnInit {
 
   categories: Array<string> = [];
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit(): void {
+    this.categories = (this.oldCategories) ? this.oldCategories.split(',') : [];
   }
 
   chartClicked(e: any): void {

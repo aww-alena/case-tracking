@@ -5,6 +5,7 @@
     </div>
 
     <div class="color-window" [ngClass]="{active: toggle}">
+        <div class="shadow" (click)="toggle = !toggle"></div>
         <span *ngFor="let color of colors" (click)="onSelect(color)" [style.background-color]=color></span>
     </div>
 </div>

@@ -45,41 +45,7 @@ export class CreateHabitComponent implements OnInit {
               private router: Router) {}
 
   ngOnInit(): void {
-    this.createForm();
     this.getHabit();
-  }
-
-  createForm(): void {
-    this.form = new FormGroup({
-      name: new FormControl('', Validators.required),
-      hasTimer: new FormControl(false),
-      hasRating: new FormControl(false),
-      color: new FormControl(''),
-      icon: new FormControl(''),
-      categories: new FormControl(''),
-      schedule: new FormControl('everyday'),
-      difficulty: new FormControl(''),
-      comment: new FormControl(''),
-      fromTime: new FormControl(''),
-      untilTime: new FormControl(''),
-      id: new FormControl('')
-    });
-  }
-
-  createHabit(): void {
-    this.habit = new Habit ({
-      name: this.form.value.name,
-      hasTimer: this.form.value.hasTimer,
-      hasRating: this.form.value.hasRating,
-      categories: this.form.value.categories,
-      schedule: this.form.value.schedule,
-      color: this.form.value.color,
-      icon: this.form.value.icon,
-      difficulty: this.form.value.difficulty,
-      comment: this.form.value.comment,
-      timeframe: this.formatTimeFrame(),
-      _id: this.form.value.id
-    });
   }
 
   onSubmit(): void {
@@ -165,6 +131,40 @@ export class CreateHabitComponent implements OnInit {
     return timeFrame;
   }
 
+  private createForm(): void {
+    const schedule = (this.isNew) ? 'everyday' : '';
+    this.form = new FormGroup({
+      name: new FormControl('', Validators.required),
+      hasTimer: new FormControl(false),
+      hasRating: new FormControl(false),
+      color: new FormControl(''),
+      icon: new FormControl(''),
+      categories: new FormControl(''),
+      schedule: new FormControl(schedule),
+      difficulty: new FormControl(''),
+      comment: new FormControl(''),
+      fromTime: new FormControl(''),
+      untilTime: new FormControl(''),
+      id: new FormControl('')
+    });
+  }
+
+  private createHabit(): void {
+    this.habit = new Habit ({
+      name: this.form.value.name,
+      hasTimer: this.form.value.hasTimer,
+      hasRating: this.form.value.hasRating,
+      categories: this.form.value.categories,
+      schedule: this.form.value.schedule,
+      color: this.form.value.color,
+      icon: this.form.value.icon,
+      difficulty: this.form.value.difficulty,
+      comment: this.form.value.comment,
+      timeframe: this.formatTimeFrame(),
+      _id: this.form.value.id
+    });
+  }
+
   private getHabit(): void {
     this.route.params
       .pipe(
@@ -181,7 +181,7 @@ export class CreateHabitComponent implements OnInit {
       )
       .subscribe(
         (habit: IHabit | any) => {
-          console.log(habit);
+          this.createForm();
           if (habit) {
             this.habit = habit;
             this.form.patchValue({
@@ -193,13 +193,22 @@ export class CreateHabitComponent implements OnInit {
               categories: habit.categories,
               schedule: habit.schedule,
               difficulty: habit.difficulty,
+              fromTime: this.fromTime(habit.timeframe),
+              untilTime: this.untilTime(habit.timeframe),
               comment: habit.comment,
               id: habit._id
             });
-
           }
 
         },
       );
+  }
+
+  private fromTime(timeframe: string): string {
+    return (timeframe && timeframe.length >= 5) ? timeframe.slice(0, 5) : '';
+  }
+
+  private untilTime(timeframe: string): string {
+    return (timeframe && timeframe.length === 11) ? timeframe.slice(6) : '';
   }
 }

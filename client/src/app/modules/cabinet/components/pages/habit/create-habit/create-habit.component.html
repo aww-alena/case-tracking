@@ -1,8 +1,8 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="create-habit">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="create-habit" *ngIf="(!isNew && habit) || isNew">
 
     <input formControlName="id" type="hidden">
 
-    <p>Create Habit</p>
+    <p>{{isNew ? 'Create' : 'Edit'}} Habit</p>
 
     <div class="wrapper">
 
@@ -13,11 +13,11 @@
                 <input formControlName="name" type="text" matInput>
             </mat-form-field>
 
-            <app-icon-picker (selectIcon)=onSelectIcon($event)></app-icon-picker>
+            <app-icon-picker (selectIcon)=onSelectIcon($event) [oldIcon]="form.value.icon"></app-icon-picker>
 
-            <app-color-picker (selectColor)=onSelectColor($event)></app-color-picker>
+            <app-color-picker (selectColor)=onSelectColor($event) [oldColor]="form.value.color"></app-color-picker>
 
-            <app-difficulty-picker (selectDifficulty)=onSelectDifficulty($event)></app-difficulty-picker>
+            <app-difficulty-picker (selectDifficulty)=onSelectDifficulty($event) [oldValue]="form.value.difficulty"></app-difficulty-picker>
 
         </div>
 
@@ -25,8 +25,8 @@
 
         <mat-checkbox formControlName="hasRating" class="example-margin">I will evaluete the completion!</mat-checkbox>
 
-        <app-schedule-picker (changeSchedule)="onChangeSchedule($event)"></app-schedule-picker>
 
+        <app-schedule-picker (changeSchedule)="onChangeSchedule($event)" [oldSchedule]="form.value.schedule"></app-schedule-picker>
 
         <mat-expansion-panel>
             <mat-expansion-panel-header>
@@ -35,15 +35,15 @@
                 </mat-panel-title>
             </mat-expansion-panel-header>
 
-            <app-time-picker (changeFromTime)="onChangeFromTime($event)" (changeUntilTime)="onChangeUntilTime($event)"></app-time-picker>
+            <app-time-picker (changeFromTime)="onChangeFromTime($event)" (changeUntilTime)="onChangeUntilTime($event)" [oldFromTime]="form.value.fromTime" [oldUntilTime]="form.value.untilTime"></app-time-picker>
 
-            <app-category-picker (changeCategories)="onChangeCategories($event)"></app-category-picker>
+            <app-category-picker (changeCategories)="onChangeCategories($event)" [oldCategories]="form.value.categories"></app-category-picker>
 
-            <app-note-to-day [schedule]="schedule" (addNotes)="onAddNotes($event)"></app-note-to-day>
+            <app-note-to-day [schedule]="schedule" (addNotes)="onAddNotes($event)" [oldNotes]="form.value.comment"></app-note-to-day>
 
         </mat-expansion-panel>
 
-        <button type="submit">Create</button>
+        <button type="submit">{{isNew ? 'Create' : 'Save'}}</button>
     </div>
 
 </form>

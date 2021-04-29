@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-schedule-picker',
@@ -7,6 +7,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class SchedulePickerComponent implements OnInit {
 
+  @Input() oldSchedule: string;
   @Output() changeSchedule: EventEmitter<string> = new EventEmitter();
 
   dayRu = [
@@ -34,10 +35,12 @@ export class SchedulePickerComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.schedule = (this.oldSchedule) ? this.oldSchedule.split(',') : [];
   }
 
   onAddDayToSchedule(idDay: string): void {
     const isExist = this.schedule.includes(idDay);
+    this.schedule = (this.isEveryday()) ? [] : this.schedule;
 
     if (!isExist) {
       this.schedule.push(idDay);
@@ -51,6 +54,7 @@ export class SchedulePickerComponent implements OnInit {
 
   onSetScheduleEveryday(): void {
     this.schedule = [];
+    this.schedule.push('everyday');
     this.changeSchedule.emit(this.schedule.join());
   }
 
@@ -58,8 +62,8 @@ export class SchedulePickerComponent implements OnInit {
     return this.schedule.includes(idDay);
   }
 
-  isEmpty(): boolean {
-    if (this.schedule.length === 0) {
+  isEveryday(): boolean {
+    if (this.schedule[0] === 'everyday') {
       return true;
     }
     return false;

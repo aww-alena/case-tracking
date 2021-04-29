@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-difficulty-picker',
@@ -6,7 +6,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./difficulty-picker.component.css']
 })
 export class DifficultyPickerComponent implements OnInit {
-
+  @Input() oldValue: string;
   @Output() selectDifficulty: EventEmitter<string> = new EventEmitter();
   selectedDifficulty = '';
   levelsOfDifficulty = ['hard', 'medium', 'easy'];
@@ -14,6 +14,7 @@ export class DifficultyPickerComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.selectedDifficulty = (this.oldValue) ? this.oldValue : '';
   }
 
   isActive(difficulty: string): boolean {

@@ -3,12 +3,12 @@
     <div class="flex">
         <mat-form-field appearance="fill" (mouseenter)="initFromPicker()">
             <mat-label>from</mat-label>
-            <input type="text" matInput #fromPicker (change)="onChangeFrom($event)" value="13:00">
+            <input type="text" matInput #fromPicker (change)="onChangeFrom($event)" [value]="oldFromTime">
         </mat-form-field>
         -
         <mat-form-field appearance="fill" (mouseenter)="initUntilPicker()">
             <mat-label>To</mat-label>
-            <input type="text" matInput #untilPicker (change)="onChangeUntil($event)" value="13:00">
+            <input type="text" matInput #untilPicker (change)="onChangeUntil($event)" [value]="oldUntilTime">
         </mat-form-field>
     </div>
 </div>

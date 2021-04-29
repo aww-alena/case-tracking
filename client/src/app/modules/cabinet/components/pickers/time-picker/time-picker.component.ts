@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, ElementRef, EventEmitter, Inject, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Inject, Input, OnInit, Output, ViewChild } from '@angular/core';
 import Picker from 'pickerjs';
 
 @Component({
@@ -8,6 +8,9 @@ import Picker from 'pickerjs';
   styleUrls: ['./time-picker.component.css']
 })
 export class TimePickerComponent implements OnInit {
+
+  @Input() oldFromTime: string;
+  @Input() oldUntilTime: string;
 
   @ViewChild('fromPicker') fromPicker: ElementRef;
   @ViewChild('untilPicker') untilPicker: ElementRef;
@@ -19,8 +22,7 @@ export class TimePickerComponent implements OnInit {
   timeUntil: any;
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   initFromPicker(): void {
     if (this.timeFrom === undefined) {

@@ -6,7 +6,6 @@ import { CabinetRoutingModule } from './cabinet-routing.module';
 import { CabinetLayoutComponent } from './components/pages/cabinet-layout/cabinet-layout.component';
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
 import { CreateHabitComponent } from './components/pages/habit/create-habit/create-habit.component';
-import { EditHabitComponent } from './components/pages/habit/edit-habit/edit-habit.component';
 import { ItemHabitComponent } from './components/pages/habit/item-habit/item-habit.component';
 import { ListHabitComponent } from './components/pages/habit/list-habit/list-habit.component';
 import { RatingComponent } from './components/rating/rating.component';
@@ -21,7 +20,6 @@ import { CategoryPickerComponent } from './components/pickers/category-picker/ca
 import { ChartsModule } from 'ng2-charts';
 import { NoteToDayComponent } from './components/note-to-day/note-to-day.component';
 import { CreateTaskComponent } from './components/pages/task/create-task/create-task.component';
-import { EditTaskComponent } from './components/pages/task/edit-task/edit-task.component';
 import { ItemTaskComponent } from './components/pages/task/item-task/item-task.component';
 import { ListTaskComponent } from './components/pages/task/list-task/list-task.component';
 import { CreateSubtasksComponent } from './components/create-subtasks/create-subtasks.component';
@@ -32,10 +30,12 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { StatisticComponent } from './components/pages/statistic/statistic.component';
 import { TimeStatisticsComponent } from './components/time-statistics/time-statistics.component';
+
 import { ItemTaskControlViewComponent } from './components/pages/task/item-task-control-view/item-task-control-view.component';
-import { ItemHabitControlViewComponent } from './components/pages/habit/item-habit-control-view/item-habit-control-view.component';
 import { ListTaskControlViewComponent } from './components/pages/task/list-task-control-view/list-task-control-view.component';
-import { ListHabitControlViewComponent } from './components/pages/habit/list-habit-control-view/list-habit-control-view.component';
+
+import { ItemHabitControlViewComponent } from './components/pages/habit/control-view/item-habit/item-habit-control-view.component';
+import { ListHabitControlViewComponent } from './components/pages/habit/control-view/list-habit/list-habit-control-view.component';
 
 
 @NgModule({
@@ -43,7 +43,6 @@ import { ListHabitControlViewComponent } from './components/pages/habit/list-hab
     CabinetLayoutComponent,
     DashboardComponent,
     CreateHabitComponent,
-    EditHabitComponent,
     ItemHabitComponent,
     ListHabitComponent,
     RatingComponent,
@@ -57,7 +56,6 @@ import { ListHabitControlViewComponent } from './components/pages/habit/list-hab
     CategoryPickerComponent,
     NoteToDayComponent,
     CreateTaskComponent,
-    EditTaskComponent,
     ItemTaskComponent,
     ListTaskComponent,
     CreateSubtasksComponent,

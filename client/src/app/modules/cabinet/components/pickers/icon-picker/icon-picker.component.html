@@ -1,10 +1,12 @@
 <div class="icon-block">
+
     <div class="icon-btn">
         <button (click)="toggle = !toggle" type="button"><mat-icon>{{icon}}</mat-icon></button>
         <p>icon</p>
     </div>
 
     <div class="icon-window" [ngClass]="{active: toggle}">
+        <div class="shadow" (click)="toggle = !toggle"></div>
         <mat-icon *ngFor="let icon of icons" (click)="onSelect(icon)">{{icon}}</mat-icon>
     </div>
 </div>

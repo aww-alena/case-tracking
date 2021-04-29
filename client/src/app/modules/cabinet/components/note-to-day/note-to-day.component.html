@@ -9,7 +9,7 @@
 
                 <mat-form-field appearance="fill" *ngFor="let day of schedule.value.split(',')">
                     <mat-label>{{dayEn[day]}}</mat-label>
-                    <textarea matInput ngModel [name]="day" (blur)="transferData(form)"></textarea>
+                    <textarea matInput [ngModel]="formData[day]" [name]="day" (blur)="transferData(form)"></textarea>
                 </mat-form-field>
 
             </div>
