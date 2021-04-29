@@ -12,7 +12,7 @@ import { TaskService } from 'src/app/services/task/task.service';
 })
 export class ListTaskComponent implements OnInit, OnDestroy {
 
-  tasks: ITask[] = [];
+  tasks: ITask[];
   subscriptions: Subscription = new Subscription();
 
   constructor(private taskService: TaskService) {}
@@ -26,6 +26,7 @@ export class ListTaskComponent implements OnInit, OnDestroy {
   }
 
   getHabits(): void {
+    this.tasks = [];
     this.subscriptions.add(this.taskService.fetch().pipe(
       mergeMap((tasks: ITask[]) => this.initTasks(tasks)))
       .subscribe(value => {

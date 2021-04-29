@@ -8,7 +8,7 @@ import { CreateTaskComponent } from './components/pages/task/create-task/create-
 import { StatisticComponent } from './components/pages/statistic/statistic.component';
 import { TimeStatisticsComponent } from './components/time-statistics/time-statistics.component';
 import { ListHabitControlViewComponent } from './components/pages/habit/control-view/list-habit/list-habit-control-view.component';
-
+import { ListTaskControlViewComponent } from './components/pages/task/control-view/list-task/list-task-control-view.component';
 const routes: Routes = [
   {
     path: '',
@@ -18,6 +18,7 @@ const routes: Routes = [
       { path: 'habit/create', component: CreateHabitComponent },
       { path: 'habits/:id', component: CreateHabitComponent },
       { path: 'habits', component: ListHabitControlViewComponent },
+      { path: 'tasks', component: ListTaskControlViewComponent },
       { path: 'task/create', component: CreateTaskComponent },
       { path: 'statistic', component: StatisticComponent },
       { path: 'statistic/time', component: TimeStatisticsComponent }
