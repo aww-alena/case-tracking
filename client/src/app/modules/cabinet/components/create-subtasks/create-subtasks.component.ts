@@ -45,6 +45,8 @@ export class CreateSubtasksComponent implements OnInit {
       timer: new Timer('')
     });
 
+    this.form.reset();
+
     this.addSubtask.emit(this.subtasks);
   }
 

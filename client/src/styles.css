@@ -1483,6 +1483,14 @@ mat-ink-bar.mat-ink-bar {
     padding: 20px;
 }
 
+.flex-timer .mat-tab-labels .mat-tab-label:first-child {
+    display: none;
+}
+
+.flex-timer mat-tab-group.mat-tab-group.mat-primary.mat-tab-group-inverted-header.active .mat-tab-labels .mat-tab-label:first-child {
+    display: inline-flex;
+}
+
 .timepicker .flex,
 .habit-comment-form .form {
     padding: 0px 15px;
@@ -1979,13 +1987,11 @@ span.done-span {
 }
 
 .calendar-ctatistic .mat-tab-label-content span {
-    background: rgb(67 73 103);
+    background: rgba(0, 0, 0, .2);
     opacity: 1;
     padding: 9px 17px;
     border-radius: 10px;
     margin-bottom: 1px;
-    border-left: 1px solid rgb(67 73 103);
-    border-right: 1px solid rgb(67 73 103);
     display: flex;
     align-items: center;
     -webkit-border-radius: 10px;
@@ -1997,8 +2003,12 @@ span.done-span {
 }
 
 .calendar-ctatistic .mat-tab-label-active span {
-    border-left: 1px solid var(--main-blue);
-    border-right: 1px solid var(--main-blue);
+    background-color: var(--main-blue);
+    color: #fff;
+}
+
+.calendar-ctatistic .mat-tab-label-active span mat-icon.mat-icon {
+    color: #fff !important;
 }
 
 .calendar-ctatistic .mat-tab-header {
@@ -2244,6 +2254,15 @@ select:-webkit-autofill:focus {
 .habit-list-control-view .list,
 .task-list-control-view .list {
     counter-reset: counter 0;
+}
+
+.statistic-notes {
+    counter-reset: notes-counter 0;
+}
+
+.statistic-notes .number:before {
+    counter-increment: notes-counter;
+    content: counter(notes-counter);
 }
 
 .habit-list-control-view .list .habit:hover,

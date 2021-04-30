@@ -4,7 +4,7 @@ import { ITask, Subtask } from 'src/app/interfaces/task';
 import { TaskService } from 'src/app/services/task/task.service';
 import { Task } from 'src/app/classes/task';
 import { MessageService } from 'src/app/services/message-service/message.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
@@ -42,7 +42,8 @@ export class CreateTaskComponent implements OnInit {
 
   constructor(private taskService: TaskService,
               private messageService: MessageService,
-              private route: ActivatedRoute) {}
+              private route: ActivatedRoute,
+              private router: Router) {}
 
   ngOnInit(): void {
     this.getTask();
@@ -60,7 +61,8 @@ export class CreateTaskComponent implements OnInit {
       difficulty: new FormControl(''),
       comment: new FormControl(''),
       fromTime: new FormControl(''),
-      untilTime: new FormControl('')
+      untilTime: new FormControl(''),
+      id: new FormControl('')
     });
   }
 
@@ -76,18 +78,40 @@ export class CreateTaskComponent implements OnInit {
       difficulty: this.form.value.difficulty,
       comment: this.form.value.comment,
       timeframe: this.formatTimeFrame(),
-      _id: '',
+      _id: this.form.value.id,
       subtasks: this.subtasks
     });
   }
 
   onSubmit(): void {
 
-    this.createTask();
-    console.log(this.task);
-    this.taskService.create(this.task).subscribe((newTask) => {
-      this.form.reset();
-    });
+    if (this.isNew) {
+      console.log(this.form);
+      this.createTask();
+      this.taskService.create(this.task).subscribe(
+        () => {
+          this.messageService.showMessage('The task was created successfully', 'Success');
+          this.router.navigate(['/app/dashboard']);
+        },
+        (error) => {
+          this.form.enable();
+          this.messageService.showError(error.error.message, 'Uuups! Error.');
+        }
+      );
+    } else {
+      console.log(this.form);
+      this.createTask();
+      this.taskService.update(this.task).subscribe(
+        () => {
+          this.messageService.showMessage('The task was updated successfully', 'Success');
+          this.router.navigate(['/app/dashboard']);
+        },
+        (error) => {
+          this.form.enable();
+          this.messageService.showError(error.error.message, 'Uuups! Error.');
+        }
+      );
+    }
   }
 
   onAddSubtask(subtask: any): void {
@@ -142,29 +166,33 @@ export class CreateTaskComponent implements OnInit {
       )
       .subscribe(
         (task: ITask | any) => {
-          console.log(task);
 
           this.createForm();
+
           if (task) {
             this.task = new Task(task);
-            this.form.patchValue({
-              name: task.name,
-              hasTimer: task.hasTimer,
-              hasRating: task.hasRating,
-              color: task.color,
-              icon: task.icon,
-              categories: task.categories,
-              schedule: task.schedule,
-              difficulty: task.difficulty,
-              fromTime: this.fromTime(task.timeframe),
-              untilTime: this.untilTime(task.timeframe),
-              comment: task.comment,
-              id: task._id
-            });
+            this.subtasks = this.task.subtasks;
+            this.initForm(this.task);
           }
 
         },
       );
+  }
+
+  private initForm(task: ITask): void {
+    this.form.patchValue({
+      name: task.name,
+      hasTimer: task.hasTimer,
+      hasRating: task.hasRating,
+      color: task.color,
+      icon: task.icon,
+      categories: task.categories,
+      difficulty: task.difficulty,
+      fromTime: this.fromTime(task.timeframe),
+      untilTime: this.untilTime(task.timeframe),
+      comment: task.comment,
+      id: task._id
+    });
   }
 
   private formatTimeFrame(): string {

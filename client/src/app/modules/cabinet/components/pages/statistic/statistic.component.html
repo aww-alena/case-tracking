@@ -1,5 +1,5 @@
 <div class="calendar-ctatistic">
-    <mat-tab-group mat-align-tabs="start">
+    <mat-tab-group disableRipple mat-align-tabs="start">
         <mat-tab *ngFor="let habit of habits">
             <ng-template mat-tab-label>
                 <span (click)="showHabitsStatistic(habit)">
@@ -23,7 +23,7 @@
     </ng-template>
 
     <ng-template #loading>
-        <p class="tip">Select a habit to view statistics </p>
+        <p class="tip">Nothing to show</p>
     </ng-template>
 
 

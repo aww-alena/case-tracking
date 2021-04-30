@@ -72,6 +72,9 @@ module.exports.create = async function(req, res) {
 }
 
 module.exports.update = async function(req, res) {
+
+    req.body.user = req.user.id;
+
     try {
         const task = await Task.findByIdAndUpdate({ _id: req.params.id }, { $set: req.body }, { new: true })
         res.status(200).json(task)

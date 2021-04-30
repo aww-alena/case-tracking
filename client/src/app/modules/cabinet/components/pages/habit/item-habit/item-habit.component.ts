@@ -6,6 +6,7 @@ import { JournalService } from 'src/app/services/journal/journal.service';
 import { NgForm } from '@angular/forms';
 import { JournalEntry } from 'src/app/classes/journal-entry';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-item-habit',
@@ -16,13 +17,22 @@ export class ItemHabitComponent implements OnInit, OnDestroy {
   @Input() habitRecording: IHabitRecording;
   today = moment();
   subscriptions: Subscription = new Subscription();
+  tabName = 'close';
 
-  constructor(private journalService: JournalService) {}
+  constructor(private journalService: JournalService, private router: Router) {}
 
   ngOnInit(): void {}
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
+  }
+
+  tabIsChange(event: any): void {
+    this.tabName = event.tab.textLabel;
+
+    if (this.tabName === 'edit' ) {
+      this.router.navigate([`app/habits/${this.habitRecording.habit._id}`]);
+    }
   }
 
   markDone(id: string) {

@@ -56,7 +56,7 @@ export class CreateHabitComponent implements OnInit {
       this.habitService.create(this.habit).subscribe(
         () => {
           this.messageService.showMessage('The habit was created successfully', 'Success');
-          this.createForm();
+          this.router.navigate(['/app/dashboard']);
         },
         (error) => {
           this.form.enable();
@@ -69,7 +69,7 @@ export class CreateHabitComponent implements OnInit {
       this.habitService.update(this.habit).subscribe(
         () => {
           this.messageService.showMessage('The habit was updated successfully', 'Success');
-          this.createForm();
+          this.router.navigate(['/app/dashboard']);
         },
         (error) => {
           this.form.enable();

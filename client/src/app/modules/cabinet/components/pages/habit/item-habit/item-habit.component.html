@@ -36,16 +36,18 @@
         </div>
 
         <div class="flex-timer">
-            <mat-tab-group headerPosition="below">
+            <mat-tab-group headerPosition="below" (selectedTabChange)="tabIsChange($event)" [ngClass]="{'active': tabName !== 'close'}">
 
-                <mat-tab label="Closed">
-                    <ng-template mat-tab-label (click)="sho()">
+                <mat-tab label="close">
+                    <ng-template mat-tab-label>
                         <mat-icon>hide_source</mat-icon>
                         Close
                     </ng-template>
                 </mat-tab>
 
-                <mat-tab *ngIf="habitRecording.habit.hasTimer">
+
+
+                <mat-tab label="timer" *ngIf="habitRecording.habit.hasTimer">
                     <ng-template mat-tab-label>
                         <mat-icon>timer</mat-icon>
                         Timer
@@ -53,7 +55,7 @@
                     <app-timer [timer]="habitRecording.entry.timer" *ngIf="habitRecording.habit.hasTimer" (timePlay)=onPlayTime($event) (timePause)=onPauseTime($event) (timeReset)=onResetTime() (changeTime)=onChangeTime($event) (deleteTimeStamp)="onDeleteTimeStamp($event)"></app-timer>
                 </mat-tab>
 
-                <mat-tab label="Comment" *ngIf="!habitRecording.habit.isCommentUndefined() && !habitRecording.habit.isConmmentEmpty()">
+                <mat-tab label="comment" *ngIf="!habitRecording.habit.isCommentUndefined() && !habitRecording.habit.isConmmentEmpty()">
                     <ng-template mat-tab-label>
                         <mat-icon>description</mat-icon>
                         Comment
@@ -61,7 +63,7 @@
                     <p class="comment" *ngIf="!habitRecording.habit.isCommentUndefined()">{{habitRecording.habit.getComment()}}</p>
                 </mat-tab>
 
-                <mat-tab label="Add note">
+                <mat-tab label="add_note">
                     <ng-template mat-tab-label>
                         <mat-icon>add_circle</mat-icon>
                         Add note
@@ -76,6 +78,13 @@
 
                         <button [disabled]="form.invalid" class="save-comment" (click)=saveComment(form) type="button">Save</button>
                     </form>
+                </mat-tab>
+
+                <mat-tab label="edit">
+                    <ng-template mat-tab-label>
+                        <mat-icon>edit</mat-icon>
+                        Edit
+                    </ng-template>
                 </mat-tab>
             </mat-tab-group>
 

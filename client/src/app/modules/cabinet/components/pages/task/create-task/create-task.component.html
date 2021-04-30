@@ -1,4 +1,7 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="create-habit task" *ngIf="(!isNew && task) || isNew">
+
+    <input formControlName="id" type="hidden">
+
     <p>{{isNew ? 'Create' : 'Edit'}} Task</p>
 
     <div class="wrapper">
@@ -29,7 +32,7 @@
                     </mat-panel-title>
                 </mat-expansion-panel-header>
 
-                <app-create-subtasks (addSubtask)="onAddSubtask($event)" [oldSubtasks]="task.subtasks"></app-create-subtasks>
+                <app-create-subtasks (addSubtask)="onAddSubtask($event)" [oldSubtasks]="subtasks"></app-create-subtasks>
             </mat-expansion-panel>
 
             <mat-expansion-panel>

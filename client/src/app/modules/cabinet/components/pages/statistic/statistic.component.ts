@@ -51,6 +51,7 @@ export class StatisticComponent implements OnInit, OnDestroy {
   getHabits(): void {
     this.subscriptions.add(this.habitService.fetch().subscribe((habits) => {
       this.habits = habits;
+      this.showHabitsStatistic(this.habits[0]);
     }));
   }
 
