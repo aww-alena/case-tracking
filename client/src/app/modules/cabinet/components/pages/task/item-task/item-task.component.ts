@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { ITask, Subtask } from 'src/app/interfaces/task';
@@ -15,12 +16,16 @@ export class ItemTaskComponent implements OnInit, OnDestroy {
   subscriptions: Subscription = new Subscription();
   showMore = false;
 
-  constructor(private taskService: TaskService) { }
+  constructor(private taskService: TaskService, private router: Router) { }
 
   ngOnInit(): void {}
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
+  }
+
+  goToEdit(id: string): void {
+    this.router.navigate([`app/tasks/${id}`]);
   }
 
   markDone(): void {

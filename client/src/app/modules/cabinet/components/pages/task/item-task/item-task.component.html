@@ -1,4 +1,8 @@
-<div class="task-item">
+<div class="task-item" [ngClass]="{open: showMore}">
+
+    <div class="hidden">
+        <button class="edit" type="button" (click)="goToEdit(task._id)"><mat-icon>edit</mat-icon></button>
+    </div>
     <div class="wrapper flex" (click)="showMore = !showMore">
 
         <div class="flex">

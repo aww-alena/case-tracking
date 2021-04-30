@@ -44,6 +44,7 @@ export interface Subtask {
     done: boolean;
     doneDate: Date;
     timer: ITimer;
+    _id?: string;
 }
 
 export interface SavedData {

@@ -11,6 +11,7 @@
     --pink: #FF9DE2;
     --main-blue: #4660b6;
     --dark-back: #232b3e;
+    --dark-dark: #1c2232;
     --back: #27334c;
     --light-back: #35425d;
 }
@@ -49,6 +50,19 @@ button {
     cursor: pointer;
     font-family: inherit;
     outline: none;
+    transition: all 0.4s ease;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -ms-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+}
+
+.subtasks.form .left h2,
+.subtasks.form .created h2 {
+    background: transparent;
+    font-size: 16px;
+    padding: 0px 0px 10px;
+    border-bottom: 1px solid var(--main-blue);
 }
 
 .lang-btns {
@@ -538,20 +552,27 @@ mat-expansion-panel mat-icon {
 }
 
 .create-habit mat-expansion-panel-header {
-    background: rgba(0, 0, 0, 0.1) !important;
+    background: rgb(70 96 182 / 26%) !important;
+}
+
+.subtasks.form button[type="submit"] {
+    background: transparent;
+    border: 2px solid var(--main-blue)
+}
+
+.subtasks.form button[type="submit"]:hover {
+    background: var(--main-blue);
 }
 
 .create-habit mat-expansion-panel-header:hover {
-    background: rgba(0, 0, 0, 0.1) !important;
-    box-shadow: 0 -7px 15px var(--main-blue) !important;
+    background: rgb(70 96 182 / 26%) !important;
     padding: 0px 10px !important;
 }
 
 .create-habit mat-expansion-panel-header.mat-expanded {
     height: 48px;
     margin-bottom: 20px;
-    background: rgba(0, 0, 0, 0.1)!important;
-    box-shadow: 0 -7px 15px var(--main-blue) !important;
+    background: rgb(70 96 182 / 26%) !important;
 }
 
 .create-habit .mat-expansion-panel-body {
@@ -931,14 +952,15 @@ mat-sidenav-container.mat-drawer-container.mat-sidenav-container {
     font-size: 12px;
     padding: 0px;
     font-weight: normal;
-    margin: 5px 0 0 0;
+    margin: 7px 0 0 0;
+    text-transform: capitalize;
 }
 
 .color-btn button,
 .icon-btn button {
     border-radius: 50%;
-    width: 45px;
-    height: 45px;
+    width: 55px;
+    height: 55px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -951,7 +973,6 @@ mat-sidenav-container.mat-drawer-container.mat-sidenav-container {
 
 .color-block,
 .icon-block {
-    width: 45px;
     text-align: center;
     position: relative;
 }
@@ -1007,13 +1028,111 @@ mat-sidenav-container.mat-drawer-container.mat-sidenav-container {
 .difficulty button {
     display: flex;
     align-items: center;
-    margin-bottom: 7px;
+    margin-bottom: 2px;
+    padding: 5px 9px;
 }
 
 .create-habit .icon-block,
 .create-habit .color-block,
 .create-habit .difficulty {
-    margin-left: 20px;
+    margin-left: 25px;
+}
+
+button.edit {
+    color: #fff;
+}
+
+.task-item .hidden {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    background-color: var(--main-blue);
+    width: 60px;
+    height: 100%;
+    max-height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    border-radius: 0 20px 20px 0;
+    -webkit-border-radius: 0 20px 20px 0;
+    -moz-border-radius: 0 20px 20px 0;
+    -ms-border-radius: 0 20px 20px 0;
+    -o-border-radius: 0 20px 20px 0;
+    z-index: -1;
+    opacity: 0;
+}
+
+.ng-untouched~.md-input-messages-animation {
+    height: 0;
+    opacity: 0;
+    transition: height 0.3s, opacity 0.3s;
+}
+
+.task-item:hover {
+    background-color: var(--dark-dark);
+    border-radius: 13px 0 0 13px;
+    -webkit-border-radius: 13px 0 0 13px;
+    -moz-border-radius: 13px 0 0 13px;
+    -ms-border-radius: 13px 0 0 13px;
+    -o-border-radius: 13px 0 0 13px;
+}
+
+.task-item.open:hover {
+    border-radius: 13px 0 13px 13px;
+    -webkit-border-radius: 13px 0 13px 13px;
+    -moz-border-radius: 13px 0 13px 13px;
+    -ms-border-radius: 13px 0 13px 13px;
+    -o-border-radius: 13px 0 13px 13px;
+}
+
+.subtasks.form .left {
+    max-width: 478px;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.subtasks.form .created button {
+    margin-left: 1px;
+    background: transparent;
+    height: auto;
+    width: auto;
+    padding: 5px 21px;
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -ms-border-radius: 0px;
+    -o-border-radius: 0px;
+}
+
+.subtasks.form .created button {}
+
+.subtasks.form .created button:hover {
+    background: var(--main-blue);
+}
+
+.subtasks.form .created button .mat-icon {
+    margin-right: 0px;
+}
+
+.subtasks.form .created .task.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.task-item:hover .hidden {
+    right: -60px;
+    z-index: 2;
+    opacity: 1;
 }
 
 .clock {
@@ -1481,6 +1600,9 @@ mat-ink-bar.mat-ink-bar {
 
 .subtasks.form .wrap {
     padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 30px;
 }
 
 .flex-timer .mat-tab-labels .mat-tab-label:first-child {
@@ -1541,7 +1663,7 @@ mat-ink-bar.mat-ink-bar {
 }
 
 .difficulty button.active {
-    background: rgba(0, 0, 0, 0.1);
+    background: var(--main-blue);
     border-radius: 20px;
 }
 
@@ -2249,6 +2371,22 @@ select:-webkit-autofill:focus {
     -webkit-text-fill-color: #fff;
     -webkit-box-shadow: 0 0 0px 1000px rgba(0, 0, 0, 0) inset;
     transition: background-color 5000s ease-in-out 0s;
+}
+
+.subtasks.form .created {
+    counter-reset: subtask-counter 0;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.subtasks.form .created .number:before {
+    counter-increment: subtask-counter;
+    content: counter(subtask-counter);
+}
+
+.subtasks.form .created .number {
+    margin: 0 10px;
 }
 
 .habit-list-control-view .list,

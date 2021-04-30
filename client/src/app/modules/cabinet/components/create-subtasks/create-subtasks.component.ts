@@ -21,7 +21,27 @@ export class CreateSubtasksComponent implements OnInit {
 
   ngOnInit(): void {
     this.subtasks = (this.oldSubtasks) ? this.oldSubtasks : [];
+    console.log(this.subtasks);
+
     this.createForm();
+  }
+
+  onEditSubtask(subtask: Subtask): void {
+    this.form = new FormGroup({
+      name: new FormControl(subtask.name, Validators.required),
+      date: new FormControl(subtask.date),
+      fromTime: new FormControl(this.fromTime(subtask.timeframe)),
+      untilTime: new FormControl(this.untilTime(subtask.timeframe)),
+      note: new FormControl(subtask.note),
+      id: new FormControl(subtask._id)
+    });
+  }
+
+  onDeleteSubtask(subtask: Subtask): void {
+    const index = this.subtasks.findIndex(item => item._id === this.form.value.id);
+    this.subtasks.splice(index, 1);
+
+    this.addSubtask.emit(this.subtasks);
   }
 
   createForm(): void {
@@ -30,24 +50,48 @@ export class CreateSubtasksComponent implements OnInit {
       date: new FormControl(null),
       fromTime: new FormControl(''),
       untilTime: new FormControl(''),
-      note: new FormControl('')
+      note: new FormControl(''),
+      id: new FormControl('')
     });
   }
 
   onSubmit(): void {
-    this.subtasks.push({
+
+    if (this.form.value.id) {
+      const index = this.subtasks.findIndex(item => item._id === this.form.value.id);
+      this.subtasks[index] = this.updateSubtask(index);
+    } else {
+      this.subtasks.push(this.createSubtask());
+    }
+
+    this.createForm();
+    this.addSubtask.emit(this.subtasks);
+  }
+
+  createSubtask(): Subtask {
+
+    const subtask: Subtask = {
       name: this.form.value.name,
       date: this.form.value.date,
       timeframe: this.formatTimeFrame(),
-      note:this.form.value.note,
+      note: this.form.value.note,
       done: false,
       doneDate: moment().toDate(),
       timer: new Timer('')
-    });
+    };
 
-    this.form.reset();
+    return subtask;
+  }
 
-    this.addSubtask.emit(this.subtasks);
+  updateSubtask(index: number): Subtask {
+    const updatedSubtask: Subtask = this.subtasks[index];
+
+    updatedSubtask.name = this.form.value.name;
+    updatedSubtask.date = this.form.value.date;
+    updatedSubtask.timeframe = this.formatTimeFrame();
+    updatedSubtask.note = this.form.value.note;
+
+    return updatedSubtask;
   }
 
   onChangeFromTime(selectedFromTime: any): void {
@@ -69,6 +113,15 @@ export class CreateSubtasksComponent implements OnInit {
     }
 
     return timeFrame;
+  }
+
+
+  private fromTime(timeframe: string): string {
+    return (timeframe && timeframe.length >= 5) ? timeframe.slice(0, 5) : '';
+  }
+
+  private untilTime(timeframe: string): string {
+    return (timeframe && timeframe.length === 11) ? timeframe.slice(6) : '';
   }
 
 }

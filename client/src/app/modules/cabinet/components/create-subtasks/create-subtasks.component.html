@@ -1,15 +1,10 @@
 <div class="subtasks form">
-    <h2>Create subtask</h2>
+    <h2>Subtasks</h2>
     <div class="wrap">
 
-
-        <div class="created">
-            <ol>
-                <li class="task" *ngFor="let subtask of subtasks">{{subtask.name}} - {{subtask.date | date}}</li>
-            </ol>
-        </div>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="left">
+                <h2>Create subtask</h2>
                 <div class="flex">
                     <mat-form-field appearance="fill">
                         <mat-label>Name of subtask</mat-label>
@@ -22,9 +17,10 @@
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
+
                 </div>
 
-                <app-time-picker (changeFromTime)="onChangeFromTime($event)" (changeUntilTime)="onChangeUntilTime($event)"></app-time-picker>
+                <app-time-picker (changeFromTime)="onChangeFromTime($event)" (changeUntilTime)="onChangeUntilTime($event)" [oldFromTime]="form.value.fromTime" [oldUntilTime]="form.value.untilTime"></app-time-picker>
 
                 <div class="form">
                     <mat-form-field appearance="fill">
@@ -33,9 +29,25 @@
                     </mat-form-field>
                 </div>
 
+                <button type="submit">{{form.value.id? 'Save' : 'Add'}}</button>
+
             </div>
 
-            <button type="submit">Add</button>
+
         </form>
+
+        <div class="created">
+            <h2>Created subtasks</h2>
+            <div class="task flex" *ngFor="let subtask of subtasks;">
+                <div>
+                    <span class="number"></span> {{subtask.name}} - {{subtask.date | date : 'dd.MM.YYYY'}}
+                </div>
+                <div>
+                    <button type="button" (click)="onEditSubtask(subtask)"><mat-icon>edit</mat-icon></button>
+                    <button type="button" (click)="onDeleteSubtask(subtask)"><mat-icon>delete</mat-icon></button>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
