@@ -9,7 +9,6 @@ export class ItemTimeStatisticsComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }

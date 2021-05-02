@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, OnDestroy, ViewChild, ElementRef} from '@angular/core';
 import * as moment from 'moment';
+import { interval, Subscriber, Subscription } from 'rxjs';
 import { Timestamp } from 'rxjs/internal/operators/timestamp';
 import { Timer } from 'src/app/classes/timer';
 import { IJournalEntry } from 'src/app/interfaces/journal-entry';
@@ -28,6 +29,8 @@ export class TimerComponent implements OnInit, OnDestroy {
   pickerObj: any;
   show = false;
 
+  private timerSub: Subscription;
+
   constructor() {}
 
   ngOnInit(): void {
@@ -35,13 +38,11 @@ export class TimerComponent implements OnInit, OnDestroy {
   }
 
   setIntervalDate(): void {
-    this.interval = setInterval(() => {
-      this.now = new Date();
-    }, 1000);
+    this.timerSub = interval(1000).subscribe(() => this.now = new Date());
   }
 
   ngOnDestroy() {
-    clearInterval(this.interval);
+    this.timerSub.unsubscribe();
   }
 
   play(): void{
@@ -51,17 +52,17 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   stop(): void {
     this.timePause.emit('stop');
-    clearInterval(this.interval);
+    this.timerSub.unsubscribe();
   }
 
   pause(): void {
     this.timePause.emit('pause');
-    clearInterval(this.interval);
+    this.timerSub.unsubscribe();
   }
 
   reset(): void {
     this.timeReset.emit();
-    clearInterval(this.interval);
+    this.timerSub.unsubscribe();
   }
 
   getCounter(): string {

@@ -22,7 +22,7 @@ export class ListTaskControlViewComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-  this.subscriptions.unsubscribe();
+    this.subscriptions.unsubscribe();
   }
 
   getHabits(): void {

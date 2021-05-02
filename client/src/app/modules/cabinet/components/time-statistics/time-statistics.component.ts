@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { JournalEntry } from 'src/app/classes/journal-entry';
@@ -16,7 +16,7 @@ import * as pluginDataLabels from 'chartjs-plugin-datalabels';
   templateUrl: './time-statistics.component.html',
   styleUrls: ['./time-statistics.component.css']
 })
-export class TimeStatisticsComponent implements OnInit {
+export class TimeStatisticsComponent implements OnInit, OnDestroy {
 
   @ViewChild(BaseChartDirective) public chart: BaseChartDirective;
 
@@ -64,6 +64,10 @@ export class TimeStatisticsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getHabits();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
   getHabits(): void {
