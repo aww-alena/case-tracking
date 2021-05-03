@@ -12,6 +12,7 @@ import { TaskService } from 'src/app/services/task/task.service';
   styleUrls: ['./item-task.component.css']
 })
 export class ItemTaskComponent implements OnInit, OnDestroy {
+
   @Input() task: ITask;
   subscriptions: Subscription = new Subscription();
   showMore = false;

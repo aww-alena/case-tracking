@@ -9,6 +9,7 @@ import { JournalService } from 'src/app/services/journal/journal.service';
 import { ChartType, ChartOptions } from 'chart.js';
 import { BaseChartDirective, Label, ThemeService } from 'ng2-charts';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
+import { TitleStoreService } from 'src/app/services/title/title-store.service';
 
 
 @Component({
@@ -60,9 +61,11 @@ export class TimeStatisticsComponent implements OnInit, OnDestroy {
 
   constructor(private habitService: HabitService,
               private journalService: JournalService,
-              private themeService: ThemeService) { }
+              private themeService: ThemeService,
+              private titleService: TitleStoreService) { }
 
   ngOnInit(): void {
+    this.setTitle();
     this.getHabits();
   }
 
@@ -154,6 +157,10 @@ export class TimeStatisticsComponent implements OnInit, OnDestroy {
 
   private getIdRecording(id: string): string {
     return moment().format('YYYYMMDD') + id;
+  }
+
+  private setTitle(): void {
+    this.subscriptions.add(this.titleService.updateTitle('Statistics'));
   }
 
 }

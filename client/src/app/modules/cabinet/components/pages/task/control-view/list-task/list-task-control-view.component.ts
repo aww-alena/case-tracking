@@ -4,6 +4,7 @@ import { mergeMap } from 'rxjs/operators';
 import { Task } from 'src/app/classes/task';
 import { ITask } from 'src/app/interfaces/task';
 import { TaskService } from 'src/app/services/task/task.service';
+import { TitleStoreService } from 'src/app/services/title/title-store.service';
 
 @Component({
   selector: 'app-list-task-control-view',
@@ -15,9 +16,10 @@ export class ListTaskControlViewComponent implements OnInit, OnDestroy {
   tasks: ITask[];
   subscriptions: Subscription = new Subscription();
 
-  constructor(private taskService: TaskService) {}
+  constructor(private taskService: TaskService, private titleService: TitleStoreService) {}
 
   ngOnInit(): void {
+    this.setTitle();
     this.getHabits();
   }
 
@@ -32,6 +34,14 @@ export class ListTaskControlViewComponent implements OnInit, OnDestroy {
       .subscribe(value => {
         this.tasks.push(value);
       }));
+  }
+
+  onDeleteHabit(id: string): void {
+    this.tasks = this.tasks.filter(item => item._id !== id);
+  }
+
+  private setTitle(): void {
+    this.subscriptions.add(this.titleService.updateTitle('Tasks'));
   }
 
   private initTasks(taskRecordings: ITask[]): ITask[] {

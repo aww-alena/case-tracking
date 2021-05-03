@@ -18,14 +18,14 @@ export class ListTaskComponent implements OnInit, OnDestroy {
   constructor(private taskService: TaskService) {}
 
   ngOnInit(): void {
-    this.getHabits();
+    this.getTasks();
   }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
 
-  getHabits(): void {
+  getTasks(): void {
     this.tasks = [];
     this.subscriptions.add(this.taskService.fetch().pipe(
       mergeMap((tasks: ITask[]) => this.initTasks(tasks)))

@@ -6,6 +6,7 @@ import { IHabit } from 'src/app/interfaces/habit';
 import { IJournalEntry } from 'src/app/interfaces/journal-entry';
 import { HabitService } from 'src/app/services/habit/habit.service';
 import { JournalService } from 'src/app/services/journal/journal.service';
+import { TitleStoreService } from 'src/app/services/title/title-store.service';
 
 const colors: any = {
   red: {
@@ -38,9 +39,11 @@ export class StatisticComponent implements OnInit, OnDestroy {
   subscriptions: Subscription = new Subscription();
 
   constructor(private habitService: HabitService,
-              private journalService: JournalService) { }
+              private journalService: JournalService,
+              private titleService: TitleStoreService) { }
 
   ngOnInit(): void {
+    this.setTitle();
     this.getHabits();
   }
 
@@ -138,6 +141,10 @@ export class StatisticComponent implements OnInit, OnDestroy {
   hasDate(date: Date): boolean {
     const indexFound = this.viewDates.findIndex((i) => isEqual(new Date(i), this.getDateFromString(date)));
     return (indexFound !== -1) ? true : false;
+  }
+
+  private setTitle(): void {
+    this.subscriptions.add(this.titleService.updateTitle('Statistics'));
   }
 
 }

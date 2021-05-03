@@ -1,5 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import * as moment from 'moment';
 import { Subscription } from 'rxjs';
+import { map, mergeMap } from 'rxjs/operators';
+import { Habit } from 'src/app/classes/habit';
 import { HabitRecording } from 'src/app/classes/habit-recording';
 import { IHabit } from 'src/app/interfaces/habit';
 import { IHabitRecording } from 'src/app/interfaces/habit-recording';
@@ -29,31 +32,43 @@ export class ListHabitComponent implements OnInit, OnDestroy {
   }
 
   getHabits(): void {
-    this.subscriptions.add(this.habitService.fetch().subscribe((habits) => {
-      this.habits = habits;
-      this.initRecords();
-      this.getEntries();
-    }));
+    this.subscriptions.add(this.habitService.fetch().pipe(
+      mergeMap((habits: IHabit[]): IHabitRecording[] => {
+        this.habits = habits;
+        return this.initRecords(habits);
+      }))
+      .subscribe((habitRecording) => this.habitRecords.push(habitRecording)));
   }
 
-  private initRecords(): void {
+  getMatchSchedule(habitRecords: IHabitRecording[]): IHabitRecording[] {
 
-    this.habits.forEach(habit => {
+    const day = moment().isoWeekday().toString();
+    const doneRecords = habitRecords.filter(item => (item.habit.schedule.includes(day) || item.habit.schedule === 'everyday'));
+
+    return doneRecords;
+  }
+
+  private initRecords(habitRecordings: IHabit[]): IHabitRecording[] {
+
+    const habitRecords: IHabitRecording[] = [];
+
+    habitRecordings.forEach(habit => {
       const habitRecording: IHabitRecording = new HabitRecording(habit);
-      this.habitRecords.push(habitRecording);
-    });
-  }
 
-  private getEntries(): void {
-
-    this.habitRecords.forEach(record => {
-
-      this.subscriptions.add(this.journalService.getById(record.habit._id, record.id).subscribe((findEntry: any) => {
-        if (findEntry[0] !== undefined) {
-          record.entry.parseEntry(findEntry[0]);
+      this.subscriptions.add(this.journalService.getById(habitRecording.habit._id, habitRecording.id).subscribe((foundEntry: any) => {
+        const entry = foundEntry[0];
+        if (entry) {
+          habitRecording.entry.parseEntry(entry);
         }
       }));
 
+      habitRecords.push(habitRecording);
+
     });
+
+    const doneRecords = this.getMatchSchedule(habitRecords);
+    return doneRecords;
   }
+
+
 }

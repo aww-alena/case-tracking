@@ -13,6 +13,8 @@
         </div>
 
         <div class="flex">
+
+            <div class="timefarme" *ngIf="task.date || task.timeframe">{{task.date | date:'dd.MM'}} {{task.timeframe}}</div>
             <mat-checkbox (change)="markDone()" [checked]="task.savedData.done"></mat-checkbox>
             <button class="more" type="button"><mat-icon>more_vert</mat-icon></button>
         </div>

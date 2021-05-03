@@ -1,4 +1,4 @@
-<div class="habit-list" *ngIf="habits !== undefined; else loading">
+<div class="habit-list" *ngIf="habits; else loading">
     <div class="grid">
         <app-item-habit *ngFor="let record of habitRecords" [habitRecording]="record"></app-item-habit>
     </div>

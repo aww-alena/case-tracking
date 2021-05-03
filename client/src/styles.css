@@ -1378,7 +1378,7 @@ ul.history {
     padding: 5px 0 0 2px;
 }
 
-.habit>mat-icon.main-icon {
+.habit-list .habit mat-icon.main-icon {
     border-top: 1px solid var(--main-blue);
     border-radius: 50%;
     margin-bottom: 30px;
@@ -1917,7 +1917,8 @@ app-timer {
     background: transparent;
 }
 
-.subtasks .item .timefarme {
+.subtasks .item .timefarme,
+.task-item .timefarme {
     background: rgba(0, 0, 0, 0.1);
     padding: 0 10px;
     border-radius: 4px;
@@ -1929,6 +1930,11 @@ app-timer {
     margin-right: 20px;
 }
 
+.task-item .timefarme {
+    font-size: 12px;
+    height: 20px;
+}
+
 .flex.options .mat-tab-label {
     padding: 0 0 10px;
     min-width: unset;
@@ -1936,6 +1942,10 @@ app-timer {
 
 .subtasks .item .flex {
     align-items: center;
+}
+
+.cal-has-events span.cal-day-number {
+    color: #000;
 }
 
 .flex.main-block {

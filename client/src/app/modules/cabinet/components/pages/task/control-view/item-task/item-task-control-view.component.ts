@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ITask } from 'src/app/interfaces/task';
@@ -13,6 +13,7 @@ import { TaskService } from 'src/app/services/task/task.service';
 export class ItemTaskControlViewComponent implements OnInit, OnDestroy {
 
   @Input() task: ITask;
+  @Output() deleteHabit: EventEmitter<string> = new EventEmitter();
   id: any;
   private subscribe: Subscription;
 
@@ -31,7 +32,10 @@ export class ItemTaskControlViewComponent implements OnInit, OnDestroy {
 
   onDelete(task: ITask): void {
     this.subscribe = this.taskService.delete(task).subscribe(
-          response =>  this.messageService.showMessage('Task was deleted', 'Yupikai!'),
+          response =>  {
+            this.messageService.showMessage('Task was deleted', 'Yupikai!');
+            this.deleteHabit.emit(task._id);
+          },
           error =>  this.messageService.showError(error.error.message, 'Uuups! Error.')
     );
   }

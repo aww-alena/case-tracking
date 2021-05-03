@@ -1,0 +1,7 @@
+<ng-template [ngIf]="icon" [ngIfElse]="loading">
+    <mat-icon class="main-icon" [style.color]="color">{{icon}}</mat-icon>
+</ng-template>
+
+<ng-template #loading>
+    <mat-icon [style.color]="color" class="main-icon">work</mat-icon>
+</ng-template>

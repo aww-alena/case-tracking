@@ -60,6 +60,9 @@ export class ItemHabitComponent implements OnInit, OnDestroy {
 
     this.habitRecording.entry.setRating(ratingValue);
     this.habitRecording.entry.setDone(true);
+    if(!this.habitRecording.entry.done) {
+      this.habitRecording.entry.setDate(moment().toDate());
+    }
 
     this.updateOrSave();
   }
@@ -133,7 +136,6 @@ export class ItemHabitComponent implements OnInit, OnDestroy {
   }
 
   onDeleteTimeStamp(index: number): void {
-
     this.habitRecording.entry.timer.deleteTimestamp(index);
     this.updateEntry(this.habitRecording.entry);
   }

@@ -1,6 +1,6 @@
 <div class="habit-list-control-view" *ngIf="habits !== undefined; else loading">
     <div class="list">
-        <app-item-habit-control-view *ngFor="let habit of habits" [habit]="habit"></app-item-habit-control-view>
+        <app-item-habit-control-view *ngFor="let habit of habits" [habit]="habit" (deleteHabit)="onDeleteHabit($event)"></app-item-habit-control-view>
     </div>
 </div>
 

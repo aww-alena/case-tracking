@@ -4,6 +4,7 @@ import { mergeMap } from 'rxjs/operators';
 import { Habit } from 'src/app/classes/habit';
 import { IHabit } from 'src/app/interfaces/habit';
 import { HabitService } from 'src/app/services/habit/habit.service';
+import { TitleStoreService } from 'src/app/services/title/title-store.service';
 
 @Component({
   selector: 'app-list-habit-control-view',
@@ -16,9 +17,10 @@ export class ListHabitControlViewComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription = new Subscription();
 
-  constructor(private habitService: HabitService) { }
+  constructor(private habitService: HabitService, private titleService: TitleStoreService) { }
 
   ngOnInit(): void {
+    this.setTitle();
     this.getHabits();
   }
 
@@ -34,6 +36,14 @@ export class ListHabitControlViewComponent implements OnInit, OnDestroy {
         this.habits.push(habit);
       })
     );
+  }
+
+  onDeleteHabit(id: string): void {
+    this.habits = this.habits.filter(item => item._id !== id);
+  }
+
+  private setTitle(): void {
+    this.subscriptions.add(this.titleService.updateTitle('Habits'));
   }
 
   private initHabits(habits: IHabit[]): IHabit[] {

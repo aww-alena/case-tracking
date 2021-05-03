@@ -24,31 +24,11 @@ export class Habit implements IHabit {
         this.color = habitObj.color;
         this.icon = habitObj.icon;
         this.difficulty = (habitObj.difficulty !== undefined) ? habitObj.difficulty : '';
-        this.comment = (habitObj.comment !== undefined) ? habitObj.comment : '';
+        this.comment = this.getComment(habitObj.comment);
         this.timeframe = (habitObj.timeframe !== undefined) ? habitObj.timeframe : '';
         this.user = (habitObj.user !== undefined) ? habitObj.user : '';
         this.categories = (habitObj.categories !== undefined) ? habitObj.categories : '';
         this._id = (habitObj._id !== undefined) ? habitObj._id : '';
-    }
-
-    isIconUndefined(): boolean {
-        return (this.icon === undefined || this.icon === '') ? true : false;
-    }
-
-    returnIcon(): any {
-        return this.icon;
-    }
-
-    isConmmentEmpty(): boolean {
-        return (this.comment === '') ? true : false;
-    }
-
-    isTimeframeUndefined(): boolean {
-        return (this.timeframe === undefined) ? true : false;
-    }
-
-    isCommentUndefined(): boolean {
-        return (this.comment === undefined) ? true : false;
     }
 
     isOnSchedule(): boolean {
@@ -63,35 +43,28 @@ export class Habit implements IHabit {
         return include;
     }
 
-    getIcon(): string {
-        return (!this.isIconUndefined()) ? this.icon : '';
-    }
+    getComment(habitComment: string): string {
+        let comment = '';
 
-    getColor(): string {
-        return (this.color !== undefined && this.color !== '') ? this.color : '';
-    }
-
-    getName(): string {
-        return '';
-    }
-
-    getComment(): string {
-        const day = moment().isoWeekday();
-        let note = '';
-
-        if (this.comment !== null && this.comment !== '') {
-          const notes = JSON.parse(this.comment);
-          note = notes[day];
+        if (habitComment) {
+            const day = moment().isoWeekday();
+            if (this.isJsonString(habitComment)) {
+                const notes = JSON.parse(habitComment);
+                comment = (notes.note) ? notes.note : notes[day];
+            } else {
+                comment = habitComment;
+            }
         }
 
-        return note;
+        return comment;
     }
 
-    getTimeframe(): string {
-        return (!this.isTimeframeUndefined()) ? this.timeframe : '';
-    }
-
-    getDifficulty(): string {
-        return (this.difficulty !== undefined && this.difficulty !== '') ? this.difficulty : '';
+    isJsonString(value: string): boolean {
+        try {
+            JSON.parse(value);
+        } catch (e) {
+            return false;
+        }
+        return true;
     }
 }

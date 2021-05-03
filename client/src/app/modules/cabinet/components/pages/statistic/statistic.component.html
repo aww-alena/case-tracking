@@ -4,13 +4,7 @@
             <ng-template mat-tab-label>
                 <span (click)="showHabitsStatistic(habit)">
                     
-                    <ng-template [ngIf]="habit.icon !== ''" [ngIfElse]="loading">
-                        <mat-icon class="main-icon" [style.color]="habit.color">{{habit.icon}}</mat-icon>
-                    </ng-template>
-                
-                    <ng-template #loading>
-                        <mat-icon [style.color]="habit.color" class="main-icon">work</mat-icon>
-                    </ng-template>
+                    <app-icon-template [color]="habit.color" [icon]="habit.icon"></app-icon-template>
 
                     {{habit.name}}
                 </span>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IHabit } from 'src/app/interfaces/habit';
@@ -13,6 +13,7 @@ import { MessageService } from 'src/app/services/message-service/message.service
 export class ItemHabitControlViewComponent implements OnInit {
 
   @Input() habit: IHabit;
+  @Output() deleteHabit: EventEmitter<string> = new EventEmitter();
   id: any;
 
   constructor(private router: Router,
@@ -24,7 +25,10 @@ export class ItemHabitControlViewComponent implements OnInit {
 
   onDelete(habit: IHabit): void {
     this.habitService.delete(habit).subscribe(
-          response =>  this.messageService.showMessage('Habit was deleted', 'Yupikai!'),
+          response =>  {
+            this.messageService.showMessage('Habit was deleted', 'Yupikai!');
+            this.deleteHabit.emit(habit._id);
+          },
           error =>  this.messageService.showError(error.error.message, 'Uuups! Error.')
     );
   }

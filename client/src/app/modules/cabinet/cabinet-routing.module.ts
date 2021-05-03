@@ -26,8 +26,8 @@ const routes: Routes = [
       { path: 'habits', component: ListHabitControlViewComponent },
       { path: 'tasks', component: ListTaskControlViewComponent },
 
-      { path: 'statistic', component: StatisticComponent },
-      { path: 'statistic/time', component: TimeStatisticsComponent }
+      { path: 'statistics', component: StatisticComponent },
+      { path: 'statistics/time', component: TimeStatisticsComponent }
     ],
   },
 ];

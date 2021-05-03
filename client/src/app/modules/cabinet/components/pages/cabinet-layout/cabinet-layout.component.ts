@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { TitleStoreService } from 'src/app/services/title/title-store.service';
 @Component({
   selector: 'app-cabinet-layout',
   templateUrl: './cabinet-layout.component.html',
@@ -12,15 +13,20 @@ export class CabinetLayoutComponent implements OnInit {
     { url: 'habits', icon: 'business_center' },
     { url: 'tasks', icon: 'adjust' },
     { url: 'categories', icon: 'category' },
-    { url: 'statistic', icon: 'auto_graph' },
-    { url: 'statistic/time', icon: 'auto_graph' }
+    { url: 'statistics', icon: 'auto_graph' },
+    { url: 'statistics/time', icon: 'auto_graph' }
   ];
 
   mobileOpen = false;
+  title = '';
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private auth: AuthService, private router: Router, private titleService: TitleStoreService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.titleService.title.subscribe(title => {
+      this.title = title;
+    });
+  }
 
   logout(event: Event): void {
     event.preventDefault();

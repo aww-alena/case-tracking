@@ -12,17 +12,5 @@ export interface IHabit {
   categories: string;
   _id: string;
 
-  isIconUndefined(): boolean;
-  isCommentUndefined(): boolean;
-  isOnSchedule(): boolean;
-  isConmmentEmpty(): boolean;
-  isTimeframeUndefined(): boolean;
-  getIcon(): string;
-  getColor(): string;
-  getName(): string;
-  getComment(): string;
-  getTimeframe(): string;
-
-  returnIcon(): any;
-  getDifficulty(): string;
+  getComment(habitComment: string): string;
 }

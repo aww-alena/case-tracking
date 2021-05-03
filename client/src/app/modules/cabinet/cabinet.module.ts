@@ -37,6 +37,7 @@ import { ListTaskControlViewComponent } from './components/pages/task/control-vi
 import { ItemHabitControlViewComponent } from './components/pages/habit/control-view/item-habit/item-habit-control-view.component';
 import { ListHabitControlViewComponent } from './components/pages/habit/control-view/list-habit/list-habit-control-view.component';
 import { ItemTimeStatisticsComponent } from './components/item-time-statistics/item-time-statistics.component';
+import { IconTemplateComponent } from './components/icon-template/icon-template.component';
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import { ItemTimeStatisticsComponent } from './components/item-time-statistics/i
     ListTaskControlViewComponent,
     ListHabitControlViewComponent,
     ItemTimeStatisticsComponent,
+    IconTemplateComponent,
   ],
   imports: [
     CommonModule,

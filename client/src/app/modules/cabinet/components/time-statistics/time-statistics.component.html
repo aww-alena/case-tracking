@@ -3,7 +3,9 @@
         <ng-template [ngIf]="habitEntry.habit.hasTimer">
             <p class="title-p">
                 <span class="title">
-                    <mat-icon class="main-icon" [style.color]="habitEntry.habit.color">{{habitEntry.habit.icon}}</mat-icon>
+
+                    <app-icon-template [color]="habitEntry.habit.color" [icon]="habitEntry.habit.icon"></app-icon-template>
+                    
                     {{habitEntry.habit.name}}
                     
                 </span>
