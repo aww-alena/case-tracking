@@ -38,7 +38,7 @@ import { ItemHabitControlViewComponent } from './components/pages/habit/control-
 import { ListHabitControlViewComponent } from './components/pages/habit/control-view/list-habit/list-habit-control-view.component';
 import { ItemTimeStatisticsComponent } from './components/item-time-statistics/item-time-statistics.component';
 import { IconTemplateComponent } from './components/icon-template/icon-template.component';
-
+import { SortByPipe } from '../../pipes/sort-by.pipe';
 
 @NgModule({
   declarations: [
@@ -71,6 +71,7 @@ import { IconTemplateComponent } from './components/icon-template/icon-template.
     ListHabitControlViewComponent,
     ItemTimeStatisticsComponent,
     IconTemplateComponent,
+    SortByPipe
   ],
   imports: [
     CommonModule,

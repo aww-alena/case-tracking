@@ -12,8 +12,14 @@ import { SharedModule } from './modules/shared/shared.module';
 import { JournalComponent } from './components/page/journal/journal.component';
 import { TokenInterceptor } from './classes/token.interceptor';
 import { MainLayoutComponent } from './components/main-layout/main-layout.component';
+
 @NgModule({
-  declarations: [AppComponent, HomeComponent, JournalComponent, MainLayoutComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    JournalComponent,
+    MainLayoutComponent
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,

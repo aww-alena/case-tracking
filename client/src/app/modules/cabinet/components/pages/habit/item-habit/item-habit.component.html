@@ -1,4 +1,4 @@
-<div class="habit">
+<div class="habit" [ngClass]="{'done': habitRecording.entry.done}">
 
     <div class="timeframe">
         <span>{{habitRecording.habit.timeframe}}</span>
@@ -21,7 +21,7 @@
             </div>
 
             <div class="checkbox">
-                <mat-checkbox (change)="markDone(habitRecording.id)" [checked]="this.habitRecording.entry.done"></mat-checkbox>
+                <mat-checkbox (change)="markDone(habitRecording.id)" [checked]="habitRecording.entry.done"></mat-checkbox>
             </div>
         </div>
 

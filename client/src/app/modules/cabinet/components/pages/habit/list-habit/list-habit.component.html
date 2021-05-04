@@ -1,6 +1,6 @@
 <div class="habit-list" *ngIf="habits; else loading">
     <div class="grid">
-        <app-item-habit *ngFor="let record of habitRecords" [habitRecording]="record"></app-item-habit>
+        <app-item-habit *ngFor="let record of habitRecords | sortBy:['habit.timeframe']" [habitRecording]="record"></app-item-habit>
     </div>
 </div>
 

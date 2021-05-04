@@ -1378,7 +1378,7 @@ ul.history {
     padding: 5px 0 0 2px;
 }
 
-.habit-list .habit mat-icon.main-icon {
+.habit-list .habit app-icon-template mat-icon.main-icon {
     border-top: 1px solid var(--main-blue);
     border-radius: 50%;
     margin-bottom: 30px;
@@ -1497,6 +1497,16 @@ mat-ink-bar.mat-ink-bar {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     line-height: 0;
     align-items: center;
+}
+
+.habit.done .timeframe,
+.habit.done .difficulty-block {
+    background: var(--green);
+}
+
+.habit.done .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.habit.done .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: var(--green);
 }
 
 .comment-form .mat-form-field {

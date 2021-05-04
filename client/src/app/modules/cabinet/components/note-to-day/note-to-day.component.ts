@@ -23,7 +23,7 @@ export class NoteToDayComponent implements OnInit {
   ngOnInit(): void {
     if (this.oldNotes) {
       this.notesForDays = true;
-      this.formData = JSON.parse(this.oldNotes);
+      this.formData = (this.isJsonString(this.oldNotes)) ? JSON.parse(this.oldNotes) : this.oldNotes;
     }
   }
 
@@ -31,5 +31,14 @@ export class NoteToDayComponent implements OnInit {
     const formData = JSON.stringify(form.form.value);
     this.addNotes.emit(formData);
   }
+
+  isJsonString(value: string): boolean {
+    try {
+        JSON.parse(value);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
 
 }
