@@ -1,6 +1,6 @@
 <div class="task-list-control-view" *ngIf="tasks; else loading">
     <div class="list">
-        <app-item-task-control-view *ngFor="let task of tasks" [task]="task" (deleteHabit)="onDeleteHabit($event)"></app-item-task-control-view>
+        <app-item-task-control-view *ngFor="let task of tasks.reverse()" [task]="task" (deleteHabit)="onDeleteHabit($event)"></app-item-task-control-view>
     </div>
 </div>
 

@@ -55,7 +55,7 @@ export class SortByPipe implements PipeTransform {
         return 0;
       }
 
-      result = result[itemKey];
+      result = (itemKey === 'timeframe' && result[itemKey] === '') ? '24:60' : result[itemKey];
     }
 
     return result;

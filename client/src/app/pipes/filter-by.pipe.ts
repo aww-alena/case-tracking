@@ -7,7 +7,7 @@ import * as moment from 'moment';
 })
 export class FilterByPipe implements PipeTransform {
 
-  transform(value: any[], filterString: string, propName: string): any[] {
+  transform(value: any[], filterString: any, propName: string): any[] {
 
 
     const resultArray = [];
@@ -18,7 +18,6 @@ export class FilterByPipe implements PipeTransform {
       }
 
       for (const item of value) {
-
         if (propName === 'date') {
           if (item[propName] !==  null) {
             const itemDate = moment(item[propName]).format('YYYY-MM-DD');
@@ -29,13 +28,40 @@ export class FilterByPipe implements PipeTransform {
           }
         }
 
-        if (item[propName] === filterString) {
+        const itemProp: number|string = this.getProperty(item, propName);
+
+        if (itemProp === filterString) {
           resultArray.push(item);
         }
       }
     }
 
     return resultArray;
+  }
+
+  private getProperty(value: { [key: string]: any}, key: string): number|string {
+    if (value == null || typeof value !== 'object') {
+      return 0;
+    }
+
+    const keys: string[] = key.split('.');
+    const firstKey = keys.shift();
+    let result: any;
+
+    if (firstKey !== undefined) {
+      result = value[firstKey];
+    }
+
+
+    for (const itemKey of keys) {
+      if (result === null) {
+        return 0;
+      }
+
+      result = result[itemKey];
+    }
+
+    return result;
   }
 
 }

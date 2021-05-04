@@ -38,6 +38,7 @@ export class ListHabitComponent implements OnInit, OnDestroy {
         return this.initRecords(habits);
       }))
       .subscribe((habitRecording) => this.habitRecords.push(habitRecording)));
+      console.log(this.habitRecords);
   }
 
   getMatchSchedule(habitRecords: IHabitRecording[]): IHabitRecording[] {

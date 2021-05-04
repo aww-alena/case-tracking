@@ -30,6 +30,7 @@ export class ItemTaskComponent implements OnInit, OnDestroy {
   }
 
   markDone(): void {
+    this.showMore = !this.showMore;
     this.task.savedData.done = !this.task.savedData.done;
     this.task.savedData.date = moment().toDate();
     this.updateOrSave();

@@ -748,10 +748,14 @@ app-item-habit>.habit {
     display: flex;
     position: relative;
     background: rgb(75 81 115);
-    margin-bottom: 48px;
+    margin-top: 48px;
     border-radius: 20px;
     box-shadow: 0 -7px 15px rgba(255, 255, 255, 0.05), 0 0 10px rgba(0, 0, 0, 0.3);
     border-top: 1px solid var(--main-blue);
+}
+
+app-item-habit:last-child .habit {
+    margin-bottom: 15px;
 }
 
 .habit .left {
@@ -774,7 +778,7 @@ app-item-habit>.habit {
     box-sizing: border-box;
     background: var(--dark-back);
     box-shadow: 0 -7px 15px rgba(255, 255, 255, 0.05), 0 0 10px rgba(0, 0, 0, 0.3);
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 .flex.dashboard {
@@ -830,6 +834,29 @@ app-item-habit>.habit {
     -moz-border-radius: 50% !important;
     -ms-border-radius: 50% !important;
     -o-border-radius: 50% !important;
+}
+
+.habit-list label.mat-checkbox-layout {
+    width: 30px;
+    height: 30px;
+    background: var(--main-blue);
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    display: flex;
+}
+
+.habit-list .task-item label.mat-checkbox-layout {
+    background: var(--main-blue);
+}
+
+.habit-list .task-item.done label.mat-checkbox-layout {
+    background: var(--green);
+}
+
+.habit-list .task-item.done .mat-checkbox-checkmark-path,
+.habit-list .habit.done .mat-checkbox-checkmark-path {
+    stroke: #fff !important;
 }
 
 .mat-drawer {
@@ -1500,8 +1527,13 @@ mat-ink-bar.mat-ink-bar {
 }
 
 .habit.done .timeframe,
-.habit.done .difficulty-block {
+.habit.done .difficulty-block,
+.habit-list .habit.done label.mat-checkbox-layout {
     background: var(--green);
+}
+
+.habit.done .mat-checkbox-frame {
+    border-color: var(--green);
 }
 
 .task-item.done {
@@ -1521,6 +1553,44 @@ mat-ink-bar.mat-ink-bar {
 .task-item.done .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
 .task-item.done .mat-checkbox-checked.mat-accent .mat-checkbox-background {
     background-color: var(--green);
+}
+
+mat-tab-group.mat-tab-group.tabs-habit>mat-tab-header.mat-tab-header .mat-tab-labels {
+    background: transparent;
+    justify-content: center;
+}
+
+mat-tab-group.mat-tab-group.tabs-habit>mat-tab-header.mat-tab-header .mat-tab-labels .mat-tab-label {
+    height: unset;
+    padding: 0;
+    min-width: unset;
+}
+
+mat-tab-group.mat-tab-group.tabs-habit>mat-tab-header.mat-tab-header .mat-tab-labels .mat-tab-label .mat-tab-label-content {
+    background-color: var(--dark-dark);
+    padding: 8px 24px;
+    margin: 0px 13px;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    -ms-border-radius: 25px;
+    -o-border-radius: 25px;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+}
+
+mat-tab-group.mat-tab-group .mat-tab-label-active {
+    opacity: 1;
+}
+
+mat-tab-group.mat-tab-group.tabs-habit>mat-tab-header.mat-tab-header .mat-tab-labels .mat-tab-label.mat-tab-label-active .mat-tab-label-content {
+    opacity: 1;
+    border-left: 3px solid var(--main-blue);
+    border-right: 3px solid var(--main-blue);
+}
+
+mat-tab-group.mat-tab-group.tabs-habit .mat-tab-header {
+    border-bottom: none;
 }
 
 .comment-form .mat-form-field {
