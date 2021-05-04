@@ -1486,7 +1486,7 @@ mat-ink-bar.mat-ink-bar {
     min-height: 15px;
     position: absolute;
     top: -16px;
-    font-size: 9px;
+    font-size: 11px;
     right: 40px;
     background: var(--main-blue);
     padding: 0px 15px;
@@ -1504,8 +1504,22 @@ mat-ink-bar.mat-ink-bar {
     background: var(--green);
 }
 
+.task-item.done {
+    border-right-color: var(--green);
+    border-left-color: var(--green);
+}
+
+.task-item.done:before,
+.task-item.done:after,
+.task-item.done mat-checkbox,
+.task-item.done .hidden {
+    background: var(--green);
+}
+
 .habit.done .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
-.habit.done .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+.habit.done .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.task-item.done .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.task-item.done .mat-checkbox-checked.mat-accent .mat-checkbox-background {
     background-color: var(--green);
 }
 

@@ -1,4 +1,4 @@
-<div class="task-item" [ngClass]="{open: showMore}">
+<div class="task-item" [ngClass]="{open: showMore, done: task.savedData.done}">
 
     <div class="hidden">
         <button class="edit" type="button" (click)="goToEdit(task._id)"><mat-icon>edit</mat-icon></button>

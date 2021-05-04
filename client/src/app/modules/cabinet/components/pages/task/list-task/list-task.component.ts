@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
 import { Task } from 'src/app/classes/task';
@@ -14,11 +15,13 @@ export class ListTaskComponent implements OnInit, OnDestroy {
 
   tasks: ITask[];
   subscriptions: Subscription = new Subscription();
+  today = moment().toString();
 
   constructor(private taskService: TaskService) {}
 
   ngOnInit(): void {
     this.getTasks();
+    console.log('today: ', this.today);
   }
 
   ngOnDestroy(): void {
@@ -32,6 +35,7 @@ export class ListTaskComponent implements OnInit, OnDestroy {
       .subscribe(value => {
         this.tasks.push(value);
       }));
+    console.log(this.tasks);
   }
 
   private initTasks(taskRecordings: ITask[]): ITask[] {
