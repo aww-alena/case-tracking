@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView } from 'angular-calendar';
-import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours } from 'date-fns';
+import { startOfDay } from 'date-fns';
 import * as moment from 'moment';
+import { CalandarEvent } from 'src/app/interfaces/habit-statistics';
 
 
 @Component({
@@ -11,19 +12,38 @@ import * as moment from 'moment';
 })
 export class StatisticCalendarComponent implements OnInit {
 
-  @Input() habitEvents: CalendarEvent[];
+  @Input() habitEvents: CalandarEvent[];
   @Input() viewDates: Date[];
+
+  events: CalendarEvent[] = [];
+  dates: Date[] = [];
+  today = new Date();
 
   view: CalendarView = CalendarView.Month;
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log('calendar: ', this.habitEvents);
+    this.initEventsAndDate();
   }
 
-  handleEvent(action: string, event: CalendarEvent): void {
-    console.log(action, event);
+  initEventsAndDate(): void {
+    this.habitEvents.forEach((item) => {
+      this.events.push(this.initCalendarEvent(item.start, item.title, item.color));
+    });
+
+    this.viewDates.forEach((item) => {
+      this.dates.push(new Date(item));
+    });
   }
 
+  initCalendarEvent(date: Date, title: string, color: string): CalendarEvent {
+    const calendarEntry: CalendarEvent = {
+      start: startOfDay(new Date(date)),
+      title,
+      color: {primary: color, secondary: color}
+    };
+
+    return calendarEntry;
+  }
 }

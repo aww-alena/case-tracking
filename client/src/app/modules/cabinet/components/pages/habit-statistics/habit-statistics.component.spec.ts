@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TimeStatisticsComponent } from './time-statistics.component';
+import { HabitStatisticsComponent } from './habit-statistics.component';
 
-describe('TimeStatisticsComponent', () => {
-  let component: TimeStatisticsComponent;
-  let fixture: ComponentFixture<TimeStatisticsComponent>;
+describe('HabitStatisticsComponent', () => {
+  let component: HabitStatisticsComponent;
+  let fixture: ComponentFixture<HabitStatisticsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TimeStatisticsComponent ]
+      declarations: [ HabitStatisticsComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TimeStatisticsComponent);
+    fixture = TestBed.createComponent(HabitStatisticsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

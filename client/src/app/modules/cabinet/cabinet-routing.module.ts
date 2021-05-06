@@ -2,13 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CabinetLayoutComponent } from './components/pages/cabinet-layout/cabinet-layout.component';
 import { CreateHabitComponent } from './components/pages/habit/create-habit/create-habit.component';
-import { ListHabitComponent } from './components/pages/habit/list-habit/list-habit.component';
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
 import { CreateTaskComponent } from './components/pages/task/create-task/create-task.component';
-import { StatisticComponent } from './components/pages/statistic/statistic.component';
-import { TimeStatisticsComponent } from './components/time-statistics/time-statistics.component';
 import { ListHabitControlViewComponent } from './components/pages/habit/control-view/list-habit/list-habit-control-view.component';
 import { ListTaskControlViewComponent } from './components/pages/task/control-view/list-task/list-task-control-view.component';
+import { HabitStatisticsComponent } from './components/pages/habit-statistics/habit-statistics.component';
 
 const routes: Routes = [
   {
@@ -26,8 +24,7 @@ const routes: Routes = [
       { path: 'habits', component: ListHabitControlViewComponent },
       { path: 'tasks', component: ListTaskControlViewComponent },
 
-      { path: 'statistics', component: StatisticComponent },
-      { path: 'statistics/time', component: TimeStatisticsComponent }
+      { path: 'statistics', component: HabitStatisticsComponent }
     ],
   },
 ];

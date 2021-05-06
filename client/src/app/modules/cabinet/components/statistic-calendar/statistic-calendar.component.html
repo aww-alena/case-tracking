@@ -1,18 +1,7 @@
 <div class="statistic grid">
-    <div class="statistic-calendar" *ngFor="let viewDate of viewDates">
-        <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+    <div class="statistic-calendar" *ngFor="let date of dates">
+        <h3>{{ date | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
 
-        <mwl-calendar-month-view [viewDate]="viewDate" [events]="habitEvents"></mwl-calendar-month-view>
+        <mwl-calendar-month-view [viewDate]="date" [events]="events"></mwl-calendar-month-view>
     </div>
-    <ul class="statistic-notes">
-        <h3>Notes</h3>
-        <ng-template *ngFor="let event of habitEvents; let i = index" [ngIf]="event.title !== undefined">
-            <li>
-                <div class="flex">
-                    <span class="number"></span> {{event.title}}
-                </div>
-                <span class="date">{{event.start | date: 'dd.MM' }}</span>
-            </li>
-        </ng-template>
-    </ul>
 </div>

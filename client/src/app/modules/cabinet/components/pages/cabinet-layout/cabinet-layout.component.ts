@@ -13,8 +13,7 @@ export class CabinetLayoutComponent implements OnInit {
     { url: 'habits', icon: 'business_center' },
     { url: 'tasks', icon: 'adjust' },
     { url: 'categories', icon: 'category' },
-    { url: 'statistics', icon: 'auto_graph' },
-    { url: 'statistics/time', icon: 'auto_graph' }
+    { url: 'statistics', icon: 'auto_graph' }
   ];
 
   mobileOpen = false;

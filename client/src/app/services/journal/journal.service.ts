@@ -18,7 +18,7 @@ export class JournalService {
     return this.http.patch<IJournalEntry>(`/api/journal/${entry._id}`, entry);
   }
 
-  getAllHabitsById(id: string): Observable<IJournalEntry[]> {
+  getAllEntriesById(id: string): Observable<IJournalEntry[]> {
     return this.http.get<IJournalEntry[]>(`/api/journal/${id}`);
   }
 

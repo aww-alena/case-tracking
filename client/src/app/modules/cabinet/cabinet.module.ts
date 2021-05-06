@@ -28,8 +28,6 @@ import { StatisticCalendarComponent } from './components/statistic-calendar/stat
 
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-import { StatisticComponent } from './components/pages/statistic/statistic.component';
-import { TimeStatisticsComponent } from './components/time-statistics/time-statistics.component';
 
 import { ItemTaskControlViewComponent } from './components/pages/task/control-view/item-task/item-task-control-view.component';
 import { ListTaskControlViewComponent } from './components/pages/task/control-view/list-task/list-task-control-view.component';
@@ -40,6 +38,7 @@ import { ItemTimeStatisticsComponent } from './components/item-time-statistics/i
 import { IconTemplateComponent } from './components/icon-template/icon-template.component';
 import { SortByPipe } from '../../pipes/sort-by.pipe';
 import { FilterByPipe } from '../../pipes/filter-by.pipe';
+import { HabitStatisticsComponent } from './components/pages/habit-statistics/habit-statistics.component';
 @NgModule({
   declarations: [
     CabinetLayoutComponent,
@@ -63,8 +62,6 @@ import { FilterByPipe } from '../../pipes/filter-by.pipe';
     CreateSubtasksComponent,
     SubtaskComponent,
     StatisticCalendarComponent,
-    StatisticComponent,
-    TimeStatisticsComponent,
     ItemTaskControlViewComponent,
     ItemHabitControlViewComponent,
     ListTaskControlViewComponent,
@@ -72,7 +69,8 @@ import { FilterByPipe } from '../../pipes/filter-by.pipe';
     ItemTimeStatisticsComponent,
     IconTemplateComponent,
     SortByPipe,
-    FilterByPipe
+    FilterByPipe,
+    HabitStatisticsComponent
   ],
   imports: [
     CommonModule,
