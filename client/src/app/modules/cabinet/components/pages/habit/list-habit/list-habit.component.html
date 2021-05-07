@@ -1,11 +1,7 @@
 <div class="habit-list" *ngIf="habits; else loading">
 
     <mat-tab-group disableRipple mat-align-tabs="start" class="tabs-habit">
-        <mat-tab label="All">
-            <div class="grid">
-                <app-item-habit *ngFor="let record of habitRecords | sortBy:['habit.timeframe']" [habitRecording]="record"></app-item-habit>
-            </div>
-        </mat-tab>
+
         <mat-tab label="Must do">
             <div class="grid">
                 <app-item-habit *ngFor="let record of habitRecords | filterBy: false : 'entry.done' | sortBy:['habit.timeframe']" [habitRecording]="record"></app-item-habit>
@@ -16,6 +12,13 @@
                 <app-item-habit *ngFor="let record of habitRecords | filterBy: true : 'entry.done' | sortBy:['habit.timeframe']" [habitRecording]="record"></app-item-habit>
             </div>
         </mat-tab>
+        <mat-tab label="All">
+            <div class="grid">
+                <app-item-habit *ngFor="let record of habitRecords | filterBy: false : 'entry.done' | sortBy:['habit.timeframe']" [habitRecording]="record"></app-item-habit>
+                <app-item-habit *ngFor="let record of habitRecords | filterBy: true : 'entry.done' | sortBy:['habit.timeframe']" [habitRecording]="record"></app-item-habit>
+            </div>
+        </mat-tab>
+
     </mat-tab-group>
 
 

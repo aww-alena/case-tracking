@@ -1,5 +1,5 @@
 <div class="statistic grid">
-    <div class="statistic-calendar" *ngFor="let date of dates">
+    <div class="statistic-calendar" *ngFor="let date of viewDates">
         <h3>{{ date | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
 
         <mwl-calendar-month-view [viewDate]="date" [events]="events"></mwl-calendar-month-view>

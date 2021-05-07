@@ -1,0 +1,30 @@
+<div class="entry">
+
+    <div class="flex">
+        <p class="title">
+            <span class="date">{{entry.date | date: 'dd.MM'}}</span>
+            <span>{{entry.date | date: 'EEEE'}}</span>
+        </p>
+        <div class="center" [ngClass]="{'has-commnet': entry.comment}">
+
+            <div class="rating-timer">
+                <ng-template [ngIf]="habit.hasRating">
+                    <app-rating [oldRating]="entry.rating" [isPicker]="false"></app-rating>
+                </ng-template>
+
+                <ng-template [ngIf]="habit.hasTimer">
+                    <span class="time">{{entry.time | formatTime}}</span>
+                </ng-template>
+            </div>
+
+        </div>
+    </div>
+
+    <p class="comment" *ngIf="entry.comment">
+        {{entry.comment}}
+    </p>
+
+
+
+
+</div>

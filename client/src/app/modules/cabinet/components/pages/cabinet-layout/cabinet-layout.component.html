@@ -1,7 +1,7 @@
 <mat-sidenav-container>
     <mat-sidenav #sidenav role="navigation" mode="side" opened [ngClass]="{active:mobileOpen}">
         <button class="close-sidenav" type="button" (click)="mobileOpen = ! mobileOpen"><mat-icon>clear</mat-icon></button>
-        <a class="logo" [routerLink]="['dashboard']">
+        <a class="logo" [routerLink]="['/app/dashboard']">
             <img src="../../../../../assets/images/logo.png">
             <p>NOW</p>
         </a>
@@ -9,7 +9,7 @@
             <ul>
                 <li *ngFor="let link of links">
                     <a [routerLink]="[link.url]" routerLinkActive="active" (click)="mobileOpen = ! mobileOpen">
-                        <mat-icon>{{link.icon}}</mat-icon> {{link.url}}
+                        <mat-icon>{{link.icon}}</mat-icon> {{link.name}}
                     </a>
                 </li>
             </ul>
@@ -26,22 +26,22 @@
 
                 <ul>
                     <li>
-                        <a [routerLink]="['dashboard']">
+                        <a [routerLink]="['/app/dashboard']">
                             <mat-icon>search</mat-icon>
                         </a>
                     </li>
                     <li>
-                        <a [routerLink]="['dashboard']">
+                        <a [routerLink]="['/app/dashboard']">
                             <mat-icon>notifications</mat-icon>
                         </a>
                     </li>
                     <li>
-                        <a [routerLink]="['dashboard']">
+                        <a [routerLink]="['/app/dashboard']">
                             <mat-icon>event</mat-icon>
                         </a>
                     </li>
                     <li>
-                        <a [routerLink]="['dashboard']">
+                        <a [routerLink]="['/app/dashboard']">
                             <mat-icon>settings</mat-icon>
                         </a>
                     </li>
@@ -56,7 +56,7 @@
             </div>
 
             <div class="mobile-header">
-                <a class="logo" [routerLink]="['dashboard']">
+                <a class="logo" [routerLink]="['/app/dashboard']">
                     <img src="../../../../../assets/images/logo.png">
                 </a>
 
@@ -75,11 +75,11 @@
             </button>
             <mat-menu class="mat-plus-menu" #menu="matMenu" yPosition="above">
 
-                <a class="add" [routerLink]="['habit/create']">Habit</a>
+                <a class="add" [routerLink]="['/app/habit/create']">Habit</a>
 
-                <a class="add" [routerLink]="['task/create']">Task</a>
+                <a class="add" [routerLink]="['/app/task/create']">Task</a>
 
-                <a class="add" [routerLink]="['category/create']">Category</a>
+                <a class="add" [routerLink]="['/app/category/create']">Category</a>
 
             </mat-menu>
         </div>

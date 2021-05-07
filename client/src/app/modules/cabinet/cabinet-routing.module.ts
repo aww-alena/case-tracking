@@ -6,7 +6,7 @@ import { DashboardComponent } from './components/pages/dashboard/dashboard.compo
 import { CreateTaskComponent } from './components/pages/task/create-task/create-task.component';
 import { ListHabitControlViewComponent } from './components/pages/habit/control-view/list-habit/list-habit-control-view.component';
 import { ListTaskControlViewComponent } from './components/pages/task/control-view/list-task/list-task-control-view.component';
-import { HabitStatisticsComponent } from './components/pages/habit-statistics/habit-statistics.component';
+
 
 const routes: Routes = [
   {
@@ -22,9 +22,7 @@ const routes: Routes = [
       { path: 'tasks/:id', component: CreateTaskComponent },
 
       { path: 'habits', component: ListHabitControlViewComponent },
-      { path: 'tasks', component: ListTaskControlViewComponent },
-
-      { path: 'statistics', component: HabitStatisticsComponent }
+      { path: 'tasks', component: ListTaskControlViewComponent }
     ],
   },
 ];

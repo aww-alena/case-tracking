@@ -20,6 +20,11 @@ const routes: Routes = [
     loadChildren: () => import('./modules/cabinet/cabinet.module').then((m) => m.CabinetModule),
     canActivate: [AuthGuard],
   },
+  {
+    path: 'statistics',
+    loadChildren: () => import('./modules/statistics/statistics.module').then((m) => m.StatisticsModule),
+    canActivate: [AuthGuard],
+  },
   { path: '', component: AppComponent, pathMatch: 'full' },
 ];
 

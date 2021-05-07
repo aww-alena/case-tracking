@@ -2,7 +2,7 @@ const Habit = require('../models/Habit');
 const JournalEntry = require('../models/JournalEntry');
 const errorHandler = require('../utils/errorHandler');
 const moment = require('moment');
-const { startOfDay, isEqual } = require('date-fns');
+const { isEqual } = require('date-fns');
 
 module.exports.habit = async function(req, res) {
 
@@ -43,9 +43,9 @@ function getCalendarData(entries = [], color) {
 
 function initCalendarEvent(date, title = '', color) {
     const calendarEntry = {
-        start: startOfDay(new Date(date)),
-        color,
-        title
+        start: date,
+        title,
+        color: { primary: color, secondary: color }
     };
 
     return calendarEntry;
@@ -54,7 +54,7 @@ function initCalendarEvent(date, title = '', color) {
 function initShortEntry(entry) {
     const ShortEntry = {
         date: entry.date,
-        title: entry.comment || '',
+        comment: entry.comment || '',
         rating: entry.rating || 0,
         time: getPassedTime(entry.timer) || 0
     };
@@ -86,5 +86,4 @@ function getPassedTime(timer) {
     }
 
     return seconds;
-
 }

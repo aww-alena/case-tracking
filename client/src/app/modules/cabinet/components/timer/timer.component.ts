@@ -1,10 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, OnDestroy, ViewChild, ElementRef} from '@angular/core';
-import * as moment from 'moment';
-import { interval, Subscriber, Subscription } from 'rxjs';
-import { Timestamp } from 'rxjs/internal/operators/timestamp';
+import { interval, Subscription } from 'rxjs';
 import { Timer } from 'src/app/classes/timer';
-import { IJournalEntry } from 'src/app/interfaces/journal-entry';
-import { ITimer } from 'src/app/interfaces/timer';
+import * as moment from 'moment';
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.component.html',

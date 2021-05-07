@@ -1,0 +1,26 @@
+<div class="calendar-ctatistic">
+    <mat-tab-group disableRipple mat-align-tabs="start">
+        <mat-tab *ngFor="let habit of habits">
+            <ng-template mat-tab-label>
+                <span (click)="showHabitsStatistic(habit)">     
+                    <app-icon-template [color]="habit.color" [icon]="habit.icon"></app-icon-template>
+
+                    {{habit.name}}
+                </span>
+            </ng-template>
+
+        </mat-tab>
+    </mat-tab-group>
+
+    <div class="content">
+        <ng-template [ngIf]="events.length > 0" [ngIfElse]="loading">
+            <app-statistic-calendar [viewDates]="viewDates" [events]="events"></app-statistic-calendar>
+        </ng-template>
+
+        <app-list-entry [entries]="entries" [habit]="habit"></app-list-entry>
+
+        <ng-template #loading>
+            <p class="tip">Nothing to show</p>
+        </ng-template>
+    </div>
+</div>

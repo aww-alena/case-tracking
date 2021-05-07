@@ -1,0 +1,24 @@
+<div class="entries" *ngIf="entries">
+    <div class="title" *ngIf="habit">
+        <div class="left">
+            <app-icon-template [color]="habit.color" [icon]="habit.icon"></app-icon-template>
+            {{habit.name}}
+
+            <span *ngIf="habit.hasRating" class="rating">
+                {{rating}}
+                <i class="fa fa-star filled"></i>
+            </span>
+
+        </div>
+
+        <span *ngIf="habit.hasTimer"> 
+            <span class="time">
+                {{totalSeconds | formatTime}}
+            </span>
+        </span>
+    </div>
+    <div class="entry-wrapper">
+        <app-item-entry *ngFor="let entry of entries | sortBy:['date', 'desc']" [entry]="entry" [habit]="habit"></app-item-entry>
+    </div>
+
+</div>

@@ -24,7 +24,7 @@ import { ItemTaskComponent } from './components/pages/task/item-task/item-task.c
 import { ListTaskComponent } from './components/pages/task/list-task/list-task.component';
 import { CreateSubtasksComponent } from './components/create-subtasks/create-subtasks.component';
 import { SubtaskComponent } from './components/subtask/subtask.component';
-import { StatisticCalendarComponent } from './components/statistic-calendar/statistic-calendar.component';
+
 
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
@@ -34,11 +34,9 @@ import { ListTaskControlViewComponent } from './components/pages/task/control-vi
 
 import { ItemHabitControlViewComponent } from './components/pages/habit/control-view/item-habit/item-habit-control-view.component';
 import { ListHabitControlViewComponent } from './components/pages/habit/control-view/list-habit/list-habit-control-view.component';
-import { ItemTimeStatisticsComponent } from './components/item-time-statistics/item-time-statistics.component';
 import { IconTemplateComponent } from './components/icon-template/icon-template.component';
-import { SortByPipe } from '../../pipes/sort-by.pipe';
-import { FilterByPipe } from '../../pipes/filter-by.pipe';
-import { HabitStatisticsComponent } from './components/pages/habit-statistics/habit-statistics.component';
+
+
 @NgModule({
   declarations: [
     CabinetLayoutComponent,
@@ -61,16 +59,11 @@ import { HabitStatisticsComponent } from './components/pages/habit-statistics/ha
     ListTaskComponent,
     CreateSubtasksComponent,
     SubtaskComponent,
-    StatisticCalendarComponent,
     ItemTaskControlViewComponent,
     ItemHabitControlViewComponent,
     ListTaskControlViewComponent,
     ListHabitControlViewComponent,
-    ItemTimeStatisticsComponent,
-    IconTemplateComponent,
-    SortByPipe,
-    FilterByPipe,
-    HabitStatisticsComponent
+    IconTemplateComponent
   ],
   imports: [
     CommonModule,
@@ -83,5 +76,10 @@ import { HabitStatisticsComponent } from './components/pages/habit-statistics/ha
       useFactory: adapterFactory,
     })
   ],
+  exports: [
+    IconTemplateComponent,
+    CabinetLayoutComponent,
+    RatingComponent
+  ]
 })
 export class CabinetModule {}

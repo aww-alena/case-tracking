@@ -1,18 +1,12 @@
+import { CalendarEvent } from 'angular-calendar';
 export interface HabitStatistics {
-    events: CalandarEvent[];
+    events: CalendarEvent[];
     viewDates: Date[];
     journalData: MainJournalData[];
 }
-
-export interface CalandarEvent {
-    start: Date;
-    color: string;
-    title: string;
-}
-
 export interface MainJournalData {
     date: Date;
-    title: string;
+    comment: string;
     rating: number;
     time: number;
 }

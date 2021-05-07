@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ItemTimeStatisticsComponent } from './item-time-statistics.component';
+import { ItemEntryComponent } from './item-entry.component';
 
-describe('ItemTimeStatisticsComponent', () => {
-  let component: ItemTimeStatisticsComponent;
-  let fixture: ComponentFixture<ItemTimeStatisticsComponent>;
+describe('ItemEntryComponent', () => {
+  let component: ItemEntryComponent;
+  let fixture: ComponentFixture<ItemEntryComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ItemTimeStatisticsComponent ]
+      declarations: [ ItemEntryComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ItemTimeStatisticsComponent);
+    fixture = TestBed.createComponent(ItemEntryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

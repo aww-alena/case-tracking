@@ -9,11 +9,11 @@ import { TitleStoreService } from 'src/app/services/title/title-store.service';
 })
 export class CabinetLayoutComponent implements OnInit {
   links = [
-    { url: 'dashboard', icon: 'space_dashboard' },
-    { url: 'habits', icon: 'business_center' },
-    { url: 'tasks', icon: 'adjust' },
-    { url: 'categories', icon: 'category' },
-    { url: 'statistics', icon: 'auto_graph' }
+    { name: 'dashboard', url: '/app/dashboard', icon: 'space_dashboard' },
+    { name: 'habits', url: '/app/habits', icon: 'business_center' },
+    { name: 'tasks', url: '/app/tasks', icon: 'adjust' },
+    { name: 'categories', url: '/app/categories', icon: 'category' },
+    { name: 'statistics', url: '/statistics/habits', icon: 'auto_graph' }
   ];
 
   mobileOpen = false;

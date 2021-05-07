@@ -24,8 +24,15 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSortModule } from '@angular/material/sort';
 import {MatChipsModule} from '@angular/material/chips';
 
+import { SortByPipe } from '../../pipes/sort-by.pipe';
+import { FilterByPipe } from '../../pipes/filter-by.pipe';
+import { FormatTimePipe } from '../../pipes/format-time.pipe';
 @NgModule({
-  declarations: [],
+  declarations: [
+    SortByPipe,
+    FilterByPipe,
+    FormatTimePipe
+  ],
   imports: [
     CommonModule,
     MatGridListModule,
@@ -78,7 +85,10 @@ import {MatChipsModule} from '@angular/material/chips';
     MatSnackBarModule,
     MatTooltipModule,
     MatSortModule,
-    MatChipsModule
+    MatChipsModule,
+    SortByPipe,
+    FilterByPipe,
+    FormatTimePipe
   ],
 })
 export class SharedModule {}
