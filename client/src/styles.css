@@ -361,7 +361,7 @@ app-schedule-picker .day-of-week {
 
 .mat-plus-menu.mat-menu-panel .add {
     color: #fff;
-    background: rgb(59 62 73);
+    background: var(--dark-dark);
     margin-bottom: 10px;
     padding: 10px;
     border-radius: 10px;
@@ -522,8 +522,6 @@ p.stars {
 mat-expansion-panel mat-icon {
     margin-right: 15px;
 }
-
-.create-habit .mat-expansion-panel-header-title {}
 
 .habit .mat-expansion-panel-header-title {
     margin-right: 0;
@@ -1137,8 +1135,6 @@ button.edit {
     -o-border-radius: 0px;
 }
 
-.subtasks.form .created button {}
-
 .subtasks.form .created button:hover {
     background: var(--main-blue);
 }
@@ -1309,7 +1305,7 @@ svg.chart {
 }
 
 .mat-chip.mat-standard-chip {
-    background: rgb(70 76 109);
+    background: var(--dark-dark);
 }
 
 .mat-chip-list-wrapper {
@@ -2819,7 +2815,15 @@ app-item-entry:last-child .entry {
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
+    .content {
+        grid-template-columns: 1fr;
+        grid-gap: 20px;
+    }
+    .entry-wrapper {
+        overflow-y: hidden;
+        max-height: unset;
+    }
     body,
     div,
     p {
@@ -2901,6 +2905,172 @@ app-item-entry:last-child .entry {
     .calendar-ctatistic .mat-tab-labels {
         flex-wrap: wrap;
         margin-bottom: 15px;
+        padding: 10px;
+        border-radius: 10px;
+    }
+    .habit-list-control-view .list .habit,
+    .task-list-control-view .list .task {
+        flex-wrap: wrap;
+    }
+    .habit-list-control-view .list .habit .flex.title,
+    .task-list-control-view .list .task .flex.title {
+        justify-content: flex-start;
+        font-size: 12px;
+        padding: 12px 0px;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.2);
+    }
+    .habit-list-control-view .list .habit .flex.title:before,
+    .task-list-control-view .list .task .flex.title:before {
+        counter-increment: counter;
+        content: counter(counter);
+        padding: 0 10px 0 18px;
+    }
+    .habit-list-control-view .list .habit button,
+    .task-list-control-view .list .task button {
+        padding: 9px 36px;
+    }
+    .habit-list-control-view .list .habit .flex:nth-child(2),
+    .task-list-control-view .list .task .flex:nth-child(2) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+    }
+    .create-habit {
+        overflow: hidden;
+    }
+    .create-habit .wrapper {
+        display: block;
+        padding: 0 20px 20px;
+    }
+    .create-habit button {
+        height: 32px;
+        font-size: 12px;
+    }
+    .create-habit .mat-checkbox {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .create-habit button[type="submit"] {
+        display: block;
+        margin: 20px auto 0;
+        width: 100px;
+    }
+    .create-habit>p {
+        font-size: 16px;
+        color: #fff;
+        padding: 16px 20px;
+        margin-bottom: 5px;
+    }
+    svg.chart {
+        transform: scale(0.7);
+    }
+    .svg-with-text .text p:nth-child(3) {
+        top: 33px;
+        right: 36px;
+    }
+    .flex.name-block mat-form-field {
+        width: 100%;
+    }
+    .create-habit .datepicker .flex {
+        flex-wrap: wrap;
+    }
+    .create-habit .datepicker>.flex mat-form-field.mat-form-field.input-date {
+        margin-right: 0;
+        width: 100%;
+    }
+    .subtasks.form .wrap {
+        padding: 10px;
+        grid-template-columns: 1fr;
+        grid-gap: 20px;
+    }
+    .subtasks.form .flex {
+        flex-wrap: wrap;
+    }
+    .subtasks.form .created button {
+        padding: 6px 8px;
+    }
+    .subtasks.form .created button mat-icon {
+        font-size: 19px;
+    }
+    .subtasks.form .left h2,
+    .subtasks.form .created h2 {
+        font-size: 14px;
+        padding: 0px 0px 4px;
+    }
+    .create-habit .subtasks form .flex>mat-form-field {
+        width: 100% !important;
+        left: 0px;
+    }
+    .flex.name-block {
+        flex-wrap: wrap;
+    }
+    .color-btn button,
+    .icon-btn button {
+        width: 45px;
+        height: 45px;
+    }
+    .svg-with-text .text p:first-child {
+        right: -11px;
+        bottom: 71px;
+    }
+    .svg-with-text .text p:nth-child(2) {
+        bottom: 130px;
+        right: -31px;
+    }
+    .svg-with-text .text p:nth-child(4) {
+        top: 33px;
+        left: 30px;
+    }
+    .svg-with-text .text p:nth-child(5) {
+        bottom: 130px;
+        left: 30px;
+        max-width: 80px;
+    }
+    .svg-with-text .text p:nth-child(6) {
+        bottom: 71px;
+        left: 24px;
+        max-width: 68px;
+    }
+    .svg-with-text .text p:nth-child(7) {
+        bottom: 34px;
+        left: 10px;
+    }
+    .svg-with-text .text p:nth-child(8) {
+        bottom: 34px;
+        right: 28px;
+    }
+    .create-habit button {
+        min-height: unset;
+    }
+    .difficulty button {
+        padding: 3px 4px;
+        height: unset;
+    }
+    .create-habit .mat-checkbox {
+        margin-bottom: 0px;
+        margin-top: 10px;
+    }
+    .create-habit .mat-expansion-panel {
+        margin-top: 20px;
+    }
+    .picker-dialog {
+        max-width: 100%;
+        margin-left: 0;
+    }
+    .create-habit mat-expansion-panel-header.mat-expanded {
+        height: 37px;
+    }
+    .create-habit .icon-block,
+    .create-habit .color-block,
+    .create-habit .difficulty {
+        margin-left: 0;
+        margin-right: 20px;
+    }
+    .create-habit mat-expansion-panel.mat-expansion-panel.grid .mat-expansion-panel-body {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 20px;
     }
     .calendar-ctatistic .mat-tab-label {
         margin-right: 6px;
@@ -2941,7 +3111,14 @@ app-item-entry:last-child .entry {
         display: none;
     }
     .plus-menu {
-        display: none;
+        position: fixed;
+        right: 67px;
+        top: 8px;
+        z-index: 9;
+        transform: scale(0.75);
+    }
+    .mat-plus-menu.mat-menu-panel {
+        right: -27px;
     }
     main .wrapper {
         padding: 75px 15px 10px;

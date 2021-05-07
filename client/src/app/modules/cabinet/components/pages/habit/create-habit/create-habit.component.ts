@@ -111,6 +111,7 @@ export class CreateHabitComponent implements OnInit {
 
   onAddNotes(notes: string): void {
     this.form.patchValue({comment: notes});
+    console.log(this.form.value.comment);
   }
 
   get schedule(): FormControl {
@@ -184,6 +185,9 @@ export class CreateHabitComponent implements OnInit {
           this.createForm();
           if (habit) {
             this.habit = habit;
+            console.log(habit);
+
+
             this.form.patchValue({
               name: habit.name,
               hasTimer: habit.hasTimer,
