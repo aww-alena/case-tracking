@@ -26,7 +26,7 @@ export class JournalService {
     return this.http.get<IJournalEntry>(`/api/journal/${id}/${idRecording}`);
   }
 
-  delete(entry: IJournalEntry): Observable<string> {
-    return this.http.delete<string>(`/api/journal/${entry._id}`);
+  delete(entry: IJournalEntry): Observable<any> {
+    return this.http.delete<any>(`/api/journal/${entry._id}`);
   }
 }

@@ -7,6 +7,7 @@ import { NgForm } from '@angular/forms';
 import { JournalEntry } from 'src/app/classes/journal-entry';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { MessageService } from 'src/app/services/message-service/message.service';
 
 @Component({
   selector: 'app-item-habit',
@@ -19,7 +20,7 @@ export class ItemHabitComponent implements OnInit, OnDestroy {
   subscriptions: Subscription = new Subscription();
   tabName = 'close';
 
-  constructor(private journalService: JournalService, private router: Router) {}
+  constructor(private journalService: JournalService, private router: Router, private messageService: MessageService) {}
 
   ngOnInit(): void {}
 
@@ -39,11 +40,12 @@ export class ItemHabitComponent implements OnInit, OnDestroy {
 
     if (this.habitRecording.entry.done) {
       this.deleteEntry(this.habitRecording.entry);
-      this.resetEntry();
     } else {
-      this.habitRecording.entry.setDone(true);
       this.habitRecording.entry.setDate(moment().toDate());
-      this.updateOrSave();
+
+      const tempEntry = this.getCopyEntry();
+      tempEntry.setDone(true);
+      this.updateOrSave(tempEntry);
     }
   }
 
@@ -53,49 +55,68 @@ export class ItemHabitComponent implements OnInit, OnDestroy {
 
   saveComment(form: NgForm) {
     this.habitRecording.entry.setComment(form.value.note);
-    this.updateOrSave();
+    this.updateOrSave(this.habitRecording.entry);
   }
 
   saveRating(ratingValue: number): void {
 
     this.habitRecording.entry.setRating(ratingValue);
-    this.habitRecording.entry.setDone(true);
+
     if(!this.habitRecording.entry.done) {
       this.habitRecording.entry.setDate(moment().toDate());
     }
 
-    this.updateOrSave();
+    const tempEntry = this.getCopyEntry();
+    tempEntry.setDone(true);
+
+    this.updateOrSave(tempEntry);
   }
 
   updateEntry(entry: IJournalEntry): void {
     this.subscriptions.add(this.journalService.update(entry).subscribe((newEntry) => {
+      this.messageService.showMessage('The entry was successfully updated', 'Success');
       this.habitRecording.entry.parseEntry(newEntry);
-      console.log('update: ', newEntry);
+    },
+    (error) => {
+      this.messageService.showError(error.error.message, 'Uuups! Error');
     }));
   }
 
   saveEntry(entry: IJournalEntry): void {
     this.subscriptions.add(this.journalService.create(entry).subscribe((newEntry) => {
+      this.messageService.showMessage('The entry was successfully saved', 'Success');
       this.habitRecording.entry.parseEntry(newEntry);
-      console.log('save: ', newEntry);
+    },
+    (error) => {
+      this.messageService.showError(error.error.message, 'Uuups! Error');
     }));
   }
 
-  updateOrSave(): void {
-    console.log('update or save: ', this.habitRecording.entry);
-    if(!this.habitRecording.entry.isIdUndefined()) {
-      this.updateEntry(this.habitRecording.entry);
+  updateOrSave(entry: IJournalEntry): void {
+    if(!entry.isIdUndefined()) {
+      this.updateEntry(entry);
     } else {
-      this.saveEntry(this.habitRecording.entry);
+      this.saveEntry(entry);
     }
   }
 
   deleteEntry(entry: IJournalEntry): void {
-    console.log('delete');
-
     this.subscriptions.add(this.journalService.delete(entry).subscribe((message) => {
+      this.messageService.showMessage(message.message, 'Success');
       this.resetEntry();
-    }));
+    },
+    (error) => {
+      this.messageService.showError(error.error.message, 'Uuups! Error');
+    }
+    ));
+  }
+
+  getCopyEntry(): IJournalEntry {
+
+    const tempEntry = new JournalEntry(this.habitRecording.habit._id, this.habitRecording.id);
+    tempEntry.parseEntry(this.habitRecording.entry);
+
+    return tempEntry;
   }
 
   updateFormField(form: NgForm): void {
@@ -109,25 +130,31 @@ export class ItemHabitComponent implements OnInit, OnDestroy {
 
   onPlayTime(time: Event): void {
     this.habitRecording.entry.timer.startTimer();
-    this.updateOrSave();
+    this.updateOrSave(this.habitRecording.entry);
   }
 
   onPauseTime(status: string): void {
 
+    let tempEntry: IJournalEntry;
+
     if(status === 'stop') {
-      this.habitRecording.entry.setDone(true);
+
       this.habitRecording.entry.setDate(moment().toDate());
       this.habitRecording.entry.timer.stopTimer('stop');
+
+      tempEntry = this.getCopyEntry();
+      tempEntry.setDone(true);
     } else {
       this.habitRecording.entry.timer.stopTimer('pause');
+      tempEntry = this.getCopyEntry();
     }
 
-    this.updateOrSave();
+    this.updateOrSave(tempEntry);
   }
 
   onResetTime(): void {
     this.habitRecording.entry.timer.resetTimer();
-    this.updateOrSave();
+    this.updateOrSave(this.habitRecording.entry);
   }
 
   onChangeTime(emitData: {index: number; time: Date; name: string}): void {

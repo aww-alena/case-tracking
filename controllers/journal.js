@@ -38,7 +38,7 @@ module.exports.remove = async function(req, res) {
     try {
         await JournalEntry.remove({ _id: req.params.id })
         res.status(200).json({
-            message: 'Habit removed successfully'
+            message: 'The entry was successfully deleted'
         })
     } catch (error) {
         errorHandler(res, error)
