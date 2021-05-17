@@ -13,4 +13,5 @@ export interface IHabit {
   _id: string;
 
   getComment(habitComment: string): string;
+  setComment(comment: string): void;
 }

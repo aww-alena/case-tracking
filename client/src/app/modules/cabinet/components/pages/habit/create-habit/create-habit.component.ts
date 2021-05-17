@@ -51,7 +51,6 @@ export class CreateHabitComponent implements OnInit {
   onSubmit(): void {
 
     if (this.isNew) {
-      console.log(this.form);
       this.createHabit();
       this.habitService.create(this.habit).subscribe(
         () => {
@@ -64,7 +63,6 @@ export class CreateHabitComponent implements OnInit {
         }
       );
     } else {
-      console.log(this.form);
       this.createHabit();
       this.habitService.update(this.habit).subscribe(
         () => {
@@ -160,10 +158,11 @@ export class CreateHabitComponent implements OnInit {
       color: this.form.value.color,
       icon: this.form.value.icon,
       difficulty: this.form.value.difficulty,
-      comment: this.form.value.comment,
       timeframe: this.formatTimeFrame(),
       _id: this.form.value.id
     });
+
+    this.habit.setComment(this.form.value.comment);
   }
 
   private getHabit(): void {

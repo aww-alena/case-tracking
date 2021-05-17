@@ -45,11 +45,13 @@ export class Habit implements IHabit {
 
     getComment(habitComment: string): string {
         let comment = '';
+        console.log(habitComment);
+
 
         if (habitComment) {
-            const day = moment().isoWeekday();
+            const day = moment().isoWeekday().toString();
             if (this.isJsonString(habitComment)) {
-                const notes = JSON.parse(habitComment);
+                const notes = JSON.parse(JSON.parse(habitComment));
                 comment = (notes.note) ? notes.note : notes[day];
             } else {
                 comment = habitComment;
@@ -57,6 +59,18 @@ export class Habit implements IHabit {
         }
 
         return comment;
+    }
+
+    setComment(comment: string): void {
+        this.comment = this.getStringFromJSON(comment);
+    }
+
+    getStringFromJSON(comment: any): string {
+        try {
+          return JSON.stringify(comment);
+        } catch (e) {
+            return comment;
+        }
     }
 
     isJsonString(value: string): boolean {
