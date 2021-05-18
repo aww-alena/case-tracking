@@ -21,7 +21,6 @@ export class ListTaskComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getTasks();
-    console.log('today: ', this.today);
   }
 
   ngOnDestroy(): void {
@@ -35,7 +34,6 @@ export class ListTaskComponent implements OnInit, OnDestroy {
       .subscribe(value => {
         this.tasks.push(value);
       }));
-    console.log(this.tasks);
   }
 
   private initTasks(taskRecordings: ITask[]): ITask[] {

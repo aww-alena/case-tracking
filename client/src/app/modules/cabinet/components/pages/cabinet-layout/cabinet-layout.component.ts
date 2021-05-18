@@ -12,7 +12,7 @@ export class CabinetLayoutComponent implements OnInit {
     { name: 'dashboard', url: '/app/dashboard', icon: 'space_dashboard' },
     { name: 'habits', url: '/app/habits', icon: 'business_center' },
     { name: 'tasks', url: '/app/tasks', icon: 'adjust' },
-    { name: 'categories', url: '/app/categories', icon: 'category' },
+    { name: 'categories', url: '/statistics/categories', icon: 'category' },
     { name: 'statistics', url: '/statistics/habits', icon: 'auto_graph' }
   ];
 

@@ -9,19 +9,26 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { CabinetModule } from '../cabinet/cabinet.module';
 import { ListEntryComponent } from './components/entry/list-entry/list-entry.component';
 import { ItemEntryComponent } from './components/entry/item-entry/item-entry.component';
+import { registerLocaleData } from '@angular/common';
+import localeRu from '@angular/common/locales/ru';
+import { CategoryStaisticsComponent } from './components/pages/category-staistics/category-staistics.component';
+import { ChartsModule } from 'ng2-charts';
 
+registerLocaleData(localeRu);
 @NgModule({
   declarations: [
     StatisticCalendarComponent,
     HabitStatisticsComponent,
     ListEntryComponent,
-    ItemEntryComponent
+    ItemEntryComponent,
+    CategoryStaisticsComponent
   ],
   imports: [
     CommonModule,
     StatisticsRoutingModule,
     SharedModule,
     CabinetModule,
+    ChartsModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,

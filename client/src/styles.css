@@ -1446,6 +1446,84 @@ mat-expansion-panel-header {
     background: var(--dark-back);
 }
 
+app-popup .mat-tab-labels {
+    background: transparent;
+}
+
+app-popup .mat-dialog-content {
+    overflow: visible;
+}
+
+mwl-calendar-month-cell.cal-cell.cal-day-cell.cal-today.cal-in-month.ng-star-inserted {
+    background: #161b27;
+    color: #fff;
+    border: 2px solid var(--main-blue)
+}
+
+mwl-calendar-month-cell.cal-cell.cal-day-cell.cal-future.cal-in-month.ng-star-inserted {
+    opacity: 0.1;
+}
+
+span.timer-active {
+    margin-right: 10px;
+    position: relative;
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    box-shadow: 0 0 6px rgb(0 0 0 / 60%), inset 0 0 3px rgb(255 255 255 / 10%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+mat-sidenav-content.mat-drawer-content.mat-sidenav-content .timer-active .mat-progress-spinner circle,
+.timer-active .mat-spinner circle {
+    stroke-dasharray: 7px !important;
+    stroke-width: 2% !important;
+}
+
+.timer-active .mat-progress-spinner.mat-progress-spinner-indeterminate-animation[mode=indeterminate] circle {
+    animation-duration: 20000ms;
+}
+
+.timer-active .mat-progress-spinner.mat-progress-spinner-indeterminate-animation[mode=indeterminate] svg {
+    animation: mat-progress-spinner-linear-rotate 20000ms linear infinite;
+}
+
+mat-spinner.mat-spinner.mat-progress-spinner.mat-primary.mat-progress-spinner-indeterminate-animation:active,
+mat-spinner.mat-spinner.mat-progress-spinner.mat-primary.mat-progress-spinner-indeterminate-animation:focus {
+    outline: none;
+}
+
+span.timer-active i.fa.fa-clock-o {
+    font-size: 17px;
+}
+
+span.timer-active mat-spinner.mat-spinner.mat-progress-spinner.mat-primary.mat-progress-spinner-indeterminate-animation {
+    position: absolute;
+}
+
+span.timer-active mat-icon {
+    height: auto;
+    width: auto;
+    font-size: 19px;
+    padding: 2px;
+    transform: rotate(0.03deg);
+    -webkit-transform: rotate(0.03deg);
+    -moz-transform: rotate(0.03deg);
+    -ms-transform: rotate(0.03deg);
+    -o-transform: rotate(0.03deg);
+}
+
+mat-sidenav-content.mat-drawer-content.mat-sidenav-content span.timer-active .mat-progress-spinner circle,
+span.timer-active .mat-spinner circle {
+    stroke: #fff;
+}
+
+mwl-calendar-month-cell.cal-cell.cal-day-cell.cal-past.cal-out-month.ng-star-inserted {
+    opacity: 0;
+}
+
 .task-item .mat-tab-label-container {
     border-radius: 0 0 13px 13px;
 }
@@ -2162,6 +2240,10 @@ span.done-span {
 
 .statistic-calendar .cal-month-view .cal-day-cell.cal-weekend .cal-day-number {
     color: var(--main-blue);
+}
+
+mwl-calendar-month-cell.cal-cell.cal-day-cell.cal-past.cal-weekend.cal-in-month.cal-has-events.ng-star-inserted .cal-day-number {
+    color: #000;
 }
 
 .statistic-calendar .cal-month-view .cal-cell-row {

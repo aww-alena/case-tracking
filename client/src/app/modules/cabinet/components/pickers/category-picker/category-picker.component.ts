@@ -36,7 +36,7 @@ export class CategoryPickerComponent implements OnInit {
     'Health / Fitness',
     'Spiritual / Self-time',
     'Hobbies / Recreation',
-    'Chores, cleaning'];
+    'Chores / Cleaning'];
 
   selectable = true;
   removable = true;

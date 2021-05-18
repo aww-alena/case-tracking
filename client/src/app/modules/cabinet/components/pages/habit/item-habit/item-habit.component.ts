@@ -29,6 +29,7 @@ export class ItemHabitComponent implements OnInit, OnDestroy {
   }
 
   tabIsChange(event: any): void {
+
     this.tabName = event.tab.textLabel;
 
     if (this.tabName === 'edit' ) {

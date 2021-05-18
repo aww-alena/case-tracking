@@ -91,8 +91,6 @@ module.exports.update = async function(req, res) {
 
 const createHabit = req => {
 
-    console.log(req.body);
-
     const habitObj = new Habit({
         name: req.body.name
     });

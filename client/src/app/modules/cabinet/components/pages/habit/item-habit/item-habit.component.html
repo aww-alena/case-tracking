@@ -11,6 +11,11 @@
     <div class="right">
         <div class="flex">
             <div class="flex">
+
+                <span class="timer-active" *ngIf="habitRecording.entry.timer.status == 'start'">
+                    <mat-spinner [strokeWidth]="1" [diameter]="23"></mat-spinner>
+                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                </span>
                 <p class="name">
                     {{habitRecording.habit.name}}
                 </p>

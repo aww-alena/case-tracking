@@ -1,0 +1,12 @@
+<div *ngIf="response; else loading">
+    <div>
+        <div style="display: block">
+            <canvas baseChart [datasets]="radarChartData" [options]="radarChartOptions" [labels]="radarChartLabels" [chartType]="radarChartType">
+        </canvas>
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    <mat-spinner></mat-spinner>
+</ng-template>
