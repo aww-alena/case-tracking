@@ -49,7 +49,7 @@ export class ListTaskControlViewComponent implements OnInit, OnDestroy {
     const tempTask: ITask[] = [];
 
     taskRecordings.forEach(task => {
-      const newTask: ITask = new Task(task);
+      const newTask: ITask = new Task(task, new Date());
       tempTask.push(newTask);
     });
 

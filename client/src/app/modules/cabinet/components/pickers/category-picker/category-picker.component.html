@@ -2,8 +2,6 @@
     <h2>Life Balance Wheel</h2>
 
     <div class="svg-with-text">
-
-
         <svg class="chart" width="250" height="250" viewBox="0 0 50 50">
         <circle *ngFor="let sphere of spheresOfLifeEn" (click)="onAddCategory(sphere)" class="unit" [class.active]="isExist(sphere)"  [attr.r]="radius" cx="50%" cy="50%"></circle>
     </svg>
@@ -19,7 +17,21 @@
             {{category}}
             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
         </mat-chip>
-
     </mat-chip-list>
+
+    <form class="flex form-add-category" #form="ngForm">
+        <mat-form-field appearance="fill">
+            <mat-label>Own category</mat-label>
+            <input ngModel name="name" type="text" matInput required>
+        </mat-form-field>
+
+        <button [disabled]="form.invalid" (click)="submit(form)">Save</button>
+    </form>
+
+    <div class="list-own-categories">
+        <mat-checkbox *ngFor="let category of ownCategories" (change)="saveToCategories($event.checked, category.name)">{{category.name}}</mat-checkbox>
+    </div>
+
+
 
 </div>

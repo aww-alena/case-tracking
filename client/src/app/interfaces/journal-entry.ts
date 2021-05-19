@@ -29,5 +29,5 @@ export interface IJournalEntry {
     setDate(date: Date): void;
     setRating(rate: number): void;
 
-    parseEntry(savedEntry: IJournalEntry): void;
+    parseEntry(savedEntry: IJournalEntry, date: Date): void;
 }

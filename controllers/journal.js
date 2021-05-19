@@ -81,5 +81,7 @@ const createjournalEntry = req => {
 
     journalObj.user = req.user.id;
 
+    console.log(journalObj);
+
     return journalObj;
 }

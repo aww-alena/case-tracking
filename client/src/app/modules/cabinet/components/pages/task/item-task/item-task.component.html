@@ -44,7 +44,7 @@
                     </ng-template>
                     <h2>Timer</h2>
                     В том числе подзадачи: {{formatSecond(task.countTimePassedSubtasks())}}
-                    <app-timer [timer]="task.savedData.timer" *ngIf="task.hasTimer" (timePlay)=onPlayTime($event) (timePause)=onPauseTime($event) (timeReset)=onResetTime() (changeTime)=onChangeTime($event) (deleteTimeStamp)="onDeleteTimeStamp($event)"></app-timer>
+                    <app-timer [timer]="task.savedData.timer" [today]="today" *ngIf="task.hasTimer" (timePlay)=onPlayTime($event) (timePause)=onPauseTime($event) (timeReset)=onResetTime() (changeTime)=onChangeTime($event) (deleteTimeStamp)="onDeleteTimeStamp($event)"></app-timer>
                 </mat-tab>
 
                 <mat-tab label="Comment" *ngIf="task.comment !== ''">

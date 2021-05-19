@@ -9,14 +9,10 @@ export class HabitRecording implements IHabitRecording {
     public entry: JournalEntry;
     public id: string;
 
-    constructor(habit: IHabit) {
-        const idRecording = this.getIdRecording(habit._id);
+    constructor(habit: IHabit, date: string) {
+        const idRecording = date + habit._id;
         this.habit = new Habit(habit);
         this.id = idRecording;
-        this.entry = new JournalEntry(habit._id, idRecording);
-    }
-
-    private getIdRecording(id: string): string {
-        return moment().format('YYYYMMDD') + id;
+        this.entry = new JournalEntry(habit._id, idRecording, new Date(date));
     }
 }

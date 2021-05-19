@@ -7,13 +7,13 @@ export interface ITimer {
     isTimestampEmpty(): boolean;
     isTimestampUndefined(): boolean;
 
-    startTimer(): void;
-    stopTimer(status: string): void;
+    startTimer(date: Date): void;
+    stopTimer(status: string, date: Date): void;
     resetTimer(): void;
 
     getStatusTimer(): string;
     getTimestampArray(): Array<Timestamp>;
-    getStartTimestamp(): Timestamp;
+    getStartTimestamp(date: Date): Timestamp;
     getLastStartTimestamp(): Date;
 
     countTimePassed(): number;

@@ -26,10 +26,12 @@ export interface ITask {
    getColor(): string;
    getIcon(): string;
 
+   initSavedData(date: Date): SavedData;
+
    setDone(done: boolean): void;
    setDate(date: Date): void;
 
-   parse(savedEntry: ITask): void;
+   parse(savedEntry: ITask, date: Date): void;
 
    countSubtasks(): number;
    countDoneSubtasks(): number;

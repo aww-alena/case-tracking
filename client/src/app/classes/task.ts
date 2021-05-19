@@ -22,7 +22,7 @@ export class Task {
     subtasks: Subtask[];
     savedData: SavedData;
 
-    constructor(taskParams: any) {
+    constructor(taskParams: any, date: Date) {
         this.name = taskParams.name;
         this.date = taskParams.date;
         this.hasTimer = taskParams.hasTimer;
@@ -39,20 +39,20 @@ export class Task {
 
         this.subtasks.forEach(subtask => {
             if(subtask.timer.status === '') {
-                subtask.timer = new Timer('temp');
+                subtask.timer = new Timer('temp', date);
             } else {
-                subtask.timer = new Timer(subtask.timer.status, subtask.timer.timestamp);
+                subtask.timer = new Timer(subtask.timer.status, date, subtask.timer.timestamp);
             }
         });
 
-        this.savedData = this.initSavedData();
+        this.savedData = this.initSavedData(date);
 
         if (!this.isUndefined(taskParams.savedData)) {
 
             if (!this.isUndefined(taskParams.savedData.timer)) {
                 this.savedData.timer = new Timer(taskParams.savedData.timer.status, taskParams.savedData.timer.timestamp);
             } else {
-                this.savedData.timer = new Timer('temp');
+                this.savedData.timer = new Timer('temp', date);
             }
 
             this.savedData.done = (!this.isUndefined(taskParams.savedData.done)) ? taskParams.savedData.done : false;
@@ -67,13 +67,13 @@ export class Task {
         return (value === undefined) ? true : false;
     }
 
-    initSavedData(): SavedData {
+    initSavedData(date: Date): SavedData {
 
         const savedData: SavedData = {
             done: false,
             date: moment().toDate(),
             comment: '',
-            timer: new Timer('temp')
+            timer: new Timer('temp', date)
         };
 
         return savedData;
@@ -115,15 +115,15 @@ export class Task {
         this.date = date;
    }
 
-   parse(savedEntry: ITask): void {
+   parse(savedEntry: ITask, date: Date): void {
         this.savedData.done = savedEntry.savedData.done;
         this.savedData.date = savedEntry.savedData.date;
         this.subtasks = savedEntry.subtasks;
         this.subtasks.forEach(subtask => {
             if(subtask.timer.status === '') {
-                subtask.timer = new Timer('temp');
+                subtask.timer = new Timer('temp', date);
             } else {
-                subtask.timer = new Timer(subtask.timer.status, subtask.timer.timestamp);
+                subtask.timer = new Timer(subtask.timer.status, date, subtask.timer.timestamp);
             }
         });
    }

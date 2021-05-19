@@ -1,9 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
 import { Task } from 'src/app/classes/task';
 import { ITask } from 'src/app/interfaces/task';
+import { DateService } from 'src/app/services/date/date.service';
 import { TaskService } from 'src/app/services/task/task.service';
 
 @Component({
@@ -13,11 +14,12 @@ import { TaskService } from 'src/app/services/task/task.service';
 })
 export class ListTaskComponent implements OnInit, OnDestroy {
 
+  @Input() today: string;
+
   tasks: ITask[];
   subscriptions: Subscription = new Subscription();
-  today = moment().toString();
 
-  constructor(private taskService: TaskService) {}
+  constructor(private taskService: TaskService, private dateService: DateService) {}
 
   ngOnInit(): void {
     this.getTasks();
@@ -39,9 +41,10 @@ export class ListTaskComponent implements OnInit, OnDestroy {
   private initTasks(taskRecordings: ITask[]): ITask[] {
 
     const tempTask: ITask[] = [];
+    const date = this.dateService.getDate(this.today);
 
     taskRecordings.forEach(task => {
-      const newTask: ITask = new Task(task);
+      const newTask: ITask = new Task(task, date);
       tempTask.push(newTask);
     });
 

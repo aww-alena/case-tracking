@@ -1,6 +1,6 @@
 <div class="habit-list" *ngIf="tasks; else loading">
     <div class="grid">
-        <app-item-task *ngFor="let task of tasks | filterBy: today: 'date'" [task]="task"></app-item-task>
+        <app-item-task *ngFor="let task of tasks | filterBy: today: 'date'" [task]="task" [today]="today"></app-item-task>
     </div>
 </div>
 

@@ -7,9 +7,9 @@ export class Timer implements ITimer {
     status: string;
     timestamp: Timestamp[];
 
-    constructor(status: string, timestamp?: Timestamp[]) {
+    constructor(status: string, date: Date, timestamp?: Timestamp[]) {
         this.status = status;
-        this.timestamp = (timestamp !== undefined) ? timestamp : [this.getStartTimestamp()];
+        this.timestamp = (timestamp !== undefined) ? timestamp : [this.getStartTimestamp(date)];
     }
 
 
@@ -32,9 +32,9 @@ export class Timer implements ITimer {
         return (!this.isTimestampUndefined()) ? this.timestamp : [];
     }
 
-    getStartTimestamp(): Timestamp {
+    getStartTimestamp(date: Date): Timestamp {
         const timestamp: Timestamp = {
-            start: moment().toDate()
+            start: date
         };
 
         return timestamp;
@@ -44,25 +44,25 @@ export class Timer implements ITimer {
         return (!this.isTimestampUndefined()) ? this.status : '';
     }
 
-    startTimer(): void {
+    startTimer(date: Date): void {
 
         this.timestamp = (this.status === 'temp') ? [] : this.timestamp;
 
         if (this.status !== 'start') {
 
             this.status = 'start';
-            this.timestamp.push(this.getStartTimestamp());
+            this.timestamp.push(this.getStartTimestamp(date));
         }
     }
 
-    stopTimer(status: string): void {
+    stopTimer(status: string, date: Date): void {
 
         if (this.status === 'start') {
             this.status = status;
 
             if (!this.isTimestampUndefined()) {
                 const timestamps = this.timestamp;
-                this.timestamp[timestamps.length - 1].stop = moment().toDate();
+                this.timestamp[timestamps.length - 1].stop = date;
             }
         }
     }

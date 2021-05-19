@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { ITask, Subtask } from 'src/app/interfaces/task';
+import { DateService } from 'src/app/services/date/date.service';
 import { TaskService } from 'src/app/services/task/task.service';
 
 @Component({
@@ -14,10 +15,11 @@ import { TaskService } from 'src/app/services/task/task.service';
 export class ItemTaskComponent implements OnInit, OnDestroy {
 
   @Input() task: ITask;
+  @Input() today: string;
   subscriptions: Subscription = new Subscription();
   showMore = false;
 
-  constructor(private taskService: TaskService, private router: Router) { }
+  constructor(private taskService: TaskService, private router: Router, private dateService: DateService) { }
 
   ngOnInit(): void {}
 
@@ -32,7 +34,7 @@ export class ItemTaskComponent implements OnInit, OnDestroy {
   markDone(): void {
     this.showMore = !this.showMore;
     this.task.savedData.done = !this.task.savedData.done;
-    this.task.savedData.date = moment().toDate();
+    this.task.savedData.date = this.dateService.getDate(this.today);
     this.updateOrSave();
   }
 
@@ -43,13 +45,13 @@ export class ItemTaskComponent implements OnInit, OnDestroy {
 
   update(task: ITask): void {
     this.subscriptions.add(this.taskService.update(task).subscribe((newTask) => {
-      this.task.parse(newTask);
+      this.task.parse(newTask, this.dateService.getDate(this.today));
     }));
   }
 
   save(task: ITask): void {
     this.subscriptions.add(this.taskService.create(task).subscribe((newTask) => {
-      this.task.parse(newTask);
+      this.task.parse(newTask, this.dateService.getDate(this.today));
     }));
   }
 
@@ -63,18 +65,19 @@ export class ItemTaskComponent implements OnInit, OnDestroy {
 
   onPlayTime(time: Event): void {
 
-    this.task.savedData.timer.startTimer();
+    this.task.savedData.timer.startTimer(this.dateService.getDate(this.today));
     this.updateOrSave();
   }
 
   onPauseTime(status: string): void {
 
+    const date = this.dateService.getDate(this.today);
     if(status === 'stop') {
       this.task.setDone(true);
-      this.task.setDate(moment().toDate());
-      this.task.savedData.timer.stopTimer('stop');
+      this.task.setDate(date);
+      this.task.savedData.timer.stopTimer('stop', date);
     } else {
-      this.task.savedData.timer.stopTimer('pause');
+      this.task.savedData.timer.stopTimer('pause', date);
     }
 
     this.updateOrSave();
@@ -101,9 +104,6 @@ export class ItemTaskComponent implements OnInit, OnDestroy {
   }
 
   updateFormField(form: NgForm): void {
-
-    console.log(form);
-
     if(this.task.comment !== '' && form.form.controls.note.value === '') {
       form.setValue({
         note: this.task.comment

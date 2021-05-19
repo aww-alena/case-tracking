@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ITask, Subtask } from 'src/app/interfaces/task';
 import { TaskService } from 'src/app/services/task/task.service';
@@ -6,14 +6,14 @@ import { Task } from 'src/app/classes/task';
 import { MessageService } from 'src/app/services/message-service/message.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { of, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-create-task',
   templateUrl: './create-task.component.html',
   styleUrls: ['./create-task.component.css']
 })
-export class CreateTaskComponent implements OnInit {
+export class CreateTaskComponent implements OnInit, OnDestroy {
   dayRu = [
     { id: '1', name: 'Пн' },
     { id: '2', name: 'Вт' },
@@ -40,6 +40,8 @@ export class CreateTaskComponent implements OnInit {
   subtasks: Array<Subtask>;
   isNew = true;
 
+  subscriptions: Subscription = new Subscription();
+
   constructor(private taskService: TaskService,
               private messageService: MessageService,
               private route: ActivatedRoute,
@@ -47,6 +49,10 @@ export class CreateTaskComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTask();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
   createForm(): void {
@@ -80,15 +86,14 @@ export class CreateTaskComponent implements OnInit {
       timeframe: this.formatTimeFrame(),
       _id: this.form.value.id,
       subtasks: this.subtasks
-    });
+    }, new Date());
   }
 
   onSubmit(): void {
 
     if (this.isNew) {
-      console.log(this.form);
       this.createTask();
-      this.taskService.create(this.task).subscribe(
+      this.subscriptions.add(this.taskService.create(this.task).subscribe(
         () => {
           this.messageService.showMessage('The task was created successfully', 'Success');
           this.router.navigate(['/app/dashboard']);
@@ -97,11 +102,10 @@ export class CreateTaskComponent implements OnInit {
           this.form.enable();
           this.messageService.showError(error.error.message, 'Uuups! Error.');
         }
-      );
+      ));
     } else {
-      console.log(this.form);
       this.createTask();
-      this.taskService.update(this.task).subscribe(
+      this.subscriptions.add(this.taskService.update(this.task).subscribe(
         () => {
           this.messageService.showMessage('The task was updated successfully', 'Success');
           this.router.navigate(['/app/dashboard']);
@@ -110,7 +114,7 @@ export class CreateTaskComponent implements OnInit {
           this.form.enable();
           this.messageService.showError(error.error.message, 'Uuups! Error.');
         }
-      );
+      ));
     }
   }
 
@@ -151,7 +155,7 @@ export class CreateTaskComponent implements OnInit {
   }
 
   private getTask(): void {
-    this.route.params
+    this.subscriptions.add(this.route.params
       .pipe(
         switchMap(
           (params: Params) => {
@@ -170,13 +174,13 @@ export class CreateTaskComponent implements OnInit {
           this.createForm();
 
           if (task) {
-            this.task = new Task(task);
+            this.task = new Task(task, new Date());
             this.subtasks = this.task.subtasks;
             this.initForm(this.task);
           }
 
         },
-      );
+      ));
   }
 
   private initForm(task: ITask): void {
@@ -212,7 +216,7 @@ export class CreateTaskComponent implements OnInit {
     const tempTask: ITask[] = [];
 
     taskRecordings.forEach(task => {
-      const newTask: ITask = new Task(task);
+      const newTask: ITask = new Task(task, new Date());
       tempTask.push(newTask);
     });
 

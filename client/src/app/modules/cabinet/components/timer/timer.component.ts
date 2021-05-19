@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, OnDestroy, ViewChild, E
 import { interval, Subscription } from 'rxjs';
 import { Timer } from 'src/app/classes/timer';
 import * as moment from 'moment';
+import { DateService } from 'src/app/services/date/date.service';
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.component.html',
@@ -11,6 +12,7 @@ import * as moment from 'moment';
 export class TimerComponent implements OnInit, OnDestroy {
   @ViewChild('picker') picker: ElementRef;
 
+  @Input() today: string;
   @Output() timePlay = new EventEmitter<any>();
   @Output() timePause = new EventEmitter<string>();
   @Output() timeReset = new EventEmitter<any>();
@@ -28,7 +30,7 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   private timerSub: Subscription;
 
-  constructor() {}
+  constructor(private dateService: DateService) {}
 
   ngOnInit(): void {
     this.setIntervalDate();
@@ -123,6 +125,7 @@ export class TimerComponent implements OnInit, OnDestroy {
         },
         pick: (() => {
           const time = moment(this.pickerObj.getDate()).toDate();
+          const date =  this.dateService.getCombinedDate(this.today, time);
 
           const emitData = {
             index,

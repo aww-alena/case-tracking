@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import * as moment from 'moment';
 import { Subtask } from 'src/app/interfaces/task';
+import { DateService } from 'src/app/services/date/date.service';
 
 @Component({
   selector: 'app-subtask',
@@ -12,20 +13,19 @@ export class SubtaskComponent implements OnInit {
   @Input() subtask: Subtask;
   @Input() index: number;
   @Input() hasTimer: boolean;
+  @Input() today: string;
 
   @Output() changeSubtask = new EventEmitter<{index: number; subtask: Subtask}>();
 
   showComment = false;
 
-  constructor() { }
+  constructor(private dateService: DateService) { }
 
-  ngOnInit(): void {
-    console.log('subtask: ',this.subtask);
-  }
+  ngOnInit(): void {}
 
   onPlayTime(time: Event): void {
 
-    this.subtask.timer.startTimer();
+    this.subtask.timer.startTimer(this.dateService.getDate(this.today));
     this.changeSubtask.emit({index: this.index, subtask: this.subtask});
   }
 
@@ -34,9 +34,9 @@ export class SubtaskComponent implements OnInit {
     if(status === 'stop') {
       this.subtask.done = true;
       this.subtask.doneDate = moment().toDate();
-      this.subtask.timer.stopTimer('stop');
+      this.subtask.timer.stopTimer('stop', this.dateService.getDate(this.today));
     } else {
-      this.subtask.timer.stopTimer('pause');
+      this.subtask.timer.stopTimer('pause', this.dateService.getDate(this.today));
     }
 
     this.changeSubtask.emit({index: this.index, subtask: this.subtask});
@@ -70,5 +70,4 @@ export class SubtaskComponent implements OnInit {
   toggleComment(): void {
     this.showComment = !this.showComment;
   }
-
 }

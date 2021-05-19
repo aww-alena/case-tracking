@@ -67,7 +67,7 @@ const taskSchema = new Schema({
     }],
     savedData: {
         date: {
-            type: Date
+            type: Date | String
         },
         comment: {
             type: String
@@ -81,10 +81,10 @@ const taskSchema = new Schema({
             },
             timestamp: [{
                 start: {
-                    type: Date
+                    type: Date | String
                 },
                 stop: {
-                    type: Date
+                    type: Date | String
                 }
             }]
         }

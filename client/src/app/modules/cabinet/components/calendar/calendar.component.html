@@ -1,46 +1,14 @@
-<div class="calendar">
-    <div class="title">March</div>
-    <div class="name-of-days">
-        <span>Su</span>
-        <span>Mo</span>
-        <span>Tu</span>
-        <span>We</span>
-        <span>Th</span>
-        <span>Fr</span>
-        <span>Sa</span>
+<div class="calendar-dashboard">
+    <div class="calendar-header">
+        <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
     </div>
-    <div class="days">
-        <span class="active">1</span>
-        <span class="active">2</span>
-        <span class="active">3</span>
-        <span class="active">4</span>
-        <span class="active">5</span>
-        <span class="active">6</span>
-        <span class="active">7</span>
-        <span>8</span>
-        <span>9</span>
-        <span>10</span>
-        <span>11</span>
-        <span>12</span>
-        <span>13</span>
-        <span>14</span>
-        <span>15</span>
-        <span>16</span>
-        <span>17</span>
-        <span>18</span>
-        <span>19</span>
-        <span>20</span>
-        <span>21</span>
-        <span>22</span>
-        <span>23</span>
-        <span>24</span>
-        <span>25</span>
-        <span>26</span>
-        <span>27</span>
-        <span>28</span>
-        <span>29</span>
-        <span>30</span>
-        <span>31</span>
-    </div>
+
+    <mwl-calendar-month-view [viewDate]="viewDate" [events]="events" [refresh]="refresh" (dayClicked)="dayClicked($event.day)"></mwl-calendar-month-view>
+
+    <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style">
+        <mat-button-toggle mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"><span class="material-icons">keyboard_arrow_left</span>Previous</mat-button-toggle>
+        <mat-button-toggle mwlCalendarToday [(viewDate)]="viewDate">Today</mat-button-toggle>
+        <mat-button-toggle mwlCalendarNextView [view]="view" [(viewDate)]="viewDate">Next <span class="material-icons">keyboard_arrow_right</span></mat-button-toggle>
+    </mat-button-toggle-group>
 
 </div>

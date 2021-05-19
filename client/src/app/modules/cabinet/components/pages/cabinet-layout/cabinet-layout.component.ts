@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { TitleStoreService } from 'src/app/services/title/title-store.service';
 @Component({
@@ -7,7 +8,7 @@ import { TitleStoreService } from 'src/app/services/title/title-store.service';
   templateUrl: './cabinet-layout.component.html',
   styleUrls: ['./cabinet-layout.component.css'],
 })
-export class CabinetLayoutComponent implements OnInit {
+export class CabinetLayoutComponent implements OnInit, OnDestroy {
   links = [
     { name: 'dashboard', url: '/app/dashboard', icon: 'space_dashboard' },
     { name: 'habits', url: '/app/habits', icon: 'business_center' },
@@ -18,13 +19,24 @@ export class CabinetLayoutComponent implements OnInit {
 
   mobileOpen = false;
   title = '';
+  dateTitle = '';
+
+  subscriptions: Subscription = new Subscription();
 
   constructor(private auth: AuthService, private router: Router, private titleService: TitleStoreService) {}
 
   ngOnInit(): void {
-    this.titleService.title.subscribe(title => {
+    this.subscriptions.add(this.titleService.title.subscribe(title => {
       this.title = title;
-    });
+    }));
+
+    this.subscriptions.add(this.titleService.dateTitle.subscribe(dateTitle => {
+      this.dateTitle = dateTitle;
+    }));
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
   logout(event: Event): void {

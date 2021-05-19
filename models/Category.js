@@ -7,14 +7,10 @@ const categorySchema = new Schema({
         type: String,
         required: true
     },
-    imageSrc: {
-        type: String,
-        default: ''
-    },
     user: {
         ref: 'users',
         type: Schema.Types.ObjectId
     }
 })
 
-module.exports = mongoose.model('catigories', categorySchema)
+module.exports = mongoose.model('categories', categorySchema)

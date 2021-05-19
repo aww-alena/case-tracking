@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
@@ -6,6 +6,7 @@ import { Habit } from 'src/app/classes/habit';
 import { HabitRecording } from 'src/app/classes/habit-recording';
 import { IHabit } from 'src/app/interfaces/habit';
 import { IHabitRecording } from 'src/app/interfaces/habit-recording';
+import { DateService } from 'src/app/services/date/date.service';
 import { HabitService } from 'src/app/services/habit/habit.service';
 import { JournalService } from 'src/app/services/journal/journal.service';
 @Component({
@@ -14,16 +15,26 @@ import { JournalService } from 'src/app/services/journal/journal.service';
   styleUrls: ['./list-habit.component.css'],
 })
 
-export class ListHabitComponent implements OnInit, OnDestroy {
+export class ListHabitComponent implements OnInit, OnDestroy, OnChanges {
+
+  @Input() today: string;
+  @Input() dayNumber: string;
+
   habits: IHabit[];
   habitRecords: IHabitRecording[] = [];
+
 
   subscriptions: Subscription = new Subscription();
 
   constructor(private habitService: HabitService,
-              private journalService: JournalService) {}
+              private journalService: JournalService,
+              private dateService: DateService) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  ngOnChanges() {
+    this.habits = [];
+    this.habitRecords = [];
     this.getHabits();
   }
 
@@ -32,6 +43,7 @@ export class ListHabitComponent implements OnInit, OnDestroy {
   }
 
   getHabits(): void {
+
     this.subscriptions.add(this.habitService.fetch().pipe(
       mergeMap((habits: IHabit[]): IHabitRecording[] => {
         this.habits = habits;
@@ -41,9 +53,7 @@ export class ListHabitComponent implements OnInit, OnDestroy {
   }
 
   getMatchSchedule(habitRecords: IHabitRecording[]): IHabitRecording[] {
-
-    const day = moment().isoWeekday().toString();
-    const doneRecords = habitRecords.filter(item => (item.habit.schedule.includes(day) || item.habit.schedule === 'everyday'));
+    const doneRecords = habitRecords.filter(item => (item.habit.schedule.includes(this.dayNumber) || item.habit.schedule === 'everyday'));
 
     return doneRecords;
   }
@@ -51,14 +61,15 @@ export class ListHabitComponent implements OnInit, OnDestroy {
   private initRecords(habitRecordings: IHabit[]): IHabitRecording[] {
 
     const habitRecords: IHabitRecording[] = [];
+    const dateFormated = moment(this.today).format('YYYYMMDD').toString();
 
     habitRecordings.forEach(habit => {
-      const habitRecording: IHabitRecording = new HabitRecording(habit);
+      const habitRecording: IHabitRecording = new HabitRecording(habit, dateFormated);
 
       this.subscriptions.add(this.journalService.getById(habitRecording.habit._id, habitRecording.id).subscribe((foundEntry: any) => {
         const entry = foundEntry[0];
         if (entry) {
-          habitRecording.entry.parseEntry(entry);
+          habitRecording.entry.parseEntry(entry, this.dateService.getDate(this.today));
         }
       }));
 
@@ -69,6 +80,4 @@ export class ListHabitComponent implements OnInit, OnDestroy {
     const doneRecords = this.getMatchSchedule(habitRecords);
     return doneRecords;
   }
-
-
 }

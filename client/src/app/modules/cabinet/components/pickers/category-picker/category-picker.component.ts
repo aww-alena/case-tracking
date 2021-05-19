@@ -2,8 +2,11 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ChartType, ChartOptions } from 'chart.js';
 import { SingleDataSet, Label } from 'ng2-charts';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
-import {FormControl} from '@angular/forms';
+import {FormControl, NgForm} from '@angular/forms';
 import {TooltipPosition} from '@angular/material/tooltip';
+import { Category } from 'src/app/interfaces/category';
+import { CategoryService } from 'src/app/services/category/category.service';
+import { MessageService } from 'src/app/services/message-service/message.service';
 @Component({
   selector: 'app-category-picker',
   templateUrl: './category-picker.component.html',
@@ -40,17 +43,45 @@ export class CategoryPickerComponent implements OnInit {
 
   selectable = true;
   removable = true;
+  ownCategories: Category[];
 
   categories: Array<string> = [];
 
-  constructor() {}
+  constructor(private categoryService: CategoryService,
+              private messageService: MessageService) {}
 
   ngOnInit(): void {
     this.categories = (this.oldCategories) ? this.oldCategories.split(',') : [];
+    this.categoryService.fetch().subscribe(categories => this.ownCategories = categories);
   }
 
-  chartClicked(e: any): void {
-    console.log(e);
+  saveToCategories(event: any, category: string): void {
+
+    const isExist = this.categories.includes(category);
+
+    if (event && !isExist) {
+      this.categories.push(category);
+      this.changeCategories.emit(this.categories.join());
+    } else if (!event && isExist) {
+      const pos = this.categories.indexOf(category);
+      this.categories.splice(pos, 1);
+      this.changeCategories.emit(this.categories.join());
+    }
+  }
+
+  submit(form: NgForm): void {
+
+    const newCategory: Category = {name: form.value.name};
+    this.categoryService.create(newCategory).subscribe(
+      () => {
+        this.messageService.showMessage('The category was created successfully', 'Success');
+        this.ownCategories.push({name: form.value.name});
+        form.reset();
+      },
+      (error) => {
+        this.messageService.showError(error.error.message, 'Uuups! Error.');
+      }
+    );
   }
 
   isExist(category: string): boolean {

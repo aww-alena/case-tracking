@@ -77,7 +77,7 @@ export class CreateSubtasksComponent implements OnInit {
       note: this.form.value.note,
       done: false,
       doneDate: moment().toDate(),
-      timer: new Timer('')
+      timer: new Timer('', new Date())
     };
 
     return subtask;

@@ -17,13 +17,13 @@ export class JournalEntry implements IJournalEntry {
     public idRecording: string;
     public _id: string;
 
-    constructor(habitID: string, id: string) {
+    constructor(habitID: string, id: string, date: Date) {
         this.done = false;
         this.idRecording = id;
         this.habit = habitID;
         this.date = moment().toDate();
         this.rating = 0;
-        this.timer = new Timer('temp');
+        this.timer = new Timer('temp', date);
     }
 
     isTimerUndefined(): boolean {
@@ -82,7 +82,7 @@ export class JournalEntry implements IJournalEntry {
         this.rating = rating;
     }
 
-    parseEntry(savedEntry: IJournalEntry): void {
+    parseEntry(savedEntry: IJournalEntry, date: Date): void {
         this.done = savedEntry.done;
         this.date = savedEntry.date;
         this.rating = savedEntry.rating;
@@ -94,7 +94,7 @@ export class JournalEntry implements IJournalEntry {
         }
 
         if(savedEntry.timer !== undefined) {
-            this.timer = new Timer(savedEntry.timer.status, savedEntry.timer.timestamp);
+            this.timer = new Timer(savedEntry.timer.status, date, savedEntry.timer.timestamp);
         }
 
         if(savedEntry.value !== undefined) {

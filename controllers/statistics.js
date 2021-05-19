@@ -1,6 +1,7 @@
 const JournalEntry = require('../models/JournalEntry');
 const errorHandler = require('../utils/errorHandler');
-const Habit = require('../models/Habit')
+const Habit = require('../models/Habit');
+const Task = require('../models/Task');
 const moment = require('moment');
 const { isEqual } = require('date-fns');
 
@@ -20,7 +21,7 @@ module.exports.habit = async function(req, res) {
 
 module.exports.category = async function(req, res) {
 
-    const defCategories = [
+    const defaultCategories = [
         'Family / Friends',
         'Relationships / Love',
         'Career / Study',
@@ -35,14 +36,19 @@ module.exports.category = async function(req, res) {
     const data = [];
     const reducer = (accumulator, currentValue) => accumulator + currentValue;
 
-    defCategories.forEach(category => {
+    defaultCategories.forEach(category => {
         statistics[category] = [];
     });
 
     try {
 
-        for (const category of defCategories) {
+        for (const category of defaultCategories) {
             const habits = await Habit.find({ user: req.user.id, categories: { $regex: category } });
+            const tasks = await Task.find({ user: req.user.id, categories: { $regex: category }, 'savedData.done': true });
+
+            if (tasks.length) {
+                statistics[category].push(tasks.length);
+            }
 
             if (habits.length) {
                 for (const item of habits) {
@@ -58,7 +64,9 @@ module.exports.category = async function(req, res) {
             }
         }
 
-        const categoryStatistics = { categories: defCategories, data: data };
+        const commonSortedArray = getSortedArray(defaultCategories, data);
+
+        const categoryStatistics = { categories: getCategoryArray(commonSortedArray), data: getDataArray(commonSortedArray) };
 
         res.status(200).json(categoryStatistics);
 
@@ -66,7 +74,6 @@ module.exports.category = async function(req, res) {
         errorHandler(res, error)
     }
 }
-
 
 function getCalendarData(entries = [], color) {
     const events = [];
@@ -80,8 +87,8 @@ function getCalendarData(entries = [], color) {
                 viewDates.push(getDateFromString(entry.date));
             }
 
-            events.push((initCalendarEvent(entry.date, entry.comment, color)));
-            journalData.push(initShortEntry(entry));
+            events.push((getCalendarEventObj(entry.date, entry.comment, color)));
+            journalData.push(getShortEntryObj(entry));
         }
     });
 
@@ -90,7 +97,7 @@ function getCalendarData(entries = [], color) {
     return calendarData;
 }
 
-function initCalendarEvent(date, title = '', color) {
+function getCalendarEventObj(date, title = '', color) {
     const calendarEntry = {
         start: date,
         title,
@@ -100,15 +107,15 @@ function initCalendarEvent(date, title = '', color) {
     return calendarEntry;
 }
 
-function initShortEntry(entry) {
-    const ShortEntry = {
+function getShortEntryObj(entry) {
+    const shortEntry = {
         date: entry.date,
         comment: entry.comment || '',
         rating: entry.rating || 0,
         time: getPassedTime(entry.timer) || 0
     };
 
-    return ShortEntry;
+    return shortEntry;
 }
 
 function getDateFromString(date) {
@@ -135,4 +142,36 @@ function getPassedTime(timer) {
     }
 
     return seconds;
+}
+
+function getSortedArray(categories, data) {
+    const commonArray = [];
+
+    categories.forEach((category, index) => {
+        commonArray.push({ name: category, value: data[index] });
+    });
+
+    commonArray.sort((a, b) => a.value - b.value);
+
+    return commonArray;
+}
+
+function getCategoryArray(commonArray) {
+    const categoryArray = [];
+
+    commonArray.forEach((item) => {
+        categoryArray.push(item.name);
+    });
+
+    return categoryArray;
+}
+
+function getDataArray(commonArray) {
+    const dataArray = [];
+
+    commonArray.forEach((item) => {
+        dataArray.push(item.value);
+    });
+
+    return dataArray;
 }
