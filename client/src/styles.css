@@ -3533,13 +3533,26 @@ app-item-entry:last-child .entry {
         margin-top: 55px;
     }
     .flex.dashboard {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-wrap: wrap;
         width: 100%;
     }
     .flex.dashboard .left {
         display: block;
         width: 100%;
         overflow-x: hidden;
+        order: 1;
+        margin: 15px 0 20px;
+    }
+    .calendar-dashboard {
+        padding: 8px 18px 15px;
+    }
+    .calendar-dashboard h3 {
+        font-size: 14px;
+        margin-bottom: 7px;
+    }
+    .flex.dashboard .right {
+        order: 0;
     }
     main {
         margin: 0;
@@ -3646,7 +3659,7 @@ app-item-entry:last-child .entry {
         margin-bottom: 1px;
     }
     .fa.fa-star {
-        font-size: 12px;
+        font-size: 14px;
         padding-right: 4px;
     }
     .habit .name {
