@@ -15,17 +15,30 @@ export class CalendarComponent implements OnInit {
   viewDate: Date = new Date();
   refresh: Subject<any> = new Subject();
   events: CalendarEvent[] = [];
+  chosen: CalendarEvent;
 
   constructor() {}
 
   ngOnInit(): void {}
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
-    this.viewDate = new Date(date);
+    this.deleteEvent(this.chosen);
+    this.addChosenDate(date);
     this.setDate.emit(date);
   }
 
-  setView(view: CalendarView) {
-    this.view = view;
+  deleteEvent(eventToDelete: CalendarEvent) {
+    this.events = this.events.filter((event) => event !== eventToDelete);
+  }
+
+  addChosenDate(date: Date): void {
+    this.chosen = {
+      start: date,
+      title: 'Chosen',
+      color: {primary: '#4660b6', secondary: '#4660b6'}
+    };
+
+    this.events.push(this.chosen);
+    this.refresh.next();
   }
 }

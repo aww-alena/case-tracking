@@ -87,6 +87,7 @@ export class CreateTaskComponent implements OnInit, OnDestroy {
       _id: this.form.value.id,
       subtasks: this.subtasks
     }, new Date());
+    console.log(this.task);
   }
 
   onSubmit(): void {

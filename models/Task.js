@@ -67,7 +67,7 @@ const taskSchema = new Schema({
     }],
     savedData: {
         date: {
-            type: Date | String
+            type: Date
         },
         comment: {
             type: String

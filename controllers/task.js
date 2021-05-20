@@ -99,6 +99,8 @@ const createTask = req => {
 
     taskObj.user = req.user.id;
 
+    console.log(taskObj);
+
 
 
     return taskObj;

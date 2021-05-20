@@ -945,7 +945,7 @@ mat-sidenav-container.mat-drawer-container.mat-sidenav-container {
 .icon-window,
 .color-window {
     display: none;
-    background: #3d425e;
+    background: var(--dark-dark);
     width: fit-content;
     padding: 15px;
     border-radius: 20px;
@@ -962,6 +962,10 @@ mat-sidenav-container.mat-drawer-container.mat-sidenav-container {
     -moz-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
+}
+
+.task-item p.title span {
+    margin-left: 6px;
 }
 
 .icon-window.active,
@@ -2091,6 +2095,7 @@ app-timer {
     border-radius: 50%;
     margin-right: 14px;
     border: 2px solid var(--main-blue);
+    line-height: 23px;
 }
 
 .subtasks .item mat-checkbox {
@@ -2128,6 +2133,10 @@ app-timer {
 
 .cal-has-events span.cal-day-number {
     color: #000;
+}
+
+.calendar-dashboard .cal-has-events span.cal-day-number {
+    color: #fff;
 }
 
 .flex.main-block {
@@ -2273,6 +2282,11 @@ mwl-calendar-month-cell:active {
 
 mwl-calendar-month-cell.cal-cell.cal-day-cell:hover {
     background: rgba(0, 0, 0, 0.1);
+}
+
+.cal-cell-top {
+    display: flex;
+    align-items: center;
 }
 
 .mat-drawer-content.mat-sidenav-content .cal-month-view .cal-events,

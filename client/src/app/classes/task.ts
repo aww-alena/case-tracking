@@ -23,6 +23,8 @@ export class Task {
     savedData: SavedData;
 
     constructor(taskParams: any, date: Date) {
+        console.log(taskParams);
+
         this.name = taskParams.name;
         this.date = taskParams.date;
         this.hasTimer = taskParams.hasTimer;
