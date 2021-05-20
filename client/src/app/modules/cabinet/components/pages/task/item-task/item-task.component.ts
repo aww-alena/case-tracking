@@ -32,7 +32,6 @@ export class ItemTaskComponent implements OnInit, OnDestroy {
   }
 
   markDone(): void {
-    this.showMore = !this.showMore;
     this.task.savedData.done = !this.task.savedData.done;
     this.task.savedData.date = this.dateService.getDate(this.today);
     this.updateOrSave();
@@ -45,7 +44,7 @@ export class ItemTaskComponent implements OnInit, OnDestroy {
 
   update(task: ITask): void {
     this.subscriptions.add(this.taskService.update(task).subscribe((newTask) => {
-      this.task.parse(newTask, this.dateService.getDate(this.today));
+      //this.task.parse(newTask, this.dateService.getDate(this.today));
     }));
   }
 

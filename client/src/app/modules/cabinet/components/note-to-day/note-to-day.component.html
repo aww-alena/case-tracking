@@ -23,7 +23,7 @@
             <ng-template #oneNote>
                 <mat-form-field appearance="fill">
                     <mat-label>Note</mat-label>
-                    <textarea matInput ngModel name="note" (blur)="transferData(form)"></textarea>
+                    <textarea matInput [ngModel]="singleNote" name="note" (blur)="transferData(form)"></textarea>
                 </mat-form-field>
             </ng-template>
         </form>

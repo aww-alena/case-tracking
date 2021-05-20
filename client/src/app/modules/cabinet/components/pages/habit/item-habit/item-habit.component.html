@@ -1,44 +1,43 @@
-<div class="habit" [ngClass]="{'done': habitRecording.entry.done}">
-
-    <div class="timeframe">
-        <span>{{habitRecording.habit.timeframe}}</span>
-
-        <span class="date" *ngIf="habitRecording.entry.done">Done at {{habitRecording.entry.date | date: 'HH:mm'}}</span>
-    </div>
-
-    <app-icon-template [color]="habitRecording.habit.color" [icon]="habitRecording.habit.icon"></app-icon-template>
+<div class="habit" [ngClass]="{open: showMore, 'done': habitRecording.entry.done}">
 
     <div class="right">
-        <div class="flex">
+        <div class="flex header-habit">
+            <div class="under-btn" (click)="showMore = !showMore"></div>
             <div class="flex">
 
-                <span class="timer-active" *ngIf="habitRecording.entry.timer.status == 'start'">
+
+
+                <span class="timer-active" *ngIf="habitRecording.entry.timer.status === 'start'">
                     <mat-spinner [strokeWidth]="1" [diameter]="23"></mat-spinner>
                     <i class="fa fa-clock-o" aria-hidden="true"></i>
                 </span>
-                <p class="name">
-                    {{habitRecording.habit.name}}
-                </p>
 
-                <div *ngIf="habitRecording.habit.hasRating;">
-                    <app-rating (byClick)="saveRating($event)" [oldRating]="habitRecording.entry.rating" [isPicker]="true"></app-rating>
+                <app-icon-template *ngIf="habitRecording.entry.timer.status !== 'start'" [color]="habitRecording.habit.color" [icon]="habitRecording.habit.icon"></app-icon-template>
+
+
+                <div class="name">
+                    <p>{{habitRecording.habit.name}}</p>
+                    <div *ngIf="habitRecording.habit.hasRating;">
+                        <app-rating (byClick)="saveRating($event)" [oldRating]="habitRecording.entry.rating" [isPicker]="true"></app-rating>
+                    </div>
                 </div>
+
+
             </div>
 
             <div class="checkbox">
+                <span class="time">{{habitRecording.habit.timeframe}}</span>
                 <mat-checkbox (change)="markDone(habitRecording.id)" [checked]="habitRecording.entry.done"></mat-checkbox>
             </div>
         </div>
 
-        <div class="flex-timer">
-            <mat-tab-group headerPosition="below" (selectedTabChange)="tabIsChange($event)" [ngClass]="{'active': tabName !== 'close'}">
+        <div class="flex-timer" *ngIf="showMore">
+            <div class="timeframe-hidden">
 
-                <mat-tab label="close">
-                    <ng-template mat-tab-label>
-                        <mat-icon>hide_source</mat-icon>
-                        Close
-                    </ng-template>
-                </mat-tab>
+
+                <span class="date" *ngIf="habitRecording.entry.done">Done at {{habitRecording.entry.date | date: 'HH:mm'}}</span>
+            </div>
+            <mat-tab-group headerPosition="below" (selectedTabChange)="tabIsChange($event)">
 
                 <mat-tab label="timer" *ngIf="habitRecording.habit.hasTimer">
                     <ng-template mat-tab-label>
@@ -83,5 +82,4 @@
 
         </div>
     </div>
-    <div class="difficulty-block"></div>
 </div>

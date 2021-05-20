@@ -3,8 +3,9 @@
     <div class="hidden">
         <button class="edit" type="button" (click)="goToEdit(task._id)"><mat-icon>edit</mat-icon></button>
     </div>
-    <div class="wrapper flex" (click)="showMore = !showMore">
+    <div class="wrapper flex">
 
+        <div class="under-btn" (click)="showMore = !showMore"></div>
         <div class="flex">
             <mat-icon class="main-icon" [style.color]="task.color">{{task.icon}}</mat-icon>
             <p class="title" [style.color]="task.color">{{task.name}}
@@ -32,7 +33,7 @@
 
                     <div class="subtasks">
                         <h2>Subtasks</h2>
-                        <app-subtask *ngFor="let subtask of task.subtasks; let i = index" [subtask]="subtask" [index]="i" [hasTimer]="task.hasTimer" (changeSubtask)="onChangeSubtask($event)"></app-subtask>
+                        <app-subtask *ngFor="let subtask of task.subtasks; let i = index" [subtask]="subtask" [index]="i" [today]="today" [hasTimer]="task.hasTimer" (changeSubtask)="onChangeSubtask($event)"></app-subtask>
                     </div>
                 </mat-tab>
 

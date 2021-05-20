@@ -1,6 +1,7 @@
 const JournalEntry = require('../models/JournalEntry');
 const errorHandler = require('../utils/errorHandler');
 const Habit = require('../models/Habit');
+const Category = require('../models/Category');
 const Task = require('../models/Task');
 const moment = require('moment');
 const { isEqual } = require('date-fns');
@@ -31,6 +32,12 @@ module.exports.category = async function(req, res) {
         'Hobbies / Recreation',
         'Chores / Cleaning'
     ];
+
+    const categories = await Category.find({ user: req.user.id });
+
+    categories.forEach(category => {
+        defaultCategories.push(category.name);
+    });
 
     const statistics = [];
     const data = [];

@@ -63,7 +63,11 @@ export class Habit implements IHabit {
     }
 
     setComment(comment: string): void {
-        this.comment = this.getStringFromJSON(comment);
+        if(typeof(comment) !== 'string') {
+            this.comment = this.getStringFromJSON(comment);
+        } else {
+            this.comment = comment;
+        }
     }
 
     getStringFromJSON(comment: any): string {

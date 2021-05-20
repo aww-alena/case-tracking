@@ -22,6 +22,7 @@ export class ListHabitComponent implements OnInit, OnDestroy, OnChanges {
 
   habits: IHabit[];
   habitRecords: IHabitRecording[] = [];
+  doneOpen = false;
 
 
   subscriptions: Subscription = new Subscription();
@@ -33,6 +34,7 @@ export class ListHabitComponent implements OnInit, OnDestroy, OnChanges {
   ngOnInit(): void {}
 
   ngOnChanges() {
+    this.doneOpen = false;
     this.habits = [];
     this.habitRecords = [];
     this.getHabits();
@@ -56,6 +58,14 @@ export class ListHabitComponent implements OnInit, OnDestroy, OnChanges {
     const doneRecords = habitRecords.filter(item => (item.habit.schedule.includes(this.dayNumber) || item.habit.schedule === 'everyday'));
 
     return doneRecords;
+  }
+
+  tabIsChange(event: any): void {
+    if(event.tab.textLabel === 'Done') {
+      this.doneOpen = true;
+    } else {
+      this.doneOpen = false;
+    }
   }
 
   private initRecords(habitRecordings: IHabit[]): IHabitRecording[] {

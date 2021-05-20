@@ -20,6 +20,7 @@ export class ItemHabitComponent implements OnInit, OnDestroy {
   @Input() habitRecording: IHabitRecording;
   subscriptions: Subscription = new Subscription();
   tabName = 'close';
+  showMore = false;
 
   constructor(private journalService: JournalService,
               private router: Router,
@@ -42,7 +43,6 @@ export class ItemHabitComponent implements OnInit, OnDestroy {
   }
 
   markDone(id: string) {
-
     if (this.habitRecording.entry.done) {
       this.deleteEntry(this.habitRecording.entry);
     } else {
@@ -66,7 +66,6 @@ export class ItemHabitComponent implements OnInit, OnDestroy {
   }
 
   saveRating(ratingValue: number): void {
-
     this.habitRecording.entry.setRating(ratingValue);
     this.updateOrSave(this.habitRecording.entry);
   }

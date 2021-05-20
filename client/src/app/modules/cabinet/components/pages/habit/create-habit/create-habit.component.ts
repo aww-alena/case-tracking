@@ -184,8 +184,6 @@ export class CreateHabitComponent implements OnInit {
           this.createForm();
           if (habit) {
             this.habit = habit;
-            console.log(habit);
-
 
             this.form.patchValue({
               name: habit.name,

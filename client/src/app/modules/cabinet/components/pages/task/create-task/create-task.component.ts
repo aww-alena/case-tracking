@@ -196,6 +196,7 @@ export class CreateTaskComponent implements OnInit, OnDestroy {
       fromTime: this.fromTime(task.timeframe),
       untilTime: this.untilTime(task.timeframe),
       comment: task.comment,
+      date: task.date,
       id: task._id
     });
   }

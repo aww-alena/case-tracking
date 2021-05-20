@@ -600,23 +600,64 @@ mat-expansion-panel mat-icon {
     position: relative;
     z-index: 1;
     margin-bottom: 0px;
-    padding: 10px 18px 10px;
-    background: var(--dark-back);
+    padding: 13px 18px 13px;
+    /*background: var(--dark-back);
     border-radius: 20px 20px 0 0;
     -webkit-border-radius: 20px 20px 0 0;
     -moz-border-radius: 20px 20px 0 0;
     -ms-border-radius: 20px 20px 0 0;
     -o-border-radius: 20px 20px 0 0;
+    */
+}
+
+.habit .checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.habit .checkbox span.time {
+    margin-right: 11px;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 4px 9px;
+    border-radius: 16px;
+    font-size: 12px;
+}
+
+.flex.header-habit {
+    cursor: pointer;
+}
+
+.flex.header-habit:hover {
+    background: rgba(0, 0, 0, .1);
+}
+
+.flex.dashboard .right .habit-list .mat-tab-body-wrapper {
+    padding: 0px;
+    position: relative;
+    overflow: inherit;
+    margin-top: 25px;
+}
+
+.flex.dashboard .right .habit-list .habit .mat-tab-body-wrapper {
+    padding: 0px 18px;
+    position: relative;
+    overflow: inherit;
+    margin-top: 0px;
 }
 
 .habit .name {
-    text-align: center;
+    text-align: left;
     font-size: 16px;
-    display: flex;
+    display: grid;
     align-items: center;
     margin-right: 25px;
     margin-bottom: 0px;
     color: #fff;
+    min-height: 49px;
+}
+
+.habit .name p {
+    margin-bottom: 5px;
 }
 
 .habit .name mat-icon {
@@ -632,10 +673,28 @@ mat-expansion-panel mat-icon {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    flex-wrap: wrap;
 }
 
 .habit .mat-expansion-panel-header {
     height: unset;
+}
+
+.flex-timer .timeframe-hidden {
+    background: #35425d;
+    width: 100%;
+    padding: 8px 18px 0;
+    font-size: 11px;
+    line-height: 14px;
+    display: block;
+    margin: 0 auto;
+}
+
+.habit .timeframe-hidden .date {
+    padding-left: 5px;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
 }
 
 .save-comment {
@@ -745,18 +804,44 @@ nav .active {
 app-item-habit>.habit {
     display: flex;
     position: relative;
-    background: rgb(75 81 115);
+    /*background: rgb(75 81 115);
     margin-top: 48px;
     border-radius: 20px;
     box-shadow: 0 -7px 15px rgba(255, 255, 255, 0.05), 0 0 10px rgba(0, 0, 0, 0.3);
+    
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
     border-top: 1px solid var(--main-blue);
+    */
+    border-top: 1px solid rgb(70 96 182 / 34%);
 }
 
-app-item-habit:last-child .habit {
-    margin-bottom: 15px;
+app-item-habit>.habit.open {
+    background: #181c29;
 }
 
-.habit .left {
+.habit-list app-item-habit:nth-child(2)>.habit {
+    border-top: none;
+    border-radius: 24px 24px 0 0;
+    overflow: hidden;
+    -webkit-border-radius: 24px 24px 0 0;
+    -moz-border-radius: 24px 24px 0 0;
+    -ms-border-radius: 24px 24px 0 0;
+    -o-border-radius: 24px 24px 0 0;
+}
+
+.habit-list app-item-habit:last-child>.habit {
+    border-radius: 0 0 24px 24px;
+    overflow: hidden;
+    -webkit-border-radius: 0 0 24px 24px;
+    -moz-border-radius: 0 0 24px 24px;
+    -ms-border-radius: 0 0 24px 24px;
+    -o-border-radius: 0 0 24px 24px;
+}
+
+app-item-habit>.habit .habit .left {
     width: 80px;
     display: flex;
     align-items: center;
@@ -1405,7 +1490,115 @@ ul.history {
     padding: 5px 0 0 2px;
 }
 
+.flex.dashboard .right .habit-list .mat-tab-body-wrapper .mat-tab-body {
+    padding-top: 38px;
+    overflow-y: hidden;
+}
+
+.flex.dashboard .right .habit-list .habit .mat-tab-body-wrapper .mat-tab-body {
+    padding-top: 0px;
+    overflow-y: hidden;
+}
+
+span.icon-list {
+    border-top: 1px solid var(--main-blue);
+    border-radius: 50%;
+    margin-bottom: 30px;
+    width: 68px !important;
+    height: 34px !important;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: -38px;
+    padding-top: 8px;
+    left: calc(50% - 34px);
+    background: var(--main-blue);
+    z-index: -1;
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+}
+
+mat-tab-group.done-open span.icon-list {
+    background: var(--green);
+}
+
+.flex.dashboard .right .habit-list .mat-tab-body-wrapper .mat-tab-body-content {
+    border-top: 1px solid var(--main-blue);
+    border-radius: 24px;
+    padding: 22px;
+    width: 100%;
+    box-sizing: border-box;
+    background: var(--dark-back);
+    box-shadow: 0 -7px 15px rgb(255 255 255 / 5%), 0 0 10px rgb(0 0 0 / 30%);
+    padding: 0px;
+    position: relative;
+    overflow: initial;
+    margin-bottom: 10px;
+}
+
+.flex.dashboard .right .habit-list .habit .mat-tab-body-wrapper .mat-tab-body-content {
+    border-top: none;
+    border-radius: 0;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+    background: transparent;
+    box-shadow: none;
+    padding: 0px;
+    position: relative;
+    overflow: initial;
+    margin-bottom: 0px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+}
+
+.flex.dashboard .right .habit-list .mat-tab-body-wrapper .mat-tab-body-content:before {
+    content: "";
+    width: 80%;
+    height: 10px;
+    background: var(--main-blue);
+    display: block;
+    top: -10px;
+    position: absolute;
+    left: 10%;
+    border-radius: 20px 20px 0 0;
+    -webkit-border-radius: 20px 20px 0 0;
+    -moz-border-radius: 20px 20px 0 0;
+    -ms-border-radius: 20px 20px 0 0;
+    -o-border-radius: 20px 20px 0 0;
+    z-index: -1;
+}
+
+.flex.dashboard .right .habit-list .mat-tab-body-wrapper .mat-tab-body-content:after {
+    content: "";
+    width: 80%;
+    height: 10px;
+    background: var(--main-blue);
+    display: block;
+    bottom: -10px;
+    position: absolute;
+    left: 10%;
+    border-radius: 0 0 20px 20px;
+    -webkit-border-radius: 0 0 20px 20px;
+    -moz-border-radius: 0 0 20px 20px;
+    -ms-border-radius: 0 0 20px 20px;
+    -o-border-radius: 0 0 20px 20px;
+    z-index: -1;
+}
+
+.flex.dashboard .right .habit-list .mat-tab-group.done-open .mat-tab-body-wrapper .mat-tab-body-content:after,
+.flex.dashboard .right .habit-list .mat-tab-group.done-open .mat-tab-body-wrapper .mat-tab-body-content:before {
+    background: var(--green);
+}
+
+.flex.dashboard .right .habit.open .mat-tab-body-content:after,
+.flex.dashboard .right .habit.open .mat-tab-body-content:before {
+    content: none;
+}
+
 .habit-list .habit app-icon-template mat-icon.main-icon {
+    /*
     border-top: 1px solid var(--main-blue);
     border-radius: 50%;
     margin-bottom: 30px;
@@ -1418,7 +1611,9 @@ ul.history {
     padding-top: 12px;
     left: calc(50% - 34px);
     background: var(--dark-back);
-    font-size: 22px;
+    */
+    margin-right: 15px;
+    font-size: 24px;
     color: #ffffff;
 }
 
@@ -1444,6 +1639,10 @@ mat-expansion-panel-header {
     background: var(--dark-back);
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
+}
+
+.habit-list .habit .flex-timer .mat-tab-labels {
+    background: transparent;
 }
 
 .mat-tab-labels {
@@ -1483,7 +1682,7 @@ main>.header span.date {
 }
 
 span.timer-active {
-    margin-right: 10px;
+    margin-right: 12px;
     position: relative;
     width: 27px;
     height: 27px;
@@ -1492,16 +1691,18 @@ span.timer-active {
     display: flex;
     align-items: center;
     justify-content: center;
+    background: var(--main-blue);
 }
 
 mat-sidenav-content.mat-drawer-content.mat-sidenav-content .timer-active .mat-progress-spinner circle,
 .timer-active .mat-spinner circle {
     stroke-dasharray: 7px !important;
-    stroke-width: 2% !important;
+    stroke-width: 10% !important;
 }
 
 .timer-active .mat-progress-spinner.mat-progress-spinner-indeterminate-animation[mode=indeterminate] circle {
     animation-duration: 20000ms;
+    animation-timing-function: cubic-bezier(1, 1, 1, 1);
 }
 
 .timer-active .mat-progress-spinner.mat-progress-spinner-indeterminate-animation[mode=indeterminate] svg {
@@ -1791,9 +1992,12 @@ mat-tab-group.mat-tab-group.tabs-habit .mat-tab-header {
     grid-gap: 30px;
 }
 
+
+/*
 .flex-timer .mat-tab-labels .mat-tab-label:first-child {
     display: none;
 }
+*/
 
 .flex-timer mat-tab-group.mat-tab-group.mat-primary.mat-tab-group-inverted-header.active .mat-tab-labels .mat-tab-label:first-child {
     display: inline-flex;
@@ -1930,6 +2134,7 @@ app-time-picker {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 10px;
 }
 
 .flex.options ul.history li mat-icon {
@@ -1960,12 +2165,13 @@ app-timer {
 .task-item .flex .main-icon {
     margin-right: 15px;
     display: flex;
-    width: 35px;
+    min-width: 35px;
     height: 35px;
     align-items: center;
     justify-content: center;
     background: rgba(0, 0, 0, 0.1);
     border-radius: 50%;
+    line-height: 35px;
 }
 
 .task-item .wrapper>.flex {
@@ -1985,6 +2191,7 @@ app-timer {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
+    z-index: 1;
 }
 
 .task-item .more mat-icon {
@@ -2982,6 +3189,24 @@ app-item-entry:last-child .entry {
     margin-bottom: 0px;
 }
 
+.under-btn {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    z-index: 0;
+}
+
+.habit .checkbox {
+    z-index: 1;
+}
+
+.habit .fa.fa-star {
+    z-index: 1;
+    position: relative;
+}
+
 @media (max-width: 1600px) {
     .content {
         grid-template-columns: 65% calc(35% - 30px);
@@ -2991,9 +3216,24 @@ app-item-entry:last-child .entry {
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 25px;
     }
+    .habit .name {
+        font-size: 14px;
+    }
+    .flex.dashboard {
+        grid-template-columns: 57% 43%;
+    }
 }
 
 @media (max-width: 900px) {
+    .habit .checkbox span.time {
+        margin-right: 8px;
+        padding: 1px 7px;
+        border-radius: 16px;
+        font-size: 9px;
+    }
+    .habit .flex-timer .mat-tab-labels {
+        padding: 5px 0;
+    }
     .content {
         grid-template-columns: 1fr;
         grid-gap: 20px;
@@ -3125,6 +3365,20 @@ app-item-entry:last-child .entry {
         height: 32px;
         font-size: 12px;
     }
+    .form-add-category button {
+        height: unset;
+        margin-left: 10px;
+    }
+    .list-own-categories {
+        padding: 0 15px 10px;
+        grid-gap: 0px;
+    }
+    .form-add-category {
+        padding: 8px 15px 0;
+    }
+    .form-add-category mat-form-field.mat-form-field {
+        width: calc(100% - 80px);
+    }
     .create-habit .mat-checkbox {
         width: 100%;
         margin-bottom: 10px;
@@ -3246,9 +3500,14 @@ app-item-entry:last-child .entry {
         margin-right: 20px;
     }
     .create-habit mat-expansion-panel.mat-expansion-panel.grid .mat-expansion-panel-body {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-gap: 20px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    app-note-to-day {
+        width: 100%;
+    }
+    app-category-picker {
+        width: 100%;
     }
     .calendar-ctatistic .mat-tab-label {
         margin-right: 6px;
@@ -3379,13 +3638,19 @@ app-item-entry:last-child .entry {
     .flex.dashboard .calendar {
         display: none;
     }
-    .habit .name {
-        font-size: 12px;
-        margin-right: 15px;
+    .habit .name p {
+        font-size: 13px;
+        margin-right: 10px;
+    }
+    .habit .name p {
+        margin-bottom: 1px;
     }
     .fa.fa-star {
-        font-size: 13px;
+        font-size: 12px;
         padding-right: 4px;
+    }
+    .habit .name {
+        min-height: 42px;
     }
     .habit>mat-icon.main-icon {
         width: 50px !important;
@@ -3396,7 +3661,7 @@ app-item-entry:last-child .entry {
         font-size: 17px;
     }
     .habit .right>.flex {
-        padding: 7px 12px 7px;
+        padding: 7px 10px 7px;
     }
     .flex-timer .mat-tab-label,
     .flex.options .mat-tab-label {
@@ -3468,6 +3733,12 @@ app-item-entry:last-child .entry {
     }
     .flex.options .mat-tab-body-wrapper {
         padding: 10px 12px;
+    }
+    .task-item .timefarme {
+        display: none;
+    }
+    .flex.dashboard {
+        grid-gap: 5px;
     }
     .subtasks .item .number {
         min-width: 20px;
