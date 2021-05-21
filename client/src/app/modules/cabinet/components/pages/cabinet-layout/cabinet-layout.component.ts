@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { TitleStoreService } from 'src/app/services/title/title-store.service';
+import {TranslateService} from '@ngx-translate/core';
 @Component({
   selector: 'app-cabinet-layout',
   templateUrl: './cabinet-layout.component.html',
@@ -23,9 +24,18 @@ export class CabinetLayoutComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription = new Subscription();
 
-  constructor(private auth: AuthService, private router: Router, private titleService: TitleStoreService) {}
+  constructor(private auth: AuthService,
+              private router: Router,
+              private titleService: TitleStoreService,
+              private translate: TranslateService) {}
+
+  useLanguage(language: string): void {
+    this.translate.use(language);
+}
 
   ngOnInit(): void {
+    console.log(this.translate.getBrowserLang());
+
     this.subscriptions.add(this.titleService.title.subscribe(title => {
       this.title = title;
     }));

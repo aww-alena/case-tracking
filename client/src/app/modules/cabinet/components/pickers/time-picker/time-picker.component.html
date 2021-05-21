@@ -1,13 +1,13 @@
 <div class="timepicker">
-    <h2>Time frame</h2>
+    <h2>{{ "timeframe" | translate}}</h2>
     <div class="flex">
         <mat-form-field appearance="fill" (mouseenter)="initFromPicker()">
-            <mat-label>from</mat-label>
+            <mat-label>{{ "from" | translate}}</mat-label>
             <input type="text" matInput #fromPicker (change)="onChangeFrom($event)" [value]="oldFromTime">
         </mat-form-field>
         -
         <mat-form-field appearance="fill" (mouseenter)="initUntilPicker()">
-            <mat-label>To</mat-label>
+            <mat-label>{{ "to" | translate}}</mat-label>
             <input type="text" matInput #untilPicker (change)="onChangeUntil($event)" [value]="oldUntilTime">
         </mat-form-field>
     </div>

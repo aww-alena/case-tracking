@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import * as moment from 'moment';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -6,10 +7,11 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class TitleStoreService {
 
-  readonly titleSource = new BehaviorSubject<string>('Dashboard');
+  today = moment().format('DD.MM.YYYY dddd');
+  readonly titleSource = new BehaviorSubject<string>('dashboard');
   readonly title = this.titleSource.asObservable();
 
-  readonly dateTitleSource = new BehaviorSubject<string>('Dashboard');
+  readonly dateTitleSource = new BehaviorSubject<string>(this.today);
   readonly dateTitle = this.dateTitleSource.asObservable();
 
   constructor() { }

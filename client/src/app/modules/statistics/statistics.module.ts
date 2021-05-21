@@ -13,6 +13,7 @@ import { registerLocaleData } from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
 import { CategoryStaisticsComponent } from './components/pages/category-staistics/category-staistics.component';
 import { ChartsModule } from 'ng2-charts';
+import { TranslateService } from '@ngx-translate/core';
 
 registerLocaleData(localeRu);
 @NgModule({
@@ -35,4 +36,6 @@ registerLocaleData(localeRu);
     })
   ]
 })
-export class StatisticsModule { }
+export class StatisticsModule {
+  constructor(public translate: TranslateService) { }
+}

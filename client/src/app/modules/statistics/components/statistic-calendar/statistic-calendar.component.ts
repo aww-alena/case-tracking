@@ -1,10 +1,17 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
-import { CalendarEvent, CalendarView } from 'angular-calendar';
-
+import { CalendarDateFormatter, CalendarEvent, CalendarView } from 'angular-calendar';
+import { DAYS_OF_WEEK } from 'angular-calendar';
+import { CustomDateFormatter } from './custom-date-formatter.provider';
 @Component({
   selector: 'app-statistic-calendar',
   templateUrl: './statistic-calendar.component.html',
-  styleUrls: ['./statistic-calendar.component.css']
+  styleUrls: ['./statistic-calendar.component.css'],
+  providers: [
+    {
+      provide: CalendarDateFormatter,
+      useClass: CustomDateFormatter,
+    },
+  ]
 })
 export class StatisticCalendarComponent implements OnInit {
 
@@ -12,6 +19,8 @@ export class StatisticCalendarComponent implements OnInit {
   @Input() viewDates: Date[];
 
   view: CalendarView = CalendarView.Month;
+  weekStartsOn = DAYS_OF_WEEK.MONDAY;
+  locale = 'ru';
 
   constructor() { }
 

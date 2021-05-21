@@ -6,6 +6,7 @@ import { IHabit } from 'src/app/interfaces/habit';
 import { HabitStatistics, MainJournalData } from 'src/app/interfaces/habit-statistics';
 import { HabitService } from 'src/app/services/habit/habit.service';
 import { StatisticsService } from 'src/app/services/statistics/statistics.service';
+import { TitleStoreService } from 'src/app/services/title/title-store.service';
 
 @Component({
   selector: 'app-habit-statistics',
@@ -25,9 +26,11 @@ export class HabitStatisticsComponent implements OnInit, OnDestroy {
   subscriptions: Subscription = new Subscription();
 
   constructor(private habitService: HabitService,
-              private statisticsService: StatisticsService) { }
+              private statisticsService: StatisticsService,
+              private titleService: TitleStoreService) { }
 
   ngOnInit(): void {
+    this.setTitle();
     this.getHabits();
   }
 
@@ -121,5 +124,9 @@ export class HabitStatisticsComponent implements OnInit, OnDestroy {
     };
 
     return calendarEntry;
+  }
+
+  private setTitle(): void {
+    this.subscriptions.add(this.titleService.updateTitle('statistics'));
   }
 }

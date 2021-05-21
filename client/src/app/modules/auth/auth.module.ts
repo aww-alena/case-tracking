@@ -8,7 +8,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { PopupComponent } from './components/popup/popup.component';
-
+import { TranslateService } from '@ngx-translate/core';
 @NgModule({
   declarations: [LoginComponent, RegisterComponent, PopupComponent],
   imports: [
@@ -21,4 +21,6 @@ import { PopupComponent } from './components/popup/popup.component';
     HttpClientModule,
   ],
 })
-export class AuthModule {}
+export class AuthModule {
+  constructor(public translate: TranslateService) { }
+}

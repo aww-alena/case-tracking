@@ -35,7 +35,12 @@ import { ListTaskControlViewComponent } from './components/pages/task/control-vi
 import { ItemHabitControlViewComponent } from './components/pages/habit/control-view/item-habit/item-habit-control-view.component';
 import { ListHabitControlViewComponent } from './components/pages/habit/control-view/list-habit/list-habit-control-view.component';
 import { IconTemplateComponent } from './components/icon-template/icon-template.component';
+import { TranslateService } from '@ngx-translate/core';
 
+import { registerLocaleData } from '@angular/common';
+import localeRu from '@angular/common/locales/ru';
+
+registerLocaleData(localeRu);
 
 @NgModule({
   declarations: [
@@ -82,4 +87,6 @@ import { IconTemplateComponent } from './components/icon-template/icon-template.
     RatingComponent
   ]
 })
-export class CabinetModule {}
+export class CabinetModule {
+  constructor(public translate: TranslateService) { }
+}

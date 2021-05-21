@@ -1,14 +1,14 @@
 <div class="habit-comment-form">
 
-    <h2>Notes to the habit</h2>
+    <h2>{{ "habit_note" | translate}}</h2>
     <div class="form">
-        <mat-checkbox *ngIf="schedule.value !== 'everyday'" [(ngModel)]="notesForDays">I need the notes to the days of the week</mat-checkbox>
+        <mat-checkbox *ngIf="schedule.value !== 'everyday'" [(ngModel)]="notesForDays">{{ "note_to_day" | translate }}</mat-checkbox>
 
         <form #form="ngForm">
             <div class="textareas" *ngIf="schedule.value !== '' && notesForDays; else oneNote">
 
                 <mat-form-field appearance="fill" *ngFor="let day of schedule.value.split(',')">
-                    <mat-label>{{dayEn[day]}}</mat-label>
+                    <mat-label>{{ dayEn[day] | translate }}</mat-label>
                     <ng-template [ngIf]="formData" [ngIfElse]="withoutData">
                         <textarea matInput [ngModel]="formData[day]" [name]="day" (blur)="transferData(form)"></textarea>
                     </ng-template>
@@ -22,7 +22,7 @@
 
             <ng-template #oneNote>
                 <mat-form-field appearance="fill">
-                    <mat-label>Note</mat-label>
+                    <mat-label>{{ "text" | translate}}</mat-label>
                     <textarea matInput [ngModel]="singleNote" name="note" (blur)="transferData(form)"></textarea>
                 </mat-form-field>
             </ng-template>

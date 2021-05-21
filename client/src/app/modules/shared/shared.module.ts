@@ -23,10 +23,13 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSortModule } from '@angular/material/sort';
 import {MatChipsModule} from '@angular/material/chips';
-
+import { TranslateModule } from '@ngx-translate/core';
 import { SortByPipe } from '../../pipes/sort-by.pipe';
 import { FilterByPipe } from '../../pipes/filter-by.pipe';
 import { FormatTimePipe } from '../../pipes/format-time.pipe';
+
+
+
 @NgModule({
   declarations: [
     SortByPipe,
@@ -88,7 +91,8 @@ import { FormatTimePipe } from '../../pipes/format-time.pipe';
     MatChipsModule,
     SortByPipe,
     FilterByPipe,
-    FormatTimePipe
+    FormatTimePipe,
+    TranslateModule
   ],
 })
 export class SharedModule {}

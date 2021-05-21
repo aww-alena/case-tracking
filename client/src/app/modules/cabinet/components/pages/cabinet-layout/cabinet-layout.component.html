@@ -9,11 +9,16 @@
             <ul>
                 <li *ngFor="let link of links">
                     <a [routerLink]="[link.url]" routerLinkActive="active" (click)="mobileOpen = ! mobileOpen">
-                        <mat-icon>{{link.icon}}</mat-icon> {{link.name}}
+                        <mat-icon>{{link.icon}}</mat-icon>{{ link.name | translate}}
                     </a>
                 </li>
             </ul>
         </nav>
+
+        <mat-button-toggle-group>
+            <mat-button-toggle (click)="useLanguage('en')">En</mat-button-toggle>
+            <mat-button-toggle (click)="useLanguage('ru')">Ru</mat-button-toggle>
+        </mat-button-toggle-group>
 
     </mat-sidenav>
 
@@ -22,7 +27,7 @@
 
             <div class="header">
                 <h1>
-                    <mat-icon>space_dashboard</mat-icon> {{title}} <span class="date">{{dateTitle}}</span></h1>
+                    <mat-icon>space_dashboard</mat-icon> {{ title | translate}} <span class="date">{{dateTitle}}</span></h1>
 
                 <ul>
                     <li>
@@ -78,8 +83,6 @@
                 <a class="add" [routerLink]="['/app/habit/create']">Habit</a>
 
                 <a class="add" [routerLink]="['/app/task/create']">Task</a>
-
-                <a class="add" [routerLink]="['/app/category/create']">Category</a>
 
             </mat-menu>
         </div>

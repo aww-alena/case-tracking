@@ -13,7 +13,7 @@ export class NoteToDayComponent implements OnInit {
   @Input() oldNotes: string;
   @Output() addNotes: EventEmitter<string> = new EventEmitter();
 
-  dayEn = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  dayEn = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 
   notesForDays = false;
   formData: {id: number; text: string}[];

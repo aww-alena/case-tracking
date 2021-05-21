@@ -2,14 +2,21 @@
 
     <input formControlName="id" type="hidden">
 
-    <p>{{isNew ? 'Create' : 'Edit'}} Habit</p>
+
+    <ng-template [ngIf]="isNew" [ngIfElse]="edit">
+        <p>{{"create_habit" | translate}}</p>
+    </ng-template>
+
+    <ng-template #edit>
+        <p>{{"edit_habit" | translate}}</p>
+    </ng-template>
 
     <div class="wrapper">
 
         <div class="flex name-block">
 
             <mat-form-field appearance="fill">
-                <mat-label>Name of habit</mat-label>
+                <mat-label>{{ 'FORM.HABIT_NAME' | translate }}</mat-label>
                 <input formControlName="name" type="text" matInput>
             </mat-form-field>
 
@@ -21,9 +28,9 @@
 
         </div>
 
-        <mat-checkbox formControlName="hasTimer" class="example-margin">I want to keep track of time!</mat-checkbox>
+        <mat-checkbox formControlName="hasTimer" class="example-margin">{{ 'FORM.NEED_TIMER' | translate }}</mat-checkbox>
 
-        <mat-checkbox formControlName="hasRating" class="example-margin">I will rate!</mat-checkbox>
+        <mat-checkbox formControlName="hasRating" class="example-margin">{{ 'FORM.NEED_RATING' | translate }}</mat-checkbox>
 
 
         <app-schedule-picker (changeSchedule)="onChangeSchedule($event)" [oldSchedule]="form.value.schedule"></app-schedule-picker>
@@ -31,7 +38,7 @@
         <mat-expansion-panel class="grid">
             <mat-expansion-panel-header>
                 <mat-panel-title>
-                    Additional options
+                    {{ 'FORM.MORE' | translate }}
                 </mat-panel-title>
             </mat-expansion-panel-header>
 
@@ -43,7 +50,15 @@
 
         </mat-expansion-panel>
 
-        <button type="submit">{{isNew ? 'Create' : 'Save'}}</button>
+
+        <ng-template [ngIf]="isNew" [ngIfElse]="save">
+            <button type="submit">{{'FORM.CREATE' | translate}}</button>
+        </ng-template>
+
+        <ng-template #save>
+            <button type="submit">{{'FORM.SAVE' | translate}}</button>
+        </ng-template>
+
     </div>
 
 </form>

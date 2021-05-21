@@ -19,7 +19,9 @@ export class ItemTaskComponent implements OnInit, OnDestroy {
   subscriptions: Subscription = new Subscription();
   showMore = false;
 
-  constructor(private taskService: TaskService, private router: Router, private dateService: DateService) { }
+  constructor(private taskService: TaskService,
+              private router: Router,
+              private dateService: DateService) { }
 
   ngOnInit(): void {}
 

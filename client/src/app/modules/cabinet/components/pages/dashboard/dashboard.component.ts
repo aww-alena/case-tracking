@@ -34,6 +34,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   private setTitle(): void {
-    this.subscriptions.add(this.titleService.updateTitle(`Dashboard`, moment(this.today).format('DD.MM.YYYY dddd')));
+    this.subscriptions.add(this.titleService.updateTitle(`dashboard`, moment(this.today).format('DD.MM.YYYY dddd')));
   }
 }

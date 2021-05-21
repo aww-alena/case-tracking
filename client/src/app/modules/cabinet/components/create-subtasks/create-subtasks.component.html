@@ -1,18 +1,18 @@
 <div class="subtasks form">
-    <h2>Subtasks</h2>
+
     <div class="wrap">
 
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="left">
-                <h2>Create subtask</h2>
+                <h2>{{"create_subtask" |translate}}</h2>
                 <div class="flex">
                     <mat-form-field appearance="fill">
-                        <mat-label>Name of subtask</mat-label>
+                        <mat-label>{{"name_subtask" | translate}}</mat-label>
                         <input formControlName="name" type="text" matInput>
                     </mat-form-field>
 
                     <mat-form-field appearance="fill" class="date-picker">
-                        <mat-label>Choose a date</mat-label>
+                        <mat-label>{{"choose_date" | translate}}</mat-label>
                         <input matInput [matDatepicker]="picker" formControlName="date">
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
@@ -24,12 +24,18 @@
 
                 <div class="form">
                     <mat-form-field appearance="fill">
-                        <mat-label>Note</mat-label>
+                        <mat-label>{{"text" | translate}}</mat-label>
                         <textarea matInput formControlName="note"></textarea>
                     </mat-form-field>
                 </div>
 
-                <button type="submit">{{form.value.id? 'Save' : 'Add'}}</button>
+                <ng-template [ngIf]="form.value.id" [ngIfElse]="save">
+                    <button type="submit">{{'FORM.SAVE' | translate}}</button>
+                </ng-template>
+
+                <ng-template #save>
+                    <button type="submit">{{'FORM.ADD' | translate}}</button>
+                </ng-template>
 
             </div>
 
@@ -37,7 +43,7 @@
         </form>
 
         <div class="created">
-            <h2>Created subtasks</h2>
+            <h2>{{"created_subtasks" | translate}}</h2>
             <div class="task flex" *ngFor="let subtask of subtasks;">
                 <div>
                     <span class="number"></span> {{subtask.name}} - {{subtask.date | date : 'dd.MM.YYYY'}}

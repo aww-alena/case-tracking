@@ -41,7 +41,7 @@ export class ListTaskControlViewComponent implements OnInit, OnDestroy {
   }
 
   private setTitle(): void {
-    this.subscriptions.add(this.titleService.updateTitle('Tasks'));
+    this.subscriptions.add(this.titleService.updateTitle('tasks'));
   }
 
   private initTasks(taskRecordings: ITask[]): ITask[] {

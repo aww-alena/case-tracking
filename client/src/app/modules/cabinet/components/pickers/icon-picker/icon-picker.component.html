@@ -2,7 +2,7 @@
 
     <div class="icon-btn">
         <button (click)="toggle = !toggle" type="button"><mat-icon>{{icon}}</mat-icon></button>
-        <p>icon</p>
+        <p>{{ "icon" | translate }}</p>
     </div>
 
     <div class="icon-window" [ngClass]="{active: toggle}">

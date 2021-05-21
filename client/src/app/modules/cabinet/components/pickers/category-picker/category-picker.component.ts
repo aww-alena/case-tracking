@@ -7,6 +7,7 @@ import {TooltipPosition} from '@angular/material/tooltip';
 import { Category } from 'src/app/interfaces/category';
 import { CategoryService } from 'src/app/services/category/category.service';
 import { MessageService } from 'src/app/services/message-service/message.service';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-category-picker',
   templateUrl: './category-picker.component.html',
@@ -20,16 +21,6 @@ export class CategoryPickerComponent implements OnInit {
   positionOptions: TooltipPosition[] = ['below', 'above', 'left', 'right'];
   position = new FormControl(this.positionOptions[0]);
   radius = 15.91549430918954;
-
-  spheresOfLifeRu = [
-    'Семья / Друзья',
-    'Отношения / Любовь',
-    'Карьера / Учеба',
-    'Благосостояние / Финансы',
-    'Здоровье / Спорт',
-    'Духовность / Личное время',
-    'Отдых / Хобби',
-    'Уборка / Готовка'];
 
   spheresOfLifeEn = [
     'Family / Friends',
@@ -46,11 +37,14 @@ export class CategoryPickerComponent implements OnInit {
   ownCategories: Category[];
 
   categories: Array<string> = [];
+  lang = 'en';
 
   constructor(private categoryService: CategoryService,
-              private messageService: MessageService) {}
+              private messageService: MessageService,
+              private translate: TranslateService) {}
 
   ngOnInit(): void {
+    this.lang = this.translate.getBrowserLang();
     this.categories = (this.oldCategories) ? this.oldCategories.split(',') : [];
     this.categoryService.fetch().subscribe(categories => this.ownCategories = categories);
   }

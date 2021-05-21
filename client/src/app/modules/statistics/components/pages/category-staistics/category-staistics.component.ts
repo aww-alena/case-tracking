@@ -1,9 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { ChartDataSets, ChartType, RadialChartOptions } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { Subscription } from 'rxjs';
 import { CategoryStatistics } from 'src/app/interfaces/category-statistics';
 import { StatisticsService } from 'src/app/services/statistics/statistics.service';
+import { TitleStoreService } from 'src/app/services/title/title-store.service';
 
 @Component({
   selector: 'app-category-staistics',
@@ -64,21 +66,47 @@ export class CategoryStaisticsComponent implements OnInit, OnDestroy {
 
   data: CategoryStatistics;
   response = false;
+  translatedCategories: Label[] = [];
 
   subscriptions: Subscription = new Subscription();
 
-  constructor(private statisticsService: StatisticsService) { }
+  constructor(private statisticsService: StatisticsService,
+              private titleService: TitleStoreService,
+              private translate: TranslateService) { }
 
   ngOnInit(): void {
-    this.subscriptions.add(this.statisticsService.getCategoryStatistics().subscribe(data => {
-      this.radarChartLabels = data.categories;
-      this.radarChartData = [{ data: data.data, label: 'Количество выполнений'}];
-
-      this.response = true;
-    }));
+    this.setTitle();
+    this.getStatistics();
   }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
+  }
+
+  getStatistics(): void {
+
+    this.subscriptions.add(this.statisticsService.getCategoryStatistics().subscribe(data => {
+
+      this.getTranslatedCategories(data.categories);
+
+      this.radarChartLabels = this.translatedCategories;
+      this.radarChartData = [{ data: data.data, label: 'Количество выполнений'}];
+      this.response = true;
+    }));
+  }
+
+  getTranslatedCategories(categories: string[]): void {
+    categories.forEach((category) => {
+      this.subscriptions.add(
+        this.translate.get(category).subscribe((text: string) => {
+          this.translatedCategories.push(text);
+        })
+      );
+    });
+
+  }
+
+  private setTitle(): void {
+    this.subscriptions.add(this.titleService.updateTitle('statistics'));
   }
 }

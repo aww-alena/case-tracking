@@ -1,5 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, EventEmitter, Inject, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import Picker from 'pickerjs';
 
 @Component({
@@ -20,13 +21,18 @@ export class TimePickerComponent implements OnInit {
 
   timeFrom: any;
   timeUntil: any;
-  constructor() { }
+  lang = 'en';
 
-  ngOnInit(): void {}
+  constructor(private translate: TranslateService) { }
+
+  ngOnInit(): void {
+    this.lang = this.translate.getBrowserLang();
+  }
 
   initFromPicker(): void {
     if (this.timeFrom === undefined) {
       this.timeFrom = this.fromPicker.nativeElement;
+      const title = (this.lang === 'en') ? 'Pick a from time' : 'Со скольки';
 
       new Picker(this.timeFrom, {
         inline: true,
@@ -34,7 +40,7 @@ export class TimePickerComponent implements OnInit {
         controls: true,
         format: 'HH:mm',
         text: {
-          title: 'Pick a from time',
+          title
         }
       });
     }
@@ -43,6 +49,7 @@ export class TimePickerComponent implements OnInit {
   initUntilPicker(): void {
     if (this.timeUntil === undefined) {
       this.timeUntil = this.untilPicker.nativeElement;
+      const title = (this.lang === 'en') ? 'Pick a until time' : 'До скольки';
 
       new Picker(this.timeUntil, {
         inline: true,
@@ -50,7 +57,7 @@ export class TimePickerComponent implements OnInit {
         controls: true,
         format: 'HH:mm',
         text: {
-          title: 'Pick a until time',
+          title
         }
       });
     }

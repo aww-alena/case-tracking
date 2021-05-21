@@ -18,11 +18,7 @@ export class Timer implements ITimer {
     }
 
     isTimestampEmpty(): boolean {
-        let empty = true;
-
-        if (!this.isTimestampUndefined()) {
-            empty = (this.timestamp.length === 0) ? true : false;
-        }
+        const empty = (this.status === 'temp') ? true : false;
 
         return empty;
     }

@@ -1,7 +1,7 @@
 <div class="color-block">
     <div class="color-btn">
         <button (click)="toggle = !toggle" type="button" [style.background]="color"></button>
-        <p>color</p>
+        <p>{{ "color" | translate }}</p>
     </div>
 
     <div class="color-window" [ngClass]="{active: toggle}">

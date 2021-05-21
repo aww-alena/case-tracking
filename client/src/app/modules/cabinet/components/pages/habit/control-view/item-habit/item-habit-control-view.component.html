@@ -1,15 +1,10 @@
 <div class="habit">
-
     <div class="flex title">
-
         <app-icon-template [color]="habit.color" [icon]="habit.icon"></app-icon-template>
-
         {{habit.name}}
     </div>
-
     <div class="flex">
-        <button (click)="onEdit(habit._id)"><mat-icon>edit</mat-icon>Edit</button>
-        <button (click)="onDelete(habit)"><mat-icon>delete</mat-icon>Delete </button>
+        <button (click)="onEdit(habit._id)"><mat-icon>edit</mat-icon>{{"FORM.EDIT" | translate}}</button>
+        <button (click)="onDelete(habit)"><mat-icon>delete</mat-icon>{{"FORM.DELETE" | translate}}</button>
     </div>
-
 </div>

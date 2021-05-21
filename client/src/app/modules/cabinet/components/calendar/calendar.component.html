@@ -1,14 +1,14 @@
 <div class="calendar-dashboard">
     <div class="calendar-header">
-        <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+        <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'ru' }}</h3>
     </div>
 
-    <mwl-calendar-month-view [viewDate]="viewDate" [events]="events" [refresh]="refresh" (dayClicked)="dayClicked($event.day)"></mwl-calendar-month-view>
+    <mwl-calendar-month-view [locale]="locale" [weekStartsOn]="weekStartsOn" [viewDate]="viewDate" [events]="events" [refresh]="refresh" (dayClicked)="dayClicked($event.day)"></mwl-calendar-month-view>
 
     <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style">
-        <mat-button-toggle mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"><span class="material-icons">keyboard_arrow_left</span>Previous</mat-button-toggle>
-        <mat-button-toggle mwlCalendarToday [(viewDate)]="viewDate">Today</mat-button-toggle>
-        <mat-button-toggle mwlCalendarNextView [view]="view" [(viewDate)]="viewDate">Next <span class="material-icons">keyboard_arrow_right</span></mat-button-toggle>
+        <mat-button-toggle mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"><span class="material-icons">keyboard_arrow_left</span>{{"prev" | translate}}</mat-button-toggle>
+        <mat-button-toggle mwlCalendarToday [(viewDate)]="viewDate" (click)="setToday()">{{"today" | translate}}</mat-button-toggle>
+        <mat-button-toggle mwlCalendarNextView [view]="view" [(viewDate)]="viewDate">{{"next" | translate}} <span class="material-icons">keyboard_arrow_right</span></mat-button-toggle>
     </mat-button-toggle-group>
 
 </div>

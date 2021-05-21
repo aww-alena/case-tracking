@@ -28,11 +28,11 @@
                 <mat-tab label="Comment" *ngIf="task.subtasks.length > 0">
                     <ng-template mat-tab-label>
                         <mat-icon>task</mat-icon>
-                        Subtasks
+                        {{"subtasks" | translate}}
                     </ng-template>
 
                     <div class="subtasks">
-                        <h2>Subtasks</h2>
+                        <h2>{{"subtasks" | translate}}</h2>
                         <app-subtask *ngFor="let subtask of task.subtasks; let i = index" [subtask]="subtask" [index]="i" [today]="today" [hasTimer]="task.hasTimer" (changeSubtask)="onChangeSubtask($event)"></app-subtask>
                     </div>
                 </mat-tab>
@@ -41,44 +41,44 @@
                 <mat-tab label="Comment" *ngIf="task.hasTimer">
                     <ng-template mat-tab-label>
                         <mat-icon>description</mat-icon>
-                        Timer
+                        {{"timer" | translate}}
                     </ng-template>
                     <h2>Timer</h2>
-                    В том числе подзадачи: {{formatSecond(task.countTimePassedSubtasks())}}
+                    {{"including_subtasks" | translate}} {{formatSecond(task.countTimePassedSubtasks())}}
                     <app-timer [timer]="task.savedData.timer" [today]="today" *ngIf="task.hasTimer" (timePlay)=onPlayTime($event) (timePause)=onPauseTime($event) (timeReset)=onResetTime() (changeTime)=onChangeTime($event) (deleteTimeStamp)="onDeleteTimeStamp($event)"></app-timer>
                 </mat-tab>
 
                 <mat-tab label="Comment" *ngIf="task.comment !== ''">
                     <ng-template mat-tab-label>
                         <mat-icon>description</mat-icon>
-                        Comment
+                        {{"comment" | translate}}
                     </ng-template>
-                    <h2>Comment</h2>
+                    <h2>{{"comment" | translate}}</h2>
                     <p class="comment">{{task.comment}}</p>
                 </mat-tab>
 
                 <mat-tab label="Add note">
                     <ng-template mat-tab-label>
                         <mat-icon>add_circle</mat-icon>
-                        Add note
+                        {{"add_note" | translate}}
                     </ng-template>
 
                     <form #form="ngForm" (mouseenter)="updateFormField(form)" class="comment-form">
-                        <h2>Add note</h2>
+                        <h2>{{"add_note" | translate}}</h2>
 
                         <mat-form-field appearance="fill">
-                            <mat-label>Your note</mat-label>
+                            <mat-label>{{"text" | translate}}</mat-label>
                             <input ngModel name="note" type="text" matInput required autocomplete="off">
                         </mat-form-field>
 
-                        <button [disabled]="form.invalid" class="save-comment" (click)=saveComment(form) type="button">Save</button>
+                        <button [disabled]="form.invalid" class="save-comment" (click)=saveComment(form) type="button">{{"FORM.SAVE" | translate}}</button>
                     </form>
                 </mat-tab>
 
                 <mat-tab label="Close">
                     <ng-template mat-tab-label>
                         <mat-icon>hide_source</mat-icon>
-                        Close
+                        {{"close" | translate}}
                     </ng-template>
                 </mat-tab>
             </mat-tab-group>

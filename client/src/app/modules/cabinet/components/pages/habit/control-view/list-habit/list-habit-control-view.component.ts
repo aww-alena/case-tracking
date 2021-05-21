@@ -43,7 +43,7 @@ export class ListHabitControlViewComponent implements OnInit, OnDestroy {
   }
 
   private setTitle(): void {
-    this.subscriptions.add(this.titleService.updateTitle('Habits'));
+    this.subscriptions.add(this.titleService.updateTitle('habits'));
   }
 
   private initHabits(habits: IHabit[]): IHabit[] {

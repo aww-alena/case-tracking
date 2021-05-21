@@ -3,18 +3,27 @@
     <mat-tab-group disableRipple mat-align-tabs="start" class="tabs-habit" (selectedTabChange)="tabIsChange($event)" [ngClass]="{'done-open': doneOpen}">
 
         <mat-tab label="Must do">
+            <ng-template mat-tab-label>
+                {{"must_do" | translate}}
+            </ng-template>
             <div class="grid">
                 <span class="icon-list"><mat-icon>assignment_late</mat-icon></span>
                 <app-item-habit *ngFor="let record of habitRecords | filterBy: false : 'entry.done' | sortBy:['habit.timeframe']" [habitRecording]="record" [today]="today"></app-item-habit>
             </div>
         </mat-tab>
         <mat-tab label="Done">
+            <ng-template mat-tab-label>
+                {{"done" | translate}}
+            </ng-template>
             <div class="grid">
                 <span class="icon-list"><mat-icon>checklist_rtl</mat-icon></span>
                 <app-item-habit *ngFor="let record of habitRecords | filterBy: true : 'entry.done' | sortBy:['habit.timeframe']" [habitRecording]="record" [today]="today"></app-item-habit>
             </div>
         </mat-tab>
         <mat-tab label="All">
+            <ng-template mat-tab-label>
+                {{"all" | translate}}
+            </ng-template>
             <div class="grid">
                 <span class="icon-list"><mat-icon>format_list_bulleted</mat-icon></span>
                 <app-item-habit *ngFor="let record of habitRecords | filterBy: false : 'entry.done' | sortBy:['habit.timeframe']" [habitRecording]="record" [today]="today"></app-item-habit>

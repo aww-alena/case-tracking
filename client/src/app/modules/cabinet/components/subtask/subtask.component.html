@@ -5,7 +5,7 @@
             <span class="text">{{subtask.name}}</span>
         </p>
         <div class="flex">
-            <div class="timefarme" *ngIf="hasTimeframes()">{{subtask.date | date:'dd.MM'}} {{subtask.timeframe}}</div>
+            <div class="timefarme" *ngIf="subtask.date || subtask.timeframe">{{subtask.date | date:'dd.MM'}} {{subtask.timeframe}}</div>
             <mat-checkbox (change)="markDoneSubtask()" [checked]="subtask.done"></mat-checkbox>
             <button class="show-comment" *ngIf="subtask.note !== '' || subtask.done || hasTimer"><mat-icon>more_vert</mat-icon></button>
         </div>
@@ -16,7 +16,7 @@
             <app-timer [timer]="subtask.timer" [today]="today" *ngIf="hasTimer" (timePlay)=onPlayTime($event) (timePause)=onPauseTime($event) (timeReset)=onResetTime() (changeTime)=onChangeTime($event) (deleteTimeStamp)="onDeleteTimeStamp($event)"></app-timer>
 
             <ng-template [ngIf]="subtask.done">
-                <span class="done-span">Done on {{subtask.doneDate | date:'dd.MM, HH:mm'}}</span>
+                <span class="done-span">{{"done_on" | translate}} {{subtask.doneDate | date:'dd.MM, HH:mm'}}</span>
             </ng-template>
             <div class="note" *ngIf="subtask.note !== ''">
                 {{subtask.note}}

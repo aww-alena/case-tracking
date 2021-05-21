@@ -14,24 +14,14 @@ import { of } from 'rxjs';
   styleUrls: ['./create-habit.component.css'],
 })
 export class CreateHabitComponent implements OnInit {
-  dayRu = [
-    { id: '1', name: 'Пн' },
-    { id: '2', name: 'Вт' },
-    { id: '3', name: 'Ср' },
-    { id: '4', name: 'Чт' },
-    { id: '5', name: 'Пт' },
-    { id: '6', name: 'Сб' },
-    { id: '0', name: 'Вс' },
-  ];
-
   dayEn = [
-    { id: '0', name: 'Su' },
-    { id: '1', name: 'Mo' },
-    { id: '2', name: 'Tu' },
-    { id: '3', name: 'We' },
-    { id: '4', name: 'Th' },
-    { id: '5', name: 'Fr' },
-    { id: '6', name: 'Sa' },
+    { id: '0', name: 'su' },
+    { id: '1', name: 'mo' },
+    { id: '2', name: 'tu' },
+    { id: '3', name: 'we' },
+    { id: '4', name: 'th' },
+    { id: '5', name: 'fr' },
+    { id: '6', name: 'sa' },
   ];
 
   form: FormGroup;
