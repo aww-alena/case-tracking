@@ -28,10 +28,10 @@
 
         </div>
 
-        <mat-checkbox formControlName="hasTimer" class="example-margin">{{ 'FORM.NEED_TIMER' | translate }}</mat-checkbox>
-
-        <mat-checkbox formControlName="hasRating" class="example-margin">{{ 'FORM.NEED_RATING' | translate }}</mat-checkbox>
-
+        <div class="checkboxes">
+            <mat-checkbox formControlName="hasTimer" class="example-margin">{{ 'FORM.NEED_TIMER' | translate }}</mat-checkbox>
+            <mat-checkbox formControlName="hasRating" class="example-margin">{{ 'FORM.NEED_RATING' | translate }}</mat-checkbox>
+        </div>
 
         <app-schedule-picker (changeSchedule)="onChangeSchedule($event)" [oldSchedule]="form.value.schedule"></app-schedule-picker>
 

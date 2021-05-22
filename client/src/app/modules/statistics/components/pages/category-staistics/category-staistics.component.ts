@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewChecked, ViewChild, ElementRef } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ChartDataSets, ChartType, RadialChartOptions } from 'chart.js';
 import { Label } from 'ng2-charts';
@@ -13,8 +13,9 @@ import { TitleStoreService } from 'src/app/services/title/title-store.service';
   styleUrls: ['./category-staistics.component.css']
 })
 
-export class CategoryStaisticsComponent implements OnInit, OnDestroy {
+export class CategoryStaisticsComponent implements OnInit, AfterViewChecked, OnDestroy{
 
+  @ViewChild('canvas') canvas: ElementRef;
   radarChartOptions: RadialChartOptions = {
     responsive: true,
     legend: {
@@ -77,6 +78,20 @@ export class CategoryStaisticsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.setTitle();
     this.getStatistics();
+  }
+
+  ngAfterViewChecked(): void {
+    if( this.response) {
+      this.setGradient();
+    }
+  }
+
+  setGradient(): void {
+    const gradient = this.canvas.nativeElement.getContext('2d').createLinearGradient(20,0, 220,0);
+    gradient.addColorStop(0, 'green');
+    gradient.addColorStop(1, 'white');
+    this.chartColors[0].backgroundColor = gradient;
+    this.chartColors[1].backgroundColor = gradient;
   }
 
   ngOnDestroy(): void {

@@ -1,7 +1,7 @@
 <div *ngIf="response; else loading">
-    <div>
-        <div style="display: block">
-            <canvas baseChart [datasets]="radarChartData" [options]="radarChartOptions" [labels]="radarChartLabels" [chartType]="radarChartType" [colors]="chartColors">
+    <div class="ov-block">
+        <div class="canvas-wrapper" style="display: block">
+            <canvas #canvas baseChart [datasets]="radarChartData" [options]="radarChartOptions" [labels]="radarChartLabels" [chartType]="radarChartType" [colors]="chartColors">
         </canvas>
         </div>
     </div>

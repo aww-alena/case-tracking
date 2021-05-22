@@ -363,7 +363,7 @@ app-schedule-picker .day-of-week {
     color: #fff;
     background: var(--dark-dark);
     margin-bottom: 10px;
-    padding: 10px;
+    padding: 10px 26px;
     border-radius: 10px;
 }
 
@@ -1922,11 +1922,6 @@ mat-tab-group.mat-tab-group.tabs-habit .mat-tab-header {
     opacity: 0.7;
 }
 
-.svg-with-text.rus .text p {
-    max-width: 116px;
-    font-size: 13px;
-}
-
 .svg-with-text .text {
     position: absolute;
     top: 0px;
@@ -1937,64 +1932,83 @@ mat-tab-group.mat-tab-group.tabs-habit .mat-tab-header {
 }
 
 .svg-with-text .text p:first-child {
-    bottom: 56px;
-    right: 15px;
-    max-width: 85px;
+    bottom: 66px;
+    right: 76px;
 }
 
 .svg-with-text .text p:nth-child(2) {
-    bottom: 146px;
-    right: -4px;
+    bottom: 166px;
+    right: 70px;
 }
 
 .svg-with-text .text p:nth-child(3) {
-    top: 0px;
-    right: 77px;
+    top: -4px;
+    right: 147px;
 }
 
 .svg-with-text .text p:nth-child(4) {
-    top: 0px;
-    left: 63px;
-}
-
-.svg-with-text.rus .text p:nth-child(4) {
-    top: 0px;
-    left: 124px;
+    top: -7px;
+    left: 145px;
 }
 
 .svg-with-text .text p:nth-child(5) {
-    bottom: 146px;
-    left: 53px;
-    max-width: 80px;
+    bottom: 168px;
+    left: 77px;
 }
 
 .svg-with-text .text p:nth-child(6) {
-    bottom: 56px;
-    left: 36px;
-    max-width: 85px;
-}
-
-.svg-with-text.rus .text p:nth-child(6) {
-    bottom: 56px;
-    left: 25px;
-    max-width: 100px;
+    bottom: 66px;
+    left: 11px;
 }
 
 .svg-with-text .text p:nth-child(7) {
     bottom: 0;
-    left: 38px;
-    max-width: 140px;
-}
-
-.svg-with-text.rus .text p:nth-child(7) {
-    bottom: 0;
-    left: 85px;
-    max-width: 140px;
+    left: 124px;
 }
 
 .svg-with-text .text p:nth-child(8) {
     bottom: 0;
-    right: 64px;
+    right: 145px;
+}
+
+.svg-with-text.rus .text p:first-child {
+    bottom: 66px;
+    right: 76px;
+}
+
+.svg-with-text.rus .text p:nth-child(2) {
+    bottom: 166px;
+    right: 70px;
+}
+
+.svg-with-text.rus .text p:nth-child(3) {
+    top: -7px;
+    right: 131px;
+}
+
+.svg-with-text.rus .text p:nth-child(4) {
+    top: -7px;
+    left: 151px;
+}
+
+.svg-with-text.rus .text p:nth-child(5) {
+    bottom: 168px;
+    left: 57px;
+}
+
+.svg-with-text.rus .text p:nth-child(6) {
+    bottom: 66px;
+    left: 23px;
+}
+
+.svg-with-text.rus .text p:nth-child(7) {
+    bottom: 0;
+    left: 142px;
+}
+
+.svg-with-text.rus .text p:nth-child(8) {
+    bottom: 0;
+    right: 138px;
 }
 
 .category-picker,
@@ -2545,6 +2559,7 @@ mwl-calendar-month-cell.cal-cell.cal-day-cell:hover {
 
 .mat-drawer-content.mat-sidenav-content .cal-month-view .cal-day-cell.cal-weekend .cal-day-number {
     color: var(--main-blue);
+    font-size: 15px;
 }
 
 mwl-calendar-month-cell.cal-cell.cal-day-cell.cal-past.cal-weekend.cal-in-month.cal-has-events.ng-star-inserted .cal-day-number {
@@ -3047,8 +3062,8 @@ mat-sidenav nav a,
 button.close-sidenav {
     color: #fff;
     position: absolute;
-    right: 10px;
-    top: 10px;
+    right: 15px;
+    top: 13px;
     display: none;
 }
 
@@ -3061,6 +3076,12 @@ mat-spinner {
 .pie-chart {
     display: block;
     margin-top: 40px;
+}
+
+.canvas-wrapper {
+    position: relative;
+    height: calc(100vh - 230px);
+    width: calc(100vw - 400px);
 }
 
 .calendar-ctatistic .mat-tab-labels {
@@ -3254,6 +3275,11 @@ app-item-entry:last-child .entry {
     border: none;
 }
 
+.ov-block {
+    width: 100%;
+    overflow: hidden;
+}
+
 @media (max-width: 1600px) {
     .content {
         grid-template-columns: 65% calc(35% - 30px);
@@ -3276,6 +3302,17 @@ app-item-entry:last-child .entry {
 }
 
 @media (max-width: 900px) {
+    .canvas-wrapper {
+        height: 100vh;
+        width: 120vw;
+        left: -50px;
+        top: 20px;
+    }
+    .mat-plus-menu.mat-menu-panel .add {
+        margin-top: 8px;
+        margin-bottom: 0px;
+        padding: 7px 21px;
+    }
     mat-tab-group.mat-tab-group.tabs-habit>mat-tab-header.mat-tab-header .mat-tab-labels .mat-tab-label .mat-tab-label-content {
         padding: 7px 11px;
         min-width: 92px;
@@ -3447,7 +3484,6 @@ app-item-entry:last-child .entry {
     }
     .create-habit .mat-checkbox {
         width: 100%;
-        margin-bottom: 10px;
     }
     .create-habit button[type="submit"] {
         display: block;
@@ -3469,6 +3505,10 @@ app-item-entry:last-child .entry {
     .svg-with-text .text p:nth-child(3) {
         top: 33px;
         right: 36px;
+    }
+    .svg-with-text.rus .text p:nth-child(3) {
+        top: 30px;
+        right: 74px;
     }
     .flex.name-block mat-form-field {
         width: 100%;
@@ -3521,57 +3561,70 @@ app-item-entry:last-child .entry {
         margin-top: 20px;
     }
     .svg-with-text .text p:first-child {
-        right: -11px;
-        bottom: 71px;
-    }
-    .svg-with-text.rus .text p:first-child {
-        right: -11px;
-        bottom: 71px;
-        max-width: 79px;
+        right: 35px;
+        bottom: 80px;
     }
     .svg-with-text .text p:nth-child(2) {
-        bottom: 130px;
-        right: -31px;
+        bottom: 148px;
+        right: 31px;
+    }
+    .svg-with-text .text p:nth-child(3) {
+        top: 33px;
+        right: 81px;
     }
     .svg-with-text .text p:nth-child(4) {
         top: 33px;
-        left: 30px;
-    }
-    .svg-with-text.rus .text p:nth-child(4) {
-        top: 33px;
-        left: 69px;
+        left: 74px;
     }
     .svg-with-text .text p:nth-child(5) {
-        bottom: 130px;
-        left: 30px;
-        max-width: 80px;
-    }
-    .svg-with-text.rus .text p:nth-child(5) {
-        bottom: 130px;
-        left: 18px;
-        max-width: 80px;
+        bottom: 148px;
+        left: 35px;
     }
     .svg-with-text .text p:nth-child(6) {
-        bottom: 71px;
-        left: 24px;
-        max-width: 68px;
-    }
-    .svg-with-text.rus .text p:nth-child(6) {
-        bottom: 70px;
-        left: 10px;
-        max-width: 100px;
+        bottom: 83px;
+        left: 6px;
+        max-width: 80px;
+        line-height: 13px;
     }
     .svg-with-text .text p:nth-child(7) {
         bottom: 34px;
-        left: 10px;
-    }
-    .svg-with-text.rus .text p:nth-child(7) {
-        bottom: 34px;
-        left: 48px;
+        left: 62px;
     }
     .svg-with-text .text p:nth-child(8) {
         bottom: 34px;
-        right: 28px;
+        right: 80px;
+    }
+    .svg-with-text.rus .text p:first-child {
+        right: 38px;
+        bottom: 80px;
+    }
+    .svg-with-text.rus .text p:nth-child(2) {
+        bottom: 148px;
+        right: 31px;
+    }
+    .svg-with-text.rus .text p:nth-child(4) {
+        top: 30px;
+        left: 90px;
+    }
+    .svg-with-text.rus .text p:nth-child(5) {
+        bottom: 148px;
+        left: 18px;
+    }
+    .svg-with-text.rus .text p:nth-child(6) {
+        bottom: 83px;
+        left: 5px;
+    }
+    .svg-with-text.rus .text p:nth-child(7) {
+        bottom: 34px;
+        left: 88px;
+    }
+    .svg-with-text.rus .text p:nth-child(8) {
+        bottom: 34px;
+        right: 82px;
+    }
+    .svg-with-text.rus .text p {
+        max-width: 103px;
+        font-size: 11px;
     }
     .create-habit button {
         min-height: unset;
@@ -3580,10 +3633,6 @@ app-item-entry:last-child .entry {
         width: 9%;
         font-size: 11px;
         height: 29px;
-    }
-    .svg-with-text.rus .text p {
-        max-width: 103px;
-        font-size: 11px;
     }
     .create-habit .day-of-week button:first-child {
         width: unset;
@@ -3609,8 +3658,11 @@ app-item-entry:last-child .entry {
         height: unset;
     }
     .create-habit .mat-checkbox {
-        margin-bottom: 15px;
-        margin-top: 10px;
+        margin-top: 3px;
+    }
+    .checkboxes {
+        margin-top: 12px;
+        margin-bottom: 16px;
     }
     .create-habit .mat-expansion-panel {
         margin-top: 0px;
@@ -3622,6 +3674,9 @@ app-item-entry:last-child .entry {
     }
     .create-habit mat-expansion-panel-header.mat-expanded {
         height: 37px;
+    }
+    .day-of-week {
+        margin-bottom: 20px;
     }
     .create-habit .icon-block,
     .create-habit .color-block,
@@ -3874,12 +3929,15 @@ app-item-entry:last-child .entry {
     }
     .save-comment {
         height: 31px;
-        width: 60px;
+        width: 75px;
         margin-left: 10px;
         font-size: 12px;
     }
     .comment-form .mat-form-field {
-        width: calc(100% - 70px);
+        width: calc(100% - 86px);
+    }
+    .flex-timer .contrlos .time .timer {
+        font-size: 14px;
     }
     .habit .comment {
         font-size: 12px;

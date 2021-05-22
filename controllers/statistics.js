@@ -23,14 +23,14 @@ module.exports.habit = async function(req, res) {
 module.exports.category = async function(req, res) {
 
     const defaultCategories = [
-        'Family / Friends',
-        'Relationships / Love',
-        'Career / Study',
-        'Wealth / Finance',
-        'Health / Fitness',
-        'Spiritual / Self-time',
-        'Hobbies / Recreation',
-        'Chores / Cleaning'
+        'Family',
+        'Friends',
+        'Career',
+        'Fitness',
+        'Health',
+        'Self-development',
+        'Recreation',
+        'Chores'
     ];
 
     const categories = await Category.find({ user: req.user.id });

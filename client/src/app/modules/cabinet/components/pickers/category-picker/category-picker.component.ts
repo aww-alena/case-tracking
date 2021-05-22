@@ -23,14 +23,15 @@ export class CategoryPickerComponent implements OnInit {
   radius = 15.91549430918954;
 
   spheresOfLifeEn = [
-    'Family / Friends',
-    'Relationships / Love',
-    'Career / Study',
-    'Wealth / Finance',
-    'Health / Fitness',
-    'Spiritual / Self-time',
-    'Hobbies / Recreation',
-    'Chores / Cleaning'];
+    'Family',
+    'Friends',
+    'Career',
+    'Fitness',
+    'Health',
+    'Self-development',
+    'Recreation',
+    'Chores'
+  ];
 
   selectable = true;
   removable = true;

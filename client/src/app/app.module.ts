@@ -12,7 +12,7 @@ import { SharedModule } from './modules/shared/shared.module';
 import { JournalComponent } from './components/page/journal/journal.component';
 import { TokenInterceptor } from './classes/token.interceptor';
 import { MainLayoutComponent } from './components/main-layout/main-layout.component';
-import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateModule, TranslateLoader, TranslateService} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
@@ -41,7 +41,7 @@ export function createTranslateLoader(http: HttpClient) {
         useFactory: (createTranslateLoader),
         deps: [HttpClient],
       },
-      defaultLanguage: 'ru'
+      defaultLanguage: 'en'
     })
   ],
   providers: [
@@ -53,4 +53,9 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private translate: TranslateService) {
+    const language = this.translate.getBrowserLang();
+    this.translate.use(language);
+  }
+}
