@@ -9,12 +9,14 @@ import { MatTabGroup } from '@angular/material/tabs';
 })
 export class PopupComponent implements OnInit {
   @ViewChild('tabGroup') tabGroup: MatTabGroup;
+  loading = false;
 
   constructor(public dialogRef: MatDialogRef<PopupComponent>) {}
 
   ngOnInit(): void {}
 
   onCloseClick(): void {
+    this.loading = true;
     this.dialogRef.close();
   }
 

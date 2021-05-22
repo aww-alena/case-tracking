@@ -414,10 +414,26 @@ main {
 
 main.first-page {
     margin: 0;
-    background: url(https://s00.yaplakal.com/pics/pics_original/9/2/6/14511629.jpg);
+    background: rgb(255, 143, 255);
+    background: linear-gradient(145deg, rgba(255, 143, 255, 1) 0%, rgba(70, 96, 182, 1) 50%, rgba(23, 56, 233, 1) 100%);
     height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.mat-dialog-container {
+    box-shadow: 0px 11px 15px -7px rgb(0 0 0 / 20%), 0px 24px 38px 3px rgb(0 0 0 / 14%), 0px 9px 46px 8px rgb(0 0 0 / 12%);
+    background: #424242;
+    color: #fff;
+}
+
+.custom-modalbox mat-dialog-container {
+    background: var(--dark-back);
+    border-radius: 24px;
+}
+
+.custom-modalbox .mat-raised-button.mat-primary {
+    background-color: var(--main-blue);
 }
 
 .habit .name {
@@ -631,6 +647,15 @@ mat-expansion-panel mat-icon {
     background: rgba(0, 0, 0, .1);
 }
 
+.habit.open .flex.header-habit:hover,
+.habit-list app-item-habit:nth-child(2)>.habit .flex.header-habit:hover {
+    border-radius: 24px 24px 0 0;
+    -webkit-border-radius: 24px 24px 0 0;
+    -moz-border-radius: 24px 24px 0 0;
+    -ms-border-radius: 24px 24px 0 0;
+    -o-border-radius: 24px 24px 0 0;
+}
+
 .flex.dashboard .right .habit-list .mat-tab-body-wrapper {
     padding: 0px;
     position: relative;
@@ -808,7 +833,6 @@ app-item-habit>.habit {
     margin-top: 48px;
     border-radius: 20px;
     box-shadow: 0 -7px 15px rgba(255, 255, 255, 0.05), 0 0 10px rgba(0, 0, 0, 0.3);
-    
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     -ms-border-radius: 20px;
@@ -816,20 +840,61 @@ app-item-habit>.habit {
     border-top: 1px solid var(--main-blue);
     */
     border-top: 1px solid rgb(70 96 182 / 34%);
+    background: var(--dark-back);
+    margin: 0px auto;
+    max-width: 90%;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
 }
 
 app-item-habit>.habit.open {
-    background: #181c29;
+    max-width: calc(100% - 10px);
+    border-radius: 24px;
+    background: var(--dark-dark);
+    position: relative;
+}
+
+app-item-habit>.habit.open:before {
+    content: "";
+    width: 5px;
+    height: 80%;
+    background: var(--main-blue);
+    display: block;
+    top: 10%;
+    position: absolute;
+    left: -5px;
+    border-radius: 20px 0px 0 20px;
+    -webkit-border-radius: 20px 0px 0 20px;
+    -moz-border-radius: 20px 0px 0 20px;
+    -ms-border-radius: 20px 0px 0 20px;
+    -o-border-radius: 20px 0px 0 20px;
+    z-index: -1;
+}
+
+app-item-habit>.habit.open:after {
+    content: "";
+    width: 5px;
+    height: 80%;
+    background: var(--main-blue);
+    display: block;
+    top: 10%;
+    position: absolute;
+    right: -5px;
+    border-radius: 0px 20px 20px 0px;
+    -webkit-border-radius: 0px 20px 20px 0px;
+    -moz-border-radius: 0px 20px 20px 0px;
+    -ms-border-radius: 0px 20px 20px 0px;
+    -o-border-radius: 0px 20px 20px 0px;
+    z-index: -1;
 }
 
 .habit-list app-item-habit:nth-child(2)>.habit {
     border-top: none;
-    border-radius: 24px 24px 0 0;
-    overflow: hidden;
-    -webkit-border-radius: 24px 24px 0 0;
-    -moz-border-radius: 24px 24px 0 0;
-    -ms-border-radius: 24px 24px 0 0;
-    -o-border-radius: 24px 24px 0 0;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
 }
 
 .habit-list app-item-habit:last-child>.habit {
@@ -1519,13 +1584,11 @@ mat-tab-group.done-open span.icon-list {
 }
 
 .flex.dashboard .right .habit-list .mat-tab-body-wrapper .mat-tab-body-content {
-    border-top: 1px solid var(--main-blue);
     border-radius: 24px;
     padding: 22px;
     width: 100%;
     box-sizing: border-box;
-    background: var(--dark-back);
-    box-shadow: 0 -7px 15px rgb(255 255 255 / 5%), 0 0 10px rgb(0 0 0 / 30%);
+    background: transparent;
     padding: 0px;
     position: relative;
     overflow: initial;
@@ -1552,13 +1615,13 @@ mat-tab-group.done-open span.icon-list {
 
 .flex.dashboard .right .habit-list .mat-tab-body-wrapper .mat-tab-body-content:before {
     content: "";
-    width: 80%;
+    width: 70%;
     height: 10px;
     background: var(--main-blue);
     display: block;
     top: -10px;
     position: absolute;
-    left: 10%;
+    left: 15%;
     border-radius: 20px 20px 0 0;
     -webkit-border-radius: 20px 20px 0 0;
     -moz-border-radius: 20px 20px 0 0;
@@ -1569,13 +1632,13 @@ mat-tab-group.done-open span.icon-list {
 
 .flex.dashboard .right .habit-list .mat-tab-body-wrapper .mat-tab-body-content:after {
     content: "";
-    width: 80%;
+    width: 70%;
     height: 10px;
     background: var(--main-blue);
     display: block;
     bottom: -10px;
     position: absolute;
-    left: 10%;
+    left: 15%;
     border-radius: 0 0 20px 20px;
     -webkit-border-radius: 0 0 20px 20px;
     -moz-border-radius: 0 0 20px 20px;
@@ -3016,13 +3079,13 @@ select:-webkit-autofill:focus {
 .signinup {
     display: flex;
     position: absolute;
-    top: calc(50% - 42px);
-    left: calc(50% - 192px);
+    top: calc(50% - 32px);
+    left: calc(50% - 130px);
     background: black;
-    padding: 30px 145px;
+    padding: 20px 82px;
     align-items: center;
     border-radius: 20px;
-    box-shadow: 5px 5px 0px yellow, 10px 10px 0px #0ee90e, 15px 15px 0px #0095ff, 20px 20px 0px blue, 25px 25px 0px #ff00bc;
+    box-shadow: 5px 5px 0px var(--green);
     cursor: pointer;
     font-size: 15px;
     text-transform: uppercase;
@@ -3031,6 +3094,10 @@ select:-webkit-autofill:focus {
     -moz-transition: all 0.4s ease;
     -ms-transition: all 0.4s ease;
     -o-transition: all 0.4s ease;
+}
+
+.signinup.hidden {
+    display: none;
 }
 
 .signinup i.material-icons.person {
@@ -3302,11 +3369,21 @@ app-item-entry:last-child .entry {
 }
 
 @media (max-width: 900px) {
+    .signinup:hover {
+        box-shadow: 5px 5px 0px yellow;
+    }
     .canvas-wrapper {
         height: 100vh;
         width: 120vw;
         left: -50px;
         top: 20px;
+    }
+    app-item-habit>.habit {
+        max-width: 93%;
+    }
+    .mat-drawer-content.mat-sidenav-content .cal-month-view .cal-cell-row {
+        grid-gap: 3px;
+        margin-bottom: 3px;
     }
     .mat-plus-menu.mat-menu-panel .add {
         margin-top: 8px;
@@ -3731,6 +3808,16 @@ app-item-entry:last-child .entry {
     }
     .calendar-dashboard {
         padding: 8px 18px 15px;
+        max-width: 93%;
+        margin: 0 auto 25px;
+    }
+    .habit-list .task-item {
+        max-width: 93%;
+        margin: 0 auto;
+    }
+    .habit-list .mat-tab-label-container {
+        max-width: 93%;
+        margin: 0 auto;
     }
     .calendar-dashboard h3 {
         font-size: 14px;
@@ -3756,7 +3843,7 @@ app-item-entry:last-child .entry {
         right: -27px;
     }
     main .wrapper {
-        padding: 75px 15px 10px;
+        padding: 75px 10px 10px;
     }
     .grid-time-stat .title,
     .grid-time-stat .main-time {

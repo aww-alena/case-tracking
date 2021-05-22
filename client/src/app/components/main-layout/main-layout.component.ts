@@ -8,6 +8,7 @@ import { PopupComponent } from '../../modules/auth/components/popup/popup.compon
   styleUrls: ['./main-layout.component.css'],
 })
 export class MainLayoutComponent implements OnInit {
+  opened = false;
   constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
@@ -15,6 +16,7 @@ export class MainLayoutComponent implements OnInit {
   }
 
   openDialog(): void {
+    this.opened = true;
     const dialogRef = this.dialog.open(PopupComponent, {
       width: '450px',
       panelClass: 'custom-modalbox',
