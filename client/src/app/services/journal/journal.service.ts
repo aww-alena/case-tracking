@@ -26,6 +26,10 @@ export class JournalService {
     return this.http.get<IJournalEntry>(`/api/journal/${id}/${idRecording}`);
   }
 
+  getByMonth(date: string): Observable<any> {
+    return this.http.get<any>(`/api/journal/month?date=${date}`);
+  }
+
   delete(entry: IJournalEntry): Observable<any> {
     return this.http.delete<any>(`/api/journal/${entry._id}`);
   }

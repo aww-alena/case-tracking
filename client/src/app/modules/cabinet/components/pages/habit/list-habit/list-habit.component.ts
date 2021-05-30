@@ -45,13 +45,18 @@ export class ListHabitComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   getHabits(): void {
-
-    this.subscriptions.add(this.habitService.fetch().pipe(
-      mergeMap((habits: IHabit[]): IHabitRecording[] => {
-        this.habits = habits;
-        return this.initRecords(habits);
-      }))
-      .subscribe((habitRecording) => this.habitRecords.push(habitRecording)));
+    if (this.habitService.habits) {
+      this.habits = this.habitService.habits;
+      this.habitRecords = this.initRecords(this.habits);
+    } else {
+      this.subscriptions.add(this.habitService.fetch().pipe(
+        mergeMap((habits: IHabit[]): IHabitRecording[] => {
+          this.habits = habits;
+          this.habitService.habits = habits;
+          return this.initRecords(habits);
+        }))
+        .subscribe((habitRecording) => this.habitRecords.push(habitRecording)));
+    }
   }
 
   getMatchSchedule(habitRecords: IHabitRecording[]): IHabitRecording[] {
@@ -68,12 +73,12 @@ export class ListHabitComponent implements OnInit, OnDestroy, OnChanges {
     }
   }
 
-  private initRecords(habitRecordings: IHabit[]): IHabitRecording[] {
+  private initRecords(habits: IHabit[]): IHabitRecording[] {
 
     const habitRecords: IHabitRecording[] = [];
     const dateFormated = moment(this.today).format('YYYYMMDD').toString();
 
-    habitRecordings.forEach(habit => {
+    habits.forEach(habit => {
       const habitRecording: IHabitRecording = new HabitRecording(habit, dateFormated);
 
       this.subscriptions.add(this.journalService.getById(habitRecording.habit._id, habitRecording.id).subscribe((foundEntry: any) => {

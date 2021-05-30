@@ -1,0 +1,9 @@
+<div class="charts">
+
+    <h2>Статистика на месяц</h2>
+    <app-line-chart [lineChartData]="lineChartData" [lineChartLabels]="lineChartLabels" *ngIf="dataReceived; else loading"></app-line-chart>
+
+    <ng-template #loading>
+        <mat-spinner></mat-spinner>
+    </ng-template>
+</div>

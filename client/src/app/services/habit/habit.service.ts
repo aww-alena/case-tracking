@@ -7,6 +7,7 @@ import { IHabit } from 'src/app/interfaces/habit';
   providedIn: 'root',
 })
 export class HabitService {
+  habits: IHabit[];
   constructor(private http: HttpClient) {}
 
   fetch(): Observable<IHabit[]> {

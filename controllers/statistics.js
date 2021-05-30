@@ -20,6 +20,32 @@ module.exports.habit = async function(req, res) {
     }
 }
 
+
+
+module.exports.getLineChartData = async function(req, res) {
+
+    const seconds = req.query.date;
+    const date = new Date(seconds * 1000);
+    const start = new Date(date.getFullYear(), date.getMonth(), 1);
+    const end = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+
+    try {
+        const entries = await JournalEntry.find({
+            user: req.user._id,
+            done: true,
+            date: {
+                $gte: start,
+                $lt: end
+            }
+        });
+
+        res.status(200).json(entries);
+
+    } catch (error) {
+        errorHandler(res, error)
+    }
+}
+
 module.exports.category = async function(req, res) {
 
     const defaultCategories = [

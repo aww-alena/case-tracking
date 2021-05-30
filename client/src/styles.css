@@ -2475,8 +2475,10 @@ span.done-span {
 }
 
 .statistic-calendar,
-.calendar-dashboard {
-    border-top: 1px solid var(--main-blue);
+.calendar-dashboard,
+.charts {
+    border-left: 1px solid var(--main-blue);
+    border-right: 1px solid var(--main-blue);
     border-radius: 24px;
     padding: 22px;
     width: 100%;
@@ -2487,8 +2489,54 @@ span.done-span {
     max-width: 420px;
 }
 
+.charts {
+    max-width: unset;
+    margin-bottom: 30px;
+    min-height: 367px;
+    max-height: 367px;
+    position: relative;
+}
+
+.charts:before,
+.calendar-dashboard:before {
+    content: "";
+    height: 76%;
+    width: 6px;
+    background: var(--main-blue);
+    display: block;
+    top: 12%;
+    position: absolute;
+    left: -5px;
+    border-radius: 20px 0 0 20px;
+    -webkit-border-radius: 20px 0 0 20px;
+    -moz-border-radius: 20px 0 0 20px;
+    -ms-border-radius: 20px 0 0 20px;
+    -o-border-radius: 20px 0 0 20px;
+    z-index: -1;
+}
+
+.charts:after,
+.calendar-dashboard:after {
+    content: "";
+    height: 76%;
+    width: 6px;
+    background: var(--main-blue);
+    display: block;
+    top: 12%;
+    position: absolute;
+    right: -5px;
+    border-radius: 0 20px 20px 0;
+    -webkit-border-radius: 0 20px 20px 0;
+    -moz-border-radius: 0 20px 20px 0;
+    -ms-border-radius: 0 20px 20px 0;
+    -o-border-radius: 0 20px 20px 0;
+    z-index: -1;
+}
+
 .calendar-dashboard {
     max-width: unset;
+    position: relative;
+    min-height: 367px;
 }
 
 .calendar-dashboard mwl-calendar-month-cell {
@@ -2678,6 +2726,8 @@ mwl-calendar-month-cell.cal-cell.cal-day-cell.cal-past.cal-weekend.cal-in-month.
     display: block;
     white-space: nowrap;
     font-weight: 400;
+    background: var(--main-blue);
+    border-radius: 5px;
 }
 
 .mat-drawer-content.mat-sidenav-content .cal-month-view .cal-events,

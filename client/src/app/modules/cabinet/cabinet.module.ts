@@ -39,6 +39,8 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { registerLocaleData } from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
+import { LineChartComponent } from './components/line-chart/line-chart.component';
+import { CondensedStatisticsComponent } from './components/condensed-statistics/condensed-statistics.component';
 
 registerLocaleData(localeRu);
 
@@ -68,7 +70,9 @@ registerLocaleData(localeRu);
     ItemHabitControlViewComponent,
     ListTaskControlViewComponent,
     ListHabitControlViewComponent,
-    IconTemplateComponent
+    IconTemplateComponent,
+    LineChartComponent,
+    CondensedStatisticsComponent
   ],
   imports: [
     CommonModule,
