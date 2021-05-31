@@ -598,13 +598,21 @@ mat-expansion-panel mat-icon {
 }
 
 .habit .contrlos button {
-    width: 36px;
-    height: 36px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
 }
 
 .habit .contrlos button:hover {
     background: rgba(0, 0, 0, 0.1);
+}
+
+.measure.flex .mat-form-field {
+    margin-right: 25px;
 }
 
 .habit .edit {

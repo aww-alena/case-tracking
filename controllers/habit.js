@@ -102,7 +102,5 @@ const createHabit = req => {
 
     habitObj.user = req.user.id;
 
-    console.log(habitObj);
-
     return habitObj;
 }

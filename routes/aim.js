@@ -1,5 +1,5 @@
 const express = require('express')
-const controller = require('../controllers/goal')
+const controller = require('../controllers/aim')
 const router = express.Router()
 const passport = require('passport')
 

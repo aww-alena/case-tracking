@@ -41,6 +41,10 @@ import { registerLocaleData } from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
 import { LineChartComponent } from './components/line-chart/line-chart.component';
 import { CondensedStatisticsComponent } from './components/condensed-statistics/condensed-statistics.component';
+import { ListAimComponent } from './components/pages/aim/list-aim/list-aim.component';
+import { ItemAimComponent } from './components/pages/aim/item-aim/item-aim.component';
+import { CreateAimComponent } from './components/pages/aim/create-aim/create-aim.component';
+import { CreateAimTasksComponent } from './components/create-aim-tasks/create-aim-tasks.component';
 
 registerLocaleData(localeRu);
 
@@ -72,7 +76,11 @@ registerLocaleData(localeRu);
     ListHabitControlViewComponent,
     IconTemplateComponent,
     LineChartComponent,
-    CondensedStatisticsComponent
+    CondensedStatisticsComponent,
+    ListAimComponent,
+    ItemAimComponent,
+    CreateAimComponent,
+    CreateAimTasksComponent
   ],
   imports: [
     CommonModule,

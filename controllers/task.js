@@ -75,8 +75,6 @@ module.exports.update = async function(req, res) {
 
     req.body.user = req.user.id;
 
-    console.log(req.body);
-
     try {
         const task = await Task.findByIdAndUpdate({ _id: req.params.id }, { $set: req.body }, { new: true })
         res.status(200).json(task)
@@ -98,10 +96,6 @@ const createTask = req => {
     }
 
     taskObj.user = req.user.id;
-
-    console.log(taskObj);
-
-
 
     return taskObj;
 }

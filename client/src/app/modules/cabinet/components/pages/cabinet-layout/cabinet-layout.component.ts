@@ -31,10 +31,10 @@ export class CabinetLayoutComponent implements OnInit, OnDestroy {
 
   useLanguage(language: string): void {
     this.translate.use(language);
-}
+  }
 
   ngOnInit(): void {
-    console.log(this.translate.getBrowserLang());
+    //console.log(this.translate.getBrowserLang());
 
     this.subscriptions.add(this.titleService.title.subscribe(title => {
       this.title = title;

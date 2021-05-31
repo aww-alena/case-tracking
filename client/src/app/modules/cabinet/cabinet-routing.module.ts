@@ -6,6 +6,7 @@ import { DashboardComponent } from './components/pages/dashboard/dashboard.compo
 import { CreateTaskComponent } from './components/pages/task/create-task/create-task.component';
 import { ListHabitControlViewComponent } from './components/pages/habit/control-view/list-habit/list-habit-control-view.component';
 import { ListTaskControlViewComponent } from './components/pages/task/control-view/list-task/list-task-control-view.component';
+import { CreateAimComponent } from './components/pages/aim/create-aim/create-aim.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
 
       { path: 'habit/create', component: CreateHabitComponent },
       { path: 'task/create', component: CreateTaskComponent },
+      { path: 'aim/create', component: CreateAimComponent },
 
       { path: 'habits/:id', component: CreateHabitComponent },
       { path: 'tasks/:id', component: CreateTaskComponent },

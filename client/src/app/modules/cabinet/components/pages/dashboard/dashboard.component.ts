@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(private titleService: TitleStoreService) {}
 
   ngOnInit(): void {
-    this.setTitle();
+    //this.setTitle();
   }
 
   ngOnDestroy(): void {

@@ -90,7 +90,7 @@ export class CondensedStatisticsComponent implements OnInit, OnDestroy, OnChange
   initChartDataSet(): void {
       this.lineChartData.push({data: [], label: 'Rating'});
       this.lineChartData.push({data: [], label: 'Time'});
-      this.lineChartData.push({data: [], label: 'Number'});
+      this.lineChartData.push({data: [], label: 'Amount'});
   }
 
   loadAllChartData(): void {
