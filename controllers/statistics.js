@@ -29,6 +29,9 @@ module.exports.getLineChartData = async function(req, res) {
     const start = new Date(date.getFullYear(), date.getMonth(), 1);
     const end = new Date(date.getFullYear(), date.getMonth() + 1, 0);
 
+    //Последний день меясца пофиксить надо
+
+
     try {
         const entries = await JournalEntry.find({
             user: req.user._id,

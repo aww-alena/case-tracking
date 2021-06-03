@@ -21,7 +21,7 @@
 
             </div>
 
-            <div class="checkbox">
+            <div class="checkbox" [ngClass]="{saved: habitRecording.entry._id && !habitRecording.entry.done }">
                 <span class="time" *ngIf="habitRecording.habit.timeframe">{{habitRecording.habit.timeframe}}</span>
                 <mat-checkbox (change)="markDone(habitRecording.id)" [checked]="habitRecording.entry.done"></mat-checkbox>
             </div>
@@ -56,11 +56,11 @@
                         {{"add_note" | translate}}
                     </ng-template>
 
-                    <form #form="ngForm" (mouseenter)="updateFormField(form)" class="comment-form">
+                    <form #form="ngForm" class="comment-form">
 
                         <mat-form-field appearance="fill">
                             <mat-label>{{"text" | translate}}</mat-label>
-                            <input ngModel name="note" type="text" matInput required>
+                            <input [ngModel]="habitRecording.entry.comment" name="note" type="text" matInput required>
                         </mat-form-field>
 
                         <button [disabled]="form.invalid" class="save-comment" (click)=saveComment(form) type="button">{{"FORM.SAVE" | translate}}</button>

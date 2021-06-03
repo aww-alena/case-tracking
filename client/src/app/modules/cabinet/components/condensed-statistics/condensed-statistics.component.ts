@@ -166,10 +166,9 @@ export class CondensedStatisticsComponent implements OnInit, OnDestroy, OnChange
         timeByDay[day] = (timeByDay[day]) ? (timeByDay[day]) + this.getTimeForEntry(entry) : this.getTimeForEntry(entry);
 
 
-        if (rating[day]) {
-          rating[day].push(ratingValue);
-        } else {
+        if (!rating[day]) {
           rating[day] = [];
+        } else if (ratingValue >= 0) {
           rating[day].push(ratingValue);
         }
       });
@@ -183,7 +182,7 @@ export class CondensedStatisticsComponent implements OnInit, OnDestroy, OnChange
 
   private getRatingForEntry(entry: IJournalEntry): number {
 
-    let ratingValue = 0;
+    let ratingValue = -1;
 
     if (this.isHabitHasRating(entry.habit)) {
       ratingValue = (entry.rating) ? entry.rating : 0;
