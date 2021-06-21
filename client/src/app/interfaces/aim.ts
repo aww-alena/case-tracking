@@ -21,7 +21,7 @@ export interface IntermediateValue {
 export interface AimTask {
     name: string;
     numberPerWeek: number;
-    completion: CompletionEntry[];
+    completion?: CompletionEntry[];
 }
 
 export interface CompletionEntry {

@@ -1,1 +1,22 @@
-<p>create-aim-tasks works!</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h2>New task</h2>
+    <div class="flex">
+        <mat-form-field appearance="fill">
+            <mat-label>{{"name_subtask" | translate}}</mat-label>
+            <input formControlName="name" type="text" matInput>
+        </mat-form-field>
+
+        <mat-form-field class="number" appearance="fill">
+            <mat-label>{{"number_per_week" | translate}}</mat-label>
+            <input formControlName="numberPerWeek" type="number" matInput>
+        </mat-form-field>
+    </div>
+    <button type="submit">{{'FORM.ADD' | translate}}</button>
+</form>
+
+<div class="created-tasks">
+    <div class="item flex" *ngFor="let task of tasks;">
+        <p class="name">{{task.name}}</p>
+        <span class="number">{{task.numberPerWeek}}</span>
+    </div>
+</div>

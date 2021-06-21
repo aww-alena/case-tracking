@@ -46,6 +46,7 @@ import { ItemAimComponent } from './components/pages/aim/item-aim/item-aim.compo
 import { CreateAimComponent } from './components/pages/aim/create-aim/create-aim.component';
 import { CreateAimTasksComponent } from './components/create-aim-tasks/create-aim-tasks.component';
 
+
 registerLocaleData(localeRu);
 
 @NgModule({

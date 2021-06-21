@@ -2613,10 +2613,13 @@ span.done-span {
 }
 
 .calendar-dashboard .mat-button-toggle-group {
-    width: 100%;
+    width: calc(100% - 44px);
     margin: 10px 0 0;
     justify-content: space-around;
     border-radius: 10px;
+    position: absolute;
+    bottom: 22px;
+    left: 22px;
 }
 
 .mat-drawer-content.mat-sidenav-content .cal-month-view .cal-day-cell {
@@ -3442,7 +3445,39 @@ app-item-entry:last-child .entry {
     overflow: hidden;
 }
 
+.mat-progress-spinner.save-progress {
+    position: absolute;
+    transform: scale(0.4);
+    right: -17px;
+}
+
+app-item-habit>.habit .checkbox .mat-progress-spinner.save-progress circle {
+    stroke: var(--green);
+}
+
+app-line-chart {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 95%;
+    max-height: 98%;
+    min-height: 90%;
+    position: absolute;
+}
+
+.chart-wrapper {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: block;
+    max-height: 80%;
+    min-height: 90%;
+}
+
 @media (max-width: 1600px) {
+    app-line-chart {
+        max-width: 93%;
+    }
     .content {
         grid-template-columns: 65% calc(35% - 30px);
         grid-gap: 25px;
@@ -3464,9 +3499,18 @@ app-item-entry:last-child .entry {
 }
 
 @media (max-width: 900px) {
-    .calendar-dashboard,
-    .charts {
+    app-line-chart {
+        max-width: 90%;
+        max-height: 90%;
+    }
+    .mat-progress-spinner.save-progress {
+        right: -25px;
+    }
+    .calendar-dashboard {
         min-height: unset;
+    }
+    .charts {
+        min-height: 250px;
     }
     .signinup:hover {
         box-shadow: 5px 5px 0px yellow;
@@ -3904,6 +3948,7 @@ app-item-entry:last-child .entry {
         overflow-x: hidden;
         order: 1;
         margin: 15px 0 20px;
+        overflow-y: hidden;
     }
     .calendar-dashboard {
         padding: 8px 18px 15px;

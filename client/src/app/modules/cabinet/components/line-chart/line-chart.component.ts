@@ -18,6 +18,7 @@ export class LineChartComponent implements OnInit, OnChanges {
 
   lineChartOptions: (ChartOptions & { annotation: any }) = {
     responsive: true,
+    maintainAspectRatio: false,
     legend: {
       position: 'bottom',
       align: 'center',
@@ -68,6 +69,14 @@ export class LineChartComponent implements OnInit, OnChanges {
     },
   };
   public lineChartColors: Color[] = [
+    {
+      backgroundColor: 'rgba(255,177,52,0.4)',
+      borderColor: '#ffb134',
+      pointBackgroundColor: '#ffb134',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: '#ffb134'
+    },
     {
       backgroundColor: 'rgba(70,96,182,0.4)',
       borderColor: '#4660b6',
