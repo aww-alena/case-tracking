@@ -3499,6 +3499,12 @@ app-line-chart {
 }
 
 @media (max-width: 900px) {
+    .calendar-dashboard .mat-button-toggle-group {
+        width: 100%;
+        position: relative;
+        left: unset;
+        bottom: unset;
+    }
     app-line-chart {
         max-width: 90%;
         max-height: 90%;
