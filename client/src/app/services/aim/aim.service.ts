@@ -23,6 +23,6 @@ export class AimService {
   }
 
   update(aim: IAim): Observable<IAim> {
-    return this.http.patch<IAim>(`/api/task/${aim._id}`, aim);
+    return this.http.patch<IAim>(`/api/aim/${aim._id}`, aim);
   }
 }

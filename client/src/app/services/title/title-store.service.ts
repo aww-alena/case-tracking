@@ -7,11 +7,11 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class TitleStoreService {
 
-  today = moment().format('DD.MM.YYYY dddd');
+  today = moment();
   readonly titleSource = new BehaviorSubject<string>('dashboard');
   readonly title = this.titleSource.asObservable();
 
-  readonly dateTitleSource = new BehaviorSubject<string>(this.today);
+  readonly dateTitleSource = new BehaviorSubject<string>(this.today.format('DD.MM.YYYY dddd'));
   readonly dateTitle = this.dateTitleSource.asObservable();
 
   constructor() { }

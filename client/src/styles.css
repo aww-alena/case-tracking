@@ -349,7 +349,7 @@ app-schedule-picker .day-of-week {
 
 .plus-menu {
     position: absolute;
-    right: 303px;
+    right: 328px;
     top: 39px;
 }
 
@@ -409,7 +409,7 @@ app-schedule-picker .day-of-week {
 }
 
 main {
-    margin: 0 30px 0 0px;
+    margin: 0 25px 0 0px;
 }
 
 main.first-page {
@@ -790,6 +790,7 @@ app-item-habit.ng-star-inserted {
     box-shadow: 0 -7px 15px rgba(255, 255, 255, 0.05), 0 0 10px rgba(0, 0, 0, 0.3);
     border-left: 1px solid var(--main-blue);
     border-right: 1px solid var(--main-blue);
+    width: calc(100% - 4.68%);
 }
 
 .header h1 {
@@ -1959,7 +1960,7 @@ mat-ink-bar.mat-ink-bar {
 
 mat-tab-group.mat-tab-group.tabs-habit>mat-tab-header.mat-tab-header .mat-tab-labels {
     background: transparent;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 mat-tab-group.mat-tab-group.tabs-habit>mat-tab-header.mat-tab-header .mat-tab-labels .mat-tab-label {
@@ -1971,7 +1972,6 @@ mat-tab-group.mat-tab-group.tabs-habit>mat-tab-header.mat-tab-header .mat-tab-la
 mat-tab-group.mat-tab-group.tabs-habit>mat-tab-header.mat-tab-header .mat-tab-labels .mat-tab-label .mat-tab-label-content {
     background-color: var(--dark-dark);
     padding: 8px 24px;
-    margin: 0px 13px;
     border-radius: 25px;
     -webkit-border-radius: 25px;
     -moz-border-radius: 25px;
@@ -1979,7 +1979,7 @@ mat-tab-group.mat-tab-group.tabs-habit>mat-tab-header.mat-tab-header .mat-tab-la
     -o-border-radius: 25px;
     border-left: 3px solid transparent;
     border-right: 3px solid transparent;
-    min-width: 156px;
+    min-width: 120px;
 }
 
 mat-tab-group.mat-tab-group .mat-tab-label-active {
@@ -1994,6 +1994,9 @@ mat-tab-group.mat-tab-group.tabs-habit>mat-tab-header.mat-tab-header .mat-tab-la
 
 mat-tab-group.mat-tab-group.tabs-habit .mat-tab-header {
     border-bottom: none;
+    max-width: 90%;
+    margin: 0 auto;
+    width: 90%;
 }
 
 .comment-form .mat-form-field {
@@ -2122,7 +2125,9 @@ mat-tab-group.mat-tab-group.tabs-habit .mat-tab-header {
 .category-picker,
 .timepicker,
 .habit-comment-form,
-.datepicker {
+.datepicker,
+.created-tasks.grid,
+.aim-form-task {
     background: rgba(0, 0, 0, .1);
     border-radius: 10px;
     padding-bottom: 1px;
@@ -2169,7 +2174,9 @@ mat-tab-group.mat-tab-group.tabs-habit .mat-tab-header {
 .timepicker h2,
 .habit-comment-form h2,
 .datepicker h2,
-.subtasks.form h2 {
+.subtasks.form h2,
+.created-tasks.grid h2,
+.aim-form-task h2 {
     background: rgba(0, 0, 0, .1);
     border-radius: 10px 10px 0 0;
     margin-bottom: 25px;
@@ -2536,13 +2543,14 @@ span.done-span {
 
 .charts {
     max-width: unset;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     min-height: 367px;
     max-height: 367px;
     position: relative;
 }
 
 .charts:before,
+.aim-list::before,
 .calendar-dashboard:before {
     content: "";
     height: 76%;
@@ -2561,6 +2569,7 @@ span.done-span {
 }
 
 .charts:after,
+.aim-list::after,
 .calendar-dashboard:after {
     content: "";
     height: 76%;
@@ -2582,6 +2591,8 @@ span.done-span {
     max-width: unset;
     position: relative;
     min-height: 367px;
+    max-width: 90%;
+    margin: 0 auto;
 }
 
 .calendar-dashboard mwl-calendar-month-cell {
@@ -3472,6 +3483,142 @@ app-line-chart {
     display: block;
     max-height: 80%;
     min-height: 90%;
+}
+
+.aim-form-task .mat-form-field.number {
+    margin-left: 25px;
+}
+
+.grid.aim-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 30px;
+}
+
+.aim-form .created-tasks .grid {
+    display: grid;
+    grid-template-columns: 0.1fr 1fr 1fr 0.3fr;
+    grid-gap: 1px;
+    padding: 10px 15px;
+}
+
+.aim-form .created-tasks .row-name {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.aim-form .item.grid:nth-child(odd) {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.form-context {
+    padding: 0 15px 20px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+p.filter {
+    background-color: var(--dark-dark);
+    padding: 8px 24px;
+    border-left: 3px solid var(--main-blue);
+    border-right: 3px solid var(--main-blue);
+    border-radius: 25px;
+}
+
+.created-tasks.grid button {
+    padding: 0px;
+    background: transparent;
+    width: 100%;
+}
+
+.grid.aim-form button.with-icon {
+    margin: 0px;
+}
+
+.grid.aim-form button.with-icon {
+    margin: 0px;
+    background: transparent;
+    border: 2px solid var(--main-blue);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+button.with-icon span.material-icons {
+    margin-right: 10px;
+}
+
+.aim-list {
+    position: relative;
+    border-radius: 24px;
+    padding: 22px;
+    width: 100%;
+    box-sizing: border-box;
+    background: var(--dark-back);
+    border-left: 1px solid var(--main-blue);
+    border-right: 1px solid var(--main-blue);
+}
+
+.aim .body .tasks .item.grid {
+    display: grid;
+    grid-template-columns: 35px 1fr 50px;
+    padding: 3px 10px;
+}
+
+.aim-header app-icon-template {
+    margin-right: 20px;
+}
+
+.aim-header.flex {
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+app-weekly-performance {
+    width: 100%;
+}
+
+.aim .weeks .item {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 1px solid var(--main-blue);
+    margin-right: 8px;
+}
+
+.aim .weeks span {
+    line-height: normal;
+    margin-left: 15px;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 4px 10px;
+    border-radius: 25px;
+}
+
+.aim .weeks {
+    display: flex;
+    align-items: center;
+    justify-self: start;
+    padding: 10px 0
+}
+
+.aim-header .date {
+    font-weight: 500;
+}
+
+.aim-header .left.flex {
+    align-items: center;
+}
+
+.aim-header app-icon-template {
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.aim-header .left.flex h2 {
+    margin-bottom: 0px;
 }
 
 @media (max-width: 1600px) {

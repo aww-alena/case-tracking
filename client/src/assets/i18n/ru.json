@@ -24,7 +24,7 @@
         "HABIT_NAME": "Название",
         "TASK_NAME": "Название",
         "EDIT": "изменить",
-        "DELETE": "удалить",
+        "DELETE": "Удалить",
         "ADD": "Добавить"
     },
     "ERRORS": {
@@ -95,5 +95,15 @@
     "show_nothing": "Данных для статистики нет",
     "prev": "Предыдущий",
     "today": "Сегодня",
-    "next": "Следующий"
+    "next": "Следующий",
+    "new_weekly_task": "Добавить еженедельную задачу",
+    "number_per_week": "Количество в неделю",
+    "created_weekly_tasks": "Созданные задачи",
+    "name": "Название",
+    "fill_measure": "Измеримая цель",
+    "measure_current_value": "Текущее значение",
+    "measure_target_value": "Целевое значеие",
+    "measure_name": "Название меры (кг, шт)",
+    "create_aim": "Создать цель",
+    "edit_aim": "Редактировать цель"
 }

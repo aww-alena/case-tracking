@@ -1,1 +1,19 @@
-<p>item-aim works!</p>
+<div class="aim">
+    <div class="aim-header flex">
+        <div class="left flex">
+            <app-icon-template [color]="aim.color" [icon]="aim.icon"></app-icon-template>
+            <h2 [ngStyle]="{'color': aim.color}">{{aim.name}}</h2>
+        </div>
+        <span class="date">{{aim.startDate | date: 'dd.MM.YY'}} - {{aim.endDate | date: 'dd.MM.YY'}}</span>
+        <app-weekly-performance [aim]="aim"></app-weekly-performance>
+    </div>
+    <div class="body">
+        <div class="tasks">
+            <div class="item grid" *ngFor="let task of aim.tasks">
+                <mat-checkbox (change)="markDone(task._id)" [checked]="doneToday.get(task._id)"></mat-checkbox>
+                <div class="name">{{task.name}}</div>
+                <div class="number">{{task.numberPerWeek}}</div>
+            </div>
+        </div>
+    </div>
+</div>

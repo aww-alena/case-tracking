@@ -60,7 +60,7 @@ module.exports.update = async function(req, res) {
 
 const createAim = req => {
 
-    const aimObj = new Habit({
+    const aimObj = new Aim({
         name: req.body.name
     });
 

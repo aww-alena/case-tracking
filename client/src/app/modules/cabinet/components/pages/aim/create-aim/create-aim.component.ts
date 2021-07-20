@@ -50,7 +50,7 @@ export class CreateAimComponent implements OnInit, OnDestroy {
     });
   }
 
-  createTask(): void {
+  createAim(): void {
     const tempAim: IAim = {
       name: this.form.value.name,
       startDate: this.form.value.startDate,
@@ -60,7 +60,6 @@ export class CreateAimComponent implements OnInit, OnDestroy {
       currentValue: this.form.value.currentValue,
       targetValue: this.form.value.targetValue,
       tasks: this.tasks,
-      intermediateValues: this.form.value.intermediateValues,
       measure: this.form.value.measure,
       user: this.form.value.user,
       _id: this.form.value.id
@@ -72,11 +71,10 @@ export class CreateAimComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    console.log(this.form.value);
+    console.log(this.form.value, this.tasks);
 
-    /*
     if (this.isNew) {
-      this.createTask();
+      this.createAim();
       this.subscriptions.add(this.aimService.create(this.aim).subscribe(
         () => {
           this.messageService.showMessage('The aim was created successfully', 'Success');
@@ -88,7 +86,7 @@ export class CreateAimComponent implements OnInit, OnDestroy {
         }
       ));
     } else {
-      this.createTask();
+      this.createAim();
       this.subscriptions.add(this.aimService.update(this.aim).subscribe(
         () => {
           this.messageService.showMessage('The aim was updated successfully', 'Success');
@@ -100,7 +98,6 @@ export class CreateAimComponent implements OnInit, OnDestroy {
         }
       ));
     }
-    */
   }
 
   onAddTask(tasks: any): void {
@@ -179,37 +176,7 @@ export class CreateAimComponent implements OnInit, OnDestroy {
     });
   }
 
-  private formatTimeFrame(): string {
-    let timeFrame = '';
-    if (this.form.value.fromTime !== '') {
-      timeFrame += this.form.value.fromTime;
-    }
-    if (this.form.value.untilTime !== '') {
-      timeFrame += `-${this.form.value.untilTime}`;
-    }
 
-    return timeFrame;
-  }
-/*
-  private initTasks(aimRecordings: ITask[]): ITask[] {
-
-    const tempTask: ITask[] = [];
-
-    aimRecordings.forEach(aim => {
-      const newTask: ITask = new Task(aim, new Date());
-      tempTask.push(newTask);
-    });
-
-    return tempTask;
-  }
-*/
-  private fromTime(timeframe: string): string {
-    return (timeframe && timeframe.length >= 5) ? timeframe.slice(0, 5) : '';
-  }
-
-  private untilTime(timeframe: string): string {
-    return (timeframe && timeframe.length === 11) ? timeframe.slice(6) : '';
-  }
 
 }
 

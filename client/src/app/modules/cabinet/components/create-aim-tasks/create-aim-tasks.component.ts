@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { AimTask } from 'src/app/interfaces/aim';
 
 @Component({
@@ -11,6 +11,7 @@ export class CreateAimTasksComponent implements OnInit {
 
   @Input() oldTasks: Array<AimTask>;
   @Output() addTask: EventEmitter<Array<AimTask>> = new EventEmitter();
+  @ViewChild(FormGroupDirective) formRef: FormGroupDirective;
 
   tasks: Array<AimTask> = [];
   form: FormGroup;
@@ -30,11 +31,19 @@ export class CreateAimTasksComponent implements OnInit {
 
   onSubmit(): void {
     this.tasks.push({
+      _id: '',
       name: this.form.value.name,
       numberPerWeek: this.form.value.numberPerWeek
     });
 
+    this.addTask.emit(this.tasks);
     this.form.reset();
+    this.formRef.resetForm();
+  }
+
+  deleteTask(index: number): void {
+    this.tasks.splice(index, 1);
+    this.addTask.emit(this.tasks);
   }
 
 }

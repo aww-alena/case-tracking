@@ -9,7 +9,7 @@ export interface IAim {
     measure: string;
     user: string;
     tasks: AimTask[];
-    intermediateValues: IntermediateValue[];
+    intermediateValues?: IntermediateValue[];
     _id: string;
 }
 
@@ -19,6 +19,7 @@ export interface IntermediateValue {
 }
 
 export interface AimTask {
+    _id: string;
     name: string;
     numberPerWeek: number;
     completion?: CompletionEntry[];

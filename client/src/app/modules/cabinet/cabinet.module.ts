@@ -45,6 +45,8 @@ import { ListAimComponent } from './components/pages/aim/list-aim/list-aim.compo
 import { ItemAimComponent } from './components/pages/aim/item-aim/item-aim.component';
 import { CreateAimComponent } from './components/pages/aim/create-aim/create-aim.component';
 import { CreateAimTasksComponent } from './components/create-aim-tasks/create-aim-tasks.component';
+import { FilterComponent } from './components/filter/filter.component';
+import { WeeklyPerformanceComponent } from './components/weekly-performance/weekly-performance.component';
 
 
 registerLocaleData(localeRu);
@@ -81,7 +83,9 @@ registerLocaleData(localeRu);
     ListAimComponent,
     ItemAimComponent,
     CreateAimComponent,
-    CreateAimTasksComponent
+    CreateAimTasksComponent,
+    FilterComponent,
+    WeeklyPerformanceComponent
   ],
   imports: [
     CommonModule,

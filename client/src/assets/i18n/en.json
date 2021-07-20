@@ -24,7 +24,7 @@
         "HABIT_NAME": "Name of habit",
         "TASK_NAME": "Name of task",
         "EDIT": "edit",
-        "DELETE": "delete",
+        "DELETE": "Delete",
         "ADD": "Add"
     },
     "ERRORS": {
@@ -95,7 +95,17 @@
     "show_nothing": "Nothing to show",
     "prev": "Previous",
     "today": "Today",
-    "next": "Next"
+    "next": "Next",
+    "new_weekly_task": "Add weekly task",
+    "number_per_week": "Number per week",
+    "created_weekly_tasks": "Created weekly tasks",
+    "name": "Name",
+    "fill_measure": "Measurable goal",
+    "measure_current_value": "Current value",
+    "measure_target_value": "Target value",
+    "measure_name": "Measure name (kg, pcs)",
+    "create_aim": "Create Aim",
+    "edit_aim": "Edit Aim"
 
 
 

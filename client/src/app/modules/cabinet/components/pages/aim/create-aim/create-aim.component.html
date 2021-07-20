@@ -3,11 +3,11 @@
     <input formControlName="id" type="hidden">
 
     <ng-template [ngIf]="isNew" [ngIfElse]="edit">
-        <p>{{"create_task" | translate}}</p>
+        <p>{{"create_aim" | translate}}</p>
     </ng-template>
 
     <ng-template #edit>
-        <p>{{"edit_task" | translate}}</p>
+        <p>{{"edit_aim" | translate}}</p>
     </ng-template>
 
     <div class="wrapper">
@@ -55,7 +55,7 @@
                     </mat-panel-title>
                 </mat-expansion-panel-header>
 
-                <app-create-aim-tasks></app-create-aim-tasks>
+                <app-create-aim-tasks (addTask)="onAddTask($event)"></app-create-aim-tasks>
 
             </mat-expansion-panel>
 

@@ -30,6 +30,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   onSetDate(date: any): void {
     this.today = moment(date).toString();
     this.dayNumber = moment(date).isoWeekday().toString();
+    this.titleService.today = moment(date);
     this.setTitle();
   }
 

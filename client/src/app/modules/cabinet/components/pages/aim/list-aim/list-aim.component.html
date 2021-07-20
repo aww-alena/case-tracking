@@ -1,1 +1,9 @@
-<p>list-aim works!</p>
+<div class="aim-list" *ngIf="aims; else loading">
+    <div class="grid">
+        <app-item-aim *ngFor="let aim of aims" [aim]="aim" [today]="today"></app-item-aim>
+    </div>
+</div>
+
+<ng-template #loading>
+    <mat-spinner></mat-spinner>
+</ng-template>
