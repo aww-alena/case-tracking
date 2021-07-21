@@ -27,14 +27,15 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SortByPipe } from '../../pipes/sort-by.pipe';
 import { FilterByPipe } from '../../pipes/filter-by.pipe';
 import { FormatTimePipe } from '../../pipes/format-time.pipe';
-
+import { StateOfWeekDirective } from '../../directives/state-of-week.directive';
 
 
 @NgModule({
   declarations: [
     SortByPipe,
     FilterByPipe,
-    FormatTimePipe
+    FormatTimePipe,
+    StateOfWeekDirective
   ],
   imports: [
     CommonModule,
@@ -92,7 +93,8 @@ import { FormatTimePipe } from '../../pipes/format-time.pipe';
     SortByPipe,
     FilterByPipe,
     FormatTimePipe,
-    TranslateModule
+    TranslateModule,
+    StateOfWeekDirective
   ],
 })
 export class SharedModule {}

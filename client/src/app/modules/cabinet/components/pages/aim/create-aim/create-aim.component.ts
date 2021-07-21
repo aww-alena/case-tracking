@@ -71,8 +71,6 @@ export class CreateAimComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    console.log(this.form.value, this.tasks);
-
     if (this.isNew) {
       this.createAim();
       this.subscriptions.add(this.aimService.create(this.aim).subscribe(

@@ -1,4 +1,4 @@
 <div class="weeks">
-    <div class="item" *ngFor="let week of periods"></div>
+    <div class="item" *ngFor="let week of periods; let i = index" [appStateOfWeek]="stateOfWeek[i]" matTooltipClass="tooltip" [matTooltip]="statisticOfWeeks[i] !== undefined ? statisticOfWeeks[i].toString() : ''" matTooltipPosition="right"></div>
     <span>{{periods.length}} weeks</span>
 </div>

@@ -28,7 +28,7 @@ export class ItemAimComponent implements OnInit, OnChanges {
     this.getIsDone();
   }
 
-  markDone(id: string): void {
+  markDone(id: string | undefined): void {
     this.aim.tasks.find(task => task._id === id)?.completion?.push({
       done: moment(this.titleService.today).toDate()
     });

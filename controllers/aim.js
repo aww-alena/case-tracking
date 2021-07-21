@@ -40,6 +40,8 @@ module.exports.create = async function(req, res) {
 
     const aim = createAim(req);
 
+    console.log(aim);
+
     try {
         await aim.save();
         res.status(200).json(aim)
@@ -65,7 +67,7 @@ const createAim = req => {
     });
 
     for (key in req.body) {
-        if (!(req.body[key] === '' || req.body[key] === null) && key !== '_id') {
+        if (!(req.body[key] === '' || req.body[key] === null)) {
             aimObj[key] = req.body[key];
         }
     }
