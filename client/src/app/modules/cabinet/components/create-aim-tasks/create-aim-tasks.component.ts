@@ -31,6 +31,7 @@ export class CreateAimTasksComponent implements OnInit {
 
   onSubmit(): void {
     this.tasks.push({
+      _id: '',
       name: this.form.value.name,
       numberPerWeek: this.form.value.numberPerWeek
     });

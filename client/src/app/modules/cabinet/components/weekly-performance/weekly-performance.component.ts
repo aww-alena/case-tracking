@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import * as moment from 'moment';
 import { IAim } from 'src/app/interfaces/aim';
 import { TitleStoreService } from 'src/app/services/title/title-store.service';
@@ -12,18 +12,20 @@ export class WeeklyPerformanceComponent implements OnInit, OnChanges {
 
   @Input() aim: IAim;
   @Input() today: string;
+  @Output() getNumberExecutions: EventEmitter<Array<{id: string; amount: number}>> = new EventEmitter();
   numberWeeksInPeriod: number;
   periods: Array<{start: moment.Moment; end: moment.Moment}> = [];
   stateOfWeek: Array<string> = [];
-  statisticOfWeeksByTasks: Array<{id: string | undefined; amount: number}[]> = [];
+  statisticOfWeeksByTasks: Array<{id: string; amount: number}[]> = [];
   statisticOfWeeks: Array<number> = [];
   targetValueForWeek = 0;
+  oldToday: string;
 
   constructor() { }
 
   ngOnInit(): void {}
 
-  ngOnChanges() {
+  ngOnChanges(changes: SimpleChanges) {
     this.calcData();
   }
 
@@ -38,9 +40,11 @@ export class WeeklyPerformanceComponent implements OnInit, OnChanges {
 
   getPeriods(): void {
 
-    let startDate = moment(this.aim.startDate);
-    const endPeriod = moment(this.aim.endDate);
+    const dateStartISO = new Date(this.aim.startDate).toISOString();
+    const dateEndISO = new Date(this.aim.endDate).toISOString();
 
+    let startDate = moment(dateStartISO);
+    const endPeriod = moment(dateEndISO);
     let diff = endPeriod.diff(startDate, 'day');
 
     while (diff > 0) {
@@ -48,9 +52,9 @@ export class WeeklyPerformanceComponent implements OnInit, OnChanges {
       let startWeek: moment.Moment;
       let endWeek: moment.Moment;
 
-      if (startDate === moment(this.aim.startDate)) {
-        startWeek = moment(this.aim.startDate);
-        endWeek = moment(this.aim.startDate).locale('ru').endOf('week');
+      if (startDate === moment(dateStartISO)) {
+        startWeek = moment(dateStartISO);
+        endWeek = moment(dateStartISO).locale('ru').endOf('week');
       } else {
         startWeek = moment(startDate.toDate()).add(1, 'days');
         endWeek = moment(startWeek.toDate()).locale('ru').endOf('week');
@@ -69,12 +73,17 @@ export class WeeklyPerformanceComponent implements OnInit, OnChanges {
 
   getStateOfWeek(): void {
 
+    const todayDateISO = new Date(this.today).toISOString();
+
     this.periods.forEach(item => {
-      const currentWeek = moment(this.today).isBetween(item.start, item.end);
+
+      const start = item.start.toISOString().substring(0, 10);
+      const end = item.end.toISOString().substring(0, 10);
+      const currentWeek = moment(todayDateISO).isBetween(start, end, undefined, '[]');
 
       if (currentWeek) {
         this.stateOfWeek.push('current');
-      } else if (!currentWeek && (item.end.diff(moment(this.today), 'day') > 0)){
+      } else if (!currentWeek && (item.end.diff(moment(todayDateISO), 'day') > 0)){
         this.stateOfWeek.push('future');
       } else {
         this.stateOfWeek.push('old');
@@ -85,16 +94,17 @@ export class WeeklyPerformanceComponent implements OnInit, OnChanges {
   countNumberExecutions(): void {
     this.stateOfWeek.forEach((item, index) => {
       if (item !== 'future') {
-        const start = this.periods[index].start;
-        const end = this.periods[index].end;
+        const start = this.periods[index].start.toISOString().substring(0, 10);
+        const end = this.periods[index].end.toISOString().substring(0, 10);
         this.statisticOfWeeksByTasks.push([]);
 
         this.aim.tasks.forEach(task => {
-
           let numberExecutions = 0;
 
           task.completion?.forEach(date => {
-            if (moment(date.done).isBetween(start, end)) {
+            const dateISO = new Date(date.done).toISOString();
+
+            if (moment(dateISO).isBetween(start, end, undefined, '[]')) {
               numberExecutions++;
             }
           });
@@ -106,6 +116,10 @@ export class WeeklyPerformanceComponent implements OnInit, OnChanges {
         });
       }
     });
+
+    const currentWeek = this.statisticOfWeeksByTasks.length - 1;
+
+    this.getNumberExecutions.emit(this.statisticOfWeeksByTasks[currentWeek]);
   }
 
   getStatistics(): void {
@@ -118,6 +132,7 @@ export class WeeklyPerformanceComponent implements OnInit, OnChanges {
 
       this.statisticOfWeeks.push(amount);
     });
+
   }
 
   getTargetValue(): void {

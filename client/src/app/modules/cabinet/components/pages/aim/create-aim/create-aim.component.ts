@@ -66,8 +66,6 @@ export class CreateAimComponent implements OnInit, OnDestroy {
     };
 
     this.aim = new Aim (tempAim);
-
-    console.log(this.aim);
   }
 
   onSubmit(): void {

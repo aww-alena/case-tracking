@@ -18,12 +18,12 @@ const routes: Routes = [
   {
     path: 'app',
     loadChildren: () => import('./modules/cabinet/cabinet.module').then((m) => m.CabinetModule),
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard]
   },
   {
     path: 'statistics',
     loadChildren: () => import('./modules/statistics/statistics.module').then((m) => m.StatisticsModule),
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard]
   },
   { path: '', component: AppComponent, pathMatch: 'full' },
 ];

@@ -3,17 +3,21 @@
         <div class="left flex">
             <app-icon-template [color]="aim.color" [icon]="aim.icon"></app-icon-template>
             <h2 [ngStyle]="{'color': aim.color}">{{aim.name}}</h2>
-            <app-weekly-performance [aim]="aim" [today]="today"></app-weekly-performance>
+            <app-weekly-performance [aim]="aim" [today]="today" (getNumberExecutions)=onGetNumberExecutions($event)></app-weekly-performance>
         </div>
         <span class="date">{{aim.startDate | date: 'dd.MM.YY'}} - {{aim.endDate | date: 'dd.MM.YY'}}</span>
 
     </div>
     <div class="body">
         <div class="tasks">
-            <div class="item grid" *ngFor="let task of aim.tasks">
+            <div class="item grid" *ngFor="let task of aim.tasks; let i = index">
                 <mat-checkbox (change)="markDone(task._id)" [checked]="doneToday.get(task._id)"></mat-checkbox>
                 <div class="name">{{task.name}}</div>
-                <div class="number">{{task.numberPerWeek}}</div>
+                <div class="number">
+                    <span *ngIf="numberExecutionsForCurrentWeek">
+                        {{numberExecutionsForCurrentWeek.get(task._id)}} /
+                    </span> {{task.numberPerWeek}}
+                </div>
             </div>
         </div>
 

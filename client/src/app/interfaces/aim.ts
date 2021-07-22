@@ -19,13 +19,14 @@ export interface IntermediateValue {
 }
 
 export interface AimTask {
-    _id?: string;
+    _id: string;
     name: string;
     numberPerWeek: number;
     completion?: CompletionEntry[];
 }
 
 export interface CompletionEntry {
+    _id?: string;
     done: Date;
 }
 
