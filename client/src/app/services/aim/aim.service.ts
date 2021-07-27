@@ -15,7 +15,6 @@ export class AimService {
   }
 
   create(aim: IAim): Observable<IAim> {
-    //delete is from tsks !!!
     return this.http.post<IAim>('/api/aim', aim);
   }
 

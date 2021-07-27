@@ -68,7 +68,7 @@ const getToken = candidate => {
     return token = 'Bearer ' + jwt.sign({
         email: candidate.email,
         userId: candidate._id
-    }, keys.jwt, { expiresIn: 36000 })
+    }, keys.jwt, { expiresIn: 86400 })
 }
 
 const createUser = newUser => {

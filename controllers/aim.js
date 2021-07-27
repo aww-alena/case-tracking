@@ -40,8 +40,6 @@ module.exports.create = async function(req, res) {
 
     const aim = createAim(req);
 
-    console.log(aim);
-
     try {
         await aim.save();
         res.status(200).json(aim)
@@ -61,6 +59,15 @@ module.exports.update = async function(req, res) {
 }
 
 const createAim = req => {
+
+
+    if (req.body.tasks) {
+        req.body.tasks.forEach(task => {
+            if (task['_id'] !== undefined) {
+                delete task['_id'];
+            }
+        });
+    }
 
     const aimObj = new Aim({
         name: req.body.name
