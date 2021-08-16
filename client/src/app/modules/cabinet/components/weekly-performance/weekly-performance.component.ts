@@ -142,8 +142,18 @@ export class WeeklyPerformanceComponent implements OnInit, OnChanges {
   }
 
   countPerformance(): void {
-    this.statisticOfWeeks.forEach((item, index) => {
-      const performance = 100 / (this.targetValueForWeek / item);
+
+    const targetValueForCurrentWeek = Math.round((this.targetValueForWeek / 7) * moment(this.today).isoWeekday());
+
+    this.statisticOfWeeks.forEach((item, index, arr) => {
+
+      let performance = 0;
+      if (Object.is(arr.length - 1, index)) {
+        performance = 100 / (targetValueForCurrentWeek / item);
+      } else {
+        performance = 100 / (this.targetValueForWeek / item);
+      }
+
       let state = '';
 
       switch (true) {

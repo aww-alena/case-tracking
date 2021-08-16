@@ -4184,7 +4184,6 @@ app-weekly-performance {
         margin: 0 auto 25px;
     }
     .habit-list .task-item {
-        max-width: 93%;
         margin: 0 auto;
     }
     .habit-list .mat-tab-label-container {
@@ -4195,8 +4194,11 @@ app-weekly-performance {
         font-size: 14px;
         margin-bottom: 7px;
     }
+    .aim-list .aim {
+        box-shadow: 0 -7px 15px rgb(255 255 255 / 5%), 0 0 10px rgb(0 0 0 / 30%);
+    }
     .flex.dashboard .right {
-        order: 0;
+        order: 2;
     }
     main {
         margin: 0;
@@ -4291,6 +4293,10 @@ app-weekly-performance {
     }
     .task-item mat-checkbox {
         transform: scale(0.8);
+    }
+    mat-tab-group.mat-tab-group.tabs-habit .mat-tab-header {
+        width: 100%;
+        max-width: 93%;
     }
     .flex.dashboard .calendar {
         display: none;
@@ -4418,6 +4424,70 @@ app-weekly-performance {
     }
     .flex.dashboard {
         grid-gap: 5px;
+        position: relative;
+    }
+    .aim-list {
+        padding: 0;
+        background: transparent;
+        border: none;
+    }
+    .aim .weeks span {
+        position: absolute;
+        right: 17px;
+    }
+    .aim-list::before,
+    .aim-list::after {
+        display: none;
+    }
+    .flex.dashboard .charts {
+        display: none;
+    }
+    .aim-header.flex .left.flex {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .aim .weeks {
+        width: 100%;
+        margin: 10px 0 0;
+        padding: 6px 9px;
+    }
+    app-list-aim {
+        display: block;
+        width: 93%;
+        margin: 0 auto;
+    }
+    .aim .weeks .item {
+        width: 12px;
+        height: 12px;
+        margin-right: 5px;
+    }
+    .aim .body .tasks .item.grid {
+        grid-template-columns: 36px 1fr 33px;
+        padding: 5px 0px 5px 10px;
+    }
+    .task-item:hover .hidden {
+        display: none;
+    }
+    .task-item.open:hover {
+        border-radius: 13px;
+    }
+    .flex.options .mat-tab-label-container {
+        max-width: 100%;
+    }
+    mat-tab-group.mat-tab-group.tabs-habit .mat-tab-header {
+        border: none;
+    }
+    .calendar-dashboard {
+        position: absolute;
+        top: -326px;
+        width: 100%;
+        left: 3.5%;
+    }
+    main .wrapper {
+        padding: 410px 10px 10px;
+    }
+    .mat-tab-group mat-tab-header.mat-tab-header .mat-tab-label-container {
+        max-width: 100%;
     }
     .subtasks .item .number {
         min-width: 20px;
@@ -4427,6 +4497,27 @@ app-weekly-performance {
         margin-right: 10px;
         border: 1px solid var(--main-blue);
         font-size: 11px;
+    }
+    .aim-header app-icon-template {
+        margin-right: 10px;
+    }
+    .flex.dashboard .left {
+        margin: 10px 0 6px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    app-list-task {
+        order: 0;
+        display: block;
+        width: 93%;
+        margin: 0 auto;
+        margin-bottom: 20px;
+    }
+    app-list-aim {
+        display: block;
+        width: 93%;
+        margin: 0 auto;
+        order: 1;
     }
     .flex.main-block {
         padding: 6px;
